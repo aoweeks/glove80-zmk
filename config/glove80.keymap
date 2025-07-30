@@ -40,13 +40,13 @@
             bindings = <&mo>, <&rgb_ug_status_macro>;
         };
 
-        caps_word_td: caps_word_tap_dance {
-            compatible = "zmk,behavior-tap-dance";
-            label = "CAPS_WORD_TAP_DANCE";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&caps_word>, <&kp>;
-        };
+        // caps_word_td: caps_word_tap_dance {
+        //     compatible = "zmk,behavior-tap-dance";
+        //     label = "CAPS_WORD_TAP_DANCE";
+        //     #binding-cells = <0>;
+        //     tapping-term-ms = <200>;
+        //     bindings = <&caps_word>, <&kp>;
+        // };
     };
 
     macros {
