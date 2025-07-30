@@ -52,10 +52,10 @@
         space_ht: space_hold_tap {
             compatible = "zmk,behavior-hold_tap";
             label = "SPACE_HOLD_TAP";
+            #binding-cells = <2>;
             flavor = "tap-preferred";
-            #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&kp SPACE>, <&mo NAVIGATION>;
+            bindings = <&kp>, <&mo>;
         };
     };
 
@@ -103,6 +103,15 @@
                 = <&out OUT_BLE>,
                   <&bt BT_SEL 3>;
         };
+
+        del_last_char: delete_last_char_macro {
+            label = "BT_3";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&out OUT_BLE>,
+                  <&bt BT_SEL 3>;
+        };
     };
 
     keymap {
@@ -128,7 +137,7 @@
 //├─────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼────────────────┬─────────────┬────────────╮ ╭─────────────┬────────────────┬─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
     &kp GRAVE         &kp Z         &kp X         &kp C         &kp D         &kp V         &caps_word_td    &kp LCTRL     &layer_td      &kp LGUI      &mo NAVIGATION   &kp RSHFT      &kp K         &kp H         &kp COMMA     &kp DOT       &kp FSLH      &kp PG_UP  
 //├─────────────────┼─────────────┼─────────────┼─────────────┼─────────────┴─────────────┼────────────────┼─────────────┼────────────┤ ├─────────────┼────────────────┼─────────────┼─────────────┴─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &magic MAGIC 0    &kp HOME      &kp END       &kp LEFT      &kp RIGHT                   &kp BSPC         &kp DEL       &kp LALT       &kp RALT      &kp RET          &space_ht                    &kp UP        &kp DOWN      &kp LBKT      &kp RBKT      &kp PG_DN
+    &magic MAGIC 0    &kp HOME      &kp END       &kp LEFT      &kp RIGHT                   &kp BSPC         &kp DEL       &kp LALT       &kp RALT      &kp RET          &space_ht SPACE NAVIGATION   &kp UP        &kp DOWN      &kp LBKT      &kp RBKT      &kp PG_DN
 //╰─────────────────┴─────────────┴─────────────┴─────────────┴─────────────╯             ╰────────────────┴─────────────┴────────────╯ ╰─────────────┴────────────────┴─────────────╯             ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
             >;
         };
