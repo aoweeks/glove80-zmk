@@ -41,13 +41,13 @@
             bindings = <&mo>, <&rgb_ug_status_macro>;
         };
 
-        // caps_word_td: caps_word_tap_dance {
-        //     compatible = "zmk,behavior-tap-dance";
-        //     label = "CAPS_WORD_TAP_DANCE";
-        //     #binding-cells = <0>;
-        //     tapping-term-ms = <200>;
-        //     bindings = <&caps_word>, <&kp>;
-        // }
+        caps_word_td: caps_word_tap_dance {
+            compatible = "zmk,behavior-tap-dance";
+            label = "CAPS_WORD_TAP_DANCE";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&caps_word>, <&kp>;
+        }
     };
 
     macros {
@@ -117,7 +117,7 @@
 //├─────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤                                                                                                 ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
     &kp ESC           &kp A         &kp R         &kp S         &kp T         &kp G                                                                                                            &kp M         &kp N         &kp E         &kp I         &kp O         &kp SQT    
 //├─────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼───────────────────────┬─────────────┬────────────╮ ╭─────────────┬────────────────┬─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &kp GRAVE         &kp Z         &kp X         &kp C         &kp D         &kp V         &kp LSHFT               &kp LCTRL     &layer_td      &kp LGUI      &mo NAVIGATION   &kp RSHFT      &kp K         &kp H         &kp COMMA     &kp DOT       &kp FSLH      &kp PG_UP  
+    &kp GRAVE         &kp Z         &kp X         &kp C         &kp D         &kp V         &caps_word_td 0 LSHFT   &kp LCTRL     &layer_td      &kp LGUI      &mo NAVIGATION   &kp RSHFT      &kp K         &kp H         &kp COMMA     &kp DOT       &kp FSLH      &kp PG_UP  
 //├─────────────────┼─────────────┼─────────────┼─────────────┼─────────────┴─────────────┼───────────────────────┼─────────────┼────────────┤ ├─────────────┼────────────────┼─────────────┼─────────────┴─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
     &magic MAGIC 0    &kp HOME      &kp END       &kp LEFT      &kp RIGHT                   &kp BSPC                &kp DEL       &kp LALT       &kp RALT      &kp RET          &kp SPACE                    &kp UP        &kp DOWN      &kp LBKT      &kp RBKT      &kp PG_DN
 //╰─────────────────┴─────────────┴─────────────┴─────────────┴─────────────╯             ╰───────────────────────┴─────────────┴────────────╯ ╰─────────────┴────────────────┴─────────────╯             ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
