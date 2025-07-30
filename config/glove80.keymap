@@ -52,6 +52,7 @@
         space_ht: space_hold_tap {
             compatible = "zmk,behavior-hold_tap";
             label = "SPACE_HOLD_TAP";
+            flavor = "tap-preferred";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&kp SPACE>, <&mo NAVIGATION>;
