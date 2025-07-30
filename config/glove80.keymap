@@ -49,6 +49,13 @@
             bindings = <&kp LSHIFT>, <&caps_word>;
         };
 
+        space_ht: space_hold_tap {
+            compatible = "zmk,behavior-hold_tap";
+            label = "SPACE_HOLD_TAP";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp SPACE>, <&mo NAVIGATION>;
+        };
     };
 
     macros {
@@ -120,7 +127,7 @@
 //├─────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼────────────────┬─────────────┬────────────╮ ╭─────────────┬────────────────┬─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
     &kp GRAVE         &kp Z         &kp X         &kp C         &kp D         &kp V         &caps_word_td    &kp LCTRL     &layer_td      &kp LGUI      &mo NAVIGATION   &kp RSHFT      &kp K         &kp H         &kp COMMA     &kp DOT       &kp FSLH      &kp PG_UP  
 //├─────────────────┼─────────────┼─────────────┼─────────────┼─────────────┴─────────────┼────────────────┼─────────────┼────────────┤ ├─────────────┼────────────────┼─────────────┼─────────────┴─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &magic MAGIC 0    &kp HOME      &kp END       &kp LEFT      &kp RIGHT                   &kp BSPC         &kp DEL       &kp LALT       &kp RALT      &kp RET          &kp SPACE                    &kp UP        &kp DOWN      &kp LBKT      &kp RBKT      &kp PG_DN
+    &magic MAGIC 0    &kp HOME      &kp END       &kp LEFT      &kp RIGHT                   &kp BSPC         &kp DEL       &kp LALT       &kp RALT      &kp RET          &space_ht                    &kp UP        &kp DOWN      &kp LBKT      &kp RBKT      &kp PG_DN
 //╰─────────────────┴─────────────┴─────────────┴─────────────┴─────────────╯             ╰────────────────┴─────────────┴────────────╯ ╰─────────────┴────────────────┴─────────────╯             ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
             >;
         };
