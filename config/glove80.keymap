@@ -127,7 +127,16 @@
         bigram: bigram {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
-            bindings = <&macro_param_1to1 &kp 0>, <&macro_param_2to1 &kp 0>;
+            bindings = <&macro_param_1to1 &kp 0>,
+                       <&macro_param_2to1 &kp 0>;
+        };
+
+        bi_tri: bigram_or_trigram {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <1>;
+            bindings = <macro_param_1to1 &kp 0 &kp EQUAL >,
+                       <macro_param_1to1 &kp 0 &kp EQUAL &kp EQUAL >;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
         };
     };
 
@@ -136,9 +145,9 @@
         default_layer {
             bindings = <
 //╭──────────────────────┬────────────────┬─────────────┬─────────────┬─────────────╮                                                                                                                     ╭─────────────┬─────────────┬────────────────┬─────────────────────┬───────────────────╮
-    &magic MAGIC 0           &none            &none         &none         &none                                                                                                                                &none         &none        &none           &none                 &none         
+    &magic MAGIC 0         &none            &none         &none         &none                                                                                                                                &none         &none        &none            &none                 &none         
 //├──────────────────────┼────────────────┼─────────────┼─────────────┼─────────────┼─────────────╮                                                                                         ╭─────────────┼─────────────┼─────────────┼────────────────┼─────────────────────┼───────────────────┤
-    &kp GB_N1              &kp GB_N2        &kp GB_N3     &kp GB_N4     &kp GB_N5     &kp GB_N6                                                                                                &kp GB_N7     &kp GB_N8     &kp GB_N9    &kp GB_N0         &none                &none
+    &kp GB_N1              &kp GB_N2        &kp GB_N3     &kp GB_N4     &kp GB_N5     &kp GB_N6                                                                                                &kp GB_N7     &kp GB_N8     &kp GB_N9    &kp GB_N0        &none                 &none
 //├──────────────────────┼────────────────┼─────────────┼─────────────┼─────────────┼─────────────┤                                                                                         ├─────────────┼─────────────┼─────────────┼────────────────┼─────────────────────┼───────────────────┤
     &kp HASH               &kp Q            &kp W         &kp F         &kp P         &kp B                                                                                                    &kp J         &kp L         &kp U        &kp Y            &kp SEMI              &kp GB_POUND_SIGN   
 //├──────────────────────┼────────────────┼─────────────┼─────────────┼─────────────┼─────────────┤                                                                                         ├─────────────┼─────────────┼─────────────┼────────────────┼─────────────────────┼───────────────────┤
@@ -146,7 +155,7 @@
 //├──────────────────────┼────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼───────────┬──────────────────┬────────────╮ ╭─────────────┬──────────┬──────────────────┼─────────────┼─────────────┼─────────────┼────────────────┼─────────────────────┼───────────────────┤
     &lt_rpi LOWER EXCL     &mt_rpi LALT Z   &kp X         &kp C         &kp D         &kp V         &kp ESC     &kp LCTRL          &layer_td      &kp RGUI      &mo NAV    &kp RGUI            &kp K         &kp H         &kp COMMA    &kp DOT          &mt_rpi RCTRL MINUS   &kp EQUAL
 //├──────────────────────┼────────────────┼─────────────┼─────────────┼─────────────┴─────────────┼───────────┼──────────────────┼────────────┤ ├─────────────┼──────────┼──────────────────┼─────────────┴─────────────┼─────────────┼────────────────┼─────────────────────┼───────────────────┤
-      &none                &kp LT           &kp GT        &kp LBKT      &kp RBKT                    &kp BSPC    &caps_word_td      &kp DEL        &kp TAB       &kp RET    &lt_rpi NAV SPACE                 &kp LPAR      &kp RPAR     &kp GB_FSLH      &kp GB_BSLH            &none
+      &none                 &kp GB_FSLH     &kp GB_BSLH   &kp LBKT      &kp RBKT                    &kp BSPC    &caps_word_td      &kp DEL        &kp TAB       &kp RET    &lt_rpi NAV SPACE                 &kp LPAR      &kp RPAR     &kp LT           &kp GT                &none
 //╰──────────────────────┴────────────────┴─────────────┴─────────────┴─────────────╯             ╰───────────┴──────────────────┴────────────╯ ╰─────────────┴──────────┴──────────────────╯             ╰─────────────┴─────────────┴────────────────┴─────────────────────┴───────────────────╯
             >;
         };
@@ -158,11 +167,11 @@
 //├─────────────┼─────────┼──────────────────┼───────────────────────┼─────────────────────┼───────────────────────╮                                                                                                ╭─────────────┼─────────────┼─────────────┼───────────────┼─────────────────┼─────────────────┤
     &trans        &none     &none              &bigram PERCENT EQUAL   &bigram ASTRK EQUAL   &bigram FSLH EQUAL                                                                                                       &kp LPAR      &kp KP_NUM    &kp KP_EQUAL  &kp KP_DIVIDE   &kp KP_MULTIPLY   &trans     
 //├─────────────┼─────────┼──────────────────┼───────────────────────┼─────────────────────┼───────────────────────┤                                                                                                ├─────────────┼─────────────┼─────────────┼───────────────┼─────────────────┼─────────────────┤
-    &trans        &none     &none              &bigram EXCL EQUAL      &bigram PLUS EQUAL    &bigram MINUS EQUAL                                                                                                      &kp RPAR      &kp KP_N7     &kp KP_N8     &kp KP_N9       &kp KP_MINUS      &trans    
+    &trans        &none     &none              &bi_tri EXCL            &bigram PLUS EQUAL    &bigram MINUS EQUAL                                                                                                      &kp RPAR      &kp KP_N7     &kp KP_N8     &kp KP_N9       &kp KP_MINUS      &trans    
 //├─────────────┼─────────┼──────────────────┼───────────────────────┼─────────────────────┼───────────────────────┤                                                                                                ├─────────────┼─────────────┼─────────────┼───────────────┼─────────────────┼─────────────────┤
-    &trans        &none     &bigram LT EQUAL   &bigram EQUAL EQUAL     &bigram GT EQUAL      &bigram MINUS GT                                                                                                         &kp PRCNT     &kp KP_N4     &kp KP_N5     &kp KP_N6       &kp KP_PLUS       &kp GT           
+    &trans        &none     &bigram LT EQUAL   &bi_tri EQUAL           &bigram GT EQUAL      &bigram MINUS GT                                                                                                         &kp PRCNT     &kp KP_N4     &kp KP_N5     &kp KP_N6       &kp KP_PLUS       &kp GT           
 //├─────────────┼─────────┼──────────────────┼───────────────────────┼─────────────────────┼───────────────────────┼───────────────────────┬───────────────┬────────────╮ ╭─────────────┬─────────────┬─────────────┼─────────────┼─────────────┼─────────────┼───────────────┼─────────────────┼─────────────────┤
-    &trans        &trans    &bigram LPAR LBKT  &bigram LPAR LBRC       &bigram PLUS PLUS     &bigram MINUS MINUS     &trans                  &trans          &trans         &trans        &trans        &trans        &kp COMMA     &kp KP_N1     &kp KP_N2     &kp KP_N3       &kp KP_ENTER      &kp LT          
+    &trans        &trans    &bigram LPAR LBKT  &bigram LPAR LBRC       &bigram PLUS PLUS     &bigram MINUS MINUS     &bigram EQUAL GT        &trans          &trans         &trans        &trans        &trans        &kp COMMA     &kp KP_N1     &kp KP_N2     &kp KP_N3       &kp KP_ENTER      &kp LT          
 //├─────────────┼─────────┼──────────────────┼───────────────────────┼─────────────────────┴───────────────────────┼───────────────────────┼───────────────┼────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┼─────────────┼───────────────┼─────────────────┼─────────────────┤
     &trans        &trans    &trans             &bigram PIPE PIPE       &bigram AMPS AMPS                             &kp BSPC                &trans          &kp DEL         &trans       &trans        &trans                      &kp KP_N0     &kp KP_N0     &kp KP_DOT      &kp KP_ENTER      &trans
 //╰─────────────┴─────────┴──────────────────┴───────────────────────┴─────────────────────╯                       ╰───────────────────────┴───────────────┴────────────╯ ╰─────────────┴─────────────┴─────────────╯             ╰─────────────┴─────────────┴───────────────┴─────────────────┴─────────────────╯
