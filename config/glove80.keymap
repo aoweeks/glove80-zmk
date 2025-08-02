@@ -131,11 +131,19 @@
                        <&macro_param_2to1 &kp 0>;
         };
 
-        bi_tri: bigram_or_trigram {
+        is_equal: is_equal_to_bigram_or_trigram {
             compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <1>;
-            bindings = <&macro_param_1to1 &kp 0 &kp EQUAL >,
-                       <&macro_param_1to1 &kp 0 &kp EQUAL &kp EQUAL >;
+            #binding-cells = <0>;
+            bindings = <&kp EQUAL &kp EQUAL>,
+                       <&kp EQUAL &kp EQUAL &kp EQUAL>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        not_equal: is_not_equal_to_bigram_or_trigram {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp EXCL &kp EQUAL>,
+                       <&kp EXCL &kp EQUAL &kp EQUAL>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
     };
@@ -167,9 +175,9 @@
 //├─────────────┼─────────┼──────────────────┼───────────────────────┼─────────────────────┼───────────────────────╮                                                                                                ╭─────────────┼─────────────┼─────────────┼───────────────┼─────────────────┼─────────────────┤
     &trans        &none     &none              &bigram PERCENT EQUAL   &bigram ASTRK EQUAL   &bigram FSLH EQUAL                                                                                                       &kp LPAR      &kp KP_NUM    &kp KP_EQUAL  &kp KP_DIVIDE   &kp KP_MULTIPLY   &trans     
 //├─────────────┼─────────┼──────────────────┼───────────────────────┼─────────────────────┼───────────────────────┤                                                                                                ├─────────────┼─────────────┼─────────────┼───────────────┼─────────────────┼─────────────────┤
-    &trans        &none     &none              &bi_tri EXCL            &bigram PLUS EQUAL    &bigram MINUS EQUAL                                                                                                      &kp RPAR      &kp KP_N7     &kp KP_N8     &kp KP_N9       &kp KP_MINUS      &trans    
+    &trans        &none     &none              &not_equal              &bigram PLUS EQUAL    &bigram MINUS EQUAL                                                                                                      &kp RPAR      &kp KP_N7     &kp KP_N8     &kp KP_N9       &kp KP_MINUS      &trans    
 //├─────────────┼─────────┼──────────────────┼───────────────────────┼─────────────────────┼───────────────────────┤                                                                                                ├─────────────┼─────────────┼─────────────┼───────────────┼─────────────────┼─────────────────┤
-    &trans        &none     &bigram LT EQUAL   &bi_tri EQUAL           &bigram GT EQUAL      &bigram MINUS GT                                                                                                         &kp PRCNT     &kp KP_N4     &kp KP_N5     &kp KP_N6       &kp KP_PLUS       &kp GT           
+    &trans        &none     &bigram LT EQUAL   &is_equal               &bigram GT EQUAL      &bigram MINUS GT                                                                                                         &kp PRCNT     &kp KP_N4     &kp KP_N5     &kp KP_N6       &kp KP_PLUS       &kp GT           
 //├─────────────┼─────────┼──────────────────┼───────────────────────┼─────────────────────┼───────────────────────┼───────────────────────┬───────────────┬────────────╮ ╭─────────────┬─────────────┬─────────────┼─────────────┼─────────────┼─────────────┼───────────────┼─────────────────┼─────────────────┤
     &trans        &trans    &bigram LPAR LBKT  &bigram LPAR LBRC       &bigram PLUS PLUS     &bigram MINUS MINUS     &bigram EQUAL GT        &trans          &trans         &trans        &trans        &trans        &kp COMMA     &kp KP_N1     &kp KP_N2     &kp KP_N3       &kp KP_ENTER      &kp LT          
 //├─────────────┼─────────┼──────────────────┼───────────────────────┼─────────────────────┴───────────────────────┼───────────────────────┼───────────────┼────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┼─────────────┼───────────────┼─────────────────┼─────────────────┤
