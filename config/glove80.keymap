@@ -134,8 +134,8 @@
         bi_tri: bigram_or_trigram {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <1>;
-            bindings = <macro_param_1to1 &kp 0 &kp EQUAL >,
-                       <macro_param_1to1 &kp 0 &kp EQUAL &kp EQUAL >;
+            bindings = <&macro_param_1to1 &kp 0 &kp EQUAL >,
+                       <&macro_param_1to1 &kp 0 &kp EQUAL &kp EQUAL >;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
     };
