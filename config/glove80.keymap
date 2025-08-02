@@ -77,6 +77,20 @@
             retro-tap;
             bindings = <&mo>, <&kp>;
         };
+        
+        is_equal: is_equal_to_bigram_or_trigram {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&double_equals>, <&triple_equals>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        not_equal: is_not_equal_to_bigram_or_trigram {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&not_equals_double>, <&not_equals_triple>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
     };
 
     macros {
@@ -131,21 +145,34 @@
                        <&macro_param_2to1 &kp 0>;
         };
 
-        is_equal: is_equal_to_bigram_or_trigram {
-            compatible = "zmk,behavior-mod-morph";
+        double_equals: double_equals_macro {
+            label = "DOUBLE_EQUALS";
+            compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_tap &kp EQUAL &kp EQUAL>,
-                       <&macro_tap &kp EQUAL &kp EQUAL &kp EQUAL>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
+            bindings = <&macro_tap &kp EQUAL &kp EQUAL>;
+        };
+        
+        triple_equals: triple_equals_macro {
+            label = "TRIPLE_EQUALS";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp EQUAL &kp EQUAL &kp EQUAL>;
+        };
+        
+        not_equals_double: not_equals_double_macro {
+            label = "NOT_EQUALS_DOUBLE";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp EXCL &kp EQUAL>;
+        };
+        
+        not_equals_triple: not_equals_triple_macro {
+            label = "NOT_EQUALS_TRIPLE";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp EXCL &kp EQUAL &kp EQUAL>;
         };
 
-        not_equal: is_not_equal_to_bigram_or_trigram {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&macro_tap &kp EXCL &kp EQUAL>,
-                       <&macro_tap &kp EXCL &kp EQUAL &kp EQUAL>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
     };
 
     keymap {
