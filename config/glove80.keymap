@@ -37,7 +37,7 @@
         };
 
         lt_rpi: layer_tap_require_prior_idle {
-            compatible = "zmk,behavior-layer-tap";
+            compatible = "zmk,behavior-hold-tap";
             label = "LAYER_TAP_REQUIRE_PRIOR_IDLE";
             #binding-cells = <2>;
             flavor = "tap-preferred";
