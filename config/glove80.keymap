@@ -99,7 +99,7 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        l_par: right_parenthesis_shift_double_quote {
+        l_par: left_parenthesis_shift_double_quote {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp LEFT_PARENTHESIS>, <&kp DOUBLE_QUOTES>;
