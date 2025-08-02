@@ -35,6 +35,17 @@
             bindings = <&kp>, <&kp>;
         };
 
+        lt_rpi: layer_tap_require_prior_idle {
+            compatible = "zmk,behavior-layer-tap";
+            label = "LAYER_TAP_REQUIRE_PRIOR_IDLE";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            require-prior-idle-ms = <125>;
+            bindings = <&mo>, <&kp>;
+        };
+
 
         // For the "layer" key, it'd nice to be able to use it as either a shift or a toggle.
         // Configure it as a tap dance, so the first tap (or hold) is a &mo and the second tap is a &to
