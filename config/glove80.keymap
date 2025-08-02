@@ -23,6 +23,19 @@
 
 / {
     behaviors {
+
+        mt_rpi: mod_tap_require_prior_idle {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MOD_TAP_REQUIRE_PRIOR_IDLE";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            require-prior-idle-ms = <125>;
+            bindings = <&kp>, <&kp>;
+        };
+
+
         // For the "layer" key, it'd nice to be able to use it as either a shift or a toggle.
         // Configure it as a tap dance, so the first tap (or hold) is a &mo and the second tap is a &to
         layer_td: tap_dance_0 {
@@ -108,7 +121,6 @@
 
     keymap {
         compatible = "zmk,keymap";
-
         default_layer {
             bindings = <
 //╭─────────────────┬─────────────┬─────────────┬─────────────┬─────────────╮                                                                                                                  ╭─────────────┬─────────────┬─────────────┬──────────────────┬───────────────╮
@@ -116,13 +128,13 @@
 //├─────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────╮                                                                                      ╭─────────────┼─────────────┼─────────────┼─────────────┼──────────────────┼───────────────┤
     &kp N1            &kp N2        &kp N3        &kp N4        &kp N5        &kp N6                                                                                                &kp N7        &kp N8        &kp N9        &kp N0          &none              &none
 //├─────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤                                                                                      ├─────────────┼─────────────┼─────────────┼─────────────┼──────────────────┼───────────────┤
-      &none           &kp Q         &kp W         &kp F         &kp P         &kp B                                                                                                 &kp J         &kp L         &kp U         &kp Y         &kp SEMI           &kp SQT   
+      &kp POUND       &kp Q         &kp W         &kp F         &kp P         &kp B                                                                                                 &kp J         &kp L         &kp U         &kp Y         &kp SEMI           &kp SQT   
 //├─────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤                                                                                      ├─────────────┼─────────────┼─────────────┼─────────────┼──────────────────┼───────────────┤
-      &none           &kp A         &kp R         &kp S         &kp T         &kp G                                                                                                 &kp M         &kp N         &kp E         &kp I         &kp O              &kp ASTERISK
+      &kp HASH        &kp A         &kp R         &kp S         &kp T         &kp G                                                                                                 &kp M         &kp N         &kp E         &kp I         &kp O              &kp ASTERISK
 //├─────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼────────────────┬─────────────┬────────────╮ ╭─────────────┬──────────┬───────────────┼─────────────┼─────────────┼─────────────┼─────────────┼──────────────────┼───────────────┤
-    &lt SYMBOLS GRAVE &mt LALT Z    &kp X         &kp C         &kp D         &kp V         &caps_word_td    &kp LCTRL     &layer_td      &kp RGUI      &mo NAV    &kp RSHFT        &kp K         &kp H         &kp COMMA     &kp DOT       &mt RCTRL MINUS    &kp EQUAL
+    &lt SYMBOLS EXCL &mt_rpi LALT Z &kp X         &kp C         &kp D         &kp V         &caps_word_td    &kp LCTRL     &layer_td      &kp RGUI      &mo NAV    &kp RSHFT        &kp K         &kp H         &kp COMMA     &kp DOT     &mt_rpi RCTRL MINUS  &kp EQUAL
 //├─────────────────┼─────────────┼─────────────┼─────────────┼─────────────┴─────────────┼────────────────┼─────────────┼────────────┤ ├─────────────┼──────────┼───────────────┼─────────────┴─────────────┼─────────────┼─────────────┼──────────────────┼───────────────┤
-      &none           &kp LT        &kp GT        &kp LPAR      &kp RPAR                    &kp BSPC         &kp DEL       &kp ESC        &kp TAB       &kp RET    &lt NAV SPACE                  &kp LBKT      &kp RBKT      &kp BSLH      &kp FSLH             &none
+      &none           &kp LT        &kp GT        &kp LPAR      &kp RPAR                    &kp BSPC         &kp DEL       &kp ESC        &kp TAB       &kp RET    &lt NAV SPACE                  &kp LBKT      &kp RBKT      &kp BACKSLASH &kp FSLH             &none
 //╰─────────────────┴─────────────┴─────────────┴─────────────┴─────────────╯             ╰────────────────┴─────────────┴────────────╯ ╰─────────────┴──────────┴───────────────╯             ╰─────────────┴─────────────┴─────────────┴──────────────────┴───────────────╯
             >;
         };
