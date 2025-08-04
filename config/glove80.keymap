@@ -77,21 +77,22 @@
             retro-tap;
             bindings = <&mo>, <&kp>;
         };
-        
+
         is_equal: is_equal_to_bigram_or_trigram {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&double_equals>, <&triple_equals>;
+            bindings = <&bigram EQUAL EQUAL>, <&trigram EQUAL EQUAL>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
         not_equal: is_not_equal_to_bigram_or_trigram {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&not_equals_double>, <&not_equals_triple>;
+            bindings = <&bigram EXCL EQUAL>, <&trigram EXCL EQUAL>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
+        // Shifted symbols
         currency: pound_shift_dollar {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -181,33 +182,44 @@
                        <&macro_param_2to1 &kp 0>;
         };
 
-        double_equals: double_equals_macro {
-            label = "DOUBLE_EQUALS";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap &kp EQUAL &kp EQUAL>;
+        trigram: trigram {
+            compatible = "zmk,behavior-macro-two-param";
+            #binding-cells = <2>;
+            bindings = <&macro_release &kp LSHFT>,
+                       <&macro_param_1to1 &kp 0>,
+                       <&macro_param_2to1 &kp 0>,
+                       <&macro_tap &kp EQUAL>;
         };
+
+        // double_equals: double_equals_macro {
+        //     label = "DOUBLE_EQUALS";
+        //     compatible = "zmk,behavior-macro";
+        //     #binding-cells = <0>;
+        //     bindings = <&macro_tap &kp EQUAL &kp EQUAL>;
+        // };
         
-        triple_equals: triple_equals_macro {
-            label = "TRIPLE_EQUALS";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap &kp EQUAL &kp EQUAL &kp EQUAL>;
-        };
+        // triple_equals: triple_equals_macro {
+        //     label = "TRIPLE_EQUALS";
+        //     compatible = "zmk,behavior-macro";
+        //     #binding-cells = <0>;
+        //     bindings = <&macro_release &kp LSHFT>,
+        //                <&macro_tap &kp EQUAL &kp EQUAL &kp EQUAL>;
+        // };
         
-        not_equals_double: not_equals_double_macro {
-            label = "NOT_EQUALS_DOUBLE";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap &kp EXCL &kp EQUAL>;
-        };
+        // not_equals_double: not_equals_double_macro {
+        //     label = "NOT_EQUALS_DOUBLE";
+        //     compatible = "zmk,behavior-macro";
+        //     #binding-cells = <0>;
+        //     bindings = <&macro_tap &kp EXCL &kp EQUAL>;
+        // };
         
-        not_equals_triple: not_equals_triple_macro {
-            label = "NOT_EQUALS_TRIPLE";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap &kp EXCL &kp EQUAL &kp EQUAL>;
-        };
+        // not_equals_triple: not_equals_triple_macro {
+        //     label = "NOT_EQUALS_TRIPLE";
+        //     compatible = "zmk,behavior-macro";
+        //     #binding-cells = <0>;
+        //     bindings = <&macro_release &kp LSHFT>,
+        //                <&macro_tap &kp EXCL &kp EQUAL &kp EQUAL>;
+        // };
 
 
     };
@@ -217,9 +229,9 @@
 
         combo_sticky_hyper {
             timeout-ms = <50>;
-            key-positions = <37 38>;
+            key-positions = <41 42>;
             bindings = <&sk HYPER>;
-            require-prior-idle-ms = <100>;
+            require-prior-idle-ms = <150>;
             layers = <DEFAULT NUM_BI>;
         };
     };
@@ -228,37 +240,37 @@
         compatible = "zmk,keymap";
         default_layer {
             bindings = <
-//╭──────────────────────┬────────────────┬─────────────┬─────────────┬─────────────╮                                                                                                                             ╭─────────────┬─────────────┬────────────────┬─────────────────────┬──────────────╮
-    &magic MAGIC 0         &none            &none         &none         &none                                                                                                                                        &none         &none        &none            &none                 &none         
-//├──────────────────────┼────────────────┼─────────────┼─────────────┼─────────────┼─────────────╮                                                                                                 ╭─────────────┼─────────────┼─────────────┼────────────────┼─────────────────────┼──────────────┤
-    &kp GB_N1              &kp GB_N2        &kp GB_N3     &kp GB_N4     &kp GB_N5     &kp GB_N6                                                                                                        &kp GB_N7     &kp GB_N8     &kp GB_N9    &kp GB_N0        &none                 &none
-//├──────────────────────┼────────────────┼─────────────┼─────────────┼─────────────┼─────────────┤                                                                                                 ├─────────────┼─────────────┼─────────────┼────────────────┼─────────────────────┼──────────────┤
-    &kp GB_HASH            &kp Q            &kp W         &kp F         &kp P         &kp B                                                                                                            &kp J         &kp L         &kp U        &kp Y            &kp SEMI              &currency   
-//├──────────────────────┼────────────────┼─────────────┼─────────────┼─────────────┼─────────────┤                                                                                                 ├─────────────┼─────────────┼─────────────┼────────────────┼─────────────────────┼──────────────┤
-    &kp GB_APOS            &kp A            &kp R         &kp S         &kp T         &kp G                                                                                                            &kp M         &kp N         &kp E        &kp I            &kp O                 &kp ASTERISK 
-//├──────────────────────┼────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼───────────────────┬──────────────────┬────────────╮ ╭─────────────┬──────────┬──────────────────┼─────────────┼─────────────┼─────────────┼────────────────┼─────────────────────┼──────────────┤
-    &lt_rpi NUM_BI EXCL    &mt_rpi LALT Z   &kp X         &kp C         &kp D         &kp V         &mt_rpi ESC LCTRL     &none              &none          &none         &none    &kp RGUI            &kp K         &kp H         &kp COMMA    &kp DOT          &mt_rpi RCTRL MINUS   &kp EQUAL
-//├──────────────────────┼────────────────┼─────────────┼─────────────┼─────────────┴─────────────┼───────────────────┼──────────────────┼────────────┤ ├─────────────┼──────────┼──────────────────┼─────────────┴─────────────┼─────────────┼────────────────┼─────────────────────┼──────────────┤
-      &none                &kp GB_FSLH      &kp GB_BSLH   &kp LBKT      &kp RBKT                    &kp BSPC            &caps_word_td      &kp DEL        &kp TAB       &kp RET    &lt_rpi NAV SPACE                 &l_par       &r_par        &backtick        &percent              &none
-//╰──────────────────────┴────────────────┴─────────────┴─────────────┴─────────────╯             ╰───────────────────┴──────────────────┴────────────╯ ╰─────────────┴──────────┴──────────────────╯             ╰─────────────┴─────────────┴────────────────┴─────────────────────┴──────────────╯
+//╭────────────────────┬──────────────────┬─────────────┬─────────────┬─────────────╮                                                                                                                             ╭─────────────┬─────────────┬────────────────┬─────────────────────┬──────────────╮
+    &magic MAGIC 0       &none              &none         &none         &none                                                                                                                                        &none         &none        &none            &none                 &none         
+//├────────────────────┼──────────────────┼─────────────┼─────────────┼─────────────┼─────────────╮                                                                                                 ╭─────────────┼─────────────┼─────────────┼────────────────┼─────────────────────┼──────────────┤
+    &kp GB_N1            &kp GB_N2          &kp GB_N3     &kp GB_N4     &kp GB_N5     &kp GB_N6                                                                                                        &kp GB_N7     &kp GB_N8     &kp GB_N9    &kp GB_N0        &none                 &none
+//├────────────────────┼──────────────────┼─────────────┼─────────────┼─────────────┼─────────────┤                                                                                                 ├─────────────┼─────────────┼─────────────┼────────────────┼─────────────────────┼──────────────┤
+    &kp GB_HASH          &kp Q              &kp W         &kp F         &kp P         &kp B                                                                                                            &kp J         &kp L         &kp U        &kp Y            &kp SEMI              &currency   
+//├────────────────────┼──────────────────┼─────────────┼─────────────┼─────────────┼─────────────┤                                                                                                 ├─────────────┼─────────────┼─────────────┼────────────────┼─────────────────────┼──────────────┤
+    &mt_rpi LALT EXCL    &kp A              &kp R         &kp S         &kp T         &kp G                                                                                                            &kp M         &kp N         &kp E        &kp I            &kp O                 &kp ASTERISK 
+//├────────────────────┼──────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼───────────┬──────────────────┬────────────────────╮ ╭─────────────┬──────────┬──────────────────┼─────────────┼─────────────┼─────────────┼────────────────┼─────────────────────┼──────────────┤
+    &kp GB_APOS          &lt_rpi NUM_BI Z   &kp X         &kp C         &kp D         &kp V         &kp DEL     &none              &none                    &none         &none    &kp RGUI            &kp K         &kp H         &kp COMMA    &kp DOT          &mt_rpi RCTRL MINUS   &kp EQUAL
+//├────────────────────┼──────────────────┼─────────────┼─────────────┼─────────────┴─────────────┼───────────┼──────────────────┼────────────────────┤ ├─────────────┼──────────┼──────────────────┼─────────────┴─────────────┼─────────────┼────────────────┼─────────────────────┼──────────────┤
+      &none              &kp GB_BSLH        &kp GB_FSLH   &kp LBKT      &kp RBKT                    &kp BSPC    &caps_word_td      &mt_rpi ESC LCTRL      &kp TAB       &kp RET    &lt_rpi NAV SPACE                 &l_par       &r_par        &backtick        &percent              &none
+//╰────────────────────┴──────────────────┴─────────────┴─────────────┴─────────────╯             ╰───────────┴──────────────────┴────────────────────╯ ╰─────────────┴──────────┴──────────────────╯             ╰─────────────┴─────────────┴────────────────┴─────────────────────┴──────────────╯
             >;
         };
 
         numpad_bigrams {
             bindings = <
-//╭─────────────┬─────────┬───────────────────┬─────────────────────────┬─────────────────────╮                                                                                                                                      ╭─────────────┬─────────────┬───────────────┬─────────────────┬─────────────────╮
-    &trans        &trans    &trans              &trans                    &trans                                                                                                                                                       &trans        &trans        &trans          &trans            &trans
-//├─────────────┼─────────┼───────────────────┼─────────────────────────┼─────────────────────┼───────────────────────╮                                                                                                ╭─────────────┼─────────────┼─────────────┼───────────────┼─────────────────┼─────────────────┤
-    &trans        &none     &none               &bigram PERCENT EQUAL     &bigram ASTRK EQUAL   &bigram FSLH EQUAL                                                                                                       &kp LPAR      &kp KP_NUM    &kp EQUAL     &kp GB_FSLH     &kp ASTRK         &trans     
-//├─────────────┼─────────┼───────────────────┼─────────────────────────┼─────────────────────┼───────────────────────┤                                                                                                ├─────────────┼─────────────┼─────────────┼───────────────┼─────────────────┼─────────────────┤
-    &trans        &none     &none               &not_equal                &bigram PLUS EQUAL    &bigram MINUS EQUAL                                                                                                      &kp RPAR      &kp N7        &kp N8        &kp N9          &kp MINUS         &trans    
-//├─────────────┼─────────┼───────────────────┼─────────────────────────┼─────────────────────┼───────────────────────┤                                                                                                ├─────────────┼─────────────┼─────────────┼───────────────┼─────────────────┼─────────────────┤
-    &trans        &none     &bigram LT EQUAL    &is_equal                 &bigram GT EQUAL      &bigram MINUS GT                                                                                                         &kp PRCNT     &kp N4        &kp N5        &kp N6          &kp PLUS          &kp GT           
-//├─────────────┼─────────┼───────────────────┼─────────────────────────┼─────────────────────┼───────────────────────┼───────────────────────┬───────────────┬────────────╮ ╭─────────────┬─────────────┬─────────────┼─────────────┼─────────────┼─────────────┼───────────────┼─────────────────┼─────────────────┤
-    &trans        &trans    &bigram LPAR LBKT   &bigram LPAR LBRC         &bigram PLUS PLUS     &bigram MINUS MINUS     &bigram EQUAL GT        &trans          &trans         &trans        &trans        &trans        &kp COMMA     &kp N1        &kp N2        &kp N3          &kp ENTER         &kp LT          
-//├─────────────┼─────────┼───────────────────┼─────────────────────────┼─────────────────────┴───────────────────────┼───────────────────────┼───────────────┼────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┼─────────────┼───────────────┼─────────────────┼─────────────────┤
-    &trans        &trans    &trans              &bigram GB_PIPE GB_PIPE   &bigram AMPS AMPS                             &kp BSPC                &trans          &kp DEL         &trans       &trans        &trans                      &kp N0        &kp N0        &kp DOT         &kp ENTER         &trans
-//╰─────────────┴─────────┴───────────────────┴─────────────────────────┴─────────────────────╯                       ╰───────────────────────┴───────────────┴────────────╯ ╰─────────────┴─────────────┴─────────────╯             ╰─────────────┴─────────────┴───────────────┴─────────────────┴─────────────────╯
+//╭─────────────┬─────────┬───────────────────┬─────────────────────────┬─────────────────────╮                                                                                                                                          ╭─────────────┬─────────────┬───────────────┬─────────────────┬─────────────────╮
+    &trans        &trans    &trans              &trans                    &trans                                                                                                                                                           &trans        &trans        &trans          &trans            &trans
+//├─────────────┼─────────┼───────────────────┼─────────────────────────┼─────────────────────┼───────────────────────╮                                                                                                    ╭─────────────┼─────────────┼─────────────┼───────────────┼─────────────────┼─────────────────┤
+    &trans        &none     &none               &bigram PERCENT EQUAL     &bigram ASTRK EQUAL   &bigram FSLH EQUAL                                                                                                           &kp LPAR      &kp KP_NUM    &kp EQUAL     &kp GB_FSLH     &kp ASTRK         &trans     
+//├─────────────┼─────────┼───────────────────┼─────────────────────────┼─────────────────────┼───────────────────────┤                                                                                                    ├─────────────┼─────────────┼─────────────┼───────────────┼─────────────────┼─────────────────┤
+    &trans        &none     &bigram EQUAL GT    &not_equal                &bigram PLUS EQUAL    &bigram MINUS EQUAL                                                                                                          &kp RPAR      &kp N7        &kp N8        &kp N9          &kp MINUS         &trans    
+//├─────────────┼─────────┼───────────────────┼─────────────────────────┼─────────────────────┼───────────────────────┤                                                                                                    ├─────────────┼─────────────┼─────────────┼───────────────┼─────────────────┼─────────────────┤
+    &trans        &none     &bigram LT EQUAL    &is_equal                 &bigram GT EQUAL      &bigram MINUS GT                                                                                                             &kp PRCNT     &kp N4        &kp N5        &kp N6          &kp PLUS          &kp GT           
+//├─────────────┼─────────┼───────────────────┼─────────────────────────┼─────────────────────┼───────────────────────┼──────────┬──────────────────┬────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┼─────────────┼─────────────┼───────────────┼─────────────────┼─────────────────┤
+    &trans        &trans    &bigram LPAR LBKT   &bigram LPAR LBRC         &bigram PLUS PLUS     &bigram MINUS MINUS     &kp DEL    &trans             &trans          &trans        &trans        &trans        &kp COMMA     &kp N1        &kp N2        &kp N3          &kp ENTER         &kp LT          
+//├─────────────┼─────────┼───────────────────┼─────────────────────────┼─────────────────────┴───────────────────────┼──────────┼──────────────────┼────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┼─────────────┼───────────────┼─────────────────┼─────────────────┤
+    &trans        &trans    &trans              &bigram GB_PIPE GB_PIPE   &bigram AMPS AMPS                             &kp BSPC   &kp LSHFT          &to DEFAULT     &trans        &trans        &trans                      &kp N0        &kp N0        &kp DOT         &kp ENTER         &trans
+//╰─────────────┴─────────┴───────────────────┴─────────────────────────┴─────────────────────╯                       ╰──────────┴──────────────────┴────────────╯ ╰─────────────┴─────────────┴─────────────╯             ╰─────────────┴─────────────┴───────────────┴─────────────────┴─────────────────╯
             >;
         };
 //         lower_layer {
@@ -292,7 +304,7 @@
 //├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┬─────────────────┬─────────────────╮ ╭─────────────────┬─────────────────┬─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤
     &sys_reset        &none             &none             &none             &none             &none             &bt_2             &bt_3             &out OUT_USB         &none             &none             &none             &none             &none             &none             &none             &none            &sys_reset      
 //├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┴─────────────────┼─────────────────┼─────────────────┼─────────────────┤ ├─────────────────┼─────────────────┼─────────────────┼─────────────────┴─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤
-    &none             &none             &none             &none             &none                               &bt_0             &bt_1             &to DEFAULT          &none             &none             &none                               &none             &none             &none             &none            &to FACTORY_TEST
+    &none             &none             &none             &none             &none                               &bt_0             &bt_1             c         &none             &none             &none                               &none             &none             &none             &none            &to FACTORY_TEST
 //╰─────────────────┴─────────────────┴─────────────────┴─────────────────┴─────────────────╯                 ╰─────────────────┴─────────────────┴─────────────────╯ ╰─────────────────┴─────────────────┴─────────────────╯                 ╰─────────────────┴─────────────────┴─────────────────┴─────────────────┴─────────────────╯
             >;
         };
