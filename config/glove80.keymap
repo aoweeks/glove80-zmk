@@ -220,7 +220,7 @@
             key-positions = <37 38>;
             bindings = <&sk HYPER>;
             require-prior-idle-ms = <100>;
-            layers = <DEFAULT NUM>;
+            layers = <DEFAULT NUM_BI>;
         };
     };
 
