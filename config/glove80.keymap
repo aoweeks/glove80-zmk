@@ -188,7 +188,7 @@
             bindings = <&macro_param_1to1 &kp 0>,
                        <&macro_param_2to1 &kp 0>,
                        <&macro_release &kp LSHFT>,
-                       macro_tap &kp EQUAL>;
+                       <&macro_tap &kp EQUAL>;
         };
     };
 
