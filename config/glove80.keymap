@@ -140,7 +140,14 @@
             bindings = <&kp EXCL>, <&kp PERCENT>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
-      
+
+        // Numpad F-Keys
+        mm_kp: mod_morph_keypad {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
     };
 
     macros {
@@ -256,7 +263,7 @@
 //├─────────────┼─────────┼───────────────────┼─────────────────────────┼─────────────────────┼───────────────────────┤                                                                                      ├─────────────┼─────────────┼─────────────┼───────────────┼─────────────────┼─────────────────┤
     &trans        &none     &bigram LT EQUAL    &is_equal                 &bigram GT EQUAL      &bigram MINUS GT                                                                                               &kp PRCNT     &kp N4        &kp N5        &kp N6          &kp PLUS          &kp GT           
 //├─────────────┼─────────┼───────────────────┼─────────────────────────┼─────────────────────┼───────────────────────┼──────────┬──────────────────┬────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┼─────────────┼─────────────┼───────────────┼─────────────────┼─────────────────┤
-    &trans        &trans    &bigram LPAR LBKT   &bigram LPAR LBRC         &bigram PLUS PLUS     &bigram MINUS MINUS     &kp DEL    &trans             &trans          &trans        &trans        &trans       &kp COMMA     &kp N1        &kp N2        &kp N3          &kp ENTER         &kp LT          
+    &trans        &trans    &bigram LPAR LBKT   &bigram LPAR LBRC         &bigram PLUS PLUS     &bigram MINUS MINUS     &kp DEL    &trans             &trans          &trans        &trans        &trans       &kp COMMA     &mm_kp N1 F1  &kp N2        &kp N3          &kp ENTER         &kp LT          
 //├─────────────┼─────────┼───────────────────┼─────────────────────────┼─────────────────────┴───────────────────────┼──────────┼──────────────────┼────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┼─────────────┼───────────────┼─────────────────┼─────────────────┤
     &trans        &trans    &trans              &bigram GB_PIPE GB_PIPE   &bigram AMPS AMPS                             &kp BSPC   &kp LSHFT          &to DEFAULT     &trans        &trans        &trans                     &kp N0        &kp N0        &kp DOT         &kp ENTER         &trans
 //╰─────────────┴─────────┴───────────────────┴─────────────────────────┴─────────────────────╯                       ╰──────────┴──────────────────┴────────────╯ ╰─────────────┴─────────────┴─────────────╯             ╰─────────────┴─────────────┴───────────────┴─────────────────┴─────────────────╯
