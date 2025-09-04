@@ -139,7 +139,7 @@
             #binding-cells = <0>;
             bindings = <&kp QMARK>, <&kp ASTERISK>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
-        }
+        };
 
         excl: exclamation_shift_dollar {
             compatible = "zmk,behavior-mod-morph";
