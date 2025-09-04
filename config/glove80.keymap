@@ -134,10 +134,24 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        excl: exclamation_shift_percent {
+        qmark: question_shift_asterisk {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp EXCL>, <&kp PERCENT>;
+            bindings = <&kp QMARK>, <&kp ASTERISK>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        }
+
+        excl: exclamation_shift_dollar {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp EXCL>, <&kp DOLLAR>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        fslh: forward_slash_shift_percent {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp FSLH>, <&kp PERCENT>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
@@ -311,15 +325,15 @@
 //╭────────────────────────────┬──────────────────┬─────────────┬─────────────┬─────────────╮                                                                                                                                 ╭─────────────┬─────────────┬────────────────┬─────────────────────┬────────────╮
     &magic MAGIC 0               &to WASD             &none         &none         &none                                                                                                                                            &none         &none        &none            &none                &none         
 //├────────────────────────────┼──────────────────┼─────────────┼─────────────┼─────────────┼─────────────╮                                                                                                     ╭─────────────┼─────────────┼─────────────┼────────────────┼─────────────────────┼────────────┤
-    &none                        &none              &none         &kp QMARK     &none         &none                                                                                                                &none         &none         &excl        &none            &none                 &none
+    &none                        &none              &none         &qmark        &none         &none                                                                                                                &none         &none         &excl        &none            &none                 &none
 //├────────────────────────────┼──────────────────┼─────────────┼─────────────┼─────────────┼─────────────┤                                                                                                     ├─────────────┼─────────────┼─────────────┼────────────────┼─────────────────────┼────────────┤
-    &kp ASTERISK                 &kp Q              &kp W         &kp F         &kp P         &kp B                                                                                                                &kp J         &kp L         &kp U        &kp Y            &kp GB_HASH           &kp GB_EURO  
+      &none                      &kp Q              &kp W         &kp F         &kp P         &kp B                                                                                                                &kp J         &kp L         &kp U        &kp Y            &kp GB_HASH           &kp GB_EURO  
 //├────────────────────────────┼──────────────────┼─────────────┼─────────────┼─────────────┼─────────────┤                                                                                                     ├─────────────┼─────────────┼─────────────┼────────────────┼─────────────────────┼────────────┤
-    &undecided_mt LALT GB_FSLH   &kp A              &kp R         &kp S         &kp T         &kp G                                                                                                                &kp M         &kp N         &kp E        &kp I            &kp O                 &kp GB_APOS
+    &undecided_mt LALT &fslh     &kp A              &kp R         &kp S         &kp T         &kp G                                                                                                                &kp M         &kp N         &kp E        &kp I            &kp O                 &kp GB_APOS
 //├────────────────────────────┼──────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼───────────┬──────────────────┬────────────────────╮ ╭─────────────┬──────────┬──────────────────────┼─────────────┼─────────────┼─────────────┼────────────────┼─────────────────────┼────────────┤
     &kp GB_BSLH                  &lt_rpi NAV Z      &kp X         &kp C         &kp D         &kp V         &kp DEL     &none              &none                    &none         &none    &kp RGUI                &kp K         &kp H         &kp COMMA    &kp DOT          &mt_rpi RCTRL MINUS   &kp EQUAL
 //├────────────────────────────┼──────────────────┼─────────────┼─────────────┼─────────────┴─────────────┼───────────┼──────────────────┼────────────────────┤ ├─────────────┼──────────┼──────────────────────┼─────────────┴─────────────┼─────────────┼────────────────┼─────────────────────┼────────────┤
-      &none                      &kp GB_POUND_SIGN  &kp SEMI      &kp LBKT      &kp RBKT                    &kp BSPC    &caps_word_td      &mt_rpi LCTRL ESC      &kp TAB       &kp RET    &lt_rpi NUM_BI SPACE                 &l_par       &r_par        &dbl_quotes      &kp DOLLAR            &none
+      &none                      &kp COLON          &kp SEMI      &kp LBKT      &kp RBKT                    &kp BSPC    &caps_word_td      &mt_rpi LCTRL ESC      &kp TAB       &kp RET    &lt_rpi NUM_BI SPACE                  &l_par        &r_par       &dbl_quotes      &kp GB_POUND          &none
 //╰────────────────────────────┴──────────────────┴─────────────┴─────────────┴─────────────╯             ╰───────────┴──────────────────┴────────────────────╯ ╰─────────────┴──────────┴──────────────────────╯             ╰─────────────┴─────────────┴────────────────┴─────────────────────┴────────────╯
             >;
         };
