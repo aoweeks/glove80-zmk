@@ -54,13 +54,13 @@
             ignore-modifiers;
         };
 
-        shift_mt: shift_mod_tap {
+        sticky_mt: sticky_mod_tap {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <0>;
+            #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
             quick-tap-ms = <200>;
-            bindings = <&kp LSHIFT>, <&sk_qr LSHIFT>;
+            bindings = <&kp>, <&sk_qr>;
         };
 
         caps_word_td: caps_word_tap_dance {
@@ -68,7 +68,7 @@
             label = "CAPS_WORD_TAP_DANCE";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&shift_mt>, <&caps_word>;
+            bindings = <&sticky_mt LSHIFT LSHIFT>, <&caps_word>;
         };
 
         
