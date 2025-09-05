@@ -60,7 +60,7 @@
             label = "CAPS_WORD_TAP_DANCE";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&sk_qr LSHIFT>, <&new_caps_word>; //<&new_caps_word>;
+            bindings = <&sk_qr LSHIFT>, <&caps_word>; //<&new_caps_word>;
         };
 
         
