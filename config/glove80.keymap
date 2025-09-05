@@ -60,7 +60,7 @@
             label = "CAPS_WORD_TAP_DANCE";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&sk_qr LSHIFT>, <&new_caps_word>;
+            bindings = <&sk_qr LSHIFT>, <&new_caps_word>; //<&new_caps_word>;
         };
 
         
@@ -298,13 +298,12 @@
                   <&bt BT_SEL 3>;
         };
 
-        new_caps_word: new_caps_word {
-            label = "new_caps_word";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&macro_tap &caps_word &to CAPSWORD>;
-        };
+        // new_caps_word: new_caps_word {
+        //     compatible = "zmk,behavior-macro";
+        //     #binding-cells = <0>;
+        //     bindings
+        //         = <&macro_tap &caps_word &to CAPSWORD>;
+        // };
 
         ecw: exit_caps_word {
             compatible = "zmk,behavior-macro-one-param";
