@@ -100,7 +100,7 @@
             quick-tap-ms = <200>;
             require-prior-idle-ms = <125>;
             retro-tap;
-            bindings = <&mo>, <&kp>;
+            bindings = <&kp>, <&kp>;
         };
 
         is_equal: is_equal_to_bigram_or_trigram {
