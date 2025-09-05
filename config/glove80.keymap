@@ -88,6 +88,31 @@
             bindings = <&mo>, <&kp>;
         };
 
+        mt_ecw: mod_tap_require_prior_idle {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MOD_TAP_REQUIRE_PRIOR_IDLE";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            require-prior-idle-ms = <125>;
+            hold-while-undecided;
+            bindings = <&kp>, <&ecw>;
+        };
+
+        lt_ecw: layer_tap_require_prior_idle {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LAYER_TAP_REQUIRE_PRIOR_IDLE";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            require-prior-idle-ms = <125>;
+            hold-while-undecided;
+            retro-tap;
+            bindings = <&mo>, <&ecw>;
+        };
+
         undecided_mt: undecided_mod_tap {
             compatible = "zmk,behavior-hold-tap";
             label = "UNDECIDED_MOD_TAP";
@@ -491,7 +516,7 @@
 //├────────────────────────────┼──────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼───────────┬──────────────────┬────────────────────╮ ╭─────────────┬──────────────────┬──────────────────────┼─────────────┼─────────────┼─────────────┼────────────────┼─────────────────────┼────────────┤
     &kp GB_BSLH                  &lt_rpi NAV Z      &kp X         &kp C         &kp D         &kp V         &kp DEL     &none              &none                    &none         &none            &kp RGUI                &kp K         &kp H         &ecw COMMA   &ecw DOT         &mt_rpi RCTRL &under  &kp EQUAL
 //├────────────────────────────┼──────────────────┼─────────────┼─────────────┼─────────────┴─────────────┼───────────┼──────────────────┼────────────────────┤ ├─────────────┼──────────────────┼──────────────────────┼─────────────┴─────────────┼─────────────┼────────────────┼─────────────────────┼────────────┤
-      &none                      &kp COLON          &kp SEMI      &kp LBKT      &kp RBKT                    &kp BSPC    &caps_word_td      &mt_rpi LCTRL ESC      &kp TAB       &mt_rpi RALT RET   &lt_rpi NUM_BI SPACE                  &l_par        &r_par       &dbl_quotes      &kp GB_POUND          &none
+      &none                      &kp COLON          &kp SEMI      &kp LBKT      &kp RBKT                    &kp BSPC    &caps_word_td      &mt_rpi LCTRL ESC      &kp TAB       &mt_ecw RALT RET   &lt_ecw NUM_BI SPACE                  &l_par        &r_par       &dbl_quotes      &kp GB_POUND          &none
 //╰────────────────────────────┴──────────────────┴─────────────┴─────────────┴─────────────╯             ╰───────────┴──────────────────┴────────────────────╯ ╰─────────────┴──────────────────┴──────────────────────╯             ╰─────────────┴─────────────┴────────────────┴─────────────────────┴────────────╯
             >;
         };
