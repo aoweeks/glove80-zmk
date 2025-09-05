@@ -56,7 +56,7 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&sk_qr LSHIFT>, <&caps_word>;
+            bindings = <&sk_qr LSHIFT>, <&new_caps_word>;
         };
 
         
@@ -154,35 +154,40 @@
         r_par: right_parenthesis_shift_ampersand {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp RIGHT_PARENTHESIS>, <&kp AMPERSAND>;
+            bindings =  <&kp RIGHT_PARENTHESIS &to DEFAULT>,
+                        <&kp AMPERSAND &to DEFAULT>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
         dbl_quotes: double_quotes_shift_caret {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp GB_DOUBLE_QUOTES>, <&kp CARET>;
+            bindings =  <&kp GB_DOUBLE_QUOTES &to DEFAULT>,
+                        <&kp CARET &to DEFAULT>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
         qmark: question_shift_asterisk {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp QMARK>, <&kp ASTERISK>;
+            bindings =  <&kp QMARK &to DEFAULT>,
+                        <&kp ASTERISK &to DEFAULT>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
         excl: exclamation_shift_dollar {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp EXCL>, <&kp DOLLAR>;
+            bindings =  <&kp EXCL &to DEFAULT>,
+                        <&kp DOLLAR &to DEFAULT>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
         fslh: forward_slash_shift_percent {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp FSLH>, <&kp PERCENT>;
+            bindings = <&kp FSLH &to DEFAULT>,
+                       <&kp PERCENT &to DEFAULT>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
@@ -312,6 +317,12 @@
             bindings
                 = <&out OUT_BLE>,
                   <&bt BT_SEL 3>;
+        };
+
+        new_caps_word: new_caps_word {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &caps_word &to CAPSWORD>;
         };
 
         ecw: exit_caps_word {
