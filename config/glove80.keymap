@@ -45,12 +45,21 @@
             bindings = <&mo>, <&rgb_ug_status_macro>;
         };
 
+        sk_qr: sticky_key_quick_release {
+          compatible = "zmk,behavior-sticky-key";
+          #binding-cells = <1>;
+          bindings = <&kp>;
+          release-after-ms = <1000>;
+          quick-release;
+          ignore-modifiers;
+        };
+
         caps_word_td: caps_word_tap_dance {
             compatible = "zmk,behavior-tap-dance";
             label = "CAPS_WORD_TAP_DANCE";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&kp LSHIFT>, <&caps_word>;
+            bindings = <&sk_qr LSHIFT>, <&caps_word>;
         };
 
         
