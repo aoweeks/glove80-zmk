@@ -313,7 +313,7 @@
             key-positions = <41 42>;
             bindings = <&sk HYPER>;
             require-prior-idle-ms = <150>;
-            layers = <DEFAULT NUM_BI>;
+            layers = <DEFAULT NUM_BI NAV>;
         };
 
         combo_f14 {
@@ -321,7 +321,7 @@
             key-positions = <37 38>;
             bindings = <&kp F14>;
             require-prior-idle-ms = <150>;
-            layers = <DEFAULT NUM_BI>;
+            layers = <DEFAULT NUM_BI NAV>;
         };
     };
 
@@ -340,7 +340,7 @@
 //├────────────────────────────┼──────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼───────────┬──────────────────┬────────────────────╮ ╭─────────────┬────────────────────────┬──────────────────────┼─────────────┼─────────────┼─────────────┼────────────────┼─────────────────────┼─────────────┤
     &kp GB_BSLH                  &lt_rpi NAV Z      &kp X         &kp C         &kp D         &kp V         &kp DEL     &none              &none                    &none         &none                  &kp RGUI                &kp K         &kp H         &kp COMMA    &kp DOT          &mt_rpi RCTRL SEMI    &kp UNDER
 //├────────────────────────────┼──────────────────┼─────────────┼─────────────┼─────────────┴─────────────┼───────────┼──────────────────┼────────────────────┤ ├─────────────┼────────────────────────┼──────────────────────┼─────────────┴─────────────┼─────────────┼────────────────┼─────────────────────┼─────────────┤
-      &none                      &kp EQUAL          &kp MINUS     &kp LBKT      &kp RBKT                    &kp BSPC    &caps_word_td      &mt_rpi LCTRL ESC      &kp TAB       &undecided_mt LALT RET   &lt_rpi NUM_BI SPACE                  &l_par        &r_par       &dbl_quotes      &kp GB_HASH           &none
+      &none                      &kp MINUS          &kp EQUAL     &kp LBKT      &kp RBKT                    &kp BSPC    &caps_word_td      &mt_rpi LCTRL ESC      &kp TAB       &undecided_mt LALT RET   &lt_rpi NUM_BI SPACE                  &l_par        &r_par       &dbl_quotes      &kp GB_HASH           &none
 //╰────────────────────────────┴──────────────────┴─────────────┴─────────────┴─────────────╯             ╰───────────┴──────────────────┴────────────────────╯ ╰─────────────┴────────────────────────┴──────────────────────╯             ╰─────────────┴─────────────┴────────────────┴─────────────────────┴─────────────╯
             >;
         };
