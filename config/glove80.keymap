@@ -46,12 +46,12 @@
         };
 
         sk_qr: sticky_key_quick_release {
-          compatible = "zmk,behavior-sticky-key";
-          #binding-cells = <1>;
-          bindings = <&kp>;
-          release-after-ms = <1000>;
-          quick-release;
-          ignore-modifiers;
+            compatible = "zmk,behavior-sticky-key";
+            #binding-cells = <1>;
+            bindings = <&kp>;
+            release-after-ms = <1000>;
+            quick-release;
+            ignore-modifiers;
         };
 
         caps_word_td: caps_word_tap_dance {
