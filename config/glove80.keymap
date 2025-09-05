@@ -12,7 +12,7 @@
 #include <dt-bindings/zmk/rgb.h>
 #include "keys_en_gb_extended.h"
 
-#define HYPER LS(LG(LALT))
+#define HYPER LG(LALT(LS))
 
 // layers
 #define DEFAULT 0
@@ -30,7 +30,6 @@
         // Configure it as a tap dance, so the first tap (or hold) is a &mo and the second tap is a &to
         layer_td: tap_dance_0 {
             compatible = "zmk,behavior-tap-dance";
-            label = "LAYER_TAP_DANCE";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&mo NUM_BI>, <&to NUM_BI>;
@@ -38,7 +37,6 @@
 
         magic: magic_hold_tap {
             compatible = "zmk,behavior-hold-tap";
-            label = "MAGIC_HOLD_TAP";
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
@@ -65,7 +63,6 @@
 
         caps_word_td: caps_word_tap_dance {
             compatible = "zmk,behavior-tap-dance";
-            label = "CAPS_WORD_TAP_DANCE";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&sticky_mt LSHIFT LSHIFT>, <&caps_word>;
@@ -74,7 +71,6 @@
         
         mt_rpi: mod_tap_require_prior_idle {
             compatible = "zmk,behavior-hold-tap";
-            label = "MOD_TAP_REQUIRE_PRIOR_IDLE";
             #binding-cells = <2>;
             flavor = "balanced";
             tapping-term-ms = <200>;
@@ -86,7 +82,6 @@
 
         lt_rpi: layer_tap_require_prior_idle {
             compatible = "zmk,behavior-hold-tap";
-            label = "LAYER_TAP_REQUIRE_PRIOR_IDLE";
             #binding-cells = <2>;
             flavor = "balanced";
             tapping-term-ms = <200>;
@@ -99,7 +94,6 @@
 
         undecided_mt: undecided_mod_tap {
             compatible = "zmk,behavior-hold-tap";
-            label = "UNDECIDED_MOD_TAP";
             #binding-cells = <2>;
             flavor = "balanced";
             tapping-term-ms = <200>;
@@ -256,16 +250,14 @@
 
     macros {
         rgb_ug_status_macro: rgb_ug_status_macro_0 {
-            label = "RGB_UG_STATUS";
-            compatible = "zmk,behavior-macro";
+          compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
                 = <&rgb_ug RGB_STATUS>;
         };
 
         bt_0: bt_profile_macro_0 {
-            label = "BT_0";
-            compatible = "zmk,behavior-macro";
+          compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
                 = <&out OUT_BLE>,
@@ -273,8 +265,7 @@
         };
 
         bt_1: bt_profile_macro_1 {
-            label = "BT_1";
-            compatible = "zmk,behavior-macro";
+          compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
                 = <&out OUT_BLE>,
@@ -282,8 +273,7 @@
         };
 
         bt_2: bt_profile_macro_2 {
-            label = "BT_2";
-            compatible = "zmk,behavior-macro";
+          compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
                 = <&out OUT_BLE>,
@@ -291,8 +281,7 @@
         };
 
         bt_3: bt_profile_macro_3 {
-            label = "BT_3";
-            compatible = "zmk,behavior-macro";
+          compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
                 = <&out OUT_BLE>,
@@ -324,7 +313,7 @@
             key-positions = <41 42>;
             bindings = <&sk HYPER>;
             require-prior-idle-ms = <150>;
-            layers = <DEFAULT NUM_BI>;
+            layers = <DEFAULT NUM_BI NAV>;
         };
 
         combo_f14 {
@@ -332,7 +321,7 @@
             key-positions = <37 38>;
             bindings = <&kp F14>;
             require-prior-idle-ms = <150>;
-            layers = <DEFAULT NUM_BI>;
+            layers = <DEFAULT NUM_BI NAV>;
         };
     };
 
@@ -340,19 +329,19 @@
         compatible = "zmk,keymap";
         default_layer {
             bindings = <
-//╭────────────────────────────┬──────────────────┬─────────────┬─────────────┬─────────────╮                                                                                                                                         ╭─────────────┬─────────────┬────────────────┬─────────────────────┬─────────────╮
-    &magic MAGIC 0               &to WASD             &none         &none         &none                                                                                                                                                    &none         &none        &none            &none                 &none         
-//├────────────────────────────┼──────────────────┼─────────────┼─────────────┼─────────────┼─────────────╮                                                                                                             ╭─────────────┼─────────────┼─────────────┼────────────────┼─────────────────────┼─────────────┤
-    &none                        &none              &none         &qmark        &none         &none                                                                                                                        &none         &none         &excl        &none            &none                 &none
-//├────────────────────────────┼──────────────────┼─────────────┼─────────────┼─────────────┼─────────────┤                                                                                                             ├─────────────┼─────────────┼─────────────┼────────────────┼─────────────────────┼─────────────┤
-      &none                      &kp Q              &kp W         &kp F         &kp P         &kp B                                                                                                                        &kp J         &kp L         &kp U        &kp Y            &kp GB_POUND          &kp GB_EURO  
-//├────────────────────────────┼──────────────────┼─────────────┼─────────────┼─────────────┼─────────────┤                                                                                                             ├─────────────┼─────────────┼─────────────┼────────────────┼─────────────────────┼─────────────┤
-    &undecided_mt LALT &fslh     &kp A              &kp R         &kp S         &kp T         &kp G                                                                                                                        &kp M         &kp N         &kp E        &kp I            &kp O                 &kp GB_APOS
-//├────────────────────────────┼──────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼───────────┬──────────────────┬────────────────────╮ ╭─────────────┬──────────────────┬──────────────────────┼─────────────┼─────────────┼─────────────┼────────────────┼─────────────────────┼─────────────┤
-    &kp GB_BSLH                  &lt_rpi NAV Z      &kp X         &kp C         &kp D         &kp V         &kp DEL     &none              &none                    &none         &none            &kp RGUI                &kp K         &kp H         &kp COMMA    &kp DOT          &mt_rpi RCTRL SEMI    &kp UNDER
-//├────────────────────────────┼──────────────────┼─────────────┼─────────────┼─────────────┴─────────────┼───────────┼──────────────────┼────────────────────┤ ├─────────────┼──────────────────┼──────────────────────┼─────────────┴─────────────┼─────────────┼────────────────┼─────────────────────┼─────────────┤
-      &none                      &kp EQUAL          &kp MINUS     &kp LBKT      &kp RBKT                    &kp BSPC    &caps_word_td      &mt_rpi LCTRL ESC      &kp TAB       &mt_rpi RALT RET   &lt_rpi NUM_BI SPACE                  &l_par        &r_par       &dbl_quotes      &kp GB_HASH           &none
-//╰────────────────────────────┴──────────────────┴─────────────┴─────────────┴─────────────╯             ╰───────────┴──────────────────┴────────────────────╯ ╰─────────────┴──────────────────┴──────────────────────╯             ╰─────────────┴─────────────┴────────────────┴─────────────────────┴─────────────╯
+//╭────────────────────────────┬──────────────────┬─────────────┬─────────────┬─────────────╮                                                                                                                                               ╭─────────────┬─────────────┬────────────────┬─────────────────────┬─────────────╮
+    &magic MAGIC 0               &to WASD             &none         &none         &none                                                                                                                                                          &none         &none        &none            &none                 &none         
+//├────────────────────────────┼──────────────────┼─────────────┼─────────────┼─────────────┼─────────────╮                                                                                                                   ╭─────────────┼─────────────┼─────────────┼────────────────┼─────────────────────┼─────────────┤
+    &none                        &none              &none         &qmark        &none         &none                                                                                                                              &none         &none         &excl        &none            &none                 &none
+//├────────────────────────────┼──────────────────┼─────────────┼─────────────┼─────────────┼─────────────┤                                                                                                                   ├─────────────┼─────────────┼─────────────┼────────────────┼─────────────────────┼─────────────┤
+      &none                      &kp Q              &kp W         &kp F         &kp P         &kp B                                                                                                                              &kp J         &kp L         &kp U        &kp Y            &kp GB_POUND          &kp GB_EURO  
+//├────────────────────────────┼──────────────────┼─────────────┼─────────────┼─────────────┼─────────────┤                                                                                                                   ├─────────────┼─────────────┼─────────────┼────────────────┼─────────────────────┼─────────────┤
+    &undecided_mt LALT &fslh     &kp A              &kp R         &kp S         &kp T         &kp G                                                                                                                              &kp M         &kp N         &kp E        &kp I            &kp O                 &kp GB_APOS
+//├────────────────────────────┼──────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼───────────┬──────────────────┬────────────────────╮ ╭─────────────┬────────────────────────┬──────────────────────┼─────────────┼─────────────┼─────────────┼────────────────┼─────────────────────┼─────────────┤
+    &kp GB_BSLH                  &lt_rpi NAV Z      &kp X         &kp C         &kp D         &kp V         &kp DEL     &none              &none                    &none         &none                  &kp RGUI                &kp K         &kp H         &kp COMMA    &kp DOT          &mt_rpi RCTRL SEMI    &kp UNDER
+//├────────────────────────────┼──────────────────┼─────────────┼─────────────┼─────────────┴─────────────┼───────────┼──────────────────┼────────────────────┤ ├─────────────┼────────────────────────┼──────────────────────┼─────────────┴─────────────┼─────────────┼────────────────┼─────────────────────┼─────────────┤
+      &none                      &kp EQUAL          &kp MINUS     &kp LBKT      &kp RBKT                    &kp BSPC    &caps_word_td      &mt_rpi LCTRL ESC      &kp TAB       &undecided_mt LALT RET   &lt_rpi NUM_BI SPACE                  &l_par        &r_par       &dbl_quotes      &kp GB_HASH           &none
+//╰────────────────────────────┴──────────────────┴─────────────┴─────────────┴─────────────╯             ╰───────────┴──────────────────┴────────────────────╯ ╰─────────────┴────────────────────────┴──────────────────────╯             ╰─────────────┴─────────────┴────────────────┴─────────────────────┴─────────────╯
             >;
         };
 
