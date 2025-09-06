@@ -57,7 +57,7 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&shift_mt 0 0>, <&caps_word>;
+            bindings = <&shift_mt LSHFT 0>, <&caps_word>;
         };
 
         shift_mt: shift_mod_tap {
