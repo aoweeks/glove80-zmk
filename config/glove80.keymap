@@ -299,7 +299,7 @@
         single_tap: single_tap {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
-            bindings = <&macro_tap &sk_qr 0>;
+            bindings = <&macro_tap &sk_qr &macro_param_1to1>;
         };
     };
 
@@ -324,7 +324,7 @@
 
         combo_caps_word {
             timeout-ms = <30>;
-            key-positions = <59 60>;
+            key-positions = <49 50>;
             bindings = <&caps_word>;
             require-prior-idle-ms = <150>;
             layers = <DEFAULT NUM_BI NAV>;
