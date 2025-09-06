@@ -53,20 +53,11 @@
             ignore-modifiers;
         };
 
-        sticky_mt: sticky_mod_tap {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <200>;
-            quick-tap-ms = <200>;
-            bindings = <&kp>, <&single_tap>;
-        };
-
-        caps_word_td: caps_word_tap_dance {
+        shift_td: shift_tap_dance {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&sticky_mt LSHFT LSHFT>, <&caps_word>;
+            bindings = <&single_tap LSHFT>, <&kp LSHFT>;
         };
 
         
@@ -317,7 +308,7 @@
 
         combo_sticky_hyper {
             timeout-ms = <30>;
-            key-positions = <41 42>;
+            key-positions = <37 38>;
             bindings = <&sk HYPER>;
             require-prior-idle-ms = <150>;
             layers = <DEFAULT NUM_BI NAV>;
@@ -325,8 +316,16 @@
 
         combo_f14 {
             timeout-ms = <30>;
-            key-positions = <37 38>;
+            key-positions = <41 42>;
             bindings = <&kp F14>;
+            require-prior-idle-ms = <150>;
+            layers = <DEFAULT NUM_BI NAV>;
+        };
+
+        combo_caps_word {
+            timeout-ms = <30>;
+            key-positions = <59 60>;
+            bindings = <&caps_word>;
             require-prior-idle-ms = <150>;
             layers = <DEFAULT NUM_BI NAV>;
         };
