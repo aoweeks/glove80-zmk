@@ -57,7 +57,7 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&single_tap LSHIFT>, <&kp LSHIFT>;
+            bindings = <&single_shift>, <&kp LSHFT>;
         };
 
         
@@ -155,7 +155,7 @@
         fslh: forward_slash_shift_percent {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp FSLH>, <&kp PERCENT>;
+            bindings = <&kp SLASH>, <&kp PERCENT>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
@@ -296,10 +296,10 @@
                        <&macro_tap &kp EQUAL>;
         };
 
-        single_tap: single_tap {
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            bindings = <&macro_tap &sk_qr &macro_param_1to1>;
+        single_shift: single_shift {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &sk_qr LSHFT>;
         };
     };
 
