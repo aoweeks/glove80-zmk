@@ -57,18 +57,7 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&shift_mt LSHFT 0>, <&caps_word>;
-        };
-
-        shift_mt: shift_mod_tap {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <4000>;
-            quick-tap-ms = <200>;
-            require-prior-idle-ms = <125>;
-            hold-while-undecided;
-            bindings = <&kp>, <&single_shift>;
+            bindings = <&single_shift>, <&kp LSHFT>;
         };
 
         
@@ -333,13 +322,13 @@
             layers = <DEFAULT NUM_BI NAV>;
         };
 
-        // combo_caps_word {
-        //     timeout-ms = <30>;
-        //     key-positions = <49 50>;
-        //     bindings = <&caps_word>;
-        //     require-prior-idle-ms = <150>;
-        //     layers = <DEFAULT NUM_BI NAV>;
-        // };
+        combo_caps_word {
+            timeout-ms = <30>;
+            key-positions = <49 50>;
+            bindings = <&caps_word>;
+            require-prior-idle-ms = <150>;
+            layers = <DEFAULT NUM_BI NAV>;
+        };
     };
 
     keymap {
