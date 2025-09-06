@@ -52,20 +52,20 @@
             ignore-modifiers;
         };
 
-        // sticky_mt: sticky_mod_tap {
-        //     compatible = "zmk,behavior-hold-tap";
-        //     #binding-cells = <2>;
-        //     flavor = "tap-preferred";
-        //     tapping-term-ms = <200>;
-        //     quick-tap-ms = <200>;
-        //     bindings = <&kp>, <&sk_qr>;
-        // };
+        sticky_mt: sticky_mod_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            bindings = <&kp>, <&single_tap>;
+        };
 
         caps_word_td: caps_word_tap_dance {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&single_shift>, <&caps_word>;
+            bindings = <&sticky_mt>, <&caps_word>;
         };
 
         
@@ -304,10 +304,10 @@
                        <&macro_tap &kp EQUAL>;
         };
 
-        single_shift: single_shift {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap &sk_qr LSHFT>;
+        single_tap: single_tap {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings = <&macro_tap &sk_qr 0>;
         };
     };
 
