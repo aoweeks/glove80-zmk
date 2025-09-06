@@ -65,7 +65,7 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&sticky_mt>, <&caps_word>;
+            bindings = <&sticky_mt LSHFT LSHFT>, <&caps_word>;
         };
 
         
