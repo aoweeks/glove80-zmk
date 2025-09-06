@@ -57,7 +57,7 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&single_tap LSHFT>, <&kp LSHFT>;
+            bindings = <&single_tap LSHIFT>, <&kp LSHIFT>;
         };
 
         
