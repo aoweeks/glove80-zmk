@@ -62,12 +62,12 @@
 
         bspc_mt: backspace_mod_tap {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
+            #binding-cells = <0>;
             flavor = "tap-preferred";
             tapping-term-ms = <300>;
             quick-tap-ms = <200>;
             require-prior-idle-ms = <125>;
-            bindings = <&kp LCTRL &kp>, <&single_tap>;
+            bindings = <&kp LC(BACKSPACE)>, <&single_tap>;
         };
         
         mt_rpi: mod_tap_require_prior_idle {
@@ -328,12 +328,12 @@
             bindings = <&macro_tap &macro_param_1to1 &sk_qr 0>;
         };
 
-        ctrl_key: control_and_key {
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            bindings =  <&macro_press &kp LCTRL &macro_param_1to1 &kp 0>,
-                        <&macro_release &kp LCTRL &macro_param_1to1 &kp 0>;
-        };
+        // ctrl_key: control_and_key {
+        //     compatible = "zmk,behavior-macro-one-param";
+        //     #binding-cells = <1>;
+        //     bindings =  <&macro_press &kp LCTRL &macro_param_1to1 &kp 0>,
+        //                 <&macro_release &kp LCTRL &macro_param_1to1 &kp 0>;
+        // };
     };
 
     combos {
@@ -387,7 +387,7 @@
 //├──────────────────────────┼───────────────┼───────────┼──────────┼──────────┼───────┼──────────────────────┬───────────┬───────────────────╮ ╭─────────┬────────────────────────┬──────────────────────┼───────┼────────┼───────────┼─────────────┼─────────────────────┼─────────────┤
     &kp &fslh                  &lt_rpi NAV Z   &kp X       &kp C      &kp D      &kp V   &kp DEL                &none       &none                 &none     &none                    &kp RGUI               &kp K   &kp H    &kp COMMA   &kp DOT       &mac_mod RCTRL SEMI   &kp UNDER
 //├──────────────────────────┼───────────────┼───────────┼──────────┼──────────┴───────┼──────────────────────┼───────────┼───────────────────┤ ├─────────┼────────────────────────┼──────────────────────┼───────┴────────┼───────────┼─────────────┼─────────────────────┼─────────────┤
-    &none                      &kp EQUAL       &kp MINUS   &kp LBKT   &kp RBKT           &bspc_mt BSPC BSPC     &shift_td   &lt_rpi SHORT ESC     &kp TAB   &undecided_mt LALT RET   &lt_rpi NUM_BI SPACE           &l_par   &r_par      &dbl_quotes   &currency             &none
+    &none                      &kp EQUAL       &kp MINUS   &kp LBKT   &kp RBKT           &bspc_mt               &shift_td   &lt_rpi SHORT ESC     &kp TAB   &undecided_mt LALT RET   &lt_rpi NUM_BI SPACE           &l_par   &r_par      &dbl_quotes   &currency             &none
 //╰──────────────────────────┴───────────────┴───────────┴──────────┴──────────╯       ╰──────────────────────┴───────────┴───────────────────╯ ╰─────────┴────────────────────────┴──────────────────────╯       ╰────────┴───────────┴─────────────┴─────────────────────┴─────────────╯
             >;
         };
