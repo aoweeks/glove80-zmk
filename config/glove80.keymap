@@ -57,7 +57,7 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&single_tap LSHFT>, <&kp LSHFT>;
+            bindings = <&single_sticky_tap LSHFT>, <&kp LSHFT>;
         };
 
         bspc_mt: backspace_mod_tap {
@@ -81,7 +81,7 @@
             bindings = <&kp>, <&kp>;
         };
 
-        mac_mod: stick_mod_tap_require_prior_idle {
+        mac_mod: sticky_mod_tap_require_prior_idle {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
@@ -89,7 +89,7 @@
             quick-tap-ms = <200>;
             require-prior-idle-ms = <125>;
             hold-while-undecided;
-            bindings = <&single_tap>, <&kp>;
+            bindings = <&single_sticky_tap>, <&kp>;
         };
 
         lt_rpi: layer_tap_require_prior_idle {
@@ -317,6 +317,12 @@
         };
 
         single_tap: single_tap {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings = <&macro_tap &macro_param_1to1 &kp 0>;
+        };
+
+        single_sticky_tap: single_sticky_tap {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
             bindings = <&macro_tap &macro_param_1to1 &sk_qr 0>;
