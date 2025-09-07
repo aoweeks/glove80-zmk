@@ -57,9 +57,18 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&single_shift>, <&kp LSHFT>;
+            bindings = <&single_tap LSHFT>, <&kp LSHFT>;
         };
 
+        bspc_mt: backspace_mod_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <2000>;
+            quick-tap-ms = <200>;
+            require-prior-idle-ms = <125>;
+            bindings = LC(<&kp>), <&single_tap>;
+        };
         
         mt_rpi: mod_tap_require_prior_idle {
             compatible = "zmk,behavior-hold-tap";
@@ -70,6 +79,17 @@
             require-prior-idle-ms = <125>;
             hold-while-undecided;
             bindings = <&kp>, <&kp>;
+        };
+
+        mac_mod: stick_mod_tap_require_prior_idle {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            require-prior-idle-ms = <125>;
+            hold-while-undecided;
+            bindings = <&single_tap>, <&kp>;
         };
 
         lt_rpi: layer_tap_require_prior_idle {
@@ -110,10 +130,10 @@
         };
 
         // Shifted symbols
-        currency: pound_shift_dollar {
+        currency: dollar_shift_pound {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp GB_POUND_SIGN>, <&kp DOLLAR>;
+            bindings = <&kp DOLLAR>, <&kp GB_POUND_SIGN>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
         
@@ -296,10 +316,10 @@
                        <&macro_tap &kp EQUAL>;
         };
 
-        single_shift: single_shift {
-            compatible = "zmk,behavior-macro";
+        single_tap: single_tap {
+            compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <0>;
-            bindings = <&macro_tap &sk_qr LSHFT>;
+            bindings = <&macro_tap &macro_param_1to1 &sk_qr 0>;
         };
     };
 
@@ -311,7 +331,7 @@
             key-positions = <37 38>;
             bindings = <&sk HYPER>;
             require-prior-idle-ms = <150>;
-            layers = <DEFAULT NUM_BI NAV>;
+            layers = <DEFAULT NUM_BI NAV SHORT>;
         };
 
         combo_f14 {
@@ -319,7 +339,15 @@
             key-positions = <41 42>;
             bindings = <&kp F14>;
             require-prior-idle-ms = <150>;
-            layers = <DEFAULT NUM_BI NAV>;
+            layers = <DEFAULT NUM_BI NAV SHORT>;
+        };
+
+        combo_alt_space {
+            timeout-ms = <30>;
+            key-positions = <41 43>;
+            bindings = LA(<&kp SPACE>);
+            require-prior-idle-ms = <150>;
+            layers = <DEFAULT NUM_BI NAV SHORT>;
         };
 
         combo_caps_word {
@@ -327,7 +355,7 @@
             key-positions = <49 50>;
             bindings = <&caps_word>;
             require-prior-idle-ms = <150>;
-            layers = <DEFAULT NUM_BI NAV>;
+            layers = <DEFAULT NUM_BI NAV SHORT>;
         };
     };
 
@@ -335,22 +363,22 @@
         compatible = "zmk,keymap";
         default_layer {
             bindings = <
-//╭──────────────────────────┬───────────────┬───────────┬──────────┬──────────╮                                                                                                                       ╭────────┬───────────┬─────────────┬────────────────────┬─────────────╮
-    &magic MAGIC 0             &to WASD        &none       &none      &none                                                                                                                            &none    &none       &none         &none                &none         
-//├──────────────────────────┼───────────────┼───────────┼──────────┼──────────┼───────╮                                                                                                       ╭───────┼────────┼───────────┼─────────────┼────────────────────┼─────────────┤
-    &none                      &none           &none       &qmark     &none      &none                                                                                                           &none   &none    &excl       &none         &none                &none
-//├──────────────────────────┼───────────────┼───────────┼──────────┼──────────┼───────┤                                                                                                       ├───────┼────────┼───────────┼─────────────┼────────────────────┼─────────────┤
-    &none                      &kp Q           &kp W       &kp F      &kp P      &kp B                                                                                                           &kp J   &kp L    &kp U       &kp Y         &kp GB_POUND         &kp GB_EURO  
-//├──────────────────────────┼───────────────┼───────────┼──────────┼──────────┼───────┤                                                                                                       ├───────┼────────┼───────────┼─────────────┼────────────────────┼─────────────┤
-    &fslh                      &kp A           &kp R       &kp S      &kp T      &kp G                                                                                                           &kp M   &kp N    &kp E       &kp I         &kp O                &kp GB_APOS
-//├──────────────────────────┼───────────────┼───────────┼──────────┼──────────┼───────┼───────────┬───────────┬───────────────────╮ ╭─────────┬────────────────────────┬──────────────────────┼───────┼────────┼───────────┼─────────────┼────────────────────┼─────────────┤
-    &kp GB_BSLH                &lt_rpi NAV Z   &kp X       &kp C      &kp D      &kp V   &kp DEL     &none       &none                   &none     &none                  &kp RGUI               &kp K   &kp H    &kp COMMA   &kp DOT       &mt_rpi RCTRL SEMI   &kp UNDER
-//├──────────────────────────┼───────────────┼───────────┼──────────┼──────────┴───────┼───────────┼───────────┼───────────────────┤ ├─────────┼────────────────────────┼──────────────────────┼───────┴────────┼───────────┼─────────────┼────────────────────┼─────────────┤
-    &none                      &kp EQUAL       &kp MINUS   &kp LBKT   &kp RBKT           &kp BSPC    &shift_td   &lt_rpi SHORT ESC     &kp TAB   &kp RET                  &lt_rpi NUM_BI SPACE           &l_par   &r_par      &dbl_quotes   &kp GB_HASH          &none
-//╰──────────────────────────┴───────────────┴───────────┴──────────┴──────────╯       ╰───────────┴───────────┴───────────────────╯ ╰─────────┴────────────────────────┴──────────────────────╯       ╰────────┴───────────┴─────────────┴────────────────────┴─────────────╯
+//╭──────────────────────────┬───────────────┬───────────┬──────────┬──────────╮                                                                                                                                  ╭────────┬───────────┬─────────────┬─────────────────────┬─────────────╮
+    &magic MAGIC 0             &to WASD        &none       &none      &none                                                                                                                                         &none    &none       &none         &none                 &none         
+//├──────────────────────────┼───────────────┼───────────┼──────────┼──────────┼───────╮                                                                                                                  ╭───────┼────────┼───────────┼─────────────┼─────────────────────┼─────────────┤
+    &none                      &none           &none       &qmark     &none      &none                                                                                                                      &none   &none    &excl       &none         &none                 &none
+//├──────────────────────────┼───────────────┼───────────┼──────────┼──────────┼───────┤                                                                                                                  ├───────┼────────┼───────────┼─────────────┼─────────────────────┼─────────────┤
+    &none                      &kp Q           &kp W       &kp F      &kp P      &kp B                                                                                                                      &kp J   &kp L    &kp U       &kp Y         &kp GB_HASH           &kp GB_EURO  
+//├──────────────────────────┼───────────────┼───────────┼──────────┼──────────┼───────┤                                                                                                                  ├───────┼────────┼───────────┼─────────────┼─────────────────────┼─────────────┤
+    &mt_rpi LGUI GB_BSLH       &kp A           &kp R       &kp S      &kp T      &kp G                                                                                                                      &kp M   &kp N    &kp E       &kp I         &kp O                 &kp GB_APOS
+//├──────────────────────────┼───────────────┼───────────┼──────────┼──────────┼───────┼──────────────────────┬───────────┬───────────────────╮ ╭─────────┬────────────────────────┬──────────────────────┼───────┼────────┼───────────┼─────────────┼─────────────────────┼─────────────┤
+    &kp &fslh                  &lt_rpi NAV Z   &kp X       &kp C      &kp D      &kp V   &kp DEL                &none       &none                 &none     &none                    &kp RGUI               &kp K   &kp H    &kp COMMA   &kp DOT       &mac_mod RCTRL SEMI   &kp UNDER
+//├──────────────────────────┼───────────────┼───────────┼──────────┼──────────┴───────┼──────────────────────┼───────────┼───────────────────┤ ├─────────┼────────────────────────┼──────────────────────┼───────┴────────┼───────────┼─────────────┼─────────────────────┼─────────────┤
+    &none                      &kp EQUAL       &kp MINUS   &kp LBKT   &kp RBKT           &bspc_mt BSPC BSPC     &shift_td   &lt_rpi SHORT ESC     &kp TAB   &undecided_mt LALT RET   &lt_rpi NUM_BI SPACE           &l_par   &r_par      &dbl_quotes   &currency             &none
+//╰──────────────────────────┴───────────────┴───────────┴──────────┴──────────╯       ╰──────────────────────┴───────────┴───────────────────╯ ╰─────────┴────────────────────────┴──────────────────────╯       ╰────────┴───────────┴─────────────┴─────────────────────┴─────────────╯
             >;
         };
-// &undecided_mt LALT &fslh
+
         numpad_bigrams {
             bindings = <
 //╭─────────────┬─────────┬───────────────────┬─────────────────────────┬─────────────────────╮                                                                                                                            ╭─────────────┬─────────────┬───────────────┬─────────────────┬─────────────────╮
@@ -444,7 +472,7 @@
         wasd_layer {
             bindings = <
 //╭───────────────┬───────────────────┬──────────────────┬─────────────┬─────────────╮                                                                                                                             ╭─────────────┬─────────────┬────────────────┬─────────────┬────────────────────╮
-    &to DEFAULT     &none               &none              &none         &none                                                                                                                                        &none         &none        &none            &none         &none         
+        &none               &none              &none         &none                                                                                                                                        &none         &none        &none            &none         &none         
 //├───────────────┼───────────────────┼──────────────────┼─────────────┼─────────────┼─────────────╮                                                                                                 ╭─────────────┼─────────────┼─────────────┼────────────────┼─────────────┼────────────────────┤
     &none           &kp GB_N1           &kp GB_N2          &kp GB_N3     &kp GB_N4     &kp GB_N5                                                                                                         &kp GB_N6    &kp GB_N7     &kp GB_N8     &kp GB_N9       &kp GB_N0     &none                
 //├───────────────┼───────────────────┼──────────────────┼─────────────┼─────────────┼─────────────┤                                                                                                 ├─────────────┼─────────────┼─────────────┼────────────────┼─────────────┼────────────────────┤
@@ -454,12 +482,12 @@
 //├───────────────┼───────────────────┼──────────────────┼─────────────┼─────────────┼─────────────┼───────────┬──────────────────┬────────────────────╮ ╭─────────────┬──────────┬──────────────────┼─────────────┼─────────────┼─────────────┼────────────────┼─────────────┼────────────────────┤
     &none           &kp LCTRL           &kp Z              &kp X         &kp C         &kp V         &kp ESC     &kp DEL            &kp LALT               &none         &none      &kp RGUI             &kp B        &kp N         &kp M         &kp COMMA       &kp DOT       &mt_rpi RCTRL MINUS  
 //├───────────────┼───────────────────┼──────────────────┼─────────────┼─────────────┼─────────────┼───────────┼──────────────────┼────────────────────┤ ├─────────────┼──────────┼──────────────────┼─────────────┴─────────────┼─────────────┼────────────────┼─────────────┼────────────────────┤
-    &none           &kp GB_BSLH         &kp GB_FSLH        &kp LBKT      &kp RBKT                    &kp SPACE   &kp LSHFT          &kp E                  &kp TAB       &kp RET    &lt_rpi NAV SPACE                 &l_par       &r_par          &none          &none         &none
+    &none           &kp GB_BSLH         &kp GB_FSLH        &kp LBKT      &kp RBKT                    &kp SPACE   &kp LSHFT          &to DEFAULT            &kp TAB       &kp RET    &lt_rpi NAV SPACE                 &l_par       &r_par          &none          &none         &none
 //╰───────────────┴───────────────────┴──────────────────┴─────────────┴─────────────╯             ╰───────────┴──────────────────┴────────────────────╯ ╰─────────────┴──────────┴──────────────────╯             ╰─────────────┴─────────────┴────────────────┴─────────────┴────────────────────╯
             >;
         };
 
-shortcuts_layer {
+        shortcuts_layer {
             bindings = <
 //╭───────────┬───────────┬─────────────┬───────────────┬─────────────╮                                                                                                     ╭───────────────────┬───────────────────┬────────────────────┬────────────────┬─────────────╮
     &none       &none       &none         &none           &none                                                                                                               &none               &none               &none                &none            &none      
@@ -468,11 +496,11 @@ shortcuts_layer {
 //├───────────┼───────────┼─────────────┼───────────────┼─────────────┼───────────┤                                                                           ├─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
     &none       &kp LGUI    &kp LALT      &kp LSHFT       &kp LCTRL     &none                                                                                    &none        &none               &none               &none                &none            &none      
 //├───────────┼───────────┼─────────────┼───────────────┼─────────────┼───────────┤                                                                           ├─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
-    &kp LALT    &none       &none         &kp LS(LC(Z))   &kp LC(Z)     &none                                                                                    &none        &none               &none               &none                &none            &none      
+    &kp LGUI    &none       &none         &kp LS(LC(Z))   &kp LC(Z)     &none                                                                                    &none        &none               &none               &none                &none            &none      
 //├───────────┼───────────┼─────────────┼───────────────┼─────────────┼───────────┼───────────┬───────────┬─────────────╮ ╭───────────┬───────────┬───────────┼─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
-    &none       &none       &kp LC(X)     &kp LC(V)       &kp LC(C)     &none       &none       &none       &none           &none       &none       &kp RGUI     &none        &none               &none               &none                &kp RCTRL        &none      
+    &none       &kp LC(X)   &kp LG(V)     &kp LC(V)       &kp LC(C)     &none       &none       &none       &none           &none       &none       &kp RGUI     &none        &none               &none               &none                &kp RCTRL        &none      
 //├───────────┼───────────┼─────────────┼───────────────┼─────────────┴───────────┼───────────┼───────────┼─────────────┤ ├───────────┼───────────┼───────────┼─────────────┴───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
-    &none       &none       &none         &none           &none                     &none       &none       &none           &none       &none       &none                     &none               &none               &none                &none            &none 
+    &none       &to SHORT   &none         &none           &none                     &none       &none       &to DEFAULT     &none       &kp LALT    &none                     &none               &none               &none                &none            &none 
 //╰───────────┴───────────┴─────────────┴───────────────┴─────────────╯           ╰───────────┴───────────┴─────────────╯ ╰───────────┴───────────┴───────────╯             ╰───────────────────┴───────────────────┴────────────────────┴────────────────┴─────────────╯
             >;
         };
