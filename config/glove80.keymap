@@ -67,7 +67,7 @@
             tapping-term-ms = <2000>;
             quick-tap-ms = <200>;
             require-prior-idle-ms = <125>;
-            bindings = <&kp LCTRL>, <&single_tap>;
+            bindings = <&kp>, <&single_tap>;
         };
         
         mt_rpi: mod_tap_require_prior_idle {
