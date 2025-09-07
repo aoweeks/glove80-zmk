@@ -27,14 +27,14 @@
 / {
     behaviors {
 
-        // For the "layer" key, it'd nice to be able to use it as either a shift or a toggle.
-        // Configure it as a tap dance, so the first tap (or hold) is a &mo and the second tap is a &to
-        layer_td: tap_dance_0 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&mo NUM_BI>, <&to NUM_BI>;
-        };
+        // // For the "layer" key, it'd nice to be able to use it as either a shift or a toggle.
+        // // Configure it as a tap dance, so the first tap (or hold) is a &mo and the second tap is a &to
+        // layer_td: tap_dance_0 {
+        //     compatible = "zmk,behavior-tap-dance";
+        //     #binding-cells = <0>;
+        //     tapping-term-ms = <200>;
+        //     bindings = <&mo NUM_BI>, <&to NUM_BI>;
+        // };
 
         magic: magic_hold_tap {
             compatible = "zmk,behavior-hold-tap";
@@ -318,7 +318,7 @@
 
         single_tap: single_tap {
             compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <0>;
+            #binding-cells = <1>;
             bindings = <&macro_tap &macro_param_1to1 &sk_qr 0>;
         };
     };
