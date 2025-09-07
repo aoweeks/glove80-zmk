@@ -62,12 +62,12 @@
 
         bspc_mt: backspace_mod_tap {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <0>;
+            #binding-cells = <20>;
             flavor = "tap-preferred";
             tapping-term-ms = <300>;
             quick-tap-ms = <200>;
             require-prior-idle-ms = <125>;
-            bindings = <&kp LC(BACKSPACE)>, <&single_tap>;
+            bindings = <&kp>, <&single_tap>;
         };
         
         mt_rpi: mod_tap_require_prior_idle {
@@ -387,7 +387,7 @@
 //├──────────────────────────┼───────────────┼───────────┼──────────┼──────────┼───────┼──────────────────────┬───────────┬───────────────────╮ ╭─────────┬────────────────────────┬──────────────────────┼───────┼────────┼───────────┼─────────────┼─────────────────────┼─────────────┤
     &kp &fslh                  &lt_rpi NAV Z   &kp X       &kp C      &kp D      &kp V   &kp DEL                &none       &none                 &none     &none                    &kp RGUI               &kp K   &kp H    &kp COMMA   &kp DOT       &mac_mod RCTRL SEMI   &kp UNDER
 //├──────────────────────────┼───────────────┼───────────┼──────────┼──────────┴───────┼──────────────────────┼───────────┼───────────────────┤ ├─────────┼────────────────────────┼──────────────────────┼───────┴────────┼───────────┼─────────────┼─────────────────────┼─────────────┤
-    &none                      &kp EQUAL       &kp MINUS   &kp LBKT   &kp RBKT           &bspc_mt               &shift_td   &lt_rpi SHORT ESC     &kp TAB   &undecided_mt LALT RET   &lt_rpi NUM_BI SPACE           &l_par   &r_par      &dbl_quotes   &currency             &none
+    &none                      &kp EQUAL       &kp MINUS   &kp LBKT   &kp RBKT           &bspc_mt LC(BSPC) BSPC &shift_td   &lt_rpi SHORT ESC     &kp TAB   &undecided_mt LALT RET   &lt_rpi NUM_BI SPACE           &l_par   &r_par      &dbl_quotes   &currency             &none
 //╰──────────────────────────┴───────────────┴───────────┴──────────┴──────────╯       ╰──────────────────────┴───────────┴───────────────────╯ ╰─────────┴────────────────────────┴──────────────────────╯       ╰────────┴───────────┴─────────────┴─────────────────────┴─────────────╯
             >;
         };
