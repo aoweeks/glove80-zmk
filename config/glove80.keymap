@@ -67,7 +67,7 @@
             tapping-term-ms = <2000>;
             quick-tap-ms = <200>;
             require-prior-idle-ms = <125>;
-            bindings = LC(<&kp>), <&single_tap>;
+            bindings = <&kp LCTRL>, <&single_tap>;
         };
         
         mt_rpi: mod_tap_require_prior_idle {
@@ -329,33 +329,33 @@
         combo_sticky_hyper {
             timeout-ms = <30>;
             key-positions = <37 38>;
-            bindings = <&sk HYPER>;
             require-prior-idle-ms = <150>;
             layers = <DEFAULT NUM_BI NAV SHORT>;
+            bindings = <&sk HYPER>;
         };
 
         combo_f14 {
             timeout-ms = <30>;
             key-positions = <41 42>;
-            bindings = <&kp F14>;
             require-prior-idle-ms = <150>;
             layers = <DEFAULT NUM_BI NAV SHORT>;
+            bindings = <&kp F14>;
         };
 
         combo_alt_space {
             timeout-ms = <30>;
             key-positions = <41 43>;
-            bindings = LA(<&kp SPACE>);
             require-prior-idle-ms = <150>;
             layers = <DEFAULT NUM_BI NAV SHORT>;
+            bindings = <&kp LALT SPACE>;
         };
 
         combo_caps_word {
             timeout-ms = <30>;
             key-positions = <49 50>;
-            bindings = <&caps_word>;
             require-prior-idle-ms = <150>;
             layers = <DEFAULT NUM_BI NAV SHORT>;
+            bindings = <&caps_word>;
         };
     };
 
