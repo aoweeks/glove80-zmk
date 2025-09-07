@@ -331,7 +331,8 @@
         ctrl_key: control_and_key {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
-            bindings = <&macro_press &macro_param_1to1 &kp LS(0)>;
+            bindings =  <&macro_press &kp LCTRL &macro_param_1to1 &kp 0>,
+                        <&macro_release &kp LCTRL &macro_param_1to1 &kp 0>;
         };
     };
 
