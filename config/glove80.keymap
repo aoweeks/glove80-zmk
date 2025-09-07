@@ -62,7 +62,7 @@
 
         bspc_mt: backspace_mod_tap {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <20>;
+            #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <300>;
             quick-tap-ms = <200>;
