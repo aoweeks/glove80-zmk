@@ -135,7 +135,7 @@
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp BACKSPACE>, <&kp RC(BACKSPACE)>;
-            mods = <(MOD_LCTL|MOD_RTRL)>;
+            mods = <(MOD_LCTL|MOD_RCTL)>;
         };
 
         // Shifted symbols
