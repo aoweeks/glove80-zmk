@@ -442,7 +442,7 @@
         ZMK_MACRO(extend_word_left,
             wait-ms = <SELECT_WORD_DELAY>;
             tap-ms = <SELECT_WORD_DELAY>;
-            bindings = <&kp _W(LS(LEFT))>;
+            bindings = <&kp LC(LS(LEFT))>;
         )
 
         //
