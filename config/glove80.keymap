@@ -12,9 +12,10 @@
 #include <dt-bindings/zmk/rgb.h>
 #include "keys_en_gb_extended.h"
 
+// Combos
 #define HYPER LG(LA(LSHIFT))
 
-// layers
+// Layers
 #define DEFAULT 0
 #define NUM_BI 1
 #define MAGIC 2
@@ -23,6 +24,9 @@
 #define MEDIA 5
 #define WASD 6
 #define SHORT 7
+
+// Constants
+#define SELECT_WORD_DELAY 1
 
 / {
     behaviors {
