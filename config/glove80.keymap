@@ -434,7 +434,7 @@
             bindings = <&extend_word_right>, <&extend_word_left>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
-        ZMK_MACRO(extend_wordc_right,
+        ZMK_MACRO(extend_word_right,
             wait-ms = <SELECT_WORD_DELAY>;
             tap-ms = <SELECT_WORD_DELAY>;
             bindings = <&kp LC(LS(RIGHT))>;
