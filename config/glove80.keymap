@@ -119,6 +119,7 @@
             bindings = <&kp>, <&kp>;
         };
 
+        // Bigrams
         is_equal: is_equal_to_bigram_or_trigram {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -130,6 +131,13 @@
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&bi EXCL EQUAL>, <&tri EXCL EQUAL>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        bi_gt: gt_equal_shift_fat_arrow {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&bi GT EQUAL>, <&tri EQUAL GT>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
@@ -181,7 +189,7 @@
         match_word: match_next_shift_match_all {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp LC(D)>, <&kp LS(LC(L))>;
+            bindings = <&kp LC(D)>, <&kp LC(L)>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
     };
@@ -483,7 +491,7 @@
 //├─────────────────┼─────────────────┼─────────────────┼─────────────────────┼───────────────┼───────────────┤                                                         ├────────┼────────┼─────────┼─────────┼────────┼────────┤
     &trans            &trans            &trans            &trans                &trans          &trans                                                                    &trans   &kp F7   &kp F8    &kp F9    &trans   &trans      
 //├─────────────────┼─────────────────┼─────────────────┼─────────────────────┼───────────────┼───────────────┤                                                         ├────────┼────────┼─────────┼─────────┼────────┼────────┤
-    &bi ASTRK EQUAL   &kp PRCNT EQUAL   &bi LT EQUAL      &bi GT EQUAL          &is_equal       &trans                                                                    &trans   &kp F4   &kp F5    &kp F6    &trans   &trans      
+    &bi ASTRK EQUAL   &kp PRCNT EQUAL   &bi LT EQUAL      &bi_gt                &is_equal       &trans                                                                    &trans   &kp F4   &kp F5    &kp F6    &trans   &trans      
 //├─────────────────┼─────────────────┼─────────────────┼─────────────────────┼───────────────┼───────────────┼────────┬────────┬────────╮ ╭─────────┬────────┬─────────┼────────┼────────┼─────────┼─────────┼────────┼────────┤
     &bi FSLH EQUAL    &trans            &bi AMPS AMPS     &bi GB_PIPE GB_PIPE   &bi LPAR LBRC   &bi RPAR RBRC   &trans   &trans   &trans     &trans    &trans   &trans    &trans   &kp F1   &kp F2    &kp F3    &trans   &trans      
 //├─────────────────┼─────────────────┼─────────────────┼─────────────────────┼───────────────┴───────────────┼────────┼────────┼────────┤ ├─────────┼────────┼─────────┼────────┴────────┼─────────┼─────────┼────────┼────────┤
