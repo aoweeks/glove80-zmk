@@ -192,10 +192,10 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        bslh: back_slash_shift_backtick {
+        under: underscore_shift_backtick {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp SLASH>, <&kp GRAVE>;
+            bindings = <&kp UNDER>, <&kp GRAVE>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
@@ -544,11 +544,11 @@
 //├────────────────────────────┼───────────────┼───────────┼──────────┼──────────┼───────┤                                                                                                                      ├───────┼────────┼───────────┼─────────────┼─────────────────────┼─────────────┤
     &none                        &kp Q           &kp W       &kp F      &kp P      &kp B                                                                                                                          &kp J   &kp L    &kp U       &kp Y         &mt_rpi GB_HASH       &kp GB_EURO  
 //├────────────────────────────┼───────────────┼───────────┼──────────┼──────────┼───────┤                                                                                                                      ├───────┼────────┼───────────┼─────────────┼─────────────────────┼─────────────┤
-    &undecided_mt LGUI &bslh     &kp A           &kp R       &kp S      &kp T      &kp G                                                                                                                          &kp M   &kp N    &kp E       &kp I         &kp O                 &kp GB_APOS
+    &undecided_mt LGUI BSLH      &kp A           &kp R       &kp S      &kp T      &kp G                                                                                                                          &kp M   &kp N    &kp E       &kp I         &kp O                 &kp GB_APOS
 //├────────────────────────────┼───────────────┼───────────┼──────────┼──────────┼───────┼────────────────────────┬───────────┬─────────────────────╮ ╭─────────┬────────────────────────┬──────────────────────┼───────┼────────┼───────────┼─────────────┼─────────────────────┼─────────────┤
-    &fslh                        &lt_rpi NAV Z   &kp X       &kp C      &kp D      &kp V   &kp DEL                  &none       &none                   &none     &none                    &kp RGUI               &kp K   &kp H    &kp COMMA   &kp DOT       &mac_mod RCTRL SEMI   &kp UNDER
+    &fslh                        &lt_rpi NAV Z   &kp X       &kp C      &kp D      &kp V   &kp DEL                  &none       &none                   &none     &none                    &kp RGUI               &kp K   &kp H    &kp COMMA   &kp DOT       &mac_mod RCTRL SEMI   &under
 //├────────────────────────────┼───────────────┼───────────┼──────────┼──────────┴───────┼────────────────────────┼───────────┼─────────────────────┤ ├─────────┼────────────────────────┼──────────────────────┼───────┴────────┼───────────┼─────────────┼─────────────────────┼─────────────┤
-    &none                        &kp MINUS       &kp PLUS    &kp LBKT   &kp RBKT           &bspc_mt LC(BSPC) BSPC   &shift_td   &lt_rpi MOUSING ESC     &kp TAB   &undecided_mt LALT RET   &lt_rpi NUM_BI SPACE           &l_par   &r_par      &dbl_quotes   &currency             &none
+    &none                        &kp PLUS        &kp MINUS   &kp LBKT   &kp RBKT           &bspc_mt LC(BSPC) BSPC   &shift_td   &lt_rpi MOUSING ESC     &kp TAB   &undecided_mt LALT RET   &lt_rpi NUM_BI SPACE           &l_par   &r_par      &dbl_quotes   &currency             &none
 //╰────────────────────────────┴───────────────┴───────────┴──────────┴──────────╯       ╰────────────────────────┴───────────┴─────────────────────╯ ╰─────────┴────────────────────────┴──────────────────────╯       ╰────────┴───────────┴─────────────┴─────────────────────┴─────────────╯
             >;
         };
