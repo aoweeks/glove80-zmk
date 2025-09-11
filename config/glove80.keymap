@@ -141,14 +141,14 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        bi_minus: minus_equal_shift_thin_arrow {
+        bi_minus: minus_equal_shift_minus_minus {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&bi MINUS EQUAL>, <&bi MINUS MINUS>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        bi_plus: minus_equal_shift_thin_arrow {
+        bi_plus: plus_equal_shift_plus_plus {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&bi MINUS EQUAL>, <&bi PLUS PLUS>;
