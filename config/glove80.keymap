@@ -134,17 +134,24 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        bi_gt: gt_equal_shift_fat_arrow {
+        arrows: thin_arrow_shift_fat_arrow {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&bi GT EQUAL>, <&tri EQUAL GT>;
+            bindings = <&bi MINUS GT>, <&bi EQUAL GT>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
         bi_minus: minus_equal_shift_thin_arrow {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&bi MINUS EQUAL>, <&tri MINUS GT>;
+            bindings = <&bi MINUS EQUAL>, <&bi MINUS MINUS>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        bi_plus: minus_equal_shift_thin_arrow {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&bi MINUS EQUAL>, <&bi PLUS PLUS>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
@@ -244,17 +251,18 @@
         bi: bigram {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
-            bindings = <&macro_param_1to1 &kp 0>,
-                       <&macro_param_2to1 &kp 0>;
+            bindings =  <&macro_release &kp LSHFT>,
+                        <&macro_param_1to1 &kp 0>,
+                        <&macro_param_2to1 &kp 0>;
         };
 
         tri: trigram {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
-            bindings = <&macro_param_1to1 &kp 0>,
-                       <&macro_param_2to1 &kp 0>,
-                       <&macro_release &kp LSHFT>,
-                       <&macro_tap &kp EQUAL>;
+            bindings =  <&macro_release &kp LSHFT>,
+                        <&macro_param_1to1 &kp 0>,
+                        <&macro_param_2to1 &kp 0>,
+                        <&macro_tap &kp EQUAL>;
         };
 
         single_tap: single_tap {
@@ -493,19 +501,19 @@
 
         bigram_fkeys_layer {
             bindings = <
-//╭───────┬─────────────────┬──────────────────┬─────────────────┬─────────────────╮                                                                                      ╭────────┬─────────┬─────────┬────────┬────────╮
-    &none   &none             &none              &none             &none                                                                                                    &trans   &trans    &trans    &trans   &trans   
-//├───────┼─────────────────┼──────────────────┼─────────────────┼─────────────────┼───────────╮                                                                  ╭───────┼────────┼─────────┼─────────┼────────┼────────┤
-    &none   &none             &none              &not_equal        &none              &none                                                                         &none   &kp F10  &kp F11   &kp F12   &trans   &trans   
-//├───────┼─────────────────┼──────────────────┼─────────────────┼─────────────────┼───────────┤                                                                  ├───────┼────────┼─────────┼─────────┼────────┼────────┤
-    &none   &none             &none              &none             &none              &none                                                                         &none   &kp F7   &kp F8    &kp F9    &trans   &trans   
-//├───────┼─────────────────┼──────────────────┼─────────────────┼─────────────────┼───────────┤                                                                  ├───────┼────────┼─────────┼─────────┼────────┼────────┤
-    &none   &none             &none              &bi_gt            &is_equal          &none                                                                         &none   &kp F4   &kp F5    &kp F6    &trans   &trans   
-//├───────┼─────────────────┼──────────────────┼─────────────────┼─────────────────┼───────────┼───────────┬───────────┬─────────────╮ ╭────────┬────────┬────────┼───────┼────────┼─────────┼─────────┼────────┼────────┤
-    &none   &none             &none              &none             &none              &none       &trans     &none       &none           &none    &none    &none    &none   &kp F1   &kp F2    &kp F3    &trans   &trans   
-//├───────┼─────────────────┼──────────────────┼─────────────────┼─────────────────┴───────────┼───────────┼───────────┼─────────────┤ ├────────┼────────┼────────┼───────┴────────┼─────────┼─────────┼────────┼────────┤
-    &none   &bi ASTRK EQUAL   &bi FSLH EQUAL     &bi_minus         &bi PLUS EQUAL                 &trans     &kp LSHFT   &trans          &trans   &trans   &trans           &trans   &trans    &trans    &trans   &trans 
-//╰───────┴─────────────────┴──────────────────┴─────────────────┴─────────────────╯           ╰───────────┴───────────┴─────────────╯ ╰────────┴────────┴────────╯       ╰────────┴─────────┴─────────┴────────┴────────╯
+//╭───────┬─────────────────┬──────────────────┬─────────────────────┬───────────────╮                                                                                  ╭────────┬─────────┬─────────┬────────┬────────╮
+    &none   &none             &none              &none                 &none                                                                                              &trans   &trans    &trans    &trans   &trans   
+//├───────┼─────────────────┼──────────────────┼─────────────────────┼───────────────┼───────────────╮                                                          ╭───────┼────────┼─────────┼─────────┼────────┼────────┤
+    &none   &none             &none              &not_equal            &none           &none                                                                      &none   &kp F10  &kp F11   &kp F12   &trans   &trans   
+//├───────┼─────────────────┼──────────────────┼─────────────────────┼───────────────┼───────────────┤                                                          ├───────┼────────┼─────────┼─────────┼────────┼────────┤
+    &none   &none             &bi AMPS AMPS      &bi GB_PIPE GB_PIPE   &bi LPAR LBKT   &bi RBKT RPAR                                                              &none   &kp F7   &kp F8    &kp F9    &trans   &trans   
+//├───────┼─────────────────┼──────────────────┼─────────────────────┼───────────────┼───────────────┤                                                          ├───────┼────────┼─────────┼─────────┼────────┼────────┤
+    &none   &bi PRCNT EQUAL   &bi LT EQUAL       &bi GT EQUAL          &is_equal       &arrows                                                                    &none   &kp F4   &kp F5    &kp F6    &trans   &trans   
+//├───────┼─────────────────┼──────────────────┼─────────────────────┼───────────────┼───────────────┼────────┬───────────┬────────╮ ╭────────┬────────┬────────┼───────┼────────┼─────────┼─────────┼────────┼────────┤
+    &none   &none             &none              &none                 &bi LPAR LBRC   &bi RBRC RPAR   &trans   &none       &none      &none    &none    &none    &none   &kp F1   &kp F2    &kp F3    &trans   &trans   
+//├───────┼─────────────────┼──────────────────┼─────────────────────┼───────────────┴───────────────┼────────┼───────────┼────────┤ ├────────┼────────┼────────┼───────┴────────┼─────────┼─────────┼────────┼────────┤
+    &none   &bi ASTRK EQUAL   &bi FSLH EQUAL     &bi_minus             &bi_plus                        &trans   &kp LSHFT   &trans     &trans   &trans   &trans           &trans   &trans    &trans    &trans   &trans 
+//╰───────┴─────────────────┴──────────────────┴─────────────────────┴───────────────╯               ╰────────┴───────────┴────────╯ ╰────────┴────────┴────────╯       ╰────────┴─────────┴─────────┴────────┴────────╯
             >;
         };
 
