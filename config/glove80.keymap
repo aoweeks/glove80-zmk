@@ -20,9 +20,7 @@
 // such as F13 instead of the default RA(U) shortcut, simply override
 // this definition to adapt all UNICODE() function calls accordingly.
 //
-#define UNICODE(keystrokes) \
-  <&macro_tap &kp RALT &kp U keystrokes &kp ENTER>
-#endif
+#define UNICODE(keystrokes) <&macro_tap &kp RALT &kp U keystrokes &kp ENTER>
 
 // Combos
 #define HYPER LG(LA(LSHIFT))
@@ -294,8 +292,7 @@
             #binding-cells = <2>;
             wait-ms = <1>;
             tap-ms = <1>;
-            bindings =  <&macro_param_1to1 &kp 0>,
-                        <&macro_param_2to1 &kp 0>;
+            bindings =  <&macro_param_1to1 &kp 0 &macro_param_2to1 &kp 0>;
         };
 
         tri: trigram {
@@ -303,9 +300,8 @@
             #binding-cells = <2>;
             wait-ms = <1>;
             tap-ms = <1>;
-            bindings =  <&macro_param_1to1 &kp 0>,
-                        <&macro_param_2to1 &kp 0>,
-                        <&macro_release &kp LSHFT>,
+            bindings =  <&macro_param_1to1 &kp 0 &macro_param_2to1 &kp 0 \
+                          &macro_release &kp LSHFT>,
                         <&macro_tap &kp EQUAL>;
         };
 
@@ -314,9 +310,7 @@
             #binding-cells = <0>;
             wait-ms = <1>;
             tap-ms = <1>;
-            bindings =  <&macro_tap &kp DOT>,
-                        <&macro_tap &kp DOT>,
-                        <&macro_tap &kp FSLH>;
+            bindings =  <&kp DOT &kp DOT &kp FSLH>;
         };
 
         single_tap: single_tap {
@@ -438,6 +432,15 @@
             tap-ms = <SELECT_WORD_DELAY>;
             bindings = <&kp LS(UP) &kp LS(HOME)>;
         )
+
+
+        // Emojis
+        smiley: emoji_smiley {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <1>;
+            bindings = <UNICODE(&kp N0 &kp N1 &kp NF &kp N6 &kp N4 &kp N2)>;
+        };
     };
 
     combos {
