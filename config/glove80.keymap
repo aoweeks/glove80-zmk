@@ -119,6 +119,18 @@
             bindings = <&kp>, <&caps_word>;
         };
 
+        bspc_lt: backpace_layer_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            require-prior-idle-ms = <125>;
+            hold-while-undecided;
+            retro-tap;
+            bindings = <&mo>, <&bspc_mm>;
+        };
+
         bspc_mm: backspace_mod_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -210,7 +222,7 @@
         match_word: match_next_shift_match_all {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp LC(D)>, <&kp LC(L)>;
+            bindings = <&kp LC(D)>, <&kp LC(LS(L))>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
@@ -268,6 +280,7 @@
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
             wait-ms = <1>;
+            tap-ms = <1>;
             bindings =  <&macro_param_1to1 &kp 0>,
                         <&macro_param_2to1 &kp 0>;
         };
@@ -424,14 +437,6 @@
             layers = <DEFAULT NUM_SYM NAV MOUSING>;
             bindings = <&sk HYPER>;
         };
-        
-        // combo_caps_word {
-        //     timeout-ms = <30>;
-        //     key-positions = <36 38>;
-        //     require-prior-idle-ms = <150>;
-        //     layers = <DEFAULT NUM_SYM NAV MOUSING>;
-        //     bindings = <&caps_word>;
-        // };
 
         combo_f14 {
             timeout-ms = <30>;
@@ -466,7 +471,7 @@
 //├─────────────────────┼─────────────────┼──────────┼───────────┼──────────┼───────┼──────────────────────────┬──────────────────────────┬─────────────────────╮ ╭─────────┬────────────────────────┬───────────────────┼───────┼──────────┼───────────┼──────────────────────┼──────────────────────────┼─────────────┤
     &lt_rpi MEDIA GB_AT   &mt_rpi LCTRL Z   &kp X      &kp C       &kp D      &kp V   &kp DEL                    &caps_word_mt LSHFT 0      &none                   &none     &none                    &mo BI_F            &kp K   &kp H      &kp COMMA   &kp DOT                &undecided_mt LALT COLON   &kp SEMI
 //├─────────────────────┼─────────────────┼──────────┼───────────┼──────────┴───────┼──────────────────────────┼──────────────────────────┼─────────────────────┤ ├─────────┼────────────────────────┼───────────────────┼───────┴──────────┼───────────┼──────────────────────┼──────────────────────────┼─────────────┤
-    &none                 &kp ASTRK         &kp FSLH   &kp MINUS   &kp PLUS           &lt_rpi NUM_SYM &bspc_mm   &single_sticky_tap LSHFT   &lt_rpi MOUSING ESC     &kp TAB   &undecided_mt LGUI RET   &lt_rpi NAV SPACE           &kp LPAR   &kp RPAR    &kp GB_DOUBLE_QUOTES   &kp UNDER                  &none
+    &none                 &kp ASTRK         &kp FSLH   &kp MINUS   &kp PLUS           &bspc_lt NUM_SYM 0         &single_sticky_tap LSHFT   &lt_rpi MOUSING ESC     &kp TAB   &undecided_mt LGUI RET   &lt_rpi NAV SPACE           &kp LPAR   &kp RPAR    &kp GB_DOUBLE_QUOTES   &kp UNDER                  &none
 //╰─────────────────────┴─────────────────┴──────────┴───────────┴──────────╯       ╰──────────────────────────┴──────────────────────────┴─────────────────────╯ ╰─────────┴────────────────────────┴───────────────────╯       ╰──────────┴───────────┴──────────────────────┴──────────────────────────┴─────────────╯
             >;
         };
