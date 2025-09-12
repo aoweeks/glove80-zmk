@@ -22,6 +22,9 @@
 //
 #define UNICODE(keystrokes) <&macro_tap &kp RALT &kp U keystrokes &kp ENTER>
 
+//Emoji
+#define E_SMILEY &kp N0 &kp N1 &kp F &kp N6 &kp N4
+
 // Combos
 #define HYPER LG(LA(LSHIFT))
 
@@ -440,7 +443,7 @@
             #binding-cells = <0>;
             wait-ms = <1>;
             tap-ms = <1>;
-            bindings = <&macro_tap &kp RALT &kp U &kp N0 &kp N1 &kp F &kp N6 &kp N4 &kp N2 &kp ENTER>;
+            bindings = <UNICODE(E_SMILEY)>;
         };
 
         e_sad: emoji_sad {
@@ -481,6 +484,14 @@
             wait-ms = <1>;
             tap-ms = <1>;
             bindings = <&macro_tap &kp RALT &kp U &kp N1 &kp F &kp N6 &kp N0 &kp N2 &kp ENTER>;
+        };
+
+        e_poke: emoji_winking_poking_tongue_out {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings = <&macro_tap &kp RALT &kp U &kp N1 &kp F &kp N6 &kp N1 &kp C &kp ENTER>;
         };
 
     };
@@ -633,7 +644,7 @@
 //├──────────┼───────────┼───────────┼───────────┼───────────┼───────────╮                                                                           ╭─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
     &none       &none       &none       &none       &none       &none                                                                                    &none       &none               &none               &none                &none            &none      
 //├──────────┼───────────┼───────────┼───────────┼───────────┼───────────┤                                                                           ├─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
-    &none       &none       &none       &none       &none       &none                                                                                    &none       &none               &e_thumb_up         &none                &none            &none      
+    &none       &none       &none       &e_poke     &none       &none                                                                                    &none       &none               &e_thumb_up         &none                &none            &none      
 //├──────────┼───────────┼───────────┼───────────┼───────────┼───────────┤                                                                           ├─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
     &none       &none       &none       &none       &none       &none                                                                                    &none       &none               &e_thumb_down       &none                &none            &e_laughing      
 //├──────────┼───────────┼───────────┼───────────┼───────────┼───────────┼───────────┬───────────┬─────────────╮ ╭───────────┬───────────┬───────────┼─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
