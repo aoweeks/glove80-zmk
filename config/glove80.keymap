@@ -116,7 +116,7 @@
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
             quick-tap-ms = <200>;
-            bindings = <&caps_word>, <&kp>;
+            bindings = <&kp>, <&caps_word>;
         };
         
 
@@ -429,13 +429,13 @@
             bindings = <&sk HYPER>;
         };
         
-        combo_caps_word {
-            timeout-ms = <30>;
-            key-positions = <36 38>;
-            require-prior-idle-ms = <150>;
-            layers = <DEFAULT NUM_SYM NAV MOUSING>;
-            bindings = <&caps_word>;
-        };
+        // combo_caps_word {
+        //     timeout-ms = <30>;
+        //     key-positions = <36 38>;
+        //     require-prior-idle-ms = <150>;
+        //     layers = <DEFAULT NUM_SYM NAV MOUSING>;
+        //     bindings = <&caps_word>;
+        // };
 
         combo_f14 {
             timeout-ms = <30>;
