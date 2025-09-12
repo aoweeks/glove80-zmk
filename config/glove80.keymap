@@ -58,12 +58,12 @@
             ignore-modifiers;
         };
 
-        // shift_td: shift_tap_dance {
-        //     compatible = "zmk,behavior-tap-dance";
-        //     #binding-cells = <0>;
-        //     tapping-term-ms = <500>;
-        //     bindings = <&single_sticky_tap LSHFT>, <&kp LSHFT>;
-        // };
+        shift_td: shift_tap_dance {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <500>;
+            bindings = <&single_sticky_tap LSHFT>, <&kp CAPSLOCK>;
+        };
         
         mt_rpi: mod_tap_require_prior_idle {
             compatible = "zmk,behavior-hold-tap";
@@ -471,7 +471,7 @@
 //├─────────────────────┼─────────────────┼──────────┼───────────┼──────────┼───────┼──────────────────────────┬──────────────────────────┬─────────────────────╮ ╭─────────┬────────────────────────┬───────────────────┼───────┼──────────┼───────────┼──────────────────────┼──────────────────────────┼─────────────┤
     &lt_rpi MEDIA GB_AT   &mt_rpi LCTRL Z   &kp X      &kp C       &kp D      &kp V   &kp DEL                    &caps_word_mt LSHFT 0      &none                   &none     &none                    &mo BI_F            &kp K   &kp H      &kp COMMA   &kp DOT                &undecided_mt LALT COLON   &kp SEMI
 //├─────────────────────┼─────────────────┼──────────┼───────────┼──────────┴───────┼──────────────────────────┼──────────────────────────┼─────────────────────┤ ├─────────┼────────────────────────┼───────────────────┼───────┴──────────┼───────────┼──────────────────────┼──────────────────────────┼─────────────┤
-    &none                 &kp ASTRK         &kp FSLH   &kp MINUS   &kp PLUS           &bspc_lt NUM_SYM 0         &single_sticky_tap LSHFT   &lt_rpi MOUSING ESC     &kp TAB   &undecided_mt LGUI RET   &lt_rpi NAV SPACE           &kp LPAR   &kp RPAR    &kp GB_DOUBLE_QUOTES   &kp UNDER                  &none
+    &none                 &kp ASTRK         &kp FSLH   &kp MINUS   &kp PLUS           &bspc_lt NUM_SYM 0         &shift_td                  &lt_rpi MOUSING ESC     &kp TAB   &undecided_mt LGUI RET   &lt_rpi NAV SPACE           &kp LPAR   &kp RPAR    &kp GB_DOUBLE_QUOTES   &kp UNDER                  &none
 //╰─────────────────────┴─────────────────┴──────────┴───────────┴──────────╯       ╰──────────────────────────┴──────────────────────────┴─────────────────────╯ ╰─────────┴────────────────────────┴───────────────────╯       ╰──────────┴───────────┴──────────────────────┴──────────────────────────┴─────────────╯
             >;
         };
@@ -487,7 +487,7 @@
 //├───────────┼────────────────────────┼─────────────┼─────────────┼───────────┼───────────┤                                                                      ├───────────┼─────────┼────────┼─────────┼──────────────────────────┼───────────┤
     &trans      &kp PRCNT                &kp LT        &kp GT        &kp EQUAL   &kp GRAVE                                                                          &none       &kp N4    &kp N5   &kp N6    &kp PLUS                   &trans           
 //├───────────┼────────────────────────┼─────────────┼─────────────┼───────────┼───────────┼──────────┬───────────┬─────────────╮ ╭─────────────┬────────┬────────┬───────────┼─────────┼────────┼─────────┼──────────────────────────┼───────────┤
-    &mo MEDIA   &mt_rpi LCTRL GB_TILDE   &kp GB_BSLH   &kp DOLLAR    &kp LBRC    &kp RBRC    &trans     &kp LSHFT   &to NUM_SYM     &to DEFAULT   &trans   &trans   &none       &kp N1    &kp N2   &kp N3    &undecided_mt LALT ENTER   &trans          
+    &mo MEDIA   &kp GB_TILDE             &kp GB_BSLH   &kp DOLLAR    &kp LBRC    &kp RBRC    &trans     &kp LSHFT   &to NUM_SYM     &to DEFAULT   &trans   &trans   &none       &kp N1    &kp N2   &kp N3    &undecided_mt LALT ENTER   &trans          
 //├───────────┼────────────────────────┼─────────────┼─────────────┼───────────┴───────────┼──────────┼───────────┼─────────────┤ ├─────────────┼────────┼────────┼───────────┴─────────┼────────┼─────────┼──────────────────────────┼───────────┤
     &trans      &trans                   &trans        &trans        &trans                  &trans     &kp LSHFT   &trans          &trans        &trans   &trans               &kp N0    &kp N0   &kp DOT   &kp ENTER                  &trans
 //╰───────────┴────────────────────────┴─────────────┴─────────────┴───────────╯           ╰──────────┴───────────┴─────────────╯ ╰─────────────┴────────┴────────╯           ╰─────────┴────────┴─────────┴──────────────────────────┴───────────╯
@@ -503,7 +503,7 @@
 //├────────────────┼──────────────┼───────────────┼──────────────────┼──────────────┼──────────────┤                                                                        ├─────────────┼───────────┼─────────────┼───────────┼─────────────┼─────────────┤
     &none            &kp INS        &copy_cut       &kp PG_UP          &kp LC(LBKT)   &kp LC(RBKT)                                                                            &kp F8        &select     &kp UP        &extend     &none         &none      
 //├────────────────┼──────────────┼───────────────┼──────────────────┼──────────────┼──────────────┤                                                                        ├─────────────┼───────────┼─────────────┼───────────┼─────────────┼─────────────┤
-    &kp CAPS         &none          &kp HOME        &kp PG_DN          &kp END        &none                                                                                   &match_word   &kp LEFT    &kp DOWN      &kp RIGHT   &none         &none          
+    &none            &none          &kp HOME        &kp PG_DN          &kp END        &none                                                                                   &match_word   &kp LEFT    &kp DOWN      &kp RIGHT   &none         &none          
 //├────────────────┼──────────────┼───────────────┼──────────────────┼──────────────┼──────────────┼─────────┬───────────┬─────────────╮ ╭─────────────┬──────────┬─────────┼─────────────┼───────────┼─────────────┼───────────┼─────────────┼─────────────┤
     &mo MEDIA        &kp LCTRL      &paste          &kp LS(LC(Z))      &kp LC(Z)      &none          &kp DEL   &kp LSHFT   &to NAV         &to DEFAULT   &trans     &trans    &kp LG(DOT)   &none       &none         &none       &kp LALT      &none  
 //├────────────────┼──────────────┼───────────────┼──────────────────┼──────────────┴──────────────┼─────────┼───────────┼─────────────┤ ├─────────────┼──────────┼─────────┼─────────────┴───────────┼─────────────┼───────────┼─────────────┼─────────────┤
