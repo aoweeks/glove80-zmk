@@ -443,7 +443,7 @@
             bindings = <&macro_tap &kp RALT &kp U &kp N0 &kp N1 &kp F &kp N6 &kp N4 &kp N2 &kp ENTER>;
         };
 
-        e_smiley: emoji_sad {
+        e_sad: emoji_sad {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <1>;
@@ -473,6 +473,14 @@
             wait-ms = <1>;
             tap-ms = <1>;
             bindings = <&macro_tap &kp RALT &kp U &kp N1 &kp F &kp N6 &kp N1 &kp N8 &kp ENTER>;
+        };
+
+        e_laughing: emoji_laughing_crying {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings = <&macro_tap &kp RALT &kp U &kp N1 &kp F &kp N6 &kp N0 &kp N2 &kp ENTER>;
         };
 
     };
@@ -627,7 +635,7 @@
 //├──────────┼───────────┼───────────┼───────────┼───────────┼───────────┤                                                                           ├─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
     &none       &none       &none       &none       &none       &none                                                                                    &none       &none               &e_thumb_up         &none                &none            &none      
 //├──────────┼───────────┼───────────┼───────────┼───────────┼───────────┤                                                                           ├─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
-    &none       &none       &none       &none       &none       &none                                                                                    &none       &none               &e_thumb_down       &none                &none            &none      
+    &none       &none       &none       &none       &none       &none                                                                                    &none       &none               &e_thumb_down       &none                &none            &e_laughing      
 //├──────────┼───────────┼───────────┼───────────┼───────────┼───────────┼───────────┬───────────┬─────────────╮ ╭───────────┬───────────┬───────────┼─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
     &none       &none       &e_kiss     &none       &none       &none       &none       &none      &none           &none       &none       &none         &none       &none               &none               &none                &none            &none      
 //├──────────┼───────────┼───────────┼───────────┼───────────┴───────────┼───────────┼───────────┼─────────────┤ ├───────────┼───────────┼───────────┼─────────────┴───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
