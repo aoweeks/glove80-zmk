@@ -435,37 +435,37 @@
 
 
         // Emojis
-        e_smiley: emoji_smiley {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
-            bindings = <&macro_tap &kp RALT &kp U &kp N0 &kp N1 &kp F &kp N6 &kp N4 &kp N2 &kp ENTER>;
-        };
+        // e_smiley: emoji_smiley {
+        //     compatible = "zmk,behavior-macro";
+        //     #binding-cells = <0>;
+        //     wait-ms = <1>;
+        //     tap-ms = <1>;
+        //     bindings = <&macro_tap &kp RALT &kp U &kp N0 &kp N1 &kp F &kp N6 &kp N4 &kp N2 &kp ENTER>;
+        // };
 
-        e_smiley: emoji_sad {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
-            bindings = <&macro_tap &kp RALT &kp U &kp N2 &kp N6 &kp N3 &kp N9 &kp ENTER>;
-        };
+        // e_smiley: emoji_sad {
+        //     compatible = "zmk,behavior-macro";
+        //     #binding-cells = <0>;
+        //     wait-ms = <1>;
+        //     tap-ms = <1>;
+        //     bindings = <&macro_tap &kp RALT &kp U &kp N2 &kp N6 &kp N3 &kp N9 &kp ENTER>;
+        // };
 
-        e_thumb_up: emoji_thumbs_up {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
-            bindings = <&macro_tap &kp RALT &kp U &kp 1 &kp F &kp N4 &kp N4 &kp D &kp ENTER>;
-        };
+        // e_thumb_up: emoji_thumbs_up {
+        //     compatible = "zmk,behavior-macro";
+        //     #binding-cells = <0>;
+        //     wait-ms = <1>;
+        //     tap-ms = <1>;
+        //     bindings = <&macro_tap &kp RALT &kp U &kp 1 &kp F &kp N4 &kp N4 &kp D &kp ENTER>;
+        // };
 
-        e_thumb_down: emoji_thumbs_down {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
-            bindings = <&macro_tap &kp RALT &kp U &kp 1 &kp F &kp N4 &kp N4 &kp E &kp ENTER>;
-        };
+        // e_thumb_down: emoji_thumbs_down {
+        //     compatible = "zmk,behavior-macro";
+        //     #binding-cells = <0>;
+        //     wait-ms = <1>;
+        //     tap-ms = <1>;
+        //     bindings = <&macro_tap &kp RALT &kp U &kp 1 &kp F &kp N4 &kp N4 &kp E &kp ENTER>;
+        // };
     };
 
     combos {
@@ -616,13 +616,14 @@
 //├──────────┼───────────┼───────────┼───────────┼───────────┼───────────╮                                                                           ╭─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
     &none       &none       &none       &none       &none       &none                                                                                    &none       &none               &none               &none                &none            &none      
 //├──────────┼───────────┼───────────┼───────────┼───────────┼───────────┤                                                                           ├─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
-    &none       &none       &none       &none       &none       &none                                                                                    &none       &none               &e_thumb_up         &none                &none            &none      
+    &none       &none       &none       &none       &none       &none                                                                                    &none       &none               &none               &none                &none            &none      
 //├──────────┼───────────┼───────────┼───────────┼───────────┼───────────┤                                                                           ├─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
-    &none       &none       &none       &none       &none       &none                                                                                    &none       &none               &e_thumb_down       &none                &none            &none      
+    &none       &none       &none       &none       &none       &none                                                                                    &none       &none               &none               &none                &none            &none      
 //├──────────┼───────────┼───────────┼───────────┼───────────┼───────────┼───────────┬───────────┬─────────────╮ ╭───────────┬───────────┬───────────┼─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
     &none       &none       &none       &none       &none       &none       &none      &none       &none           &none       &none       &none         &none       &none               &none               &none                &none            &none      
 //├──────────┼───────────┼───────────┼───────────┼───────────┴───────────┼───────────┼───────────┼─────────────┤ ├───────────┼───────────┼───────────┼─────────────┴───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
-    &none       &none       &none       &none       &none                   &none      &kp LSHFT   &none           &none       &none       &none                     &e_sad              &e_smiley           &none                &none            &none 
+    &none       &none       &none       &none       &none                   &none      &kp LSHFT   &none           &none       &none       &none                     &none               &none               &none                &none            &none 
+// &none       &none       &none       &none       &none                   &none      &kp LSHFT   &none           &none       &none       &none                     &e_sad              &e_smiley           &none                &none            &none 
 //╰──────────┴───────────┴───────────┴───────────┴───────────╯           ╰───────────┴───────────┴─────────────╯ ╰───────────┴───────────┴───────────╯             ╰───────────────────┴───────────────────┴────────────────────┴────────────────┴─────────────╯
             >;
         };
