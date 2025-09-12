@@ -22,9 +22,6 @@
 //
 #define UNICODE(keystrokes) <&macro_tap &kp RALT &kp U keystrokes &kp ENTER>
 
-//Emoji
-#define E_SMILEY &kp N0 &kp N1 &kp F &kp N6 &kp N4
-
 // Combos
 #define HYPER LG(LA(LSHIFT))
 
@@ -443,7 +440,7 @@
             #binding-cells = <0>;
             wait-ms = <1>;
             tap-ms = <1>;
-            bindings = <UNICODE(E_SMILEY)>;
+            bindings = <&macro_tap &kp RALT &kp U &kp N0 &kp N1 &kp F &kp N6 &kp N4 &kp N2 &kp ENTER>;
         };
 
         e_sad: emoji_sad {
@@ -491,7 +488,15 @@
             #binding-cells = <0>;
             wait-ms = <1>;
             tap-ms = <1>;
-            bindings = <&macro_tap &kp RALT &kp U &kp N1 &kp F &kp N6 &kp N1 &kp C &kp ENTER>;
+            bindings = <&macro_tap &kp RALT &kp U &kp N1 &kp F &kp N6 &kp N1 &kp N2 &kp ENTER>;
+        };
+
+        e_diagonal: emoji_diagonal_mouth {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings = <&macro_tap &kp RALT &kp U &kp N1 &kp F &kp A &kp E &kp N4 &kp ENTER>;
         };
 
     };
