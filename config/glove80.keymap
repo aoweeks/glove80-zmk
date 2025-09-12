@@ -439,7 +439,7 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <1>;
-            bindings = <UNICODE(&kp N0 &kp N1 &kp NF &kp N6 &kp N4 &kp N2)>;
+            bindings = <UNICODE(&kp N0 &kp N1 &kp F &kp N6 &kp N4 &kp N2)>;
         };
     };
 
