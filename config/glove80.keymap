@@ -439,7 +439,7 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <1>;
-            tap-time = <1>;
+            tap-ms = <1>;
             bindings = <&macro_tap &kp RALT &kp U &kp N0 &kp N1 &kp F &kp N6 &kp N4 &kp N2 &kp ENTER>;
             // bindings = <UNICODE(&kp N0 &kp N1 &kp F &kp N6 &kp N4 &kp N2)>;
         };
