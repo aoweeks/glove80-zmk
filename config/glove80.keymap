@@ -573,9 +573,9 @@
         numpad_symbols_layer {
             bindings = <
 //╭────────┬───────────┬─────────────┬─────────────┬───────────╮                                                                                             ╭───────────┬───────────┬───────────┬───────────┬────────╮
-    &trans   &trans      &trans        &trans        &trans                                                                                                    &trans      &trans      &trans      &trans      &trans
+    &trans   &trans      &trans        &trans        &trans                                                                                                    &kp D       &kp E       &kp F       &trans      &trans
 //├────────┼───────────┼─────────────┼─────────────┼───────────┼───────────╮                                                                    ╭────────────┼───────────┼───────────┼───────────┼───────────┼────────┤
-    &trans   &trans      &trans        &trans        &trans      &trans                                                                           &trans       &kp F10     &trans      &kp F12     &trans      &trans     
+    &trans   &trans      &trans        &trans        &trans      &trans                                                                           &trans       &kp A       &kp B       &kp C       &trans      &trans     
 //├────────┼───────────┼─────────────┼─────────────┼───────────┼───────────┤                                                                    ├────────────┼───────────┼───────────┼───────────┼───────────┼────────┤
     &trans   &none       &kp AMPS      &kp GB_PIPE   &kp LBKT    &kp RBKT                                                                         &kp CARET    &kp KP_N7   &kp KP_N8   &kp KP_N9   &trans      &trans    
 //├────────┼───────────┼─────────────┼─────────────┼───────────┼───────────┤                                                                    ├────────────┼───────────┼───────────┼───────────┼───────────┼────────┤
