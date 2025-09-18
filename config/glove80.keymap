@@ -48,6 +48,14 @@
 // Constants
 #define SELECT_WORD_DELAY 1
 
+
+  &mmv_input_listener {
+    slow {
+      layers = <SLOW>;
+      input-processors = <&zip_xy_scaler 1 4>;
+    };
+  };
+
 / {
     behaviors {
         magic: magic_hold_tap {
@@ -565,13 +573,6 @@
             layers = <DEFAULT NUM_SYM NAV MOUSING>;
             bindings = <&kp LA(SPACE)>;
         };
-    };
-
-    &mmv_input_listener {
-      slow {
-        layers = <SLOW>;
-        input-processors = <&zip_xy_scaler 1 4>;
-      };
     };
 
     // zip_temp_layer: zip_temp_layer {
