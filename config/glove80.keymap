@@ -14,6 +14,8 @@
 #include <dt-bindings/zmk/rgb.h>
 #include <dt-bindings/zmk/mouse.h>
 #include <dt-bindings/zmk/pointing.h>
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+
 #include "keys_en_gb_extended.h"
 
 //
@@ -36,11 +38,12 @@
 #define MOUSING 3
 #define BI_F 4
 #define MOUSE 5
-#define MEDIA 6
-#define EMOJI 7
-#define WASD 8
-#define MAGIC 9
-#define FACTORY_TEST 10
+#define SLOW 6
+#define MEDIA 7
+#define EMOJI 8
+#define WASD 9
+#define MAGIC 10
+#define FACTORY_TEST 11
 
 // Constants
 #define SELECT_WORD_DELAY 1
@@ -150,16 +153,16 @@
             bindings = <&kp>, <&copy_cut>;
         };
 
-        xy_cc: xy_scale_copy_cut_mod_tap {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <200>;
-            quick-tap-ms = <200>;
-            require-prior-idle-ms = <125>;
-            hold-while-undecided;
-            bindings = <&zip_xy_scaler 1 4>, <&copy_cut>;
-        };
+        // xy_cc: xy_scale_copy_cut_mod_tap {
+        //     compatible = "zmk,behavior-hold-tap";
+        //     #binding-cells = <2>;
+        //     flavor = "tap-preferred";
+        //     tapping-term-ms = <200>;
+        //     quick-tap-ms = <200>;
+        //     require-prior-idle-ms = <125>;
+        //     hold-while-undecided;
+        //     bindings = <&msc >, <&copy_cut>;
+        // };
 
         bspc_mm: backspace_mod_morph {
             compatible = "zmk,behavior-mod-morph";
@@ -564,6 +567,19 @@
         };
     };
 
+    &mmv_input_listener {
+      slow {
+        layers = <SLOW>;
+        input-processors = <&zip_xy_scaler 1 4>;
+      };
+    };
+
+    // zip_temp_layer: zip_temp_layer {
+    //   compatible = "zmk,input-processor-temp-layer";
+    //   #input-processor-cells = <2>;
+    //   require-prior-idle-ms = <2000>;
+    // };
+
     keymap {
         compatible = "zmk,keymap";
         
@@ -631,7 +647,25 @@
 //├─────────────┼────────────────────────┼───────────────┼──────────────────┼───────────────┼───────────┤                                                                                        ├─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
     &none         &kp LC(S)                &kp LGUI        &kp LALT           &kp LSHFT       &none                                                                                                 &none        &none               &none               &none                &none            &none      
 //├─────────────┼────────────────────────┼───────────────┼──────────────────┼───────────────┼───────────┤                                                                                        ├─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
-    &none         &kp_cc F13 0             &mkp RCLK       &mkp MCLK          &mkp LCLK       &paste                                                                                                &none        &kp LC(LS(P))       &none               &none                &none            &none      
+    &none         &mo SLOW                 &mkp RCLK       &mkp MCLK          &mkp LCLK       &paste                                                                                                &none        &kp LC(LS(P))       &none               &none                &none            &none      
+//├─────────────┼────────────────────────┼───────────────┼──────────────────┼───────────────┼───────────┼──────────────────────┬───────────┬─────────────╮ ╭─────────────┬───────────┬───────────┼─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
+    &none         &mt_rpi LCTRL LC(LBKT)   &kp LC(RBKT)    &kp LS(Z)          &kp LS(LC(Z))   &none       &trans                 &trans      &trans          &to DEFAULT   &none       &trans       &none        &none               &none               &none                &kp LALT         &none     
+//├─────────────┼────────────────────────┼───────────────┼──────────────────┼───────────────┴───────────┼──────────────────────┼───────────┼─────────────┤ ├─────────────┼───────────┼───────────┼─────────────┴───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
+    &none         &none                    &none           &kp LC(MINUS)      &kp LC(PLUS)                &lt_rpi NUM_SYM BSPC   &kp LSHFT   &kp LSHFT       &trans        &trans      &trans                    &none               &none               &none                &none            &none 
+//╰─────────────┴────────────────────────┴───────────────┴──────────────────┴───────────────╯           ╰──────────────────────┴───────────┴─────────────╯ ╰─────────────┴───────────┴───────────╯             ╰───────────────────┴───────────────────┴────────────────────┴────────────────┴─────────────╯
+            >;
+        };
+
+        slow_mousing_layer {
+            bindings = <
+//╭─────────────┬────────────────────────┬───────────────┬──────────────────┬───────────────╮                                                                                                                  ╭───────────────────┬───────────────────┬────────────────────┬────────────────┬─────────────╮
+    &none         &none                    &none           &to MOUSING        &none                                                                                                                              &none               &none               &none                &none            &none      
+//├─────────────┼────────────────────────┼───────────────┼──────────────────┼───────────────┼───────────╮                                                                                        ╭─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
+    &none         &none                    &none           &select_all_none   &none           &none                                                                                                 &none        &none               &none               &none                &none            &none      
+//├─────────────┼────────────────────────┼───────────────┼──────────────────┼───────────────┼───────────┤                                                                                        ├─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
+    &none         &kp LC(S)                &kp LGUI        &kp LALT           &kp LSHFT       &none                                                                                                 &none        &none               &none               &none                &none            &none      
+//├─────────────┼────────────────────────┼───────────────┼──────────────────┼───────────────┼───────────┤                                                                                        ├─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
+    &none         &none                    &mkp RCLK       &mkp MCLK          &mkp LCLK       &paste                                                                                                &none        &kp LC(LS(P))       &none               &none                &none            &none      
 //├─────────────┼────────────────────────┼───────────────┼──────────────────┼───────────────┼───────────┼──────────────────────┬───────────┬─────────────╮ ╭─────────────┬───────────┬───────────┼─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
     &none         &mt_rpi LCTRL LC(LBKT)   &kp LC(RBKT)    &kp LS(Z)          &kp LS(LC(Z))   &none       &trans                 &trans      &trans          &to DEFAULT   &none       &trans       &none        &none               &none               &none                &kp LALT         &none     
 //├─────────────┼────────────────────────┼───────────────┼──────────────────┼───────────────┴───────────┼──────────────────────┼───────────┼─────────────┤ ├─────────────┼───────────┼───────────┼─────────────┴───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
@@ -669,7 +703,7 @@
 //├──────────┼───────────────┼────────────┼────────────┼────────────┼───────────┤                                                                                        ├─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
     &none       &none           &none        &none        &none        &none                                                                                                 &none       &none               &mmv MOVE_UP        &none                &none            &none      
 //├──────────┼───────────────┼────────────┼────────────┼────────────┼───────────┤                                                                                        ├─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
-    &none       &xy_cc 0 0      &mkp RCLK    &mkp MCLK    &mkp LCLK    &paste                                                                                                &none       &mmv MOVE_LEFT      &mmv MOVE_DOWN      &mmv MOVE_RIGHT      &none            &none      
+    &none       &kp_cc F13 0    &mkp RCLK    &mkp MCLK    &mkp LCLK    &paste                                                                                                &none       &mmv MOVE_LEFT      &mmv MOVE_DOWN      &mmv MOVE_RIGHT      &none            &none      
 //├──────────┼───────────────┼────────────┼────────────┼────────────┼───────────┼──────────────────────┬───────────┬─────────────╮ ╭─────────────┬───────────┬───────────┼─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
     &none       &kp LCTRL       &none        &none        &none        &none      &trans                 &trans      &to MOUSE       &to DEFAULT   &trans      &kp LGUI      &none       &none               &mmv MOVE_DOWN      &none                &kp LALT         &none      
 //├──────────┼───────────────┼────────────┼────────────┼────────────┴───────────┼──────────────────────┼───────────┼─────────────┤ ├─────────────┼───────────┼───────────┼─────────────┴───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
