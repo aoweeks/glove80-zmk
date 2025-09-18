@@ -45,16 +45,6 @@
 
 / {
     behaviors {
-
-        // // For the "layer" key, it'd nice to be able to use it as either a shift or a toggle.
-        // // Configure it as a tap dance, so the first tap (or hold) is a &mo and the second tap is a &to
-        // layer_td: tap_dance_0 {
-        //     compatible = "zmk,behavior-tap-dance";
-        //     #binding-cells = <0>;
-        //     tapping-term-ms = <200>;
-        //     bindings = <&mo NUM_SYM>, <&to NUM_SYM>;
-        // };
-
         magic: magic_hold_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -147,7 +137,7 @@
             bindings = <&mo>, <&bspc_mm>;
         };
 
-        cc_mt: copy_cut_mod_tap {
+        kp_cc: key_press_copy_cut_mod_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "tap-preferred";
@@ -155,8 +145,18 @@
             quick-tap-ms = <200>;
             require-prior-idle-ms = <125>;
             hold-while-undecided;
-            retro-tap;
             bindings = <&kp>, <&copy_cut>;
+        };
+
+        xy_cc: xy_scale_copy_cut_mod_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            require-prior-idle-ms = <125>;
+            hold-while-undecided;
+            bindings = <&zip_xy_scaler 1 4>, <&copy_cut>;
         };
 
         bspc_mm: backspace_mod_morph {
@@ -610,7 +610,7 @@
 //├────────────────┼────────────────────────┼──────────────┼──────────────────┼───────────────┼──────────────┤                                                                                   ├─────────────┼───────────┼─────────────┼───────────┼─────────────┼─────────────┤
     &none            &kp INS                  &none          &kp PG_UP          &none           &none                                                                                              &kp F8        &select     &kp UP        &extend     &none         &none      
 //├────────────────┼────────────────────────┼──────────────┼──────────────────┼───────────────┼──────────────┤                                                                                   ├─────────────┼───────────┼─────────────┼───────────┼─────────────┼─────────────┤
-    &none            &cc_mt F13 0             &kp HOME       &kp PG_DN          &kp END         &paste                                                                                             &match_word   &kp LEFT    &kp DOWN      &kp RIGHT   &none         &none          
+    &none            &kp_cc F13 0             &kp HOME       &kp PG_DN          &kp END         &paste                                                                                             &match_word   &kp LEFT    &kp DOWN      &kp RIGHT   &none         &none          
 //├────────────────┼────────────────────────┼──────────────┼──────────────────┼───────────────┼──────────────┼──────────────────────┬───────────┬───────────╮ ╭─────────────┬──────────┬─────────┼─────────────┼───────────┼─────────────┼───────────┼─────────────┼─────────────┤
     &none            &mt_rpi LCTRL LC(LBKT)   &kp LC(RBKT)   &kp LC(Z)          &kp LS(LC(Z))   &none          &trans                 &trans      &to NAV       &to DEFAULT   &trans     &trans    &kp LG(DOT)   &none       &kp DOWN      &none       &kp LALT      &none  
 //├────────────────┼────────────────────────┼──────────────┼──────────────────┼───────────────┴──────────────┼──────────────────────┼───────────┼───────────┤ ├─────────────┼──────────┼─────────┼─────────────┴───────────┼─────────────┼───────────┼─────────────┼─────────────┤
@@ -629,7 +629,7 @@
 //├─────────────┼────────────────────────┼───────────────┼──────────────────┼───────────────┼───────────┤                                                                                        ├─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
     &none         &kp LC(S)                &kp LGUI        &kp LALT           &kp LSHFT       &none                                                                                                 &none        &none               &none               &none                &none            &none      
 //├─────────────┼────────────────────────┼───────────────┼──────────────────┼───────────────┼───────────┤                                                                                        ├─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
-    &none         &cc_mt F13 0             &mkp RCLK       &mkp MCLK          &mkp LCLK       &paste                                                                                                &none        &kp LC(LS(P))       &none               &none                &none            &none      
+    &none         &kp_cc F13 0             &mkp RCLK       &mkp MCLK          &mkp LCLK       &paste                                                                                                &none        &kp LC(LS(P))       &none               &none                &none            &none      
 //├─────────────┼────────────────────────┼───────────────┼──────────────────┼───────────────┼───────────┼──────────────────────┬───────────┬─────────────╮ ╭─────────────┬───────────┬───────────┼─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
     &none         &mt_rpi LCTRL LC(LBKT)   &kp LC(RBKT)    &kp LS(Z)          &kp LS(LC(Z))   &none       &trans                 &trans      &trans          &to DEFAULT   &none       &trans       &none        &none               &none               &none                &kp LALT         &none     
 //├─────────────┼────────────────────────┼───────────────┼──────────────────┼───────────────┴───────────┼──────────────────────┼───────────┼─────────────┤ ├─────────────┼───────────┼───────────┼─────────────┴───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
@@ -667,7 +667,7 @@
 //├──────────┼───────────────┼────────────┼────────────┼────────────┼───────────┤                                                                                        ├─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
     &none       &none           &none        &none        &none        &none                                                                                                 &none       &none               &mmv MOVE_UP        &none                &none            &none      
 //├──────────┼───────────────┼────────────┼────────────┼────────────┼───────────┤                                                                                        ├─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
-    &none       &cc_mt F13 0    &mkp RCLK    &mkp MCLK    &mkp LCLK    &paste                                                                                                &none       &mmv MOVE_LEFT      &mmv MOVE_DOWN      &mmv MOVE_RIGHT      &none            &none      
+    &none       &xy_cc 0 0      &mkp RCLK    &mkp MCLK    &mkp LCLK    &paste                                                                                                &none       &mmv MOVE_LEFT      &mmv MOVE_DOWN      &mmv MOVE_RIGHT      &none            &none      
 //├──────────┼───────────────┼────────────┼────────────┼────────────┼───────────┼──────────────────────┬───────────┬─────────────╮ ╭─────────────┬───────────┬───────────┼─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
     &none       &kp LCTRL       &none        &none        &none        &none      &trans                 &trans      &to MOUSE       &to DEFAULT   &trans      &kp LGUI      &none       &none               &mmv MOVE_DOWN      &none                &kp LALT         &none      
 //├──────────┼───────────────┼────────────┼────────────┼────────────┴───────────┼──────────────────────┼───────────┼─────────────┤ ├─────────────┼───────────┼───────────┼─────────────┴───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
