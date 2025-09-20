@@ -47,7 +47,7 @@
 
 // Other Constants
 #define SELECT_WORD_DELAY 1
-#define ZMK_POINTING_DEFAULT_MOVE_VAL 1000  
+// #define ZMK_POINTING_DEFAULT_MOVE_VAL 1000  
 
 &mmv_input_listener {
   slow {
