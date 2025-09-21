@@ -62,6 +62,7 @@
 &sl {
   release-after-ms = <RELEASE_AFTER>;
   ignore-modifiers;
+  lazy;
 };
 
 / {
@@ -351,6 +352,15 @@
             tap-ms = <1>;
             bindings =  <&macro_param_1to1 &kp 0>,
                         <&macro_param_1to1 &kp 0>;
+        };
+
+        tc: triple_char {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings =  <&macro_param_1to1 &kp 0>,
+                        <&macro_param_1to1 &kp 0 &macro_param_1to1 &kp 0>;
         };
 
         bi: bigram {
@@ -651,7 +661,7 @@
 //├────────────────┼───────────┼──────────┼─────────────┼───────────┼───────┤                                                                  ├───────┼──────────┼───────────┼──────────────────────┼───────────┼─────────────┤
     &kp Q            &dc A       &dc R      &dc S         &dc T       &dc G                                                                      &dc M   &dc N      &dc E       &dc I                  &dc O       &dc GB_APOS
 //├────────────────┼───────────┼──────────┼─────────────┼───────────┼───────┼───────────────────┬────────┬────────╮ ╭────────┬────────┬────────┼───────┼──────────┼───────────┼──────────────────────┼───────────┼─────────────┤
-    &dc EXCL         &dc Z       &dc X      &dc C         &dc D       &dc V   &trans              &trans   &none      &none    &none    &trans   &dc K   &dc H      &dc COMMA   &dc DOT                &dc UNDER   &dc EQUAL
+    &dc EXCL         &dc Z       &dc X      &dc C         &dc D       &dc V   &trans              &trans   &none      &none    &none    &trans   &dc K   &dc H      &bi T H     &tc DOT                &dc UNDER   &dc EQUAL
 //├────────────────┼───────────┼──────────┼─────────────┼───────────┴───────┼───────────────────┼────────┼────────┤ ├────────┼────────┼────────┼───────┴──────────┼───────────┼──────────────────────┼───────────┼─────────────┤
     &none            &dc ASTRK   &dc PLUS   &dc SEMI      &dc COLON           &bspc_lt DBL_NS 0   &trans   &trans     &trans   &trans   &trans           &dc LPAR   &dc RPAR    &dc GB_DOUBLE_QUOTES   &dc QMARK   &none
 //╰────────────────┴───────────┴──────────┴─────────────┴───────────╯       ╰───────────────────┴────────┴────────╯ ╰────────┴────────┴────────╯       ╰──────────┴───────────┴──────────────────────┴───────────┴─────────────╯
