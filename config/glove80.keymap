@@ -59,7 +59,7 @@
   };
 };
 
-sl {
+&sl {
   release-after-ms = <RELEASE_AFTER>;
   ignore-modifiers;
 };
