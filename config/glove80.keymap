@@ -145,15 +145,15 @@
             bindings = <&kp>, <&kp>;
         };
 
-        dl: double_layer_mod_tap {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "hold-preferred";
-            tapping-term-ms = <200>;
-            quick-tap-ms = <200>;
-            retro-tap;
-            bindings = <&single_sticky_layer_tap>, <&kp>;
-        };
+        // dl: double_layer_mod_tap {
+        //     compatible = "zmk,behavior-hold-tap";
+        //     #binding-cells = <2>;
+        //     flavor = "hold-preferred";
+        //     tapping-term-ms = <200>;
+        //     quick-tap-ms = <200>;
+        //     retro-tap;
+        //     bindings = <&single_sticky_layer_tap>, <&kp>;
+        // };
 
         caps_word_mt: caps_word_mod_tap {
             compatible = "zmk,behavior-hold-tap";
