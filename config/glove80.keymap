@@ -127,6 +127,16 @@
             bindings = <&kp>, <&kp>;
         };
 
+          dbl_mt: double_mod_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            retro-tap;
+            bindings = <&sk_qr>, <&kp>;
+        };
+
         caps_word_mt: caps_word_mod_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -289,6 +299,7 @@
     };
 
     macros {
+        // Glove80 Macros
         rgb_ug_status_macro: rgb_ug_status_macro_0 {
           compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -326,6 +337,14 @@
             bindings
                 = <&out OUT_BLE>,
                   <&bt BT_SEL 3>;
+        };
+
+        dbl: double_char {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <2>;
+            tap-ms = <2>;
+            bindings =  <&macro_tap &kp 0>, <&key_repeat>;
         };
 
         bi: bigram {
@@ -608,7 +627,7 @@
 //├────────────────────┼─────────────────┼──────────┼─────────────┼───────────┼───────┼─────────────────────┬───────────────────┬───────────────────────╮ ╭─────────┬──────────────────┬────────────────────────┼───────┼──────────┼───────────┼──────────────────────┼──────────────────────────┼───────────────────────┤
     &lt_rpi MEDIA EXCL   &mt_rpi LCTRL Z   &kp X      &kp C         &kp D       &kp V   &lt_rpi MOUSING DEL   &lt_rpi EMOJI ESC   &none                     &none     &none              &undecided_mt LGUI F14   &kp K   &kp H      &kp COMMA   &kp DOT                &undecided_mt LALT UNDER   &kp EQUAL
 //├────────────────────┼─────────────────┼──────────┼─────────────┼───────────┴───────┼─────────────────────┼───────────────────┼───────────────────────┤ ├─────────┼──────────────────┼────────────────────────┼───────┴──────────┼───────────┼──────────────────────┼──────────────────────────┼───────────────────────┤
-    &none                &kp ASTRK         &kp PLUS   &kp SEMI      &kp COLON           &bspc_lt NUM_SYM 0    &shift_td           &caps_word_mt LSHFT 0     &kp TAB   &lt_rpi BI_F RET   &lt_rpi NAV SPACE                &kp LPAR   &kp RPAR    &kp GB_DOUBLE_QUOTES   &kp QMARK                  &none
+    &none                &kp ASTRK         &kp PLUS   &kp SEMI      &kp COLON           &bspc_lt NUM_SYM 0    &shift_td           &caps_word_mt LSHFT 0     &kp TAB   &lt_rpi NAV RET    &dbl_mt &dbl SPACE                &kp LPAR   &kp RPAR    &kp GB_DOUBLE_QUOTES   &kp QMARK                  &none
 //╰────────────────────┴─────────────────┴──────────┴─────────────┴───────────╯       ╰─────────────────────┴───────────────────┴───────────────────────╯ ╰─────────┴──────────────────┴────────────────────────╯       ╰──────────┴───────────┴──────────────────────┴──────────────────────────┴───────────────────────╯
             >;
         };
