@@ -129,15 +129,15 @@
             bindings = <&kp>, <&kp>;
         };
 
-        dl: double_layer_mod_tap {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "hold-preferred";
-            tapping-term-ms = <200>;
-            quick-tap-ms = <200>;
-            retro-tap;
-            bindings = <&single_sticky_layer_tap>, <&kp>;
-        };
+        // dl: double_layer_mod_tap {
+        //     compatible = "zmk,behavior-hold-tap";
+        //     #binding-cells = <2>;
+        //     flavor = "hold-preferred";
+        //     tapping-term-ms = <200>;
+        //     quick-tap-ms = <200>;
+        //     retro-tap;
+        //     bindings = <&single_sticky_layer_tap>, <&kp>;
+        // };
 
         caps_word_mt: caps_word_mod_tap {
             compatible = "zmk,behavior-hold-tap";
@@ -631,7 +631,7 @@
 //├────────────────────┼─────────────────┼──────────┼─────────────┼───────────┼───────┼─────────────────────┬───────────────────┬───────────────────────╮ ╭────────────────────────┬──────────────────┬────────────────────────┼───────┼──────────┼───────────┼──────────────────────┼──────────────────────────┼───────────────────────┤
     &lt_rpi MEDIA EXCL   &mt_rpi LCTRL Z   &kp X      &kp C         &kp D       &kp V   &lt_rpi MOUSING DEL   &lt_rpi EMOJI ESC   &none                     &none                    &none              &lt_rpi BI_F F14         &kp K   &kp H      &kp COMMA   &kp DOT                &undecided_mt LALT UNDER   &kp EQUAL
 //├────────────────────┼─────────────────┼──────────┼─────────────┼───────────┴───────┼─────────────────────┼───────────────────┼───────────────────────┤ ├────────────────────────┼──────────────────┼────────────────────────┼───────┴──────────┼───────────┼──────────────────────┼──────────────────────────┼───────────────────────┤
-    &none                &kp ASTRK         &kp PLUS   &kp SEMI      &kp COLON           &bspc_lt NUM_SYM 0    &shift_td           &caps_word_mt LSHFT 0     &undecided_mt LGUI TAB   &dl DBL_DEF RET    &lt_rpi NAV SPACE                &kp LPAR   &kp RPAR    &kp GB_DOUBLE_QUOTES   &kp QMARK                  &none
+    &none                &kp ASTRK         &kp PLUS   &kp SEMI      &kp COLON           &bspc_lt NUM_SYM 0    &shift_td           &caps_word_mt LSHFT 0     &undecided_mt LGUI TAB   &lt_rpi DBL_DEF RET    &lt_rpi NAV SPACE                &kp LPAR   &kp RPAR    &kp GB_DOUBLE_QUOTES   &kp QMARK                  &none
 //╰────────────────────┴─────────────────┴──────────┴─────────────┴───────────╯       ╰─────────────────────┴───────────────────┴───────────────────────╯ ╰────────────────────────┴──────────────────┴────────────────────────╯       ╰──────────┴───────────┴──────────────────────┴──────────────────────────┴───────────────────────╯
             >;
         };
