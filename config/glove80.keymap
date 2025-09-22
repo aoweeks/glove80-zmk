@@ -173,7 +173,7 @@
             tapping-term-ms = <200>;
             quick-tap-ms = <200>;
             retro-tap;
-            bindings = <&ingle_sticky_layer_tap>, <&bspc_mm>;
+            bindings = <&single_sticky_layer_tap>, <&bspc_mm>;
         };
 
         cc_mt: copy_cut_mod_tap {
