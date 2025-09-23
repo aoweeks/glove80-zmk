@@ -99,6 +99,7 @@
             tapping-term-ms = <200>;
             quick-tap-ms = <200>;
             retro-tap;
+            hold-while-undecided;
             bindings = <&single_sticky_layer_tap>, <&kp>;
         };
         
@@ -164,7 +165,7 @@
             tapping-term-ms = <200>;
             quick-tap-ms = <200>;
             retro-tap;
-            bindings = <&mo>, <&caps_word>;
+            bindings = <&kp>, <&caps_word>;
         };
 
         bspc_lt: backpace_layer_tap {
