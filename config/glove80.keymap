@@ -541,11 +541,11 @@
             #binding-cells = <0>;
             wait-ms = <1>;
             tap-ms = <1>;
-              bindings = <&macro_tap &kp RALT &kp U &kp 1 &kp F &kp N4 &kp N4 &kp E &kp ENTER>;
+            bindings = <&macro_tap &kp RALT &kp U &kp 1 &kp F &kp N4 &kp N4 &kp E &kp ENTER>;
         };
 
         e_kiss: emoji_blowing_kiss {
-              compatible = "zmk,behavior-macro";
+            compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <1>;
             tap-ms = <1>;
@@ -555,7 +555,7 @@
         e_laughing: emoji_laughing_crying {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-              wait-ms = <1>;
+            wait-ms = <1>;
             tap-ms = <1>;
             bindings = <&macro_tap &kp RALT &kp U &kp N1 &kp F &kp N6 &kp N0 &kp N2 &kp ENTER>;
         };
@@ -563,13 +563,13 @@
         e_poke: emoji_winking_poking_tongue_out {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-              wait-ms = <1>;
+            wait-ms = <1>;
             tap-ms = <1>;
             bindings = <&macro_tap &kp RALT &kp U &kp N1 &kp F &kp N6 &kp N1 &kp C &kp ENTER>;
         };
 
         e_surprised: emoji_surprised {
-              compatible = "zmk,behavior-macro";
+            compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <1>;
             tap-ms = <1>;
@@ -579,7 +579,7 @@
         e_crying: emoji_crying {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-m  s = <1>;
+            wait-ms = <1>;
             tap-ms = <1>;
             bindings = <&macro_tap &kp RALT &kp U &kp N1 &kp F &kp N6 &kp N2 &kp D &kp ENTER>;
         };
@@ -624,6 +624,7 @@
 
     conditional_layers {
         compatible = "zmk,conditional-layers";
+
         double_number_symbol_layer {
             if-layers = <DBL_DEF NUM_SYM>;
             then-layer = <DBL_NS>;
