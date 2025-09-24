@@ -254,7 +254,7 @@
         minus_arr: minus_shift_thin_arrow {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&bi MINUS>, <&bi MINUS GT>;
+            bindings = <&kp MINUS>, <&bi MINUS GT>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
