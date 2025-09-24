@@ -247,7 +247,7 @@
         excl_ne: excl_shift_not_equal {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp EXCL EQUAL>, <&tri EXCL EQUAL>;
+            bindings = <&kp EXCL>, <&bi EXCL EQUAL>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
@@ -698,7 +698,7 @@
 //├──────────────────┼───────────────────┼──────────┼─────────────┼──────────┼───────┼─────────────────────┬───────────────────┬───────────────────────╮ ╭────────────────────────┬──────────────────┬───────────────────┼───────┼──────────┼────────────┼──────────────────────┼──────────────────────────┼───────────────────────┤
     &excl_lt EMOJI 0   &lt_rpi NUM_SYM Z   &kp X      &kp C         &kp D      &kp V   &lt_rpi MOUSING DEL   &kp ESC             &to SPEED                 &none                    &none              &lt_rpi BI_F F14    &kp K   &kp H      &kp COMMA    &kp DOT                &undecided_mt LALT UNDER   &equal_arr
 //├──────────────────┼───────────────────┼──────────┼─────────────┼──────────┴───────┼─────────────────────┼───────────────────┼───────────────────────┤ ├────────────────────────┼──────────────────┼───────────────────┼───────┴──────────┼────────────┼──────────────────────┼──────────────────────────┼───────────────────────┤
-    &none              &kp ASTRK           &kp PLUS   &kp LPAR      &kp RPAR           &bspc_lt DBL_DEF 0    &shift_td           &caps_word_mt LSHFT 0     &undecided_mt LGUI TAB   &lt_rpi BI_F RET   &lt_rpi NAV SPACE           &kp SEMI   &kp COLON    &kp GB_DOUBLE_QUOTES   &kp QMARK                  &none
+    &none              &kp QMARK           &kp PLUS   &kp LPAR      &kp RPAR           &bspc_lt DBL_DEF 0    &shift_td           &caps_word_mt LSHFT 0     &undecided_mt LGUI TAB   &lt_rpi BI_F RET   &lt_rpi NAV SPACE           &kp SEMI   &kp COLON    &kp GB_DOUBLE_QUOTES   &kp ASTRK                  &none
 //╰──────────────────┴───────────────────┴──────────┴─────────────┴──────────╯       ╰─────────────────────┴───────────────────┴───────────────────────╯ ╰────────────────────────┴──────────────────┴───────────────────╯       ╰──────────┴────────────┴──────────────────────┴──────────────────────────┴───────────────────────╯
             >;
         };
@@ -824,7 +824,7 @@
 //├───────────┼─────────────────┼─────────────────────┼─────────────────────┼───────────────┼───────────────┼────────┬───────────┬───────────╮ ╭────────┬────────┬────────┼──────────────────┼─────────┼─────────┼─────────┼─────────────────┼────────────┤
     &tri EXCL   &none             &bi AMPS AMPS         &bi LT EQUAL          &bi GT EQUAL    &none           &trans   &trans      &none         &none    &none    &none    &none              &kp F1    &kp F2    &kp F3    &bi PRCNT EQUAL   &tri EQUAL  
 //├───────────┼─────────────────┼─────────────────────┼─────────────────────┼───────────────┴───────────────┼────────┼───────────┼───────────┤ ├────────┼────────┼────────┼──────────────────┴─────────┼─────────┼─────────┼─────────────────┼────────────┤
-    &none       &bi ASTRK EQUAL   &bi PLUS EQUAL        &none                 &none                           &trans   &kp LSHFT   &kp LSHFT     &trans   &trans   &trans                      &trans    &trans    &cd_up    &trans            &trans 
+    &none       &none             &bi PLUS EQUAL        &none                 &none                           &trans   &kp LSHFT   &kp LSHFT     &trans   &trans   &trans                      &trans    &trans    &cd_up    &bi ASTRK EQUAL   &trans 
 //╰───────────┴─────────────────┴─────────────────────┴─────────────────────┴───────────────╯               ╰────────┴───────────┴───────────╯ ╰────────┴────────┴────────╯                  ╰─────────┴─────────┴─────────┴─────────────────┴────────────╯
             >;
         };
