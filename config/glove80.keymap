@@ -274,10 +274,10 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        comma_ellipsis: comma_shift_ellipsis {
+        comma_grave: comma_shift_backtick {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp COMMA>, <&kp DOT>;
+            bindings = <&kp COMMA>, <&kp GRAVE>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
