@@ -291,7 +291,7 @@
         slashes: forward_slash_shift_backslash {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp SLASH>, <&kp BACKSLASH>;
+            bindings = <&kp SLASH>, <&kp GB_BACKSLASH>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
@@ -340,32 +340,16 @@
         f11_me: f11_shift_minus_equal {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp F11>, <&bi MINUS EQUAL>;
+            bindings = <&bi MINUS EQUAL>, <&kp F11>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        bspc_mm: backspace_mod_morph {
+        bspc_mm: backspace_char_or_word_mod_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp LC(BSPC)>, <&kp BSPC>;
             mods = <(MOD_LCTL|MOD_RCTL)>;
         };
-
-        // bi_plus: plus_equal_shift_plus_plus {
-        //     compatible = "zmk,behavior-mod-morph";
-        //     #binding-cells = <0>;
-        //     bindings = <&bi MINUS EQUAL>, <&bi PLUS PLUS>;
-        //     mods = <(MOD_LSFT|MOD_RSFT)>;
-        // };
-
-        // // Necessary so that a single ctrl+backspace keeps deleting words
-        // // once the one shot control lapses
-        // bspc_char_word: backspace_char_or_word {
-        //     compatible = "zmk,behavior-mod-morph";
-        //     #binding-cells = <0>;
-        //     bindings = <&kp BACKSPACE>, <&kp RC(BACKSPACE)>;
-        //     mods = <(MOD_LCTL|MOD_RCTL)>;
-        // };
 
         // Shortcuts
         copy_cut: copy_shift_cut {
