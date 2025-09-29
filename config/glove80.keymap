@@ -274,7 +274,7 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        comma_hash : comma_shift_hash {
+        comma_hash: comma_shift_hash {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp COMMA>, <&kp GB_HASH>;
