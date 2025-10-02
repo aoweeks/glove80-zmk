@@ -291,13 +291,28 @@
             bindings = <&kp UNDERSCORE>, <&kp GB_AT>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
-
-        space: space {
+  
+        minus_arr: minus_shift_thin_arrow {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&se SPACE 0>, <&kp SPACE>;
+            bindings = <&kp MINUS>, <&bi MINUS GT>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
+        
+        slashes: forward_slash_shift_backslash {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp SLASH>, <&kp GB_BACKSLASH>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        lpar_both: left_parenthesis_shift_both_parentheses {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp LPAR>, <&bi LPAR RPAR>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
 
         dot: dot {
             compatible = "zmk,behavior-mod-morph";
@@ -341,6 +356,14 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
+        
+        space: space {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp SPACE>, <&deferred_shift SPACE>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
         apos: apostrophe_with_deferred_shift {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -360,27 +383,6 @@
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp LPAR>, <&deferred_shift LPAR>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        slashes: forward_slash_shift_backslash {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp SLASH>, <&kp GB_BACKSLASH>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        lpar_both: left_parenthesis_shift_both_parentheses {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp LPAR>, <&bi LPAR RPAR>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        minus_arr: minus_shift_thin_arrow {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp MINUS>, <&bi MINUS GT>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
