@@ -539,8 +539,8 @@
             #binding-cells = <2>;
             wait-ms = <1>;
             tap-ms = <1>;
-            bindings =  <&kp SPACE &macro_param_1to1 &kp 0 \
-                          &macro_param_2to1 &kp 0 &kp SPACE>;
+            bindings = <&kp SPACE &macro_param_1to1 &kp 0 \
+                        &macro_param_2to1 &kp 0 &kp SPACE>;
         };
 
         ts_bi: bigram_with_trailing_space {
@@ -548,8 +548,8 @@
             #binding-cells = <2>;
             wait-ms = <1>;
             tap-ms = <1>;
-            bindings =  <&macro_param_1to1 &kp 0 &macro_param_2to1 &kp 0 \
-                          &kp SPACE>;
+            bindings = <&macro_param_1to1 &kp 0 &macro_param_2to1 &kp 0 \
+                        &kp SPACE>;
         };
 
         se: sentence_ending {
@@ -557,8 +557,8 @@
             #binding-cells = <2>;
             wait-ms = <1>;
             tap-ms = <1>;
-            bindings =  <&macro_param_1to1 &kp 0 &macro_param_2to1 &kp 0 \
-                          &kp SPACE &sk_qr LSHFT>;
+            bindings = <&macro_param_1to1 &kp 0 &macro_param_2to1 &kp 0 \
+                        &kp SPACE &sk_qr LSHFT>;
         };
 
         deferred_shift: shift_deferred_to_next_char {
@@ -574,7 +574,8 @@
             #binding-cells = <1>;
             wait-ms = <1>;
             tap-ms = <1>;
-            bindings = <&macro_release &kp LSHFT &macro_param_1to1 &mo 0>;
+            bindings = <&macro_release &kp LSHFT &macro_press \
+                        &macro_param_1to1 &mo 0>;
         };
 
         // js_eq: padded_javascript_equalities {
@@ -592,7 +593,7 @@
             #binding-cells = <0>;
             wait-ms = <1>;
             tap-ms = <1>;
-            bindings =  <&kp DOT &kp DOT &kp FSLH>;
+            bindings = <&kp DOT &kp DOT &kp FSLH>;
         };
 
         ellipsis: ellipsis {
@@ -600,7 +601,7 @@
             #binding-cells = <0>;
             wait-ms = <1>;
             tap-ms = <1>;
-            bindings =  <&kp DOT &se DOT DOT>;
+            bindings = <&kp DOT &se DOT DOT>;
         };
 
         qu: q_u_bigram {
@@ -608,7 +609,7 @@
             #binding-cells = <0>;
             wait-ms = <1>;
             tap-ms = <1>;
-            bindings =  <&bi Q U>;
+            bindings = <&bi Q U>;
         };
 
         single_sticky_tap: single_sticky_tap {
