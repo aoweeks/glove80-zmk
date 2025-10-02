@@ -156,9 +156,8 @@
             tapping-term-ms = <200>;
             quick-tap-ms = <200>;
             require-prior-idle-ms = <125>;
-            hold-while-undecided;
             retro-tap;
-            bindings = <&clear_shift_mo>, <&kp>;
+            bindings = <&clear_shift_sl>, <&kp>;
         };
 
         space_lt: space_layer_tap {
@@ -569,13 +568,13 @@
             bindings =  <&macro_param_1to1 &kp 0 &sk_qr LSHFT>;
         };
 
-        clear_shift_mo: clear_shift_momentary_layer {
+        clear_shift_sl: clear_shift_sticky_layer {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
             wait-ms = <1>;
             tap-ms = <1>;
             bindings = <&macro_release &kp LSHFT &macro_press \
-                        &macro_param_1to1 &mo 0>;
+                        &macro_param_1to1 &sl 0>;
         };
 
         // js_eq: padded_javascript_equalities {
