@@ -670,8 +670,9 @@
             #binding-cells = <2>;
             wait-ms = <1>;
             tap-ms = <1>;
-            bindings = <&kp SPACE &macro_param_1to1 &kp 0 \
-                        &macro_param_2to1 &kp 0 &kp SPACE>;
+            bindings =  <&macro_release &kp LSHFT>,
+                        <&macro_tap &kp SPACE &macro_param_1to1 &kp 0 \
+                          &macro_param_2to1 &kp 0 &kp SPACE>;
         };
 
         ts_bi: bigram_with_trailing_space {
@@ -680,7 +681,7 @@
             wait-ms = <1>;
             tap-ms = <1>;
             bindings = <&macro_param_1to1 &kp 0 &macro_param_2to1 &kp 0 \
-                        &kp SPACE>;
+                          &kp SPACE>;
         };
 
         se: sentence_ending {
@@ -726,8 +727,8 @@
             wait-ms = <1>;
             tap-ms = <1>;
             bindings =  <&macro_release &kp LSHFT>,
-                        <&kp SPACE &macro_param_1to1 &kp 0>,
-                        <&kp EQUAL &kp EQUAL &kp SPACE>;
+                        <&macro_tap &kp SPACE &macro_param_1to1 &kp 0 \
+                          &kp EQUAL &kp EQUAL &kp SPACE>;
         };      
 
         cd_up: change_directory_up {
@@ -761,7 +762,8 @@
             wait-ms = <1>;
             tap-ms = <1>;
             bindings =  <&macro_release &kp LSHFT>,
-                        <&macro_param_1to1 &kp 0 &macro_param_2to1 &kp 0>;
+                        <&macro_tap &macro_param_1to1 &kp 0 \
+                          &macro_param_2to1 &kp 0>;
         };
 
         single_sticky_tap: single_sticky_tap {
@@ -782,10 +784,10 @@
             #binding-cells = <0>;
             wait-ms = <1>;
             tap-ms = <1>;
-            bindings = <&macro_release &kp LSHFT>,
-                       <&kp A &kp O &kp W &kp E &kp E &kp K &kp S &kp GB_AT \
-                        &kp G &kp M &kp A &kp I &kp L &kp DOT &kp C &kp O \
-                        &kp M >;
+            bindings =  <&macro_release &kp LSHFT>,
+                        <&macro_tap &kp A &kp O &kp W &kp E &kp E &kp K &kp S \
+                          &kp GB_AT &kp G &kp M &kp A &kp I &kp L &kp DOT \
+                          &kp C &kp O &kp M >;
         };
 
         phone: phone_number {
@@ -794,8 +796,8 @@
             wait-ms = <1>;
             tap-ms = <1>;
             bindings = <&macro_release &kp LSHFT>,
-                       <&kp N0 &kp N7 &kp N5 &kp N8 &kp N4 &kp N5 &kp N7 \
-                        &kp N0 &kp N6 &kp N9 &kp N4>;
+                       <&macro_tap &kp N0 &kp N7 &kp N5 &kp N8 &kp N4 &kp N5 \
+                        &kp N7 &kp N0 &kp N6 &kp N9 &kp N4>;
         };
         // ctrl_key: control_and_key {
         //     compatible = "zmk,behavior-macro-one-param";
@@ -1185,7 +1187,7 @@
 //├─────────────────┼────────────────┼──────────────────┼──────────────────────┼──────────────────┼───────────────┤                                                             ├───────┼───────────────┼──────────────────┼──────────────┼──────────────────┼──────────────┤
     &none             &none            &none              &pad LT EQUAL          &pad GT EQUAL      &none                                                                         &none   &none           &none              &none          &trans             &trans   
 //├─────────────────┼────────────────┼──────────────────┼──────────────────────┼──────────────────┼───────────────┤                                                             ├───────┼───────────────┼──────────────────┼──────────────┼──────────────────┼──────────────┤
-    &none             &none            &pad AMPS AMPS     &pad GB_PIPE GB_PIPE   &ts_bi LPAR LBRC   &bi RBRC RPAR                                                                 &none   &bi GB_BSLH N   &none              &bi MINUS GT   &phone             &none  
+    &none             &none            &pad AMPS AMPS     &pad GB_PIPE GB_PIPE   &ts_bi LPAR LBRC   &bi RBRC RPAR                                                                 &none   &us GB_BSLH N   &none              &us MINUS GT   &phone             &none  
 //├─────────────────┼────────────────┼──────────────────┼──────────────────────┼──────────────────┼───────────────┼────────┬───────────┬───────────╮ ╭────────┬────────┬────────┼───────┼───────────────┼──────────────────┼──────────────┼──────────────────┼──────────────┤
     &pad EXCL EQUAL   &none            &pad PRCNT EQUAL   &none                  &ts_bi LPAR LBKT   &bi RBKT RPAR   &trans   &trans      &none         &none    &none    &none    &none   &none           &none              &ellipsis      &email             &pad EQUAL EQUAL  
 //├─────────────────┼────────────────┼──────────────────┼──────────────────────┼──────────────────┴───────────────┼────────┼───────────┼───────────┤ ├────────┼────────┼────────┼───────┴───────────────┼──────────────────┼──────────────┼──────────────────┼──────────────┤
