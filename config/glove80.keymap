@@ -46,9 +46,12 @@
 #define MEDIA 11
 #define EMOJI 12
 #define FKEYS 13
-#define WASD 14
-#define MAGIC 15
-#define FACTORY_TEST 16
+#define JAVASCRIPT 14
+#define JS_BIGRAM 15
+#define JS_DBL_AZ 16
+#define WASD 17
+#define MAGIC 18
+#define FACTORY_TEST 19
 
 // Other Constants
 #define SELECT_WORD_DELAY 1
@@ -661,6 +664,7 @@
             bindings =  <&macro_param_1to1 &kp 0 &macro_param_2to1 &kp 0>;
         };
 
+
         pad: padded_character_s {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
@@ -716,15 +720,15 @@
         //                 <&macro_release &macro_param_1to1 &mo 0>;
         // };
 
-        // js_eq: pad   _javascript_equalities {
-        //     compatible = "zmk,behavior-macro-two-param";
-        //     #binding-cells = <2>;
-        //     wait-ms = <1>;
-        //     tap-ms = <1>;
-        //     bindings =  <&kp SPACE &macro_param_1to1 &kp 0 \
-        //                   &macro_param_2to1 &kp 0 &macro_release &kp LSHFT>,
-        //                 <&macro_tap &kp EQUAL &kp SPACE>;
-        // };      
+        js_eq: javascript_equalities {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings =  <&macro_release &kp LSHFT>,
+                        <&kp SPACE &macro_param_1to1 &kp 0>,
+                        <&kp EQUAL &kp EQUAL &kp SPACE>;
+        };      
 
         cd_up: change_directory_up {
             compatible = "zmk,behavior-macro";
@@ -1020,9 +1024,19 @@
     conditional_layers {
         compatible = "zmk,conditional-layers";
 
-        double_number_symbol_layer {
+        activate_double_number_symbols_layer {
             if-layers = <DBL_AZ NUM_SYM>;
             then-layer = <DBL_NS>;
+        };
+
+        activate_javascript_double_alpha_layer {
+            if-layers = <DBL_AZ JAVASCRIPT>;
+            then-layer = <JS_DBL_AZ>;
+        };
+
+        activate_javascript_bigram_layer {
+            if-layers = <BIGRAM JAVASCRIPT>;
+            then-layer = <JS_BIGRAM>;
         };
     };
 
@@ -1118,7 +1132,7 @@
 //├────────┼────────┼────────────┼─────────────┼──────────┼───────────────────┤                                                                                 ├─────────────┼───────────┼───────────┼───────────┼───────────────┼────────┤
     &trans   &none    &kp TILDE2   &kp LT        &kp GT     &kp GB_POUND_SIGN                                                                                     &kp GB_BSLH   &kp KP_N7   &kp KP_N8   &kp KP_N9   &trans          &trans    
 //├────────┼────────┼────────────┼─────────────┼──────────┼───────────────────┤                                                                                 ├─────────────┼───────────┼───────────┼───────────┼───────────────┼────────┤
-    &none    &none    &kp AMPS     &kp GB_PIPE   &kp LBRC   &kp RBRC                                                                                              &kp CARET     &kp KP_N4   &kp KP_N5   &kp KP_N6   &kp GB_HASH    &trans           
+    &none    &none    &kp AMPS     &kp GB_PIPE   &kp LBRC   &kp RBRC                                                                                              &kp CARET     &kp KP_N4   &kp KP_N5   &kp KP_N6   &us GB_HASH 0   &trans           
 //├────────┼────────┼────────────┼─────────────┼──────────┼───────────────────┼─────────────────────┬───────────┬─────────────╮ ╭─────────────┬────────┬────────┬─────────────┼───────────┼───────────┼───────────┼───────────────┼────────┤
     &trans   &none    &kp PRCNT    &kp DOLLAR    &kp LBKT   &kp RBKT            &none                 &trans      &to NUM_SYM     &to DEFAULT   &trans   &trans   &kp GRAVE     &kp KP_N1   &kp KP_N2   &kp KP_N3   &trans          &trans          
 //├────────┼────────┼────────────┼─────────────┼──────────┴───────────────────┼─────────────────────┼───────────┼─────────────┤ ├─────────────┼────────┼────────┼─────────────┴───────────┼───────────┼───────────┼───────────────┼────────┤
@@ -1192,12 +1206,13 @@
 //├─────────────────┼────────────────┼──────────────────┼──────────────────────┼──────────────────┼───────────────┤                                                             ├───────┼───────────────┼──────────────────┼──────────────┼──────────────────┼──────────────┤
     &none             &none            &pad AMPS AMPS     &pad GB_PIPE GB_PIPE   &ts_bi LPAR LBRC   &bi RBRC RPAR                                                                 &none   &bi GB_BSLH N   &none              &bi MINUS GT   &phone             &none  
 //├─────────────────┼────────────────┼──────────────────┼──────────────────────┼──────────────────┼───────────────┼────────┬───────────┬───────────╮ ╭────────┬────────┬────────┼───────┼───────────────┼──────────────────┼──────────────┼──────────────────┼──────────────┤
-    &pad EXCL EQUAL   &none            &pad PRCNT EQUAL   &none                  &ts_bi LPAR LBKT   &bi RBKT RPAR   &trans   &trans      &none         &none    &none    &none    &none   &none           &none              &ellipsis      &email             &bi EQUAL GT  
+    &pad EXCL EQUAL   &none            &pad PRCNT EQUAL   &none                  &ts_bi LPAR LBKT   &bi RBKT RPAR   &trans   &trans      &none         &none    &none    &none    &none   &none           &none              &ellipsis      &email             &pad EQUAL EQUAL  
 //├─────────────────┼────────────────┼──────────────────┼──────────────────────┼──────────────────┴───────────────┼────────┼───────────┼───────────┤ ├────────┼────────┼────────┼───────┴───────────────┼──────────────────┼──────────────┼──────────────────┼──────────────┤
     &none             &se EXCL QMARK   &pad PLUS EQUAL    &bi LPAR RPAR          &none                              &trans   &kp LSHFT   &kp LSHFT     &trans   &trans   &trans           &none           &none              &none          &pad ASTRK EQUAL   &trans 
 //╰─────────────────┴────────────────┴──────────────────┴──────────────────────┴──────────────────╯               ╰────────┴───────────┴───────────╯ ╰────────┴────────┴────────╯       ╰───────────────┴──────────────────┴──────────────┴──────────────────┴──────────────╯
             >;
         };
+
 
         mouse_emulation_layer {
             bindings = <
@@ -1286,6 +1301,60 @@
 //├──────────┼───────────┼───────────┼───────────┼───────────┴───────────┼───────────┼───────────┼───────────┤ ├──────────┼───────────┼───────────┼─────────────┴─────────┼─────────┼─────────┼────────────────┼─────────────┤
     &none       &none       &none       &none       &none                   &none      &kp LSHFT   &kp LSHFT     &kp LGUI   &none       &none                     &none     &none     &none     &none            &none 
 //╰──────────┴───────────┴───────────┴───────────┴───────────╯           ╰───────────┴───────────┴───────────╯ ╰──────────┴───────────┴───────────╯             ╰─────────┴─────────┴─────────┴────────────────┴─────────────╯
+            >;
+        };
+
+        javascript_mode_layer {
+            bindings = <
+//╭────────┬────────┬────────┬────────┬────────╮                                                                          ╭────────┬────────┬────────┬────────┬────────╮
+    &trans   &trans   &trans   &trans   &trans                                                                              &trans   &trans   &trans   &trans   &trans      
+//├────────┼────────┼────────┼────────┼────────┼─────────╮                                                       ╭────────┼────────┼────────┼────────┼────────┼────────┤
+    &trans   &trans   &trans   &trans   &trans    &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans      
+//├────────┼────────┼────────┼────────┼────────┼─────────┤                                                       ├────────┼────────┼────────┼────────┼────────┼────────┤
+    &trans   &trans   &trans   &trans   &trans    &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans      
+//├────────┼────────┼────────┼────────┼────────┼─────────┤                                                       ├────────┼────────┼────────┼────────┼────────┼────────┤
+    &trans   &trans   &trans   &trans   &trans    &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans      
+//├────────┼────────┼────────┼────────┼────────┼─────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+    &trans   &trans   &trans   &trans   &trans    &trans   &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans       
+//├────────┼────────┼────────┼────────┼────────┴─────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┼────────┤
+    &trans   &trans   &trans   &trans   &trans             &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans   &trans   &trans   &trans 
+//╰────────┴────────┴────────┴────────┴────────╯         ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴────────┴────────┴────────╯
+            >;
+        };
+
+        javascript_bigram_layer {
+            bindings = <
+//╭─────────────┬────────┬────────┬────────┬────────╮                                                                          ╭────────┬────────┬───────────────┬────────┬──────────────╮
+    &trans        &trans   &trans   &trans   &trans                                                                              &trans   &trans   &trans          &trans   &trans      
+//├─────────────┼────────┼────────┼────────┼────────┼─────────╮                                                       ╭────────┼────────┼────────┼───────────────┼────────┼──────────────┤
+    &trans        &trans   &trans   &trans   &trans    &trans                                                           &trans   &trans   &trans   &trans          &trans   &trans      
+//├─────────────┼────────┼────────┼────────┼────────┼─────────┤                                                       ├────────┼────────┼────────┼───────────────┼────────┼──────────────┤
+    &trans        &trans   &trans   &trans   &trans    &trans                                                           &trans   &trans   &trans   &trans          &trans   &trans      
+//├─────────────┼────────┼────────┼────────┼────────┼─────────┤                                                       ├────────┼────────┼────────┼───────────────┼────────┼──────────────┤
+    &trans        &trans   &trans   &trans   &trans    &trans                                                           &trans   &trans   &trans   &pad EQUAL GT   &trans   &trans      
+//├─────────────┼────────┼────────┼────────┼────────┼─────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────┼───────────────┼────────┼──────────────┤
+    &js_eq EXCL   &trans   &trans   &trans   &trans    &trans   &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans   &trans          &trans   &js_eq EQUAL       
+//├─────────────┼────────┼────────┼────────┼────────┴─────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────┼───────────────┼────────┼──────────────┤
+    &trans        &trans   &trans   &trans   &trans             &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans   &trans          &trans   &trans 
+//╰─────────────┴────────┴────────┴────────┴────────╯         ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴───────────────┴────────┴──────────────╯
+            >;
+        };
+
+        javascript_double_alpha_layer {
+            bindings = <
+//╭────────┬────────┬────────┬────────┬────────╮                                                                         ╭────────┬────────┬────────┬────────┬──────────────╮
+    &trans   &trans   &trans   &trans   &trans                                                                             &trans   &trans   &trans   &trans   &trans      
+//├────────┼────────┼────────┼────────┼────────┼────────╮                                                       ╭────────┼────────┼────────┼────────┼────────┼──────────────┤
+    &trans   &trans   &trans   &trans   &trans   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans      
+//├────────┼────────┼────────┼────────┼────────┼────────┤                                                       ├────────┼────────┼────────┼────────┼────────┼──────────────┤
+    &trans   &trans   &trans   &trans   &trans   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans      
+//├────────┼────────┼────────┼────────┼────────┼────────┤                                                       ├────────┼────────┼────────┼────────┼────────┼──────────────┤
+    &trans   &trans   &trans   &trans   &trans   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans      
+//├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────┼────────┼────────┼──────────────┤
+    &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &js_eq EQUAL       
+//├────────┼────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┼──────────────┤
+    &trans   &trans   &trans   &trans   &trans            &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans   &trans   &trans   &trans 
+//╰────────┴────────┴────────┴────────┴────────╯        ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴────────┴────────┴──────────────╯
             >;
         };
 
