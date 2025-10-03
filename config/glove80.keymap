@@ -33,6 +33,7 @@
 
 // Layers
 #define DEFAULT 0
+#define CODING 1
 #define WRITING 2
 #define DBL_AZ 3
 #define NUM_SYM 4
