@@ -515,7 +515,7 @@
         ret: enter {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            keep-mods;
+            keep-mods = <(MOD_LSFT)>;;
             bindings = <&kp RET>, <&deferred_shift RET>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
