@@ -333,6 +333,14 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
+        
+        lpar_spc: opening_parenthesis_with_space {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&bi LPAR SPACE>, <&deferred_shift LPAR>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
 
         comma: comma {
             compatible = "zmk,behavior-mod-morph";
