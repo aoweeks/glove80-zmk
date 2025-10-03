@@ -644,14 +644,14 @@
                         <&macro_param_1to1 &kp 0>;
         };
 
-        tc: triple_char {
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            wait-ms = <1>;
-            tap-ms = <1>;
-            bindings =  <&macro_param_1to1 &kp 0>,
-                        <&macro_param_1to1 &kp 0 &macro_param_1to1 &kp 0>;
-        };
+        // tc: triple_char {
+        //     compatible = "zmk,behavior-macro-one-param";
+        //     #binding-cells = <1>;
+        //     wait-ms = <1>;
+        //     tap-ms = <1>;
+        //     bindings =  <&macro_param_1to1 &kp 0>,
+        //                 <&macro_param_1to1 &kp 0 &macro_param_1to1 &kp 0>;
+        // };
 
         bi: bigram {
             compatible = "zmk,behavior-macro-two-param";
@@ -1189,9 +1189,9 @@
 //├─────────────────┼────────────────┼──────────────────┼──────────────────────┼──────────────────┼───────────────┤                                                             ├───────┼───────────────┼──────────────────┼──────────────┼──────────────────┼──────────────┤
     &none             &none            &none              &pad LT EQUAL          &pad GT EQUAL      &none                                                                         &none   &none           &none              &none          &trans             &trans   
 //├─────────────────┼────────────────┼──────────────────┼──────────────────────┼──────────────────┼───────────────┤                                                             ├───────┼───────────────┼──────────────────┼──────────────┼──────────────────┼──────────────┤
-    &none             &none            &pad AMPS AMPS     &pad GB_PIPE GB_PIPE   &ts_bi LPAR LBRC   &bi RBRC RPAR                                                                 &none   &bi GB_BSLH N   &none              &bi MINUS GT   &tc HASH           &none  
+    &none             &none            &pad AMPS AMPS     &pad GB_PIPE GB_PIPE   &ts_bi LPAR LBRC   &bi RBRC RPAR                                                                 &none   &bi GB_BSLH N   &none              &bi MINUS GT   &phone             &none  
 //├─────────────────┼────────────────┼──────────────────┼──────────────────────┼──────────────────┼───────────────┼────────┬───────────┬───────────╮ ╭────────┬────────┬────────┼───────┼───────────────┼──────────────────┼──────────────┼──────────────────┼──────────────┤
-    &pad EXCL EQUAL   &none            &pad PRCNT EQUAL   &none                  &ts_bi LPAR LBKT   &bi RBKT RPAR   &trans   &trans      &none         &none    &none    &none    &none   &none           &none              &ellipsis      &none              &bi EQUAL GT  
+    &pad EXCL EQUAL   &none            &pad PRCNT EQUAL   &none                  &ts_bi LPAR LBKT   &bi RBKT RPAR   &trans   &trans      &none         &none    &none    &none    &none   &none           &none              &ellipsis      &email             &bi EQUAL GT  
 //├─────────────────┼────────────────┼──────────────────┼──────────────────────┼──────────────────┴───────────────┼────────┼───────────┼───────────┤ ├────────┼────────┼────────┼───────┴───────────────┼──────────────────┼──────────────┼──────────────────┼──────────────┤
     &none             &se EXCL QMARK   &pad PLUS EQUAL    &bi LPAR RPAR          &none                              &trans   &kp LSHFT   &kp LSHFT     &trans   &trans   &trans           &none           &none              &none          &pad ASTRK EQUAL   &trans 
 //╰─────────────────┴────────────────┴──────────────────┴──────────────────────┴──────────────────╯               ╰────────┴───────────┴───────────╯ ╰────────┴────────┴────────╯       ╰───────────────┴──────────────────┴──────────────┴──────────────────┴──────────────╯
