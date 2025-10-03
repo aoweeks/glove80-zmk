@@ -750,8 +750,7 @@
             wait-ms = <1>;
             tap-ms = <1>;
             bindings =  <&macro_release &kp LSHFT>,
-                        <&macro_tap &macro_param_1to1 &kp 0 \
-                         &macro_param_2to1 &kp 0>;
+                        <&macro_param_1to1 &kp 0 &macro_param_2to1 &kp 0>;
         };
 
         single_sticky_tap: single_sticky_tap {
