@@ -33,21 +33,21 @@
 
 // Layers
 #define DEFAULT 0
-#define SPEED 1
-#define DBL_DEF 2
-#define NUM_SYM 3
-#define DBL_NS 4
-#define NAV 5
-#define MOUSING 6
-#define BIGRAM 7
-#define MOUSE 8
-#define SLOW 9
-#define MEDIA 10
-#define EMOJI 11
-#define FKEYS 12
-#define WASD 13
-#define MAGIC 14
-#define FACTORY_TEST 15
+#define WRITING 2
+#define DBL_AZ 3
+#define NUM_SYM 4
+#define DBL_NS 5
+#define NAV 6
+#define MOUSING 7
+#define BIGRAM 8
+#define MOUSE 9
+#define SLOW 10
+#define MEDIA 11
+#define EMOJI 12
+#define FKEYS 13
+#define WASD 14
+#define MAGIC 15
+#define FACTORY_TEST 16
 
 // Other Constants
 #define SELECT_WORD_DELAY 1
@@ -68,6 +68,22 @@
 
 / {
     behaviors {
+
+        ls: layer_switch_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&to>, <&to>;
+        };
+
+        magic: magic_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&mo>, <&rgb_ug_status_macro>;
+        };
 
         magic: magic_hold_tap {
             compatible = "zmk,behavior-hold-tap";
@@ -149,7 +165,7 @@
             bindings = <&mo>, <&kp>;
         };
 
-        lt_cs: layer_tap_clear_shift {
+        ret_lt: enter_layer_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
@@ -158,8 +174,20 @@
             require-prior-idle-ms = <125>;
             hold-while-undecided;
             retro-tap;
-            bindings = <&clear_shift_mo>, <&kp>;
+            bindings = <&mo>, <&ret>;
         };
+
+        // lt_cs: layer_tap_clear_shift {
+        //     compatible = "zmk,behavior-hold-tap";
+        //     #binding-cells = <2>;
+        //     flavor = "balanced";
+        //     tapping-term-ms = <200>;
+        //     quick-tap-ms = <200>;
+        //     require-prior-idle-ms = <125>;
+        //     hold-while-undecided;
+        //     retro-tap;
+        //     bindings = <&clear_shift_mo>, <&kp>;
+        // };
 
         space_lt: space_layer_tap {
             compatible = "zmk,behavior-hold-tap";
@@ -183,6 +211,18 @@
             hold-while-undecided;
             retro-tap;
             bindings = <&mo>, <&excl>;
+        };
+
+        excl_i_lt: exclamation_mark_inverted_layer_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            require-prior-idle-ms = <125>;
+            hold-while-undecided;
+            retro-tap;
+            bindings = <&mo>, <&excl_i>;
         };
 
         undecided_mt: undecided_mod_tap {
@@ -301,6 +341,14 @@
         };
 
 
+        comma: comma {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&bi COMMA SPACE>, <&kp COMMA>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+
         dot: dot {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -308,10 +356,10 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        comma: comma {
+        dot_i: dot_inverted {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&bi COMMA SPACE>, <&kp COMMA>;
+            bindings = <&kp DOT>, <&se DOT 0>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
@@ -321,11 +369,25 @@
             bindings = <&se QUESTION 0>, <&kp QUESTION>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
-        
-        excl: exclamation_mark{
+
+        qmark_i: question_mark_inverted {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp QUESTION>, <&se QUESTION 0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        excl: exclamation_mark {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&se EXCL 0>, <&kp EXCL>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        excl_i: exclamation_mark_inverted {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp EXCL>, <&se EXCL 0>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
@@ -336,6 +398,13 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
+        colon_i: colon_inverted {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp COLON>, <&bi COLON SPACE>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
         semi: semicolon {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -343,11 +412,24 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
+        semi_i: semicolon_inverted {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&bi SEMICOLON ENTER>, <&bi SEMICOLON SPACE>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
         
         minus: minus {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp MINUS>, <&pad MINUS 0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        minus_i: minus_inverted {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&pad MINUS 0>, <&kp MINUS>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
         
@@ -358,10 +440,24 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
+        slash_i: forward_slash_inverted {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&pad SLASH 0>, <&kp SLASH>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
         plus: plus {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp PLUS>, <&pad PLUS 0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        plus_i: plus_inverted {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&pad PLUS 0>, <&kp PLUS>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
@@ -372,6 +468,26 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
+        astrk_i: asterisk_inverted {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&pad ASTRK 0>, <&kp ASTRK>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        equal: equal {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp EQUAL>, <&pad EQUAL 0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        equal_i: equal_inverted {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&pad EQUAL 0>, <&kp EQUAL>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
 
 
         space: space {
@@ -403,6 +519,13 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
+        ret: enter {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp RET>, <&deferred_shift RET>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
         // equal_arr: equal_shift_fat_arrow {
         //     compatible = "zmk,behavior-mod-morph";
         //     #binding-cells = <0>;
@@ -410,12 +533,6 @@
         //     mods = <(MOD_LSFT|MOD_RSFT)>;
         // };
 
-        equal: equal {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&pad EQUAL 0>, <&kp EQUAL>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
 
         bspc_mm: backspace_char_or_word_mod_morph {
             compatible = "zmk,behavior-mod-morph";
@@ -578,16 +695,16 @@
             bindings =  <&macro_param_1to1 &kp 0 &sk_qr LSHFT>;
         };
 
-        clear_shift_mo: clear_shift_momentary_layer {
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            wait-ms = <1>;
-            tap-ms = <1>;
-            bindings =  <&macro_release &kp LSHFT>,
-                        <&macro_press &macro_param_1to1 &mo 0>,
-                        <&macro_pause_for_release>,
-                        <&macro_release &macro_param_1to1 &mo 0>;
-        };
+        // clear_shift_mo: clear_shift_momentary_layer {
+        //     compatible = "zmk,behavior-macro-one-param";
+        //     #binding-cells = <1>;
+        //     wait-ms = <1>;
+        //     tap-ms = <1>;
+        //     bindings =  <&macro_release &kp LSHFT>,
+        //                 <&macro_press &macro_param_1to1 &mo 0>,
+        //                 <&macro_pause_for_release>,
+        //                 <&macro_release &macro_param_1to1 &mo 0>;
+        // };
 
         // js_eq: pad   _javascript_equalities {
         //     compatible = "zmk,behavior-macro-two-param";
@@ -856,35 +973,6 @@
         };
 
 
-        // combo_double_w {
-        //     timeout-ms = <25>;
-        //     key-positions = <24 69>;
-        //     layers = <DEFAULT SPEED>;
-        //     bindings = <&dc W>;
-        // };
-
-        // combo_double_f {
-        //     timeout-ms = <25>;
-        //     key-positions = <25 69>;
-        //     layers = <DEFAULT SPEED>;
-        //     bindings = <&dc F>;
-        // };
-
-        // combo_double_p {
-        //     timeout-ms = <25>;
-        //     key-positions = <26 69>;
-        //     layers = <DEFAULT SPEED>;
-        //     bindings = <&dc P>;
-        // };
-
-
-        combo_double_a {
-            timeout-ms = <25>;
-            key-positions = <35 69>;
-            layers = <DEFAULT SPEED>;
-            bindings = <&kp A &kp A>;
-        };
-
 
     };
 
@@ -892,7 +980,7 @@
         compatible = "zmk,conditional-layers";
 
         double_number_symbol_layer {
-            if-layers = <DBL_DEF NUM_SYM>;
+            if-layers = <DBL_AZ NUM_SYM>;
             then-layer = <DBL_NS>;
         };
     };
@@ -909,73 +997,92 @@
         
         default_layer {
             bindings = <
-//╭──────────────────┬──────────────────┬───────┬─────────────┬──────────╮                                                                                                                                             ╭────────┬────────┬────────────┬───────────────────┬──────────────────╮
-    &magic MAGIC 0     &to WASD           &none   &to MOUSING   &none                                                                                                                                                    &none    &none    &none        &none               &none          
-//├──────────────────┼──────────────────┼───────┼─────────────┼──────────┼───────╮                                                                                                                             ╭───────┼────────┼────────┼────────────┼───────────────────┼──────────────────┤
-    &none              &none              &none   &slash        &none      &none                                                                                                                                 &none   &none    &minus   &none        &none               &none
-//├──────────────────┼──────────────────┼───────┼─────────────┼──────────┼───────┤                                                                                                                             ├───────┼────────┼────────┼────────────┼───────────────────┼──────────────────┤
-    &none              &none              &kp W   &kp F         &kp P      &kp B                                                                                                                                 &kp J   &kp L    &kp U    &kp Y        &none               &none  
-//├──────────────────┼──────────────────┼───────┼─────────────┼──────────┼───────┤                                                                                                                             ├───────┼────────┼────────┼────────────┼───────────────────┼──────────────────┤
-    &qu_mt LALT 0      &kp A              &kp R   &kp S         &kp T      &kp G                                                                                                                                 &kp M   &kp N    &kp E    &kp I        &kp O               &apos_lt MOUSE 0
-//├──────────────────┼──────────────────┼───────┼─────────────┼──────────┼───────┼─────────────────────┬───────────┬───────────────────────╮ ╭────────────────────────┬────────────────────┬───────────────────┼───────┼────────┼────────┼────────────┼───────────────────┼──────────────────┤
-    &excl_lt EMOJI 0   &lt_cs NUM_SYM Z   &kp X   &kp C         &kp D      &kp V   &lt_rpi MOUSING DEL   &kp F14     &to SPEED                 &none                    &none                &lt_rpi FKEYS ESC   &kp K   &kp H    &comma   &dot         &under_mt LCTRL 0   &equal
-//├──────────────────┼──────────────────┼───────┼─────────────┼──────────┴───────┼─────────────────────┼───────────┼───────────────────────┤ ├────────────────────────┼────────────────────┼───────────────────┼───────┴────────┼────────┼────────────┼───────────────────┼──────────────────┤
-    &none              &qmark             &plus   &lpar         &kp RPAR           &bspc_lt DBL_DEF 0    &shift_td   &caps_word_mt LSHFT 0     &undecided_mt LGUI TAB   &lt_rpi BIGRAM RET   &space_lt NAV 0             &semi    &colon   &dbl_quote   &astrk              &none
-//╰──────────────────┴──────────────────┴───────┴─────────────┴──────────╯       ╰─────────────────────┴───────────┴───────────────────────╯ ╰────────────────────────┴────────────────────┴───────────────────╯       ╰────────┴────────┴────────────┴───────────────────┴──────────────────╯
+//╭──────────────────┬───────────────────┬───────┬─────────────┬──────────╮                                                                                                                                             ╭────────┬────────┬────────────┬───────────────────┬──────────────────╮
+    &magic MAGIC 0     &to WASD            &none   &to MOUSING   &none                                                                                                                                                    &none    &none    &none        &none               &none          
+//├──────────────────┼───────────────────┼───────┼─────────────┼──────────┼───────╮                                                                                                                             ╭───────┼────────┼────────┼────────────┼───────────────────┼──────────────────┤
+    &none              &none               &none   &slash        &none      &none                                                                                                                                 &none   &none    &minus   &none        &none               &none
+//├──────────────────┼───────────────────┼───────┼─────────────┼──────────┼───────┤                                                                                                                             ├───────┼────────┼────────┼────────────┼───────────────────┼──────────────────┤
+    &none              &ls DEF CODING      &kp W   &kp F         &kp P      &kp B                                                                                                                                 &kp J   &kp L    &kp U    &kp Y        &ls DEF WRITING     &none  
+//├──────────────────┼───────────────────┼───────┼─────────────┼──────────┼───────┤                                                                                                                             ├───────┼────────┼────────┼────────────┼───────────────────┼──────────────────┤
+    &qu_mt LALT 0      &kp A               &kp R   &kp S         &kp T      &kp G                                                                                                                                 &kp M   &kp N    &kp E    &kp I        &kp O               &apos_lt MOUSE 0
+//├──────────────────┼───────────────────┼───────┼─────────────┼──────────┼───────┼─────────────────────┬───────────┬───────────────────────╮ ╭────────────────────────┬────────────────────┬───────────────────┼───────┼────────┼────────┼────────────┼───────────────────┼──────────────────┤
+    &excl_lt EMOJI 0   &lt_rpi NUM_SYM Z   &kp X   &kp C         &kp D      &kp V   &lt_rpi MOUSING DEL   &kp F14     &none                     &none                    &none                &lt_rpi FKEYS ESC   &kp K   &kp H    &comma   &dot         &under_mt LCTRL 0   &equal
+//├──────────────────┼───────────────────┼───────┼─────────────┼──────────┴───────┼─────────────────────┼───────────┼───────────────────────┤ ├────────────────────────┼────────────────────┼───────────────────┼───────┴────────┼────────┼────────────┼───────────────────┼──────────────────┤
+    &none              &qmark              &plus   &lpar         &kp RPAR           &bspc_lt DBL_AZ 0     &shift_td   &caps_word_mt LSHFT 0     &undecided_mt LGUI TAB   &lt_rpi BIGRAM RET   &space_lt NAV 0             &semi    &colon   &dbl_quote   &astrk              &none
+//╰──────────────────┴───────────────────┴───────┴─────────────┴──────────╯       ╰─────────────────────┴───────────┴───────────────────────╯ ╰────────────────────────┴────────────────────┴───────────────────╯       ╰────────┴────────┴────────────┴───────────────────┴──────────────────╯
             >;
         };
 
-        speed_typing_layer {
+        coding_layer {
             bindings = <
-//╭──────────┬──────────────────┬───────┬─────────────┬──────────╮                                                                             ╭────────┬────────┬────────────┬───────────┬────────╮
-    &none      &none              &none   &to MOUSING   &none                                                                                    &none    &none    &none        &none       &none          
-//├──────────┼──────────────────┼───────┼─────────────┼──────────┼───────╮                                                             ╭───────┼────────┼────────┼────────────┼───────────┼────────┤
-    &none      &none              &none   &slash        &none      &none                                                                 &none   &none    &minus   &none        &none       &none
-//├──────────┼──────────────────┼───────┼─────────────┼──────────┼───────┤                                                             ├───────┼────────┼────────┼────────────┼───────────┼────────┤
-    &none      &none              &kp W   &kp F         &kp P      &kp B                                                                 &kp J   &kp L    &kp U    &kp Y        &none       &none  
-//├──────────┼──────────────────┼───────┼─────────────┼──────────┼───────┤                                                             ├───────┼────────┼────────┼────────────┼───────────┼────────┤
-    &bi Q U    &kp A              &kp R   &kp S         &kp T      &kp G                                                                 &kp M   &kp N    &kp E    &kp I        &kp O       &apos
-//├──────────┼──────────────────┼───────┼─────────────┼──────────┼───────┼────────┬────────┬────────╮ ╭─────────────┬─────────┬────────┼───────┼────────┼────────┼────────────┼───────────┼────────┤
-    &excl      &lt_cs NUM_SYM Z   &kp X   &kp C         &kp D      &kp V   &trans   &trans   &trans     &to DEFAULT   &trans    &trans   &kp K   &kp H    &comma   &dot         &under_at   &equal
-//├──────────┼──────────────────┼───────┼─────────────┼──────────┴───────┼────────┼────────┼────────┤ ├─────────────┼─────────┼────────┼───────┴────────┼────────┼────────────┼───────────┼────────┤
-    &none      &qmark             &plus   &lpar         &kp RPAR           &trans   &trans   &trans     &kp TAB       &kp RET   &space           &semi    &colon   &dbl_quote   &astrk      &none
-//╰──────────┴──────────────────┴───────┴─────────────┴──────────╯       ╰────────┴────────┴────────╯ ╰─────────────┴─────────┴────────╯       ╰────────┴────────┴────────────┴───────────┴────────╯
+//╭────────────────────┬───────────────────┬─────────┬─────────────┬──────────╮                                                                                                                                             ╭─────────┬──────────┬────────────┬───────────────────┬──────────────────╮
+    &magic MAGIC 0       &to WASD            &none     &to MOUSING   &none                                                                                                                                                    &none     &none      &none        &none               &none          
+//├────────────────────┼───────────────────┼─────────┼─────────────┼──────────┼───────╮                                                                                                                             ╭───────┼─────────┼──────────┼────────────┼───────────────────┼──────────────────┤
+    &none                &none               &none     &slash        &none      &none                                                                                                                                 &none   &none     &minus_i   &none        &none               &none
+//├────────────────────┼───────────────────┼─────────┼─────────────┼──────────┼───────┤                                                                                                                             ├───────┼─────────┼──────────┼────────────┼───────────────────┼──────────────────┤
+    &none                &trans              &kp W     &kp F         &kp P      &kp B                                                                                                                                 &kp J   &kp L     &kp U      &kp Y        &trans              &none  
+//├────────────────────┼───────────────────┼─────────┼─────────────┼──────────┼───────┤                                                                                                                             ├───────┼─────────┼──────────┼────────────┼───────────────────┼──────────────────┤
+    &qu_mt LALT 0        &kp A               &kp R     &kp S         &kp T      &kp G                                                                                                                                 &kp M   &kp N     &kp E      &kp I        &kp O               &apos_lt MOUSE 0
+//├────────────────────┼───────────────────┼─────────┼─────────────┼──────────┼───────┼─────────────────────┬───────────┬───────────────────────╮ ╭────────────────────────┬────────────────────┬───────────────────┼───────┼─────────┼──────────┼────────────┼───────────────────┼──────────────────┤
+    &excl_i_lt EMOJI 0   &lt_rpi NUM_SYM Z   &kp X     &kp C         &kp D      &kp V   &trans                &trans      &trans                    &none                    &none                &trans              &kp K   &kp H     &comma     &dot_i       &under_mt LCTRL 0   &equal_i
+//├────────────────────┼───────────────────┼─────────┼─────────────┼──────────┴───────┼─────────────────────┼───────────┼───────────────────────┤ ├────────────────────────┼────────────────────┼───────────────────┼───────┴─────────┼──────────┼────────────┼───────────────────┼──────────────────┤
+    &none                &qmark_i            &plus_i   &lpar_i       &kp RPAR           &lt_rpi DBL_AZ BSPC   &trans      &trans                    &trans                   &trans               &trans                      &semi_i   &colon_i   &dbl_quote   &astrk_i            &none
+//╰────────────────────┴───────────────────┴─────────┴─────────────┴──────────╯       ╰─────────────────────┴───────────┴───────────────────────╯ ╰────────────────────────┴────────────────────┴───────────────────╯       ╰─────────┴──────────┴────────────┴───────────────────┴──────────────────╯
             >;
         };
 
-        double_default_layer {
+        writing_layer {
             bindings = <
-//╭────────────────┬─────────────────┬──────────┬─────────────┬──────────╮                                                                            ╭──────────┬───────────┬──────────────────────┬───────────┬─────────────────────╮
-    &magic MAGIC 0   &to WASD          &none      &to MOUSING   &none                                                                                   &none      &none       &none                  &none       &none          
-//├────────────────┼─────────────────┼──────────┼─────────────┼──────────┼───────╮                                                            ╭───────┼──────────┼───────────┼──────────────────────┼───────────┼─────────────────────┤
-    &none            &none             &none      &dc FSLH      &none      &none                                                                &none   &none      &dc MINUS   &none                  &none       &none
-//├────────────────┼─────────────────┼──────────┼─────────────┼──────────┼───────┤                                                            ├───────┼──────────┼───────────┼──────────────────────┼───────────┼─────────────────────┤
-    &none            &none             &dc W      &dc F         &dc P      &dc B                                                                &dc J   &dc L      &dc U       &dc Y                  &none       &none  
-//├────────────────┼─────────────────┼──────────┼─────────────┼──────────┼───────┤                                                            ├───────┼──────────┼───────────┼──────────────────────┼───────────┼─────────────────────┤
-    &kp Q            &dc A             &dc R      &dc S         &dc T      &dc G                                                                &dc M   &dc N      &dc E       &dc I                  &dc O       &dc GB_APOS
-//├────────────────┼─────────────────┼──────────┼─────────────┼──────────┼───────┼────────┬────────┬────────╮ ╭─────────┬─────────┬───────────┼───────┼──────────┼───────────┼──────────────────────┼───────────┼─────────────────────┤
-    &se EXCL EXCL    &dc Z             &dc X      &dc C         &dc D      &dc V   &trans   &trans   &none      &none     &none     &trans      &dc K   &dc H      &dc COMMA   &dc DOT                &dc UNDER   &pad EQUAL EQUAL
-//├────────────────┼─────────────────┼──────────┼─────────────┼──────────┴───────┼────────┼────────┼────────┤ ├─────────┼─────────┼───────────┼───────┴──────────┼───────────┼──────────────────────┼───────────┼─────────────────────┤
-    &none            &se QMARK QMARK   &dc PLUS   &dc LPAR      &dc RPAR           &trans   &trans   &trans     &dc TAB   &dc RET   &dc SPACE           &kp SEMI   &dc COLON   &dc GB_DOUBLE_QUOTES   &dc ASTRK   &none
-//╰────────────────┴─────────────────┴──────────┴─────────────┴──────────╯       ╰────────┴────────┴────────╯ ╰─────────┴─────────┴───────────╯       ╰──────────┴───────────┴──────────────────────┴───────────┴─────────────────────╯
+//╭─────────┬───────────────────┬───────┬─────────────┬──────────╮                                                                                                ╭────────┬────────┬────────────┬───────────┬────────╮
+    &none     &none               &none   &to MOUSING   &none                                                                                                       &none    &none    &none        &none       &none          
+//├─────────┼───────────────────┼───────┼─────────────┼──────────┼───────╮                                                                                ╭───────┼────────┼────────┼────────────┼───────────┼────────┤
+    &none     &none               &none   &slash        &none      &none                                                                                    &none   &none    &minus   &none        &none       &none
+//├─────────┼───────────────────┼───────┼─────────────┼──────────┼───────┤                                                                                ├───────┼────────┼────────┼────────────┼───────────┼────────┤
+    &none     &trans              &kp W   &kp F         &kp P      &kp B                                                                                    &kp J   &kp L    &kp U    &kp Y        &trans       &none  
+//├─────────┼───────────────────┼───────┼─────────────┼──────────┼───────┤                                                                                ├───────┼────────┼────────┼────────────┼───────────┼────────┤
+    &bi Q U   &kp A               &kp R   &kp S         &kp T      &kp G                                                                                    &kp M   &kp N    &kp E    &kp I        &kp O       &apos
+//├─────────┼───────────────────┼───────┼─────────────┼──────────┼───────┼─────────────────────┬────────┬────────╮ ╭─────────────┬───────────────┬────────┼───────┼────────┼────────┼────────────┼───────────┼────────┤
+    &excl     &lt_rpi NUM_SYM Z   &kp X   &kp C         &kp D      &kp V   &trans                &trans   &trans     &to DEFAULT   &trans          &trans   &kp K   &kp H    &comma   &dot         &under_at   &equal
+//├─────────┼───────────────────┼───────┼─────────────┼──────────┴───────┼─────────────────────┼────────┼────────┤ ├─────────────┼───────────────┼────────┼───────┴────────┼────────┼────────────┼───────────┼────────┤
+    &none     &qmark              &plus   &lpar         &kp RPAR           &&bspc_lt DBL_AZ 0    &trans   &trans     &trans        &ret_lt NAV 0   &space           &semi    &colon   &dbl_quote   &astrk      &none
+//╰─────────┴───────────────────┴───────┴─────────────┴──────────╯       ╰─────────────────────┴────────┴────────╯ ╰─────────────┴───────────────┴────────╯       ╰────────┴────────┴────────────┴───────────┴────────╯
+            >;
+        };
+        
+
+        double_alpha_layer {
+            bindings = <
+//╭───────────────┬─────────────────┬──────────┬─────────────┬──────────╮                                                                            ╭──────────┬───────────┬──────────────────────┬───────────┬─────────────────────╮
+    &none           &none             &none      &none         &none                                                                                   &none      &none       &none                  &none       &none          
+//├───────────────┼─────────────────┼──────────┼─────────────┼──────────┼───────╮                                                            ╭───────┼──────────┼───────────┼──────────────────────┼───────────┼─────────────────────┤
+    &none           &none             &none      &dc FSLH      &none      &none                                                                &none   &none      &dc MINUS   &none                  &none       &none
+//├───────────────┼─────────────────┼──────────┼─────────────┼──────────┼───────┤                                                            ├───────┼──────────┼───────────┼──────────────────────┼───────────┼─────────────────────┤
+    &none           &none             &dc W      &dc F         &dc P      &dc B                                                                &dc J   &dc L      &dc U       &dc Y                  &none       &none  
+//├───────────────┼─────────────────┼──────────┼─────────────┼──────────┼───────┤                                                            ├───────┼──────────┼───────────┼──────────────────────┼───────────┼─────────────────────┤
+    &kp Q           &dc A             &dc R      &dc S         &dc T      &dc G                                                                &dc M   &dc N      &dc E       &dc I                  &dc O       &dc GB_APOS
+//├───────────────┼─────────────────┼──────────┼─────────────┼──────────┼───────┼────────┬────────┬────────╮ ╭─────────┬─────────┬───────────┼───────┼──────────┼───────────┼──────────────────────┼───────────┼─────────────────────┤
+    &se EXCL EXCL   &dc Z             &dc X      &dc C         &dc D      &dc V   &trans   &trans   &none      &none     &none     &trans      &dc K   &dc H      &dc COMMA   &dc DOT                &dc UNDER   &pad EQUAL EQUAL
+//├───────────────┼─────────────────┼──────────┼─────────────┼──────────┴───────┼────────┼────────┼────────┤ ├─────────┼─────────┼───────────┼───────┴──────────┼───────────┼──────────────────────┼───────────┼─────────────────────┤
+    &none           &se QMARK QMARK   &dc PLUS   &dc LPAR      &dc RPAR           &trans   &trans   &trans     &dc TAB   &dc RET   &dc SPACE           &kp SEMI   &dc COLON   &dc GB_DOUBLE_QUOTES   &dc ASTRK   &none
+//╰───────────────┴─────────────────┴──────────┴─────────────┴──────────╯       ╰────────┴────────┴────────╯ ╰─────────┴─────────┴───────────╯       ╰──────────┴───────────┴──────────────────────┴───────────┴─────────────────────╯
             >;
         };
 
         numpad_symbols_layer {
             bindings = <
-//╭────────┬────────┬─────────────┬─────────────┬──────────╮                                                                                                                    ╭───────────┬───────────┬───────────┬─────────────┬────────╮                                                                                                         ╭───────────┬───────────┬───────────┬───────────────────┬────────╮//╭────────┬────────┬────────────┬─────────────┬──────────╮                                                                                                         ╭───────────┬───────────┬───────────┬───────────────────┬────────╮//╭────────┬────────┬────────────┬─────────────┬──────────╮                                                                                                         ╭───────────┬───────────┬───────────┬───────────────────┬────────╮//╭────────┬────────┬────────────┬─────────────┬──────────╮                                                                                                         ╭───────────┬───────────┬───────────┬───────────────────┬────────╮//╭────────┬────────┬────────────┬─────────────┬──────────╮                                                                                                         ╭───────────┬───────────┬───────────┬───────────────────┬────────╮//╭────────┬────────┬────────────┬─────────────┬──────────╮                                                                                                         ╭───────────┬───────────┬───────────┬───────────────────┬────────╮//╭────────┬────────┬────────────┬─────────────┬──────────╮                                                                                                         ╭───────────┬───────────┬───────────┬───────────────────┬────────╮┬───────────┬───────────────────┬────────╮
-    &trans   &trans   &trans        &trans        &trans                                                                                                                          &trans      &trans      &trans      &trans        &trans
-//├────────┼────────┼─────────────┼─────────────┼──────────┼───────────────────╮                                                                                  ╭─────────────┼───────────┼───────────┼───────────┼─────────────┼────────┤
-    &trans   &trans   &trans        &trans        &trans     &trans                                                                                                 &trans        &trans      &trans      &trans      &trans        &trans     
-//├────────┼────────┼─────────────┼─────────────┼──────────┼───────────────────┤                                                                                  ├─────────────┼───────────┼───────────┼───────────┼─────────────┼────────┤
-    &trans   &none    &kp TILDE2    &kp LT        &kp GT     &kp GB_POUND_SIGN                                                                                      &kp GB_BSLH   &kp KP_N7   &kp KP_N8   &kp KP_N9   &trans        &trans    
-//├────────┼────────┼─────────────┼─────────────┼──────────┼───────────────────┤                                                                                  ├─────────────┼───────────┼───────────┼───────────┼─────────────┼────────┤
-    &none    &none    &kp AMPS      &kp GB_PIPE   &kp LBRC   &kp RBRC                                                                                               &kp CARET     &kp KP_N4   &kp KP_N5   &kp KP_N6   &kp GB_HASH   &trans           
-//├────────┼────────┼─────────────┼─────────────┼──────────┼───────────────────┼──────────────────────┬───────────┬─────────────╮ ╭─────────────┬────────┬────────┬─────────────┼───────────┼───────────┼───────────┼─────────────┼────────┤
-    &trans   &none    &kp PRCNT     &kp DOLLAR    &kp LBKT   &kp RBKT            &none                  &trans      &to NUM_SYM     &to DEFAULT   &trans   &trans   &kp GRAVE     &kp KP_N1   &kp KP_N2   &kp KP_N3   &trans        &trans          
-//├────────┼────────┼─────────────┼─────────────┼──────────┴───────────────────┼──────────────────────┼───────────┼─────────────┤ ├─────────────┼────────┼────────┼─────────────┴───────────┼───────────┼───────────┼─────────────┼────────┤
-    &trans   &trans   &trans        &trans        &trans                         &lt_rpi DBL_DEF BSPC   &kp LSHFT   &kp LSHFT       &trans        &trans   &trans                 &kp KP_N0   &kp COMMA   &kp DOT     &trans        &trans
-//╰────────┴────────┴─────────────┴─────────────┴──────────╯                   ╰──────────────────────┴───────────┴─────────────╯ ╰─────────────┴────────┴────────╯             ╰───────────┴───────────┴───────────┴─────────────┴────────╯
+//╭────────┬────────┬────────────┬─────────────┬──────────╮                                                                                                                    ╭───────────┬───────────┬───────────┬─────────────┬────────╮                                                                                                         ╭───────────┬───────────┬───────────┬───────────────────┬────────╮//╭────────┬────────┬────────────┬─────────────┬──────────╮                                                                                                         ╭───────────┬───────────┬───────────┬───────────────────┬────────╮//╭────────┬────────┬────────────┬─────────────┬──────────╮                                                                                                         ╭───────────┬───────────┬───────────┬───────────────────┬────────╮//╭────────┬────────┬────────────┬─────────────┬──────────╮                                                                                                         ╭───────────┬───────────┬───────────┬───────────────────┬────────╮//╭────────┬────────┬────────────┬─────────────┬──────────╮                                                                                                         ╭───────────┬───────────┬───────────┬───────────────────┬────────╮//╭────────┬────────┬────────────┬─────────────┬──────────╮                                                                                                         ╭───────────┬───────────┬───────────┬───────────────────┬────────╮//╭────────┬────────┬────────────┬─────────────┬──────────╮                                                                                                         ╭───────────┬───────────┬───────────┬───────────────────┬────────╮┬───────────┬───────────────────┬────────╮
+    &trans   &trans   &trans       &trans        &trans                                                                                                                          &trans      &trans      &trans      &trans        &trans
+//├────────┼────────┼────────────┼─────────────┼──────────┼───────────────────╮                                                                                  ╭─────────────┼───────────┼───────────┼───────────┼─────────────┼────────┤
+    &trans   &trans   &trans       &trans        &trans     &trans                                                                                                 &trans        &trans      &trans      &trans      &trans        &trans     
+//├────────┼────────┼────────────┼─────────────┼──────────┼───────────────────┤                                                                                  ├─────────────┼───────────┼───────────┼───────────┼─────────────┼────────┤
+    &trans   &none    &kp TILDE2   &kp LT        &kp GT     &kp GB_POUND_SIGN                                                                                      &kp GB_BSLH   &kp KP_N7   &kp KP_N8   &kp KP_N9   &trans        &trans    
+//├────────┼────────┼────────────┼─────────────┼──────────┼───────────────────┤                                                                                  ├─────────────┼───────────┼───────────┼───────────┼─────────────┼────────┤
+    &none    &none    &kp AMPS     &kp GB_PIPE   &kp LBRC   &kp RBRC                                                                                               &kp CARET     &kp KP_N4   &kp KP_N5   &kp KP_N6   &kp GB_HASH   &trans           
+//├────────┼────────┼────────────┼─────────────┼──────────┼───────────────────┼──────────────────────┬───────────┬─────────────╮ ╭─────────────┬────────┬────────┬─────────────┼───────────┼───────────┼───────────┼─────────────┼────────┤
+    &trans   &none    &kp PRCNT    &kp DOLLAR    &kp LBKT   &kp RBKT            &none                  &trans      &to NUM_SYM     &to DEFAULT   &trans   &trans   &kp GRAVE     &kp KP_N1   &kp KP_N2   &kp KP_N3   &trans        &trans          
+//├────────┼────────┼────────────┼─────────────┼──────────┴───────────────────┼──────────────────────┼───────────┼─────────────┤ ├─────────────┼────────┼────────┼─────────────┴───────────┼───────────┼───────────┼─────────────┼────────┤
+    &trans   &trans   &trans       &trans        &trans                         &lt_rpi DBL_AZ BSPC    &kp LSHFT   &kp LSHFT       &trans        &trans   &trans                 &kp KP_N0   &kp COMMA   &kp DOT     &trans        &trans
+//╰────────┴────────┴────────────┴─────────────┴──────────╯                   ╰──────────────────────┴───────────┴─────────────╯ ╰─────────────┴────────┴────────╯             ╰───────────┴───────────┴───────────┴─────────────┴────────╯
             >;
         };
 
