@@ -780,7 +780,7 @@
 
         snpt: snippet_prefix {
             compatible = "zmk,behavior-macro-two-param";
-            #binding-cells = <0>;
+            #binding-cells = <2>;
             wait-ms = <1>;
             tap-ms = <1>;
             bindings =  <&macro_release &kp LSHFT>,
