@@ -798,7 +798,9 @@
             tap-ms = <1>;
             bindings =  <&macro_release &kp LSHFT>,
                         <&macro_tap &kp GB_POUND_SIGN &macro_param_1to1 &kp 0 \
-                          &macro_param_2to1 &kp 0 &kp TAB>;
+                          &macro_param_2to1 &kp 0>,
+                        <&macro_wait_time 50>,
+                        <&macro_tap &kp TAB>;
         };
 
         int: int_keyword {
@@ -1293,11 +1295,11 @@
 //├──────────┼───────────┼───────────┼─────────┼───────────┼───────────╮                                                                           ╭───────────┼────────────┼───────────┼───────┼─────────┼─────────────┤
     &none      &none       &none       &none     &none       &none                                                                                   &none       &none        &none       &none   &none     &none      
 //├──────────┼───────────┼───────────┼─────────┼───────────┼───────────┤                                                                           ├───────────┼────────────┼───────────┼───────┼─────────┼─────────────┤
-    &none      &none       &snpt S W   &float    &none       &none                                                                                   &snpt E I   &snpt I F    &snpt E L   &none   &none     &none      
+    &none      &none       &snpt S W   &float    &snpt F R   &snpt F O                                                                               &none       &snpt I F    &snpt F U   &none   &none     &none      
 //├──────────┼───────────┼───────────┼─────────┼───────────┼───────────┤                                                                           ├───────────┼────────────┼───────────┼───────┼─────────┼─────────────┤
-    &none      &none       &return     &string   &none       &none                                                                                   &mapping    &none        &none       &int    &object   &none      
+    &none      &none       &return     &string   &snpt F E   &none                                                                                   &mapping    &snpt E I    &none       &int    &object   &none      
 //├──────────┼───────────┼───────────┼─────────┼───────────┼───────────┼───────────┬───────────┬─────────────╮ ╭───────────┬───────────┬───────────┼───────────┼────────────┼───────────┼───────┼─────────┼─────────────┤
-    &none      &none       &none       &class    &none       &void       &none       &none      &none            &none       &none       &none       &none       &none        &none       &none   &none     &none      
+    &none      &none       &none       &class    &none       &void       &none       &none      &none            &none       &none       &none       &none       &snpt E L    &none       &none   &none     &none      
 //├──────────┼───────────┼───────────┼─────────┼───────────┴───────────┼───────────┼───────────┼─────────────┤ ├───────────┼───────────┼───────────┼───────────┴────────────┼───────────┼───────┼─────────┼─────────────┤
     &none      &none       &none       &none     &none                   &none       &none      &none            &none       &none       &none                   &none        &none       &none   &none     &none 
 //╰──────────┴───────────┴───────────┴─────────┴───────────╯           ╰───────────┴───────────┴─────────────╯ ╰───────────┴───────────┴───────────╯           ╰────────────┴───────────┴───────┴─────────┴─────────────╯
