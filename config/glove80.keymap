@@ -769,6 +769,22 @@
             bindings = <&macro_tap &macro_param_1to1 &sl 0>;
         };
 
+        the: the_word {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings =  <&macro_tap &kp T &kp H &kp E &kp SPACE>;
+        };
+
+        and: and_word {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings = <&macro_tap &kp A &kp N &kp D &kp SPACE>;
+        };
+        
 
         email: email_address {
             compatible = "zmk,behavior-macro";
@@ -791,15 +807,17 @@
                         &kp N7 &kp N0 &kp N6 &kp N9 &kp N4>;
         };
 
+
+
         snpt: snippet_prefix {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
-            wait-ms = <1>;
+            wait-ms = <500>;
             tap-ms = <1>;
             bindings =  <&macro_release &kp LSHFT>,
                         <&macro_tap &kp GB_POUND_SIGN &macro_param_1to1 &kp 0 \
                           &macro_param_2to1 &kp 0>,
-                        <&macro_wait_time 150>,
+                        <&macro_wait_time 500>,
                         <&macro_tap &kp TAB>;
         };
 
@@ -890,6 +908,8 @@
             tap-ms = <1>;
             bindings =  <&macro_tap &kp LC(LS(GB_BSLH)) &kp RIGHT_ARROW>;
         };
+
+
 
 
         // ctrl_key: control_and_key {
@@ -1297,7 +1317,7 @@
 //├──────────┼───────────┼───────────┼─────────┼───────────┼───────────┤                                                                           ├───────────┼───────────┼───────────┼───────────┼───────────┼─────────────┤
     &none      &none       &snpt W H   &float    &phone      &none                                                                                   &none       &snpt I F   &snpt F U   &none       &none       &none      
 //├──────────┼───────────┼───────────┼─────────┼───────────┼───────────┤                                                                           ├───────────┼───────────┼───────────┼───────────┼───────────┼─────────────┤
-    &none      &none       &return     &string   &none       &none                                                                                   &mapping    &snpt E I   &email      &int        &object     &none      
+    &none      &and        &return     &string   &the       &none                                                                                   &mapping    &snpt E I   &email      &int        &object     &none      
 //├──────────┼───────────┼───────────┼─────────┼───────────┼───────────┼───────────┬───────────┬─────────────╮ ╭───────────┬───────────┬───────────┼───────────┼───────────┼───────────┼───────────┼───────────┼─────────────┤
     &none      &none       &none       &class    &snpt D O   &void       &none       &none      &none            &none       &none       &none       &none       &snpt E L   &snpt F R   &snpt F E   &snpt F O   &none      
 //├──────────┼───────────┼───────────┼─────────┼───────────┴───────────┼───────────┼───────────┼─────────────┤ ├───────────┼───────────┼───────────┼───────────┴───────────┼───────────┼───────────┼───────────┼─────────────┤
