@@ -106,6 +106,13 @@
             bindings = <&single_sticky_tap LSHFT>, <&kp LSHFT>, <&kp CAPSLOCK>;
         };
 
+        ppp_td: private_protected_public_tap_dance {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <500>;
+            bindings = <&private>, <&protected>, <&public>;
+        };
+
         // tab_shift_mt: tab_shift_mod_tap {
         //     compatible = "zmk,behavior-hold-tap";
         //     #binding-cells = <2>;
@@ -769,6 +776,7 @@
             bindings = <&macro_tap &macro_param_1to1 &sl 0>;
         };
 
+
         the: the_word {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -785,7 +793,14 @@
             bindings = <&macro_tap &kp A &kp N &kp D &kp SPACE>;
         };
         
-
+        but: but_word {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings = <&macro_tap &kp B &kp U &kp T &kp SPACE>;
+        };
+        
         email: email_address {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -819,6 +834,32 @@
                           &macro_param_2to1 &kp 0>,
                         <&macro_wait_time 500>,
                         <&macro_tap &kp TAB>;
+        };
+
+
+        array: array_keyword {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings =  <&macro_tap &kp A &kp R &kp R &kp A &kp Y &kp SPACE>;
+        };
+
+        bool: bool_keyword {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings = <&macro_tap &kp B &kp O &kp O &kp L &kp SPACE>;
+        };
+
+        boolean: boolean_keyword {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings =  <&macro_tap &kp B &kp O &kp O &kp L &kp E &kp A \
+                          &kp N &kp SPACE>;
         };
 
         int: int_keyword {
@@ -877,17 +918,44 @@
             #binding-cells = <0>;
             wait-ms = <1>;
             tap-ms = <1>;
-            bindings =  <&macro_release &kp LSHFT>,
-                        <&macro_tap &kp V &kp O &kp I &kp D &kp SPACE>;
+            bindings =  <&macro_tap &kp V &kp O &kp I &kp D &kp SPACE>;
         };
+
 
         return: return_keyword {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <1>;
             tap-ms = <1>;
-            bindings =  <&macro_release &kp LSHFT>,
-                        <&macro_tap &kp R &kp E &kp T &kp U &kp R &kp N \
+            bindings =  <&macro_tap &kp R &kp E &kp T &kp U &kp R &kp N \
+                          &kp SPACE>;
+        };
+
+
+        private: private_keyword {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings =  <&macro_tap &kp P &kp R &kp I &kp V &kp A &kp T \
+                          &kp E &kp SPACE>;
+        };
+
+        protected: protected_keyword {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings =  <&macro_tap &kp P &kp R &kp O &kp T &kp E &kp C \
+                          &kp T &kp E &kp D &kp SPACE>;
+        };
+
+        public: public_keyword {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings =  <&macro_tap &kp P &kp U &kp B &kp L &kp I &kp C \
                           &kp SPACE>;
         };
 
@@ -910,14 +978,6 @@
         };
 
 
-
-
-        // ctrl_key: control_and_key {
-        //     compatible = "zmk,behavior-macro-one-param";
-        //     #binding-cells = <1>;
-        //     bindings =  <&macro_press &kp LCTRL &macro_param_1to1 &kp 0>,
-        //                 <&macro_release &kp LCTRL &macro_param_1to1 &kp 0>;
-        // };
 
         //////////////////////////////////////////////////////////////////////////
         // (From https://github.com/sunaku/glove80-keymaps/)
@@ -1310,19 +1370,19 @@
 
         snippets_and_keywords_layer {
             bindings = <
-//╭──────────┬───────────┬───────────┬─────────┬───────────╮                                                                                                   ╭───────────┬───────────┬───────────┬───────────┬─────────────╮
-    &none      &none       &none       &none     &none                                                                                                           &none       &none       &none       &none       &none      
-//├──────────┼───────────┼───────────┼─────────┼───────────┼───────────╮                                                                           ╭───────────┼───────────┼───────────┼───────────┼───────────┼─────────────┤
-    &none      &none       &none       &none     &none       &none                                                                                   &none       &none       &none       &none       &none       &none      
-//├──────────┼───────────┼───────────┼─────────┼───────────┼───────────┤                                                                           ├───────────┼───────────┼───────────┼───────────┼───────────┼─────────────┤
-    &none      &none       &snpt W H   &float    &phone      &none                                                                                   &none       &snpt I F   &snpt F U   &none       &none       &none      
-//├──────────┼───────────┼───────────┼─────────┼───────────┼───────────┤                                                                           ├───────────┼───────────┼───────────┼───────────┼───────────┼─────────────┤
-    &none      &and        &return     &string   &the       &none                                                                                   &mapping    &snpt E I   &email      &int        &object     &none      
-//├──────────┼───────────┼───────────┼─────────┼───────────┼───────────┼───────────┬───────────┬─────────────╮ ╭───────────┬───────────┬───────────┼───────────┼───────────┼───────────┼───────────┼───────────┼─────────────┤
-    &none      &none       &none       &class    &snpt D O   &void       &none       &none      &none            &none       &none       &none       &none       &snpt E L   &snpt F R   &snpt F E   &snpt F O   &none      
-//├──────────┼───────────┼───────────┼─────────┼───────────┴───────────┼───────────┼───────────┼─────────────┤ ├───────────┼───────────┼───────────┼───────────┴───────────┼───────────┼───────────┼───────────┼─────────────┤
-    &none      &none       &none       &none     &none                   &none       &none      &none            &none       &none       &none                   &none       &snpt S W   &none       &none       &none 
-//╰──────────┴───────────┴───────────┴─────────┴───────────╯           ╰───────────┴───────────┴─────────────╯ ╰───────────┴───────────┴───────────╯           ╰───────────┴───────────┴───────────┴───────────┴─────────────╯
+//╭──────────┬───────────┬───────────┬─────────┬───────────╮                                                                                               ╭───────────┬───────────┬───────────┬───────────┬─────────────╮
+    &none      &none       &none       &none     &none                                                                                                       &none       &none       &none       &none       &none      
+//├──────────┼───────────┼───────────┼─────────┼───────────┼───────╮                                                                           ╭───────────┼───────────┼───────────┼───────────┼───────────┼─────────────┤
+    &none      &none       &none       &none     &none       &none                                                                               &none       &none       &none       &none       &none       &none      
+//├──────────┼───────────┼───────────┼─────────┼───────────┼───────┤                                                                           ├───────────┼───────────┼───────────┼───────────┼───────────┼─────────────┤
+    &none      &none       &snpt W H   &float    &ppp_td     &bool                                                                               &none       &snpt I F   &snpt F U   &none       &none       &none      
+//├──────────┼───────────┼───────────┼─────────┼───────────┼───────┤                                                                           ├───────────┼───────────┼───────────┼───────────┼───────────┼─────────────┤
+    &none      &and        &return     &string   &the        &none                                                                               &mapping    &snpt E I   &but        &int        &object     &phone      
+//├──────────┼───────────┼───────────┼─────────┼───────────┼───────┼───────────┬───────────┬─────────────╮ ╭───────────┬───────────┬───────────┼───────────┼───────────┼───────────┼───────────┼───────────┼─────────────┤
+    &none      &none       &none       &class    &snpt D O   &void   &none       &none      &none            &none       &none       &none       &none       &snpt E L   &snpt F R   &snpt F E   &snpt F O   &email      
+//├──────────┼───────────┼───────────┼─────────┼───────────┴───────┼───────────┼───────────┼─────────────┤ ├───────────┼───────────┼───────────┼───────────┴───────────┼───────────┼───────────┼───────────┼─────────────┤
+    &none      &none       &none       &none     &none               &none       &none      &none            &none       &none       &none                   &none       &snpt S W   &none       &none       &none 
+//╰──────────┴───────────┴───────────┴─────────┴───────────╯       ╰───────────┴───────────┴─────────────╯ ╰───────────┴───────────┴───────────╯           ╰───────────┴───────────┴───────────┴───────────┴─────────────╯
             >;
         };
 
