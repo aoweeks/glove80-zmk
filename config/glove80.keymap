@@ -1190,7 +1190,7 @@
             timeout-ms = <30>;
             key-positions = <26 27>;
             require-prior-idle-ms = <400>;
-            layers = <DEFAULT NUMS_SYMS NAV OUSING>;
+            layers = <DEFAULT NUMS_SYMS NAV MOUSING>;
             bindings = <&sk HYPER>;
         };
 
@@ -1198,7 +1198,7 @@
             timeout-ms = <30>;
             key-positions = <26 28>;
             require-prior-idle-ms = <400>;
-            layers = <DEFAULT NUMS_SYMS NAV OUSING>;
+            layers = <DEFAULT NUMS_SYMS NAV MOUSING>;
             bindings = <&kp F14>;
         };
 
@@ -1206,7 +1206,7 @@
             timeout-ms = <30>;
             key-positions = <66 67>;
             require-prior-idle-ms = <400>;
-            layers = <DEFAULT NUMS_SYMS NAV OUSING>;
+            layers = <DEFAULT NUMS_SYMS NAV MOUSING>;
             bindings = <&kp LA(SPACE)>;
         };
 
