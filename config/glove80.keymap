@@ -298,14 +298,14 @@
         //     bindings = <&single_sticky_layer_tap>, <&kp>;
         // };
 
-        caps_word_mt: caps_word_mod_tap {
+        caps_word_lt: caps_word_layer_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
             tapping-term-ms = <200>;
             quick-tap-ms = <200>;
             retro-tap;
-            bindings = <&kp>, <&caps_word>;
+            bindings = <&lt>, <&caps_word>;
         };
 
         bspc_lt: backpace_layer_tap {
