@@ -1214,16 +1214,6 @@
     conditional_layers {
         compatible = "zmk,conditional-layers";
 
-        activate_double_number_symbols_layer {
-            if-layers = <DBL_AZ NUM_SYM>;
-            then-layer = <DBL_NS>;
-        };
-
-
-        activate_javascript_double_alpha_layer {
-            if-layers = <JS DBL_AZ>;
-            then-layer = <JS_DBL_AZ>;
-        };
 
         activate_javascript_bigram_layer {
             if-layers = <JS BIGRAM>;
