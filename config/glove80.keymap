@@ -36,7 +36,7 @@
 #define CODING 1
 #define WRITING 2
 #define NUMS_SYMS 3
-#dfine NAV 4
+#define NAV 4
 #define MOUSING 5
 #define BIGRAM 6
 #define SNIP 7
