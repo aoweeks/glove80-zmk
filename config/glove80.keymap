@@ -49,10 +49,11 @@
 #define JAVASCRIPT 14
 #define JS_BIGRAM 15
 #define JS_DBL_AZ 16
-#define DBL_NS 17
-#define WASD 18
-#define MAGIC 19
-#define FACTORY_TEST 20
+#define JS_SNIP 17
+#define DBL_NS 18
+#define WASD 19
+#define MAGIC 20
+#define FACTORY_TEST 21
 
 // Other Constants
 #define SELECT_WORD_DELAY 1
@@ -858,8 +859,8 @@
             #binding-cells = <0>;
             wait-ms = <1>;
             tap-ms = <1>;
-            bindings =  <&macro_tap &kp B &kp O &kp O &kp L &kp E &kp A \
-                          &kp N &kp SPACE>;
+            bindings =  <&macro_tap &kp B &kp O &kp O &kp L &kp E &kp A &kp N \
+                          &kp SPACE>;
         };
 
         int: int_keyword {
@@ -870,12 +871,30 @@
             bindings = <&macro_tap &kp I &kp N &kp T &kp SPACE>;
         };
 
+        big_int: big_int_keyword {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings =  <&macro_tap &kp B &kp I &kp G &kp I &kp N &kp T \
+                          &kp SPACE>;
+        };
+
         float: float_keyword {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <1>;
             tap-ms = <1>;
             bindings = <&macro_tap &kp F &kp L &kp O &kp A &kp T &kp SPACE>;
+        };
+
+        number: number_keyword {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings =  <&macro_tap &kp N &kp U &kp M &kp B &kp E &kp R \
+                          &kp SPACE>;
         };
 
         string: string_keyword {
@@ -1191,8 +1210,6 @@
             bindings = <&kp LA(SPACE)>;
         };
 
-
-
     };
 
     conditional_layers {
@@ -1203,23 +1220,23 @@
             then-layer = <DBL_NS>;
         };
 
+
         activate_javascript_double_alpha_layer {
-            if-layers = <DBL_AZ JAVASCRIPT>;
+            if-layers = <JAVASCRIPT DBL_AZ>;
             then-layer = <JS_DBL_AZ>;
         };
 
         activate_javascript_bigram_layer {
-            if-layers = <BIGRAM JAVASCRIPT>;
+            if-layers = <JAVASCRIPT BIGRAM>;
             then-layer = <JS_BIGRAM>;
+        };
+
+        activate_javascript_snippets_and_keywords_layer {
+            if-layers = <JAVASCRIPT SNIP>;
+            then-layer = <JS_SNIP>;
         };
     };
 
-
-    // zip_temp_layer: zip_temp_layer {
-    //   compatible = "zmk,input-processor-temp-layer";
-    //   #input-processor-cells = <2>;
-    //   require-prior-idle-ms = <2000>;
-    // };
 
     keymap {
         compatible = "zmk,keymap";
@@ -1235,7 +1252,7 @@
 //├──────────────────┼───────────────────┼─────────────────┼─────────────┼──────────┼───────┤                                                                                                                           ├───────┼────────┼────────┼────────────┼────────────────────┼───────────────────┤
     &qu_mt LALT 0      &kp A               &kp R             &kp S         &kp T      &kp G                                                                                                                               &kp M   &kp N    &kp E    &kp I        &kp O                &apos_mt LCTRL 0
 //├──────────────────┼───────────────────┼─────────────────┼─────────────┼──────────┼───────┼─────────────────────┬───────────┬───────────────────────╮ ╭────────────────────────┬──────────────────┬───────────────────┼───────┼────────┼────────┼────────────┼────────────────────┼───────────────────┤
-    &excl_lt MOUSE 0   &lt_rpi NUM_SYM Z   &kp X             &kp C         &kp D      &kp V   &lt_rpi MOUSING DEL   &kp F14     &none                     &none                    &none              &lt_rpi FKEYS ESC   &kp K   &kp H    &comma   &dot         &under_lt BIGRAM 0   &equal_lt EMOJI 0
+    &excl_lt MOUSE 0   &lt_rpi NUM_SYM Z   &kp X             &kp C         &kp D      &kp V   &lt_rpi MOUSING DEL   &kp F14     &none                     &none                    &kp F14            &lt_rpi FKEYS ESC   &kp K   &kp H    &comma   &dot         &under_lt BIGRAM 0   &equal_lt EMOJI 0
 //├──────────────────┼───────────────────┼─────────────────┼─────────────┼──────────┴───────┼─────────────────────┼───────────┼───────────────────────┤ ├────────────────────────┼──────────────────┼───────────────────┼───────┴────────┼────────┼────────────┼────────────────────┼───────────────────┤
     &none              &qmark              &plus             &lpar         &kp RPAR           &bspc_lt DBL_AZ 0     &shift_td   &caps_word_mt LSHFT 0     &undecided_mt LGUI TAB   &lt_rpi SNIP RET   &space_lt NAV 0             &semi    &colon   &dbl_quote   &astrk               &none
 //╰──────────────────┴───────────────────┴─────────────────┴─────────────┴──────────╯       ╰─────────────────────┴───────────┴───────────────────────╯ ╰────────────────────────┴──────────────────┴───────────────────╯       ╰────────┴────────┴────────────┴────────────────────┴───────────────────╯
@@ -1527,6 +1544,24 @@
 //├────────┼──────────────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┼──────────────┤
     &trans   &pad QMARK QMARK   &trans   &trans   &trans            &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans   &trans   &trans   &trans 
 //╰────────┴──────────────────┴────────┴────────┴────────╯        ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴────────┴────────┴──────────────╯
+            >;
+        };
+
+        javascript_snippets_and_keywords_layer {
+            bindings = <
+//╭────────┬─────────┬────────┬─────────┬────────╮                                                                           ╭────────┬────────┬────────┬──────────┬──────────────╮
+    &trans   &trans    &trans   &trans    &trans                                                                               &trans   &trans   &trans   &trans     &trans      
+//├────────┼─────────┼────────┼─────────┼────────┼──────────╮                                                       ╭────────┼────────┼────────┼────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &trans    &trans   &trans                                                             &trans   &trans   &trans   &trans   &trans     &trans      
+//├────────┼─────────┼────────┼─────────┼────────┼──────────┤                                                       ├────────┼────────┼────────┼────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &number   &trans   &boolean                                                           &trans   &trans   &trans   &trans   &trans     &trans      
+//├────────┼─────────┼────────┼─────────┼────────┼──────────┤                                                       ├────────┼────────┼────────┼────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &trans    &trans   &trans                                                             &trans   &trans   &trans   &trans   &big_int   &trans      
+//├────────┼─────────┼────────┼─────────┼────────┼──────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────┼────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &trans    &trans   &trans     &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans     &trans       
+//├────────┼─────────┼────────┼─────────┼────────┴──────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────┼────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &trans    &trans              &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans   &trans   &trans     &trans 
+//╰────────┴─────────┴────────┴─────────┴────────╯          ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴────────┴──────────┴──────────────╯
             >;
         };
 
