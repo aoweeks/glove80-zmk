@@ -1287,7 +1287,7 @@
 //├────────────────────┼──────────┼─────────┼───────────┼────────┼────────┤                                                                  ├────────┼─────────┼──────────┼────────┼────────┼────────┤
     &trans               &trans     &trans    &trans      &trans   &trans                                                                      &trans   &trans    &trans     &trans   &trans   &trans
 //├────────────────────┼──────────┼─────────┼───────────┼────────┼────────┼────────┬────────┬────────╮ ╭────────┬───────────────────┬────────┼────────┼─────────┼──────────┼────────┼────────┼────────┤
-    &excl_i_lt MOUSE 0   &trans     &trans    &trans      &trans   &trans   &trans   &trans   &trans     &trans   &trans              &trans   &trans   &trans    &trans     &dot_i   &trans   &equal_i_lt EMOJI 0
+    &excl_i_lt MOUSE 0   &trans     &trans    &trans      &trans   &trans   &trans   &trans   &trans     &trans   &trans              &trans   &trans   &trans    &trans     &dot_i   &trans   &trans
 //├────────────────────┼──────────┼─────────┼───────────┼────────┴────────┼────────┼────────┼────────┤ ├────────┼───────────────────┼────────┼────────┴─────────┼──────────┼────────┼────────┼────────┤
     &trans               &qmark_i   &trans    &lpar_spc   &trans            &trans   &trans   &trans     &trans   &lt_rpi SNIP BSPC   &trans            &semi_i   &colon_i   &trans   &trans   &trans
 //╰────────────────────┴──────────┴─────────┴───────────┴────────╯        ╰────────┴────────┴────────╯ ╰────────┴───────────────────┴────────╯        ╰─────────┴──────────┴────────┴────────┴────────╯
