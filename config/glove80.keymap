@@ -34,23 +34,27 @@
 // Layers
 #define DEFAULT 0
 #define CODING 1
-#define JS 2
-#define NAV 3
-#define NUMS_SYMS 4
-#define CODING_NUMS_SYMS 5
-#define MOUSING 6
-#define BIGRAM 7
-#define SNIP 8
-#define MOUSE 9
-#define SLOW 10
-#define MEDIA 11
-#define EMOJI 12
-#define FKEYS 13
-#define JS_BIGRAM 14
-#define JS_SNIP 15
-#define WASD 16
-#define MAGIC 17
-#define FACTORY_TEST 18
+#define TS 2
+#define C_LANG 3
+#define PYTHON 4
+#define NAV 5
+#define NUMS_SYMS 6
+#define CODING_NUMS_SYMS 7
+#define MOUSING 8
+#define BIGRAM 9
+#define TS_BIGRAM 10
+#define KEYW 11
+#define TS_KEYW 12
+#define C_KEYW 13
+#define PYTHON_KEYW 14
+#define MOUSE 15
+#define SLOW 16
+#define MEDIA 17
+#define EMOJI 18
+#define FKEYS 19
+#define WASD 20
+#define MAGIC 21
+#define FACTORY_TEST 22
 
 // Other Constants
 #define SELECT_WORD_DELAY 1
@@ -79,6 +83,20 @@
         //     tapping-term-ms = <200>;
         //     bindings = <&to>, <&to>;
         // };
+        tog_on: toggle_layer_on_only {
+            compatible = "zmk,behavior-toggle-layer";
+            #binding-cells = <1>;
+            display-name = "Toggle Layer On";
+            toggle-mode = "on";
+        };
+
+        tog_off: toggle_layer_on_only {
+            compatible = "zmk,behavior-toggle-layer";
+            #binding-cells = <1>;
+            display-name = "Toggle Layer Off";
+            toggle-mode = "off";
+        };
+
 
         magic: magic_hold_tap {
             compatible = "zmk,behavior-hold-tap";
@@ -134,16 +152,16 @@
             bindings = <&kp>, <&kp>;
         };
 
-        //  qu_mt: qu_mod_tap{
-        //     compatible = "zmk,behavior-hold-tap";
-        //     #binding-cells = <2>;
-        //     flavor = "balanced";
-        //     tapping-term-ms = <200>;
-        //     quick-tap-ms = <200>;
-        //     require-prior-idle-ms = <125>;
-        //     retro-tap;
-        //     bindings = <&kp>, <&qu>;
-        // };
+         qu_lt: qu_layer_tap{
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            require-prior-idle-ms = <125>;
+            retro-tap;
+            bindings = <&mo>, <&qu>;
+        };
 
 
         lt_rpi: layer_tap_require_prior_idle {
@@ -206,14 +224,13 @@
             bindings = <&mo>, <&space>;
         };
 
-        excl_lt: exclamation_mark_layer_tap {
+        excl_mt: exclamation_mark_mod_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
             tapping-term-ms = <200>;
             quick-tap-ms = <200>;
             require-prior-idle-ms = <125>;
-            hold-while-undecided;
             retro-tap;
             bindings = <&mo>, <&excl>;
         };
@@ -241,7 +258,7 @@
             bindings = <&kp>, <&kp>;
         };
 
-        equal_lt: equal_layer_tap {
+        equal_mt: equal_mod_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
@@ -250,7 +267,7 @@
             require-prior-idle-ms = <125>;
             hold-while-undecided;
             retro-tap;
-            bindings = <&mo>, <&equal>;
+            bindings = <&kp>, <&equal>;
         };
 
         apos_lt: apostrophe_layer_tap {
@@ -1018,6 +1035,15 @@
             bindings =  <&macro_tap &kp LC(LS(GB_BSLH)) &kp RIGHT_ARROW>;
         };
 
+        scl: set_coding_language {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings = <&macro_tap &tog_off TS &tog_off C_LANG &tog_off PYTHON\
+                          &macro_param_1to1 &tog_on 0>;
+        };
+
 
 
         //////////////////////////////////////////////////////////////////////////
@@ -1244,13 +1270,13 @@
         };
 
         activate_javascript_bigram_layer {
-            if-layers = <CODING JS BIGRAM>;
-            then-layer = <JS_BIGRAM>;
+            if-layers = <CODING TS BIGRAM>;
+            then-layer = <TS_BIGRAM>;
         };
 
         activate_javascript_snippets_and_keywords_layer {
-            if-layers = <CODING JS SNIP>;
-            then-layer = <JS_SNIP>;
+            if-layers = <CODING TS KEYW>;
+            then-layer = <TS_KEYW>;
         };
     };
 
@@ -1260,19 +1286,19 @@
         
         default_layer {
             bindings = <
-//╭──────────────────┬──────────────────────┬─────────┬─────────────┬──────────╮                                                                                                                                                      ╭───────┬────────┬────────────┬─────────────────────┬───────────────────╮
-    &magic MAGIC 0     &to WASD               &none     &to MOUSING   &none                                                                                                                                                             &none   &none    &none        &none                 &none          
-//├──────────────────┼──────────────────────┼─────────┼─────────────┼──────────┼───────╮                                                                                                                                      ╭───────┼───────┼────────┼────────────┼─────────────────────┼───────────────────┤
-    &none              &none                  &tog JS   &slash        &none      &none                                                                                                                                          &none   &none   &minus   &none        &none                 &none
-//├──────────────────┼──────────────────────┼─────────┼─────────────┼──────────┼───────┤                                                                                                                                      ├───────┼───────┼────────┼────────────┼─────────────────────┼───────────────────┤
-    &none              &tog CODING            &kp W     &kp F         &kp P      &kp B                                                                                                                                          &kp J   &kp L   &kp U    &kp Y        &none                 &none  
-//├──────────────────┼──────────────────────┼─────────┼─────────────┼──────────┼───────┤                                                                                                                                      ├───────┼───────┼────────┼────────────┼─────────────────────┼───────────────────┤
-    &bi Q U            &kp A                  &kp R     &kp S         &kp T      &kp G                                                                                                                                          &kp M   &kp N   &kp E    &kp I        &kp O                 &apos_lt MOUSE 0
-//├──────────────────┼──────────────────────┼─────────┼─────────────┼──────────┼───────┼─────────────────────────┬────────────────────┬────────────────────╮ ╭────────────────────────┬───────────────────┬───────────────────┼───────┼───────┼────────┼────────────┼─────────────────────┼───────────────────┤
-    &excl_lt MOUSE 0   &undecided_mt LALT Z   &kp X     &kp C         &kp D      &kp V   &caps_word_lt MOUSING 0   &lt_rpi EMOJI DEL    &none                  &none                    &mt_rpi LSHFT F14   &lt_rpi FKEYS ESC   &kp K   &kp H   &comma   &dot         &mt_rpi LCTRL UNDER   &equal
-//├──────────────────┼──────────────────────┼─────────┼─────────────┼──────────┴───────┼─────────────────────────┼────────────────────┼────────────────────┤ ├────────────────────────┼───────────────────┼───────────────────┼───────┴───────┼────────┼────────────┼─────────────────────┼───────────────────┤
-    &none              &qmark                 &plus     &lpar         &kp RPAR           &rpt_lt NUMS_SYMS 0       &shift_td            &lt_rpi BIGRAM RET     &undecided_mt LGUI TAB   &bspc_lt SNIP 0     &space_lt NAV 0             &semi   &colon   &dbl_quote   &astrk                &none
-//╰──────────────────┴──────────────────────┴─────────┴─────────────┴──────────╯       ╰─────────────────────────┴────────────────────┴────────────────────╯ ╰────────────────────────┴───────────────────┴───────────────────╯       ╰───────┴────────┴────────────┴─────────────────────┴───────────────────╯
+//╭─────────────────┬───────────────┬─────────┬─────────────┬─────────────╮                                                                                                                                                      ╭───────┬────────┬────────────┬───────────────────┬───────────────────╮
+    &magic MAGIC 0    &to WASD        &none     &scl C_LANG   &none                                                                                                                                                                &none   &none    &none        &none               &none          
+//├─────────────────┼───────────────┼─────────┼─────────────┼─────────────┼───────╮                                                                                                                                      ╭───────┼───────┼────────┼────────────┼───────────────────┼───────────────────┤
+    &none             &none           &scl TS   &slash        &scl PYTHON   &none                                                                                                                                          &none   &none   &minus   &none        &none               &none
+//├─────────────────┼───────────────┼─────────┼─────────────┼─────────────┼───────┤                                                                                                                                      ├───────┼───────┼────────┼────────────┼───────────────────┼───────────────────┤
+    &to MOUSING       &tog CODING     &kp W     &kp F         &kp P         &kp B                                                                                                                                          &kp J   &kp L   &kp U    &kp Y        &none               &none  
+//├─────────────────┼───────────────┼─────────┼─────────────┼─────────────┼───────┤                                                                                                                                      ├───────┼───────┼────────┼────────────┼───────────────────┼───────────────────┤
+    &qu_lt MOUSE 0    &kp A           &kp R     &kp S         &kp T         &kp G                                                                                                                                          &kp M   &kp N   &kp E    &kp I        &kp O               &apos_lt MOUSE 0
+//├─────────────────┼───────────────┼─────────┼─────────────┼─────────────┼───────┼─────────────────────────┬────────────────────┬────────────────────╮ ╭────────────────────────┬───────────────────┬───────────────────┼───────┼───────┼────────┼────────────┼───────────────────┼───────────────────┤
+    &excl_mt LALT 0   &lt_rpi DBL Z   &kp X     &kp C         &kp D         &kp V   &caps_word_lt MOUSING 0   &lt_rpi EMOJI DEL    &none                  &none                    &mt_rpi LSHFT F14   &lt_rpi FKEYS ESC   &kp K   &kp H   &comma   &dot         &lt_rpi DBL UNDER   &equal_mt LCTRL 0
+//├─────────────────┼───────────────┼─────────┼─────────────┼─────────────┴───────┼─────────────────────────┼────────────────────┼────────────────────┤ ├────────────────────────┼───────────────────┼───────────────────┼───────┴───────┼────────┼────────────┼───────────────────┼───────────────────┤
+    &none             &qmark          &plus     &lpar         &kp RPAR              &rpt_lt NUMS_SYMS 0       &shift_td            &lt_rpi BIGRAM RET     &undecided_mt LGUI TAB   &bspc_lt KEYW 0     &space_lt NAV 0             &semi   &colon   &dbl_quote   &astrk              &none
+//╰─────────────────┴───────────────┴─────────┴─────────────┴─────────────╯       ╰─────────────────────────┴────────────────────┴────────────────────╯ ╰────────────────────────┴───────────────────┴───────────────────╯       ╰───────┴────────┴────────────┴───────────────────┴───────────────────╯
             >;
         };
 
@@ -1289,12 +1315,48 @@
 //├────────────────────┼──────────┼─────────┼───────────┼────────┼────────┼────────┬────────┬────────╮ ╭────────┬───────────────────┬────────┼────────┼─────────┼──────────┼────────┼────────┼────────┤
     &excl_i_lt MOUSE 0   &trans     &trans    &trans      &trans   &trans   &trans   &trans   &trans     &trans   &trans              &trans   &trans   &trans    &trans     &dot_i   &trans   &trans
 //├────────────────────┼──────────┼─────────┼───────────┼────────┴────────┼────────┼────────┼────────┤ ├────────┼───────────────────┼────────┼────────┴─────────┼──────────┼────────┼────────┼────────┤
-    &trans               &qmark_i   &trans    &lpar_spc   &trans            &trans   &trans   &trans     &trans   &lt_rpi SNIP BSPC   &trans            &semi_i   &colon_i   &trans   &trans   &trans
+    &trans               &qmark_i   &trans    &lpar_spc   &trans            &trans   &trans   &trans     &trans   &lt_rpi KEYW BSPC   &trans            &semi_i   &colon_i   &trans   &trans   &trans
 //╰────────────────────┴──────────┴─────────┴───────────┴────────╯        ╰────────┴────────┴────────╯ ╰────────┴───────────────────┴────────╯        ╰─────────┴──────────┴────────┴────────┴────────╯
             >;
         };
 
-        javascript_mode_layer {
+        typescript_mode_layer {
+            bindings = <
+//╭────────┬────────┬────────┬────────┬────────╮                                                                         ╭────────┬────────┬────────┬────────┬────────╮
+    &trans   &trans   &trans   &trans   &trans                                                                             &trans   &trans   &trans   &trans   &trans      
+//├────────┼────────┼────────┼────────┼────────┼────────╮                                                       ╭────────┼────────┼────────┼────────┼────────┼────────┤
+    &trans   &trans   &trans   &trans   &trans   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans      
+//├────────┼────────┼────────┼────────┼────────┼────────┤                                                       ├────────┼────────┼────────┼────────┼────────┼────────┤
+    &trans   &trans   &trans   &trans   &trans   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans      
+//├────────┼────────┼────────┼────────┼────────┼────────┤                                                       ├────────┼────────┼────────┼────────┼────────┼────────┤
+    &trans   &trans   &trans   &trans   &trans   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans      
+//├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+    &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans       
+//├────────┼────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┼────────┤
+    &trans   &trans   &trans   &trans   &trans            &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans   &trans   &trans   &trans 
+//╰────────┴────────┴────────┴────────┴────────╯        ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴────────┴────────┴────────╯
+            >;
+        };
+
+         C_mode_layer {
+            bindings = <
+//╭────────┬────────┬────────┬────────┬────────╮                                                                         ╭────────┬────────┬────────┬────────┬────────╮
+    &trans   &trans   &trans   &trans   &trans                                                                             &trans   &trans   &trans   &trans   &trans      
+//├────────┼────────┼────────┼────────┼────────┼────────╮                                                       ╭────────┼────────┼────────┼────────┼────────┼────────┤
+    &trans   &trans   &trans   &trans   &trans   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans      
+//├────────┼────────┼────────┼────────┼────────┼────────┤                                                       ├────────┼────────┼────────┼────────┼────────┼────────┤
+    &trans   &trans   &trans   &trans   &trans   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans      
+//├────────┼────────┼────────┼────────┼────────┼────────┤                                                       ├────────┼────────┼────────┼────────┼────────┼────────┤
+    &trans   &trans   &trans   &trans   &trans   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans      
+//├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+    &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans       
+//├────────┼────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┼────────┤
+    &trans   &trans   &trans   &trans   &trans            &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans   &trans   &trans   &trans 
+//╰────────┴────────┴────────┴────────┴────────╯        ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴────────┴────────┴────────╯
+            >;
+        };
+
+        python_mode_layer {
             bindings = <
 //╭────────┬────────┬────────┬────────┬────────╮                                                                         ╭────────┬────────┬────────┬────────┬────────╮
     &trans   &trans   &trans   &trans   &trans                                                                             &trans   &trans   &trans   &trans   &trans      
@@ -1343,7 +1405,7 @@
 //├────────┼───────────────────┼────────────┼────────────┼────────────┼────────────┼────────┬────────┬───────────────╮ ╭─────────────┬───────────────────┬────────┬─────────────┼──────────┼─────────────┼───────────┼───────────────┼────────┤
     &trans   &kp GB_POUND_SIGN   &prcnt       &kp DOLLAR   &kp LBRC     &kp RBRC     &trans   &trans   &to NUMS_SYMS     &to DEFAULT   &trans              &trans   &us GRAVE 0   &us N1 0   &us N2 0      &us N3 0    &kp UNDER       &trans          
 //├────────┼───────────────────┼────────────┼────────────┼────────────┴────────────┼────────┼────────┼───────────────┤ ├─────────────┼───────────────────┼────────┼─────────────┴──────────┼─────────────┼───────────┼───────────────┼────────┤
-    &trans   &trans              &trans       &trans       &trans                    &trans   &trans   &trans            &trans        &lt_rpi SNIP BSPC   &trans                 &us N0 0   &us COMMA 0   &us DOT 0   &trans          &trans
+    &trans   &trans              &trans       &trans       &trans                    &trans   &trans   &trans            &trans        &lt_rpi KEYW BSPC   &trans                 &us N0 0   &us COMMA 0   &us DOT 0   &trans          &trans
 //╰────────┴───────────────────┴────────────┴────────────┴────────────╯            ╰────────┴────────┴───────────────╯ ╰─────────────┴───────────────────┴────────╯             ╰──────────┴─────────────┴───────────┴───────────────┴────────╯
             >;
         };
@@ -1401,8 +1463,26 @@
 //╰─────────────────┴────────────────┴──────────────────┴──────────────────────┴──────────────────╯               ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯                  ╰───────────────┴──────────────────┴───────────────┴──────────────────┴──────────────────╯
             >;
         };
+        
+        typescript_bigram_layer {
+            bindings = <
+//╭─────────────┬────────────────┬────────┬────────┬────────╮                                                                         ╭────────┬────────┬────────┬────────┬──────────────╮
+    &trans        &trans           &trans   &trans   &trans                                                                             &trans   &trans   &trans   &trans   &trans            
+//├─────────────┼────────────────┼────────┼────────┼────────┼────────╮                                                       ╭────────┼────────┼────────┼────────┼────────┼──────────────┤
+    &trans        &trans           &trans   &trans   &trans   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans            
+//├─────────────┼────────────────┼────────┼────────┼────────┼────────┤                                                       ├────────┼────────┼────────┼────────┼────────┼──────────────┤
+    &trans        &trans           &trans   &trans   &trans   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans            
+//├─────────────┼────────────────┼────────┼────────┼────────┼────────┤                                                       ├────────┼────────┼────────┼────────┼────────┼──────────────┤
+    &trans        &trans           &trans   &trans   &trans   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans            
+//├─────────────┼────────────────┼────────┼────────┼────────┼────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────┼────────┼────────┼──────────────┤
+    &js_eq EXCL   &trans           &trans   &trans   &trans   &trans   &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &js_eq EQUAL
+//├─────────────┼────────────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┼──────────────┤
+    &trans        &pad QMARK DOT   &trans   &trans   &trans            &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans   &trans   &trans   &trans       
+//╰─────────────┴────────────────┴────────┴────────┴────────╯        ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴────────┴────────┴──────────────╯
+            >;
+        };
 
-        snippets_and_keywords_layer {
+        keywords_layer {
             bindings = <
 //╭──────────┬───────────┬───────────┬─────────┬───────────╮                                                                                               ╭───────────┬───────────┬───────────┬───────────┬─────────────╮
     &none      &none       &none       &none     &none                                                                                                       &none       &none       &none       &none       &none      
@@ -1417,6 +1497,60 @@
 //├──────────┼───────────┼───────────┼─────────┼───────────┴───────┼───────────┼───────────┼─────────────┤ ├───────────┼───────────┼───────────┼───────────┴───────────┼───────────┼───────────┼───────────┼─────────────┤
     &none      &none       &none       &none     &none               &none       &none       &none           &none       &none       &none                   &none       &snpt S W   &none       &none       &none 
 //╰──────────┴───────────┴───────────┴─────────┴───────────╯       ╰───────────┴───────────┴─────────────╯ ╰───────────┴───────────┴───────────╯           ╰───────────┴───────────┴───────────┴───────────┴─────────────╯
+            >;
+        };
+
+        typescript_keywords_layer {
+            bindings = <
+//╭────────┬─────────┬────────┬─────────┬────────╮                                                                           ╭────────┬────────┬────────┬──────────┬──────────────╮
+    &trans   &trans    &trans   &trans    &trans                                                                               &trans   &trans   &trans   &trans     &trans      
+//├────────┼─────────┼────────┼─────────┼────────┼──────────╮                                                       ╭────────┼────────┼────────┼────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &trans    &trans   &trans                                                             &trans   &trans   &trans   &trans   &trans     &trans      
+//├────────┼─────────┼────────┼─────────┼────────┼──────────┤                                                       ├────────┼────────┼────────┼────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &number   &trans   &boolean                                                           &trans   &trans   &trans   &trans   &trans     &trans      
+//├────────┼─────────┼────────┼─────────┼────────┼──────────┤                                                       ├────────┼────────┼────────┼────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &trans    &trans   &trans                                                             &trans   &trans   &trans   &trans   &big_int   &trans      
+//├────────┼─────────┼────────┼─────────┼────────┼──────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────┼────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &trans    &trans   &trans     &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans     &trans       
+//├────────┼─────────┼────────┼─────────┼────────┴──────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────┼────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &trans    &trans              &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans   &trans   &trans     &trans 
+//╰────────┴─────────┴────────┴─────────┴────────╯          ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴────────┴──────────┴──────────────╯
+            >;
+        };
+
+        c_keywords_layer {
+            bindings = <
+//╭────────┬─────────┬────────┬─────────┬────────╮                                                                           ╭────────┬────────┬────────┬──────────┬──────────────╮
+    &trans   &trans    &trans   &trans    &trans                                                                               &trans   &trans   &trans   &trans     &trans      
+//├────────┼─────────┼────────┼─────────┼────────┼──────────╮                                                       ╭────────┼────────┼────────┼────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &trans    &trans   &trans                                                             &trans   &trans   &trans   &trans   &trans     &trans      
+//├────────┼─────────┼────────┼─────────┼────────┼──────────┤                                                       ├────────┼────────┼────────┼────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &number   &trans   &boolean                                                           &trans   &trans   &trans   &trans   &trans     &trans      
+//├────────┼─────────┼────────┼─────────┼────────┼──────────┤                                                       ├────────┼────────┼────────┼────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &trans    &trans   &trans                                                             &trans   &trans   &trans   &trans   &big_int   &trans      
+//├────────┼─────────┼────────┼─────────┼────────┼──────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────┼────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &trans    &trans   &trans     &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans     &trans       
+//├────────┼─────────┼────────┼─────────┼────────┴──────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────┼────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &trans    &trans              &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans   &trans   &trans     &trans 
+//╰────────┴─────────┴────────┴─────────┴────────╯          ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴────────┴──────────┴──────────────╯
+            >;
+        };
+
+        python_keywords_layer {
+            bindings = <
+//╭────────┬─────────┬────────┬─────────┬────────╮                                                                           ╭────────┬────────┬────────┬──────────┬──────────────╮
+    &trans   &trans    &trans   &trans    &trans                                                                               &trans   &trans   &trans   &trans     &trans      
+//├────────┼─────────┼────────┼─────────┼────────┼──────────╮                                                       ╭────────┼────────┼────────┼────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &trans    &trans   &trans                                                             &trans   &trans   &trans   &trans   &trans     &trans      
+//├────────┼─────────┼────────┼─────────┼────────┼──────────┤                                                       ├────────┼────────┼────────┼────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &number   &trans   &boolean                                                           &trans   &trans   &trans   &trans   &trans     &trans      
+//├────────┼─────────┼────────┼─────────┼────────┼──────────┤                                                       ├────────┼────────┼────────┼────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &trans    &trans   &trans                                                             &trans   &trans   &trans   &trans   &big_int   &trans      
+//├────────┼─────────┼────────┼─────────┼────────┼──────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────┼────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &trans    &trans   &trans     &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans     &trans       
+//├────────┼─────────┼────────┼─────────┼────────┴──────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────┼────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &trans    &trans              &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans   &trans   &trans     &trans 
+//╰────────┴─────────┴────────┴─────────┴────────╯          ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴────────┴──────────┴──────────────╯
             >;
         };
 
@@ -1510,42 +1644,6 @@
             >;
         };
 
-
-        javascript_bigram_layer {
-            bindings = <
-//╭─────────────┬────────────────┬────────┬────────┬────────╮                                                                         ╭────────┬────────┬────────┬────────┬──────────────╮
-    &trans        &trans           &trans   &trans   &trans                                                                             &trans   &trans   &trans   &trans   &trans            
-//├─────────────┼────────────────┼────────┼────────┼────────┼────────╮                                                       ╭────────┼────────┼────────┼────────┼────────┼──────────────┤
-    &trans        &trans           &trans   &trans   &trans   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans            
-//├─────────────┼────────────────┼────────┼────────┼────────┼────────┤                                                       ├────────┼────────┼────────┼────────┼────────┼──────────────┤
-    &trans        &trans           &trans   &trans   &trans   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans            
-//├─────────────┼────────────────┼────────┼────────┼────────┼────────┤                                                       ├────────┼────────┼────────┼────────┼────────┼──────────────┤
-    &trans        &trans           &trans   &trans   &trans   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans            
-//├─────────────┼────────────────┼────────┼────────┼────────┼────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────┼────────┼────────┼──────────────┤
-    &js_eq EXCL   &trans           &trans   &trans   &trans   &trans   &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &js_eq EQUAL
-//├─────────────┼────────────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┼──────────────┤
-    &trans        &pad QMARK DOT   &trans   &trans   &trans            &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans   &trans   &trans   &trans       
-//╰─────────────┴────────────────┴────────┴────────┴────────╯        ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴────────┴────────┴──────────────╯
-            >;
-        };
-
-        javascript_snippets_and_keywords_layer {
-            bindings = <
-//╭────────┬─────────┬────────┬─────────┬────────╮                                                                           ╭────────┬────────┬────────┬──────────┬──────────────╮
-    &trans   &trans    &trans   &trans    &trans                                                                               &trans   &trans   &trans   &trans     &trans      
-//├────────┼─────────┼────────┼─────────┼────────┼──────────╮                                                       ╭────────┼────────┼────────┼────────┼──────────┼──────────────┤
-    &trans   &trans    &trans   &trans    &trans   &trans                                                             &trans   &trans   &trans   &trans   &trans     &trans      
-//├────────┼─────────┼────────┼─────────┼────────┼──────────┤                                                       ├────────┼────────┼────────┼────────┼──────────┼──────────────┤
-    &trans   &trans    &trans   &number   &trans   &boolean                                                           &trans   &trans   &trans   &trans   &trans     &trans      
-//├────────┼─────────┼────────┼─────────┼────────┼──────────┤                                                       ├────────┼────────┼────────┼────────┼──────────┼──────────────┤
-    &trans   &trans    &trans   &trans    &trans   &trans                                                             &trans   &trans   &trans   &trans   &big_int   &trans      
-//├────────┼─────────┼────────┼─────────┼────────┼──────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────┼────────┼──────────┼──────────────┤
-    &trans   &trans    &trans   &trans    &trans   &trans     &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans     &trans       
-//├────────┼─────────┼────────┼─────────┼────────┴──────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────┼────────┼──────────┼──────────────┤
-    &trans   &trans    &trans   &trans    &trans              &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans   &trans   &trans     &trans 
-//╰────────┴─────────┴────────┴─────────┴────────╯          ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴────────┴──────────┴──────────────╯
-            >;
-        };
 
 //         double_numpad_symbols_layer {
 //             bindings = <
