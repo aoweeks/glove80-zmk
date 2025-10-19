@@ -909,6 +909,14 @@
                           &macro_param_2to1 &kp 0>;
         };
 
+        false: false_keyword {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings =  <&macro_tap &kp F &kp A &kp L &kp S &kp E>;
+        };
+
         float: float_keyword {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
@@ -977,6 +985,13 @@
                           &macro_param_2to1 &kp 0>;
         };
 
+        true: true_keyword {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings =  <&macro_tap &kp T &kp R &kp U &kp E>;
+        };
 
         varargs: varargs_keyword {
             compatible = "zmk,behavior-macro";
@@ -1562,9 +1577,9 @@
 //├──────────┼────────────┼─────────────┼─────────────┼─────────────┼──────────────┤                                                                           ├──────────────┼──────────────┼───────────────┼───────────┼─────────────┼─────────────┤
     &none      &array 0 0   &return 0 0   &string 0 0   &the          &none                                                                                      &mapping 0 0   &include 0 0   &but            &int 0 0     &object 0 0   &phone      
 //├──────────┼────────────┼─────────────┼─────────────┼─────────────┼──────────────┼───────────┬───────────┬─────────────╮ ╭───────────┬───────────┬───────────┼──────────────┼──────────────┼───────────────┼───────────┼─────────────┼─────────────┤
-    &none      &none        &mixed 0 0    &class 0 0    &define 0 0   &void 0 0      &none       &none       &none           &none       &none       &none       &none          &snpt E L      &snpt F R       &snpt F E   &snpt F O     &email      
+    &none      &none        &mixed 0 0    &class 0 0    &define 0 0   &void 0 0      &none       &none       &none           &none       &none       &none       &none          &true          &snpt F R       &snpt F E   &snpt F O     &email      
 //├──────────┼────────────┼─────────────┼─────────────┼─────────────┴──────────────┼───────────┼───────────┼─────────────┤ ├───────────┼───────────┼───────────┼──────────────┴──────────────┼───────────────┼───────────┼─────────────┼─────────────┤
-    &none      &none        &none         &none         &none                        &none       &none       &none           &none       &none       &none                      &none          &snpt S W       &none       &none         &none 
+    &none      &none        &none         &none         &none                        &none       &none       &none           &none       &none       &none                      &false         &snpt S W       &none       &none         &none 
 //╰──────────┴────────────┴─────────────┴─────────────┴─────────────╯              ╰───────────┴───────────┴─────────────╯ ╰───────────┴───────────┴───────────╯              ╰──────────────┴───────────────┴───────────┴─────────────┴─────────────╯
             >;
         };
@@ -1596,7 +1611,7 @@
 //├────────┼───────────┼─────────────────┼─────────────────┼─────────────────┼───────────────┤                                                       ├──────────────────┼──────────────────┼───────────────────┼──────────────┼─────────────────┼─────────────────┤
     &trans   &trans      &trans            &float 0 SPACE    &ppp_spc_td       &int 0 SPACE                                                            &trans             &trans             &function 0 SPACE   &trans         &trans            &trans      
 //├────────┼───────────┼─────────────────┼─────────────────┼─────────────────┼───────────────┤                                                       ├──────────────────┼──────────────────┼───────────────────┼──────────────┼─────────────────┼─────────────────┤
-    &trans   &kp ASTRK   &return 0 SPACE   &string 0 SPACE   &trans            &varags                                                                  &mapping 0 SPACE   &include 0 SPACE   &trans              &int 0 SPACE   &object 0 SPACE   &trans   
+    &trans   &kp ASTRK   &return 0 SPACE   &string 0 SPACE   &trans            &varargs                                                                &mapping 0 SPACE   &include 0 SPACE   &trans              &int 0 SPACE   &object 0 SPACE   &trans   
 //├────────┼───────────┼─────────────────┼─────────────────┼─────────────────┼───────────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼──────────────────┼──────────────────┼───────────────────┼──────────────┼─────────────────┼─────────────────┤
     &trans   &trans      &mixed 0 SPACE    &class 0 SPACE    &define 0 SPACE   &void 0 SPACE   &trans   &trans   &trans     &trans   &trans   &trans   &trans             &trans             &trans              &trans         &trans            &trans       
 //├────────┼───────────┼─────────────────┼─────────────────┼─────────────────┴───────────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼──────────────────┴──────────────────┼───────────────────┼──────────────┼─────────────────┼─────────────────┤
