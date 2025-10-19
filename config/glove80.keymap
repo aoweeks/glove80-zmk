@@ -78,13 +78,6 @@
 / {
     behaviors {
 
-        // ls: layer_switch_hold_tap {
-        //     compatible = "zmk,behavior-hold-tap";
-        //     #binding-cells = <2>;
-        //     flavor = "tap-preferred";
-        //     tapping-term-ms = <200>;
-        //     bindings = <&to>, <&to>;
-        // };
         tog_on: toggle_layer_on_only {
             compatible = "zmk,behavior-toggle-layer";
             #binding-cells = <1>;
@@ -120,34 +113,23 @@
         shift_td: shift_tap_dance {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <500>;
+            tapping-term-ms = <300>;
             bindings = <&single_sticky_tap LSHFT>, <&kp LSHFT>, <&kp CAPSLOCK>;
         };
 
         ppp_td: private_protected_public_tap_dance {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <500>;
+            tapping-term-ms = <300>;
             bindings = <&public 0>, <&protected 0>, <&private 0>;
         };
 
         ppp_spc_td: private_protected_public_with_space_tap_dance {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <500>;
+            tapping-term-ms = <300>;
             bindings = <&public SPACE>, <&protected SPACE>, <&private SPACE>;
-        };
-
-        // tab_shift_mt: tab_shift_mod_tap {
-        //     compatible = "zmk,behavior-hold-tap";
-        //     #binding-cells = <2>;
-        //     flavor = "hold-preferred";
-        //     tapping-term-ms = <200>;
-        //     quick-tap-ms = <200>;
-        //     retro-tap;
-        //     hold-while-undecided;
-        //     bindings = <&single_sticky_layer_tap>, <&kp>;
-        // };
+        };;
         
         mt_rpi: mod_tap_require_prior_idle {
             compatible = "zmk,behavior-hold-tap";
@@ -185,18 +167,6 @@
             bindings = <&mo>, <&kp>;
         };
 
-        // dc_lt: double_character_layer_tap {
-        //     compatible = "zmk,behavior-hold-tap";
-        //     #binding-cells = <2>;
-        //     flavor = "balanced";
-        //     tapping-term-ms = <200>;
-        //     quick-tap-ms = <200>;
-        //     require-prior-idle-ms = <125>;
-        //     hold-while-undecided;
-        //     retro-tap;
-        //     bindings = <&mo>, <&dc>;
-        // };
-
         ret_lt: enter_layer_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -209,17 +179,6 @@
             bindings = <&mo>, <&ret>;
         };
 
-        // lt_cs: layer_tap_clear_shift {
-        //     compatible = "zmk,behavior-hold-tap";
-        //     #binding-cells = <2>;
-        //     flavor = "balanced";
-        //     tapping-term-ms = <200>;
-        //     quick-tap-ms = <200>;
-        //     require-prior-idle-ms = <125>;
-        //     hold-while-undecided;
-        //     retro-tap;
-        //     bindings = <&clear_shift_mo>, <&kp>;
-        // };
 
         space_lt: space_layer_tap {
             compatible = "zmk,behavior-hold-tap";
@@ -302,16 +261,6 @@
             bindings = <&mo>, <&key_repeat>;
         };
 
-        // dl: double_layer_mod_tap {
-        //     compatible = "zmk,behavior-hold-tap";
-        //     #binding-cells = <2>;
-        //     flavor = "balanced";
-        //     tapping-term-ms = <200>;
-        //     quick-tap-ms = <200>;
-        //     retro-tap;
-        //     bindings = <&single_sticky_layer_tap>, <&kp>;
-        // };
-
         caps_word_lt: caps_word_layer_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -353,17 +302,6 @@
             hold-while-undecided;
             bindings = <&mo>, <&copy_cut>;
         };
-
-        // xy_cc: xy_scale_copy_cut_mod_tap {
-        //     compatible = "zmk,behavior-hold-tap";
-        //     #binding-cells = <2>;
-        //     flavor = "tap-preferred";
-        //     tapping-term-ms = <200>;
-        //     quick-tap-ms = <200>;
-        //     require-prior-idle-ms = <125>;
-        //     hold-while-undecided;
-        //     bindings = <&msc >, <&copy_cut>;
-        // };
 
 
         // Mod Morphs
@@ -573,13 +511,6 @@
             bindings = <&kp RET>, <&deferred_shift RET>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
-
-        // equal_arr: equal_shift_fat_arrow {
-        //     compatible = "zmk,behavior-mod-morph";
-        //     #binding-cells = <0>;
-        //     bindings = <&kp EQUAL>, <&bi EQUAL GT>;
-        //     mods = <(MOD_LSFT|MOD_RSFT)>;
-        // };
 
 
         bspc_mm: backspace_char_or_word_mod_morph {
@@ -896,6 +827,14 @@
                           &macro_param_2to1 &kp 0>;
         };
 
+        any: any_keyword {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings =   <&macro_tap &kp A &kp N &kp Y>;
+        };
+
         bool: bool_keyword {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -912,6 +851,34 @@
             bindings =  <&macro_tap &macro_param_1to1 &sk_qr 0>,  
                         <&macro_tap &kp B &kp O &kp O &kp L &kp E &kp A &kp N \
                            &macro_param_2to1 &kp 0>;
+        };
+
+        define: define_keyword {
+            compatible = "zmk,behavior-macro-two-param";
+            #binding-cells = <2>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings =  <&macro_tap &macro_param_1to1 &kp 0 \  
+                          &kp D &kp E &kp F &kp I &kp N &kp E \
+                          &macro_param_2to1 &kp 0>;
+        };
+
+        const: const_keyword {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings =  <&macro_tap &kp C &kp O &kp N &kp S &kp T &kp SPACE>;
+        };
+        
+        include: include_keyword {
+            compatible = "zmk,behavior-macro-two-param";
+            #binding-cells = <2>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings =  <&macro_tap &macro_param_1to1 &kp 0 \
+                          &kp I &kp N &kp C &kp L &kp U &kp D &kp E \
+                          &macro_param_2to1 &kp 0>;
         };
 
         int: int_keyword {
@@ -932,6 +899,16 @@
             bindings =  <&macro_tap &kp B &kp I &kp G &kp I &kp N &kp T>;
         };
 
+        class: class_keyword {
+            compatible = "zmk,behavior-macro-two-param";
+            #binding-cells = <2>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings =  <&macro_tap &macro_param_1to1 &sk_qr 0>,  
+                        <&macro_tap &kp C &kp L &kp A &kp S &kp S \
+                          &macro_param_2to1 &kp 0>;
+        };
+
         float: float_keyword {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
@@ -940,6 +917,16 @@
             bindings =  <&macro_tap &macro_param_1to1 &sk_qr 0>,  
                         <&macro_tap &kp F &kp L &kp O &kp A &kp T \
                            &macro_param_2to1 &kp 0>;
+        };
+
+        function: function_keyword {
+            compatible = "zmk,behavior-macro-two-param";
+            #binding-cells = <2>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings =  <&macro_tap &macro_param_1to1 &sk_qr 0>,  
+                        <&macro_tap &kp F &kp U &kp N &kp C &kp T &kp I &kp O \
+                           &kp N &macro_param_2to1 &kp 0>;
         };
 
         number: number_keyword {
@@ -980,14 +967,24 @@
                            &macro_param_2to1 &kp 0>;
         };
 
-        class: class_keyword {
+        mixed: mixed_keyword {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
             wait-ms = <1>;
             tap-ms = <1>;
             bindings =  <&macro_tap &macro_param_1to1 &sk_qr 0>,  
-                        <&macro_tap &kp C &kp L &kp A &kp S &kp S \
+                        <&macro_tap &kp M &kp I &kp X &kp E &kp D \
                           &macro_param_2to1 &kp 0>;
+        };
+
+
+        varargs: varargs_keyword {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings =  <&macro_tap &kp V &kp A &kp R &kp A &kp R &kp G \
+                          &kp S &kp SPACE >;
         };
 
         void: void_keyword {
@@ -1556,55 +1553,55 @@
 
         keywords_layer {
             bindings = <
-//╭──────────┬────────────┬─────────────┬─────────────┬───────────╮                                                                                                         ╭───────────┬───────────┬───────────┬─────────────┬─────────────╮
-    &none      &none        &none         &none         &none                                                                                                                 &none       &none       &none       &none         &none      
-//├──────────┼────────────┼─────────────┼─────────────┼───────────┼──────────────╮                                                                           ╭──────────────┼───────────┼───────────┼───────────┼─────────────┼─────────────┤
-    &none      &none        &none         &none         &none       &none                                                                                      &none          &none       &none       &none       &none         &none      
-//├──────────┼────────────┼─────────────┼─────────────┼───────────┼──────────────┤                                                                           ├──────────────┼───────────┼───────────┼───────────┼─────────────┼─────────────┤
-    &none      &none        &snpt W H     &number       &ppp_td     &boolean 0 0                                                                               &none          &snpt I F   &snpt F U   &none       &none         &none      
-//├──────────┼────────────┼─────────────┼─────────────┼───────────┼──────────────┤                                                                           ├──────────────┼───────────┼───────────┼───────────┼─────────────┼─────────────┤
-    &none      &array 0 0   &return 0 0   &string 0 0   &the        &none                                                                                      &mapping 0 0   &snpt E I   &but        &int 0 0     &object 0 0   &phone      
-//├──────────┼────────────┼─────────────┼─────────────┼───────────┼──────────────┼───────────┬───────────┬─────────────╮ ╭───────────┬───────────┬───────────┼──────────────┼───────────┼───────────┼───────────┼─────────────┼─────────────┤
-    &none      &none        &none         &class 0 0    &snpt D O   &void 0 0      &none       &none       &none           &none       &none       &none       &none          &snpt E L   &snpt F R   &snpt F E   &snpt F O     &email      
-//├──────────┼────────────┼─────────────┼─────────────┼───────────┴──────────────┼───────────┼───────────┼─────────────┤ ├───────────┼───────────┼───────────┼──────────────┴───────────┼───────────┼───────────┼─────────────┼─────────────┤
-    &none      &none        &none         &none         &none                      &none       &none       &none           &none       &none       &none                      &none       &snpt S W   &none       &none         &none 
-//╰──────────┴────────────┴─────────────┴─────────────┴───────────╯              ╰───────────┴───────────┴─────────────╯ ╰───────────┴───────────┴───────────╯              ╰───────────┴───────────┴───────────┴─────────────┴─────────────╯
+//╭──────────┬────────────┬─────────────┬─────────────┬─────────────╮                                                                                                         ╭──────────────┬───────────────┬───────────┬─────────────┬─────────────╮
+    &none      &none        &none         &trans        &none                                                                                                                   &none          &none           &none       &none         &none      
+//├──────────┼────────────┼─────────────┼─────────────┼─────────────┼──────────────╮                                                                           ╭──────────────┼──────────────┼───────────────┼───────────┼─────────────┼─────────────┤
+    &none      &none        &trans        &none         &trans        &none                                                                                      &none          &none          &none           &none       &none         &none      
+//├──────────┼────────────┼─────────────┼─────────────┼─────────────┼──────────────┤                                                                           ├──────────────┼──────────────┼───────────────┼───────────┼─────────────┼─────────────┤
+    &none      &trans       &snpt W H     &number       &ppp_td       &boolean 0 0                                                                               &none          &snpt I F      &function 0 0   &none       &none         &none      
+//├──────────┼────────────┼─────────────┼─────────────┼─────────────┼──────────────┤                                                                           ├──────────────┼──────────────┼───────────────┼───────────┼─────────────┼─────────────┤
+    &none      &array 0 0   &return 0 0   &string 0 0   &the          &none                                                                                      &mapping 0 0   &include 0 0   &but            &int 0 0     &object 0 0   &phone      
+//├──────────┼────────────┼─────────────┼─────────────┼─────────────┼──────────────┼───────────┬───────────┬─────────────╮ ╭───────────┬───────────┬───────────┼──────────────┼──────────────┼───────────────┼───────────┼─────────────┼─────────────┤
+    &none      &none        &mixed 0 0    &class 0 0    &define 0 0   &void 0 0      &none       &none       &none           &none       &none       &none       &none          &snpt E L      &snpt F R       &snpt F E   &snpt F O     &email      
+//├──────────┼────────────┼─────────────┼─────────────┼─────────────┴──────────────┼───────────┼───────────┼─────────────┤ ├───────────┼───────────┼───────────┼──────────────┴──────────────┼───────────────┼───────────┼─────────────┼─────────────┤
+    &none      &none        &none         &none         &none                        &none       &none       &none           &none       &none       &none                      &none          &snpt S W       &none       &none         &none 
+//╰──────────┴────────────┴─────────────┴─────────────┴─────────────╯              ╰───────────┴───────────┴─────────────╯ ╰───────────┴───────────┴───────────╯              ╰──────────────┴───────────────┴───────────┴─────────────┴─────────────╯
             >;
         };
 
         typescript_keywords_layer {
-            bindings = <
-//╭────────┬─────────┬────────┬─────────┬─────────────╮                                                                         ╭────────┬────────┬────────┬──────────┬──────────────╮
-    &trans   &trans    &trans   &trans    &trans                                                                                  &trans   &trans   &trans   &trans     &trans      
-//├────────┼─────────┼────────┼─────────┼─────────────┼────────╮                                                       ╭────────┼────────┼────────┼────────┼──────────┼──────────────┤
-    &trans   &trans    &trans   &trans    &trans        &trans                                                           &trans   &trans   &trans   &trans   &trans     &trans      
-//├────────┼─────────┼────────┼─────────┼─────────────┼────────┤                                                       ├────────┼────────┼────────┼────────┼──────────┼──────────────┤
-    &trans   &trans    &trans   &trans    &ppp_spc_td   &bool                                                            &trans   &trans   &trans   &trans   &trans     &trans      
-//├────────┼─────────┼────────┼─────────┼─────────────┼────────┤                                                       ├────────┼────────┼────────┼────────┼──────────┼──────────────┤
-    &trans   &trans    &trans   &trans    &trans        &trans                                                           &trans   &trans   &trans   &trans   &big_int   &trans      
-//├────────┼─────────┼────────┼─────────┼─────────────┼────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────┼────────┼──────────┼──────────────┤
-    &trans   &trans    &trans   &trans    &trans        &trans   &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans     &trans       
-//├────────┼─────────┼────────┼─────────┼─────────────┴────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────┼────────┼──────────┼──────────────┤
-    &trans   &trans    &trans   &trans    &trans                 &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans   &trans   &trans     &trans 
-//╰────────┴─────────┴────────┴─────────┴─────────────╯        ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴────────┴──────────┴──────────────╯
+            bindings = <<<
+//╭────────┬─────────┬────────┬─────────┬─────────────╮                                                                         ╭────────┬────────┬──────────┬──────────┬──────────────╮
+    &trans   &trans    &trans   &trans    &trans                                                                                  &trans   &trans   &trans     &trans     &trans      
+//├────────┼─────────┼────────┼─────────┼─────────────┼────────╮                                                       ╭────────┼────────┼────────┼──────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &trans    &trans        &trans                                                           &trans   &trans   &trans   &trans     &trans     &trans      
+//├────────┼─────────┼────────┼─────────┼─────────────┼────────┤                                                       ├────────┼────────┼────────┼──────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &trans    &ppp_spc_td   &bool                                                            &trans   &trans   &trans   &trans     &trans     &trans      
+//├────────┼─────────┼────────┼─────────┼─────────────┼────────┤                                                       ├────────┼────────┼────────┼──────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &trans    &trans        &trans                                                           &trans   &trans   &trans   &big_int   &trans     &trans      
+//├────────┼─────────┼────────┼─────────┼─────────────┼────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────┼──────────┼──────────┼──────────────┤
+    &trans   &trans    &any     &trans    &const        &trans   &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans   &trans     &trans     &trans       
+//├────────┼─────────┼────────┼─────────┼─────────────┴────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────┼──────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &trans    &trans                 &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans   &trans     &trans     &trans 
+//╰────────┴─────────┴────────┴─────────┴─────────────╯        ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴──────────┴──────────┴──────────────╯
             >;
         };
 
         c_keywords_layer {
             bindings = <
-//╭────────┬───────────┬─────────────────┬─────────────────┬─────────────╮                                                                                          ╭────────┬────────┬────────┬──────────────┬─────────────────╮
-    &trans   &trans      &trans            &trans            &trans                                                                                                   &trans   &trans   &trans   &trans         &trans      
-//├────────┼───────────┼─────────────────┼─────────────────┼─────────────┼───────────────╮                                                       ╭──────────────────┼────────┼────────┼────────┼──────────────┼─────────────────┤
-    &trans   &trans      &trans            &trans            &trans        &trans                                                                  &trans             &trans   &trans   &trans   &trans         &trans      
-//├────────┼───────────┼─────────────────┼─────────────────┼─────────────┼───────────────┤                                                       ├──────────────────┼────────┼────────┼────────┼──────────────┼─────────────────┤
-    &trans   &trans      &trans            &float 0 SPACE    &ppp_spc_td   &int 0 SPACE                                                            &trans             &trans   &trans   &trans   &trans         &trans      
-//├────────┼───────────┼─────────────────┼─────────────────┼─────────────┼───────────────┤                                                       ├──────────────────┼────────┼────────┼────────┼──────────────┼─────────────────┤
-    &trans   &kp ASTRK   &return 0 SPACE   &string 0 SPACE   &trans        &trans                                                                  &mapping 0 SPACE   &trans   &trans   &trans   &int 0 SPACE   &object 0 SPACE      
-//├────────┼───────────┼─────────────────┼─────────────────┼─────────────┼───────────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼──────────────────┼────────┼────────┼────────┼──────────────┼─────────────────┤
-    &trans   &trans      &trans            &class 0 SPACE    &trans        &void 0 SPACE   &trans   &trans   &trans     &trans   &trans   &trans   &trans             &trans   &trans   &trans   &trans         &trans       
-//├────────┼───────────┼─────────────────┼─────────────────┼─────────────┴───────────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼──────────────────┴────────┼────────┼────────┼──────────────┼─────────────────┤
-    &trans   &trans      &trans            &trans            &trans                        &trans   &trans   &trans     &trans   &trans   &trans                      &trans   &trans   &trans   &trans         &trans 
-//╰────────┴───────────┴─────────────────┴─────────────────┴─────────────╯               ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯                  ╰────────┴────────┴────────┴──────────────┴─────────────────╯
+//╭────────┬───────────┬─────────────────┬─────────────────┬─────────────────╮                                                                                          ╭──────────────────┬───────────────────┬──────────────┬─────────────────┬─────────────────╮
+    &trans   &trans      &trans            &trans            &trans                                                                                                       &trans             &trans              &trans         &trans            &trans      
+//├────────┼───────────┼─────────────────┼─────────────────┼─────────────────┼───────────────╮                                                       ╭──────────────────┼──────────────────┼───────────────────┼──────────────┼─────────────────┼─────────────────┤
+    &trans   &trans      &trans            &trans            &trans            &trans                                                                  &trans             &trans             &trans              &trans         &trans            &trans      
+//├────────┼───────────┼─────────────────┼─────────────────┼─────────────────┼───────────────┤                                                       ├──────────────────┼──────────────────┼───────────────────┼──────────────┼─────────────────┼─────────────────┤
+    &trans   &trans      &trans            &float 0 SPACE    &ppp_spc_td       &int 0 SPACE                                                            &trans             &trans             &function 0 SPACE   &trans         &trans            &trans      
+//├────────┼───────────┼─────────────────┼─────────────────┼─────────────────┼───────────────┤                                                       ├──────────────────┼──────────────────┼───────────────────┼──────────────┼─────────────────┼─────────────────┤
+    &trans   &kp ASTRK   &return 0 SPACE   &string 0 SPACE   &trans            &varags                                                                  &mapping 0 SPACE   &include 0 SPACE   &trans              &int 0 SPACE   &object 0 SPACE   &trans   
+//├────────┼───────────┼─────────────────┼─────────────────┼─────────────────┼───────────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼──────────────────┼──────────────────┼───────────────────┼──────────────┼─────────────────┼─────────────────┤
+    &trans   &trans      &mixed 0 SPACE    &class 0 SPACE    &define 0 SPACE   &void 0 SPACE   &trans   &trans   &trans     &trans   &trans   &trans   &trans             &trans             &trans              &trans         &trans            &trans       
+//├────────┼───────────┼─────────────────┼─────────────────┼─────────────────┴───────────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼──────────────────┴──────────────────┼───────────────────┼──────────────┼─────────────────┼─────────────────┤
+    &trans   &trans      &trans            &trans            &trans                            &trans   &trans   &trans     &trans   &trans   &trans                      &trans             &trans              &trans         &trans            &trans 
+//╰────────┴───────────┴─────────────────┴─────────────────┴─────────────────╯               ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯                  ╰──────────────────┴───────────────────┴──────────────┴─────────────────┴─────────────────╯
             >;
         };
 
@@ -1715,25 +1712,6 @@
 //╰──────────┴───────────┴───────────┴───────────┴───────────╯           ╰─────────────┴───────────┴───────────╯ ╰──────────┴───────┴───────╯       ╰─────────┴─────────┴─────────┴───────────┴─────────────╯
             >;
         };
-
-
-//         double_numpad_symbols_layer {
-//             bindings = <
-// //╭────────┬────────┬────────────────┬──────────────────────┬───────────────╮                                                                                                           ╭───────────┬───────────┬───────────┬─────────────────────┬────────╮
-//     &trans   &trans   &trans           &trans                 &trans                                                                                                                      &trans      &trans      &trans      &trans                &trans
-// //├────────┼────────┼────────────────┼──────────────────────┼───────────────┼───────────────────╮                                                                 ╭─────────────────────┼───────────┼───────────┼───────────┼─────────────────────┼────────┤
-//     &trans   &trans   &trans           &trans                 &trans          &trans                                                                                &trans                &trans      &trans      &trans      &trans                &trans     
-// //├────────┼────────┼────────────────┼──────────────────────┼───────────────┼───────────────────┤                                                                 ├─────────────────────┼───────────┼───────────┼───────────┼─────────────────────┼────────┤
-//     &trans   &none    &dc TILDE2       &pad LT LT             &pad GT GT      &dc GB_POUND_SIGN                                                                     &us GB_BSLH GB_BSLH   &us N7 N7   &us N8 N8   &us N9 N9   &trans                &trans    
-// //├────────┼────────┼────────────────┼──────────────────────┼───────────────┼───────────────────┤                                                                 ├─────────────────────┼───────────┼───────────┼───────────┼─────────────────────┼────────┤
-//     &trans   &none    &pad AMPS AMPS   &pad GB_PIPE GB_PIPE   &dc LBRC        &dc RBRC                                                                              &dc CARET             &us N4 N4   &us N5 N5   &us N6 N6   &us GB_HASH GB_HASH   &trans           
-// //├────────┼────────┼────────────────┼──────────────────────┼───────────────┼───────────────────┼────────┬────────┬─────────────╮ ╭─────────────┬────────┬────────┬─────────────────────┼───────────┼───────────┼───────────┼─────────────────────┼────────┤
-//     &trans   &none    &dc PRCNT        &dc DOLLAR             &us LBKT LBKT   &us RBKT RBKT       &trans   &trans   &to NUMS_SYMS     to DEFAULT   &trans   &trans   &us GRAVE GRAVE       &us N1 N1   &us N2 N2   &us N3 N3   &trans                &trans          
-// //├────────┼────────┼────────────────┼──────────────────────┼───────────────┴───────────────────┼────────┼────────┼─────────────┤ ├─────────────┼────────┼────────┼─────────────────────┴───────────┼───────────┼───────────┼─────────────────────┼────────┤
-//     &trans   &trans   &trans           &trans                 &trans                              &trans   &trans   &trans          &trans        &trans   &trans                         &us N0 N0   &trans      &trans      &trans                &trans
-// //╰────────┴────────┴────────────────┴──────────────────────┴───────────────╯                   ╰────────┴────────┴─────────────╯ ╰─────────────┴────────┴────────╯                     ╰───────────┴───────────┴───────────┴─────────────────────┴────────╯
-//             >;
-//         };
 
         wasd_layer {
             bindings = <
