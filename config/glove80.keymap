@@ -1309,6 +1309,11 @@
             if-layers = <CODING C_LANG KEYW>;
             then-layer = <C_KEYW>;
         };
+
+        activate_python_keywords_layer {
+            if-layers = <CODING PYTHON KEYW>;
+            then-layer = <PYTHON_KEYW>;
+        };
     };
 
 
@@ -1592,7 +1597,7 @@
 //├────────┼───────────┼─────────────────┼─────────────────┼─────────────┼───────────────╮                                                       ╭──────────────────┼────────┼────────┼────────┼──────────────┼─────────────────┤
     &trans   &trans      &trans            &trans            &trans        &trans                                                                  &trans             &trans   &trans   &trans   &trans         &trans      
 //├────────┼───────────┼─────────────────┼─────────────────┼─────────────┼───────────────┤                                                       ├──────────────────┼────────┼────────┼────────┼──────────────┼─────────────────┤
-    &trans   &trans      &trans            &float 0 SPACE    &ppt_spc_td   &int 0 SPACE                                                            &trans             &trans   &trans   &trans   &trans         &trans      
+    &trans   &trans      &trans            &float 0 SPACE    &ppp_spc_td   &int 0 SPACE                                                            &trans             &trans   &trans   &trans   &trans         &trans      
 //├────────┼───────────┼─────────────────┼─────────────────┼─────────────┼───────────────┤                                                       ├──────────────────┼────────┼────────┼────────┼──────────────┼─────────────────┤
     &trans   &kp ASTRK   &return 0 SPACE   &string 0 SPACE   &trans        &trans                                                                  &mapping 0 SPACE   &trans   &trans   &trans   &int 0 SPACE   &object 0 SPACE      
 //├────────┼───────────┼─────────────────┼─────────────────┼─────────────┼───────────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼──────────────────┼────────┼────────┼────────┼──────────────┼─────────────────┤
