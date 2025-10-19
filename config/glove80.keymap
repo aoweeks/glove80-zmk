@@ -129,7 +129,7 @@
             #binding-cells = <0>;
             tapping-term-ms = <300>;
             bindings = <&public SPACE>, <&protected SPACE>, <&private SPACE>;
-        };;
+        };
         
         mt_rpi: mod_tap_require_prior_idle {
             compatible = "zmk,behavior-hold-tap";
