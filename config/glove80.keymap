@@ -125,6 +125,22 @@
             bindings = <&let 0 SPACE>, <&var>;
         };
 
+        vec_td: vec_tap_dance {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&vec N2>, <&vec N3>, <&vec N4>;
+        };  
+
+        vector_td: vector_tap_dance {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings =  <&vector LSHFT N2>,
+                        <&vector LSHFT N3>,
+                        <&vector LSHFT N4>;
+        };   
+
         ppp_td: private_protected_public_tap_dance {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -871,11 +887,13 @@
         };
 
         bool: bool_keyword {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
+            compatible = "zmk,behavior-macro-two-param";
+            #binding-cells = <2>;
             wait-ms = <1>;
             tap-ms = <1>;
-            bindings = <&macro_tap &kp B &kp O &kp O &kp L &kp SPACE>;
+            bindings =  <&macro_tap &macro_param_1to1 &sk_qr 0>,
+                        <&macro_tap &kp B &kp O &kp O &kp L \
+                          &macro_param_2to1 &kp 0>;
         };
 
         boolean: boolean_keyword {
@@ -1070,6 +1088,26 @@
             tap-ms = <1>;
             bindings =  <&macro_tap &kp V &kp A &kp R &kp A &kp R &kp G \
                           &kp S &kp SPACE >;
+        };
+
+          var: var_keyword {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings =  <&macro_release &kp LSHFT>,
+                        <&macro_tap &kp V &kp E &kp C &macro_param_1to1 &kp 0 \
+                          &kp SPACE >;
+        };
+
+        vector: vector_keyword {
+            compatible = "zmk,behavior-macro-two-param";
+            #binding-cells = <2>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings =  <&macro_tap &macro_param_1to1 &sk_qr 0>,  
+                        <&macro_tap &kp V &kp E &kp C &kp T &kp O &kp R
+                          &macro_param_2to1 &kp 0>;
         };
 
         void: void_keyword {
@@ -1663,7 +1701,7 @@
 //├──────────┼────────────┼─────────────┼─────────────┼─────────────┼──────────────┤                                                                           ├──────────────┼──────────────┼───────────────┼───────────┼─────────────┼─────────────┤
     &none      &trans       &none         &number       &ppp_td       &boolean 0 0                                                                               &none          &let 0 0       &function 0 0   &none       &none         &none      
 //├──────────┼────────────┼─────────────┼─────────────┼─────────────┼──────────────┤                                                                           ├──────────────┼──────────────┼───────────────┼───────────┼─────────────┼─────────────┤
-    &none      &array 0 0   &return 0 0   &string 0 0   &none         &none                                                                                      &mapping 0 0   &include 0 0   &none           &int 0 0    &object 0 0   &none      
+    &none      &array 0 0   &return 0 0   &string 0 0   &none         &none                                                                                      &mapping 0 0   &include 0 0   &vector 0 0     &int 0 0    &object 0 0   &none      
 //├──────────┼────────────┼─────────────┼─────────────┼─────────────┼──────────────┼───────────┬───────────┬─────────────╮ ╭───────────┬───────────┬───────────┼──────────────┼──────────────┼───────────────┼───────────┼─────────────┼─────────────┤
     &none      &none        &mixed 0 0    &class 0 0    &define 0 0   &void 0 0      &trans      &trans      &trans          &trans      &trans      &trans      &break 0 0     &true          &snpt F R       &snpt F E   &snpt F O     &none      
 //├──────────┼────────────┼─────────────┼─────────────┼─────────────┴──────────────┼───────────┼───────────┼─────────────┤ ├───────────┼───────────┼───────────┼──────────────┴──────────────┼───────────────┼───────────┼─────────────┼─────────────┤
@@ -1674,19 +1712,19 @@
 
         typescript_keywords_layer {
             bindings = <
-//╭────────┬─────────┬────────┬─────────┬─────────────╮                                                                                  ╭─────────────┬───────────────────┬──────────┬──────────┬──────────────╮
-    &trans   &trans    &trans   &trans    &trans                                                                                           &trans        &trans              &trans     &trans     &trans      
-//├────────┼─────────┼────────┼─────────┼─────────────┼────────╮                                                       ╭─────────────────┼─────────────┼───────────────────┼──────────┼──────────┼──────────────┤
-    &trans   &trans    &trans   &trans    &trans        &trans                                                           &trans            &trans        &trans              &trans     &trans     &trans      
-//├────────┼─────────┼────────┼─────────┼─────────────┼────────┤                                                       ├─────────────────┼─────────────┼───────────────────┼──────────┼──────────┼──────────────┤
-    &trans   &trans    &trans   &trans    &ppp_spc_td   &bool                                                            &trans            &let_var_td   &function 0 SPACE   &trans     &trans     &trans      
-//├────────┼─────────┼────────┼─────────┼─────────────┼────────┤                                                       ├─────────────────┼─────────────┼───────────────────┼──────────┼──────────┼──────────────┤
-    &trans   &trans    &trans   &trans    &trans        &trans                                                           &trans            &trans        &trans              &big_int   &trans     &trans      
-//├────────┼─────────┼────────┼─────────┼─────────────┼────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼─────────────────┼─────────────┼───────────────────┼──────────┼──────────┼──────────────┤
-    &trans   &trans    &any     &trans    &const        &trans   &trans   &trans   &trans     &trans   &trans   &trans   &break SEMI RET   &trans        &trans              &trans     &trans     &trans       
-//├────────┼─────────┼────────┼─────────┼─────────────┴────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼─────────────────┴─────────────┼───────────────────┼──────────┼──────────┼──────────────┤
-    &trans   &trans    &trans   &trans    &trans                 &trans   &trans   &trans     &trans   &trans   &trans                     &trans        &trans              &trans     &trans     &trans 
-//╰────────┴─────────┴────────┴─────────┴─────────────╯        ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯                 ╰─────────────┴───────────────────┴──────────┴──────────┴──────────────╯
+//╭────────┬─────────┬────────┬─────────┬─────────────╮                                                                                     ╭─────────────┬───────────────────┬──────────┬──────────┬──────────────╮
+    &trans   &trans    &trans   &trans    &trans                                                                                              &trans        &trans              &trans     &trans     &trans      
+//├────────┼─────────┼────────┼─────────┼─────────────┼───────────╮                                                       ╭─────────────────┼─────────────┼───────────────────┼──────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &trans    &trans        &trans                                                              &trans            &trans        &trans              &trans     &trans     &trans      
+//├────────┼─────────┼────────┼─────────┼─────────────┼───────────┤                                                       ├─────────────────┼─────────────┼───────────────────┼──────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &trans    &ppp_spc_td   &bool 0 0                                                           &trans            &let_var_td   &function 0 SPACE   &trans     &trans     &trans      
+//├────────┼─────────┼────────┼─────────┼─────────────┼───────────┤                                                       ├─────────────────┼─────────────┼───────────────────┼──────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &trans    &trans        &trans                                                              &trans            &trans        &trans              &big_int   &trans     &trans      
+//├────────┼─────────┼────────┼─────────┼─────────────┼───────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼─────────────────┼─────────────┼───────────────────┼──────────┼──────────┼──────────────┤
+    &trans   &trans    &any     &trans    &const        &trans      &trans   &trans   &trans     &trans   &trans   &trans   &break SEMI RET   &trans        &trans              &trans     &trans     &trans       
+//├────────┼─────────┼────────┼─────────┼─────────────┴───────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼─────────────────┴─────────────┼───────────────────┼──────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &trans    &trans                    &trans   &trans   &trans     &trans   &trans   &trans                     &trans        &trans              &trans     &trans     &trans 
+//╰────────┴─────────┴────────┴─────────┴─────────────╯           ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯                 ╰─────────────┴───────────────────┴──────────┴──────────┴──────────────╯
             >;
         };
 
@@ -1697,32 +1735,32 @@
 //├────────┼───────────┼─────────────────┼─────────────────┼───────────────────────┼───────────────╮                                                       ╭──────────────────┼────────────────────────┼───────────────────┼──────────────┼─────────────────┼─────────────────┤
     &trans   &trans      &trans            &trans            &trans                  &trans                                                                  &trans             &trans                   &trans              &trans         &trans            &trans      
 //├────────┼───────────┼─────────────────┼─────────────────┼───────────────────────┼───────────────┤                                                       ├──────────────────┼────────────────────────┼───────────────────┼──────────────┼─────────────────┼─────────────────┤
-    &trans   &trans      &trans            &float 0 SPACE    &ppp_spc_td             &int 0 SPACE                                                            &trans             &varargs                 &function 0 SPACE   &trans         &trans            &trans      
+    &trans   &trans      &trans            &float 0 SPACE    &ppp_spc_td             &bool 0 SPACE                                                           &trans             &varargs                 &function 0 SPACE   &trans         &trans            &trans      
 //├────────┼───────────┼─────────────────┼─────────────────┼───────────────────────┼───────────────┤                                                       ├──────────────────┼────────────────────────┼───────────────────┼──────────────┼─────────────────┼─────────────────┤
-    &trans   &kp ASTRK   &return 0 SPACE   &string 0 SPACE   &trans                  &trans                                                                  &mapping 0 SPACE   &include GB_HASH SPACE   &trans              &int 0 SPACE   &object 0 SPACE   &trans   
+    &trans   &kp ASTRK   &return 0 SPACE   &string 0 SPACE   &trans                  &trans                                                                  &mapping 0 SPACE   &include GB_HASH SPACE   &vec_td             &int 0 SPACE   &object 0 SPACE   &trans   
 //├────────┼───────────┼─────────────────┼─────────────────┼───────────────────────┼───────────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼──────────────────┼────────────────────────┼───────────────────┼──────────────┼─────────────────┼─────────────────┤
-    &trans   &trans      &mixed 0 SPACE    &class 0 SPACE    &define GB_HASH SPACE   &void 0 SPACE   &trans   &trans   &trans     &trans   &trans   &trans   &break SEMI RET    &kp N1                   &trans              &trans         &trans            &trans       
+    &trans   &trans      &mixed 0 SPACE    &class 0 SPACE    &define GB_HASH SPACE   &void 0 SPACE   &trans   &trans   &trans     &trans   &trans   &trans   &break SEMI RET    &trans                   &trans              &trans         &trans            &trans       
 //├────────┼───────────┼─────────────────┼─────────────────┼───────────────────────┴───────────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼──────────────────┴────────────────────────┼───────────────────┼──────────────┼─────────────────┼─────────────────┤
-    &trans   &trans      &trans            &trans            &trans                                  &trans   &trans   &trans     &trans   &trans   &trans                      &kp N0                   &trans              &trans         &trans            &trans 
+    &trans   &trans      &trans            &trans            &trans                                  &trans   &trans   &trans     &trans   &trans   &trans                      &trans                   &trans              &trans         &trans            &trans 
 //╰────────┴───────────┴─────────────────┴─────────────────┴───────────────────────╯               ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯                  ╰────────────────────────┴───────────────────┴──────────────┴─────────────────┴─────────────────╯
             >;
         };
 
         python_keywords_layer {
             bindings = <
-//╭────────┬─────────┬────────┬─────────┬────────╮                                                                           ╭────────┬────────┬────────┬──────────┬──────────────╮
-    &trans   &trans    &trans   &trans    &trans                                                                               &trans   &trans   &trans   &trans     &trans      
-//├────────┼─────────┼────────┼─────────┼────────┼──────────╮                                                       ╭────────┼────────┼────────┼────────┼──────────┼──────────────┤
-    &trans   &trans    &trans   &trans    &trans   &trans                                                             &trans   &trans   &trans   &trans   &trans     &trans      
-//├────────┼─────────┼────────┼─────────┼────────┼──────────┤                                                       ├────────┼────────┼────────┼────────┼──────────┼──────────────┤
-    &trans   &trans    &trans   &trans    &trans   &bool                                                              &trans   &var     &func    &trans   &trans     &trans      
-//├────────┼─────────┼────────┼─────────┼────────┼──────────┤                                                       ├────────┼────────┼────────┼────────┼──────────┼──────────────┤
-    &trans   &trans    &trans   &trans    &trans   &trans                                                             &trans   &trans   &trans   &trans   &trans     &trans      
-//├────────┼─────────┼────────┼─────────┼────────┼──────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────┼────────┼──────────┼──────────────┤
-    &trans   &trans    &trans   &trans    &trans   &trans     &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans     &trans       
-//├────────┼─────────┼────────┼─────────┼────────┴──────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────┼────────┼──────────┼──────────────┤
-    &trans   &trans    &trans   &trans    &trans              &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans   &trans   &trans     &trans 
-//╰────────┴─────────┴────────┴─────────┴────────╯          ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴────────┴──────────┴──────────────╯
+//╭────────┬─────────┬────────┬─────────┬────────╮                                                                            ╭────────┬────────────┬────────┬──────────┬──────────────╮
+    &trans   &trans    &trans   &trans    &trans                                                                                &trans   &trans       &trans   &trans     &trans      
+//├────────┼─────────┼────────┼─────────┼────────┼───────────╮                                                       ╭────────┼────────┼────────────┼────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &trans    &trans   &trans                                                              &trans   &trans   &trans       &trans   &trans     &trans      
+//├────────┼─────────┼────────┼─────────┼────────┼───────────┤                                                       ├────────┼────────┼────────────┼────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &trans    &trans   &bool 0 0                                                           &trans   &var     &func        &trans   &trans     &trans      
+//├────────┼─────────┼────────┼─────────┼────────┼───────────┤                                                       ├────────┼────────┼────────────┼────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &trans    &trans   &trans                                                              &trans   &trans   &vector_td   &trans   &trans     &trans      
+//├────────┼─────────┼────────┼─────────┼────────┼───────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────────┼────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &trans    &trans   &trans      &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans       &trans   &trans     &trans       
+//├────────┼─────────┼────────┼─────────┼────────┴───────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────────┼────────┼──────────┼──────────────┤
+    &trans   &trans    &trans   &trans    &trans               &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans       &trans   &trans     &trans 
+//╰────────┴─────────┴────────┴─────────┴────────╯           ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────────┴────────┴──────────┴──────────────╯
             >;
         };
 
