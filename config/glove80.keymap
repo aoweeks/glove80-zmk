@@ -362,13 +362,6 @@
 
 
         // Mod Morphs
-        lpar_both: left_parenthesis_shift_both_parentheses {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp LPAR>, <&bi LPAR RPAR>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
         lpar_spc: opening_parenthesis_with_space {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -1615,7 +1608,7 @@
 //├─────────────────┼────────────────┼──────────────────┼────────────────────┼──────────────────┼───────────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼──────────────────┼───────────────┼──────────────────┼──────────────┼──────────────────┼───────────────┤
     &pad EXCL EQUAL   &none            &pad PRCNT EQUAL   &bi DOLLAR LBRC      &ts_bi LPAR LBRC   &bi RBRC RPAR   &trans   &trans   &none      &none    &none    &none    &none              &bi MINUS N1    &kp COMMA          &ellipsis      &none             &pad EQUAL GT 
 //├─────────────────┼────────────────┼──────────────────┼────────────────────┼──────────────────┴───────────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼──────────────────┴───────────────┼──────────────────┼──────────────┼──────────────────┼───────────────┤
-    &none             &se EXCL QMARK   &pad PLUS EQUAL    &none                &none                              &trans   &trans   &trans     &trans   &trans   &trans                      &none           &bi COLON COLON    &none          &pad ASTRK EQUAL   &none 
+    &none             &se EXCL QMARK   &pad PLUS EQUAL    &bi LPAR RPAR        &none                              &trans   &trans   &trans     &trans   &trans   &trans                      &none           &bi COLON COLON    &none          &pad ASTRK EQUAL   &none 
 //╰─────────────────┴────────────────┴──────────────────┴────────────────────┴──────────────────╯               ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯                  ╰───────────────┴──────────────────┴──────────────┴──────────────────┴───────────────╯
             >;
         };
