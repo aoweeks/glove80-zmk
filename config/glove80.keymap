@@ -107,7 +107,7 @@
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
-            bindings = <&spad>, <&kp>;
+            bindings = <&kp>, <&spad>;
         };
         
         spad_i_mt: inverted_padded_single_char_hold_tap {
@@ -115,7 +115,7 @@
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&spad>;
+            bindings = <&spad>, <&kp>;
         };
 
         ts_mt: trailing_space_hold_tap {
