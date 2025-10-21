@@ -1090,7 +1090,7 @@
                           &kp S &kp SPACE >;
         };
 
-          var: var_keyword {
+        vec: vec_keyword {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
             wait-ms = <1>;
