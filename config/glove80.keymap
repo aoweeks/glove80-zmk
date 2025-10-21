@@ -102,6 +102,39 @@
             bindings = <&mo>, <&rgb_ug_status_macro>;
         };
 
+        spad_mt: padded_single_char_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&spad>, <&kp>;
+        };
+        
+        spad_i_mt: inverted_padded_single_char_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&spad>;
+        };
+
+        ts_mt: trailing_space_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&ts>, <&kp>;
+        };
+        
+        ps_mt: preceding_space_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&ps>, <&kp>;
+        };
+
+
         sk_qr: sticky_key_quick_release {
             compatible = "zmk,behavior-sticky-key";
             #binding-cells = <1>;
@@ -420,19 +453,6 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        prcnt: percent {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp PRCNT>, <&pad PRCNT 0>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        prcnt_i: percent_inverted {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&pad PRCNT 0>, <&kp PRCNT>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
         
         minus: minus {
             compatible = "zmk,behavior-mod-morph";
@@ -484,47 +504,6 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        amps: padded_ampersand {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&pad AMPS 0>, <&kp AMPS>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        pipe: padded_pipe {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&pad GB_PIPE 0>, <&kp GB_PIPE>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        less: less_than {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp LT>, <&pad LT 0>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        less_i: less_than_inverted {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&pad LT 0>, <&kp LT>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        greater: greater_than {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp GT>, <&pad GT 0>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        greater_i: greater_than_inverted {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&pad GT 0>, <&kp GT>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
 
         dbl_quote: double_quotes_with_deferred_shift {
             compatible = "zmk,behavior-mod-morph";
@@ -541,19 +520,6 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        lbkt_spc: opening_bracket_with_trailing_space {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&ts_bi LBKT SPACE>, <&kp LPAR>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        spc_lbrc: opening_brace_with_preceding_space {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&bi SPACE LBRC>, <&kp LBRC>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
 
         ret: enter {
             compatible = "zmk,behavior-mod-morph";
@@ -691,7 +657,7 @@
         };
 
 
-        pad: padded_character_s {
+        pad: padded_characters {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
             wait-ms = <1>;
@@ -701,13 +667,39 @@
                           &macro_param_2to1 &kp 0 &kp SPACE>;
         };
 
+        spad: single_padded_character {
+            compatible = "zmk,behavior-macro-two-param";
+            #binding-cells = <1>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings =  <&macro_release &kp LSHFT>,
+                        <&macro_tap &kp SPACE &macro_param_1to1 &kp 0 \
+                          &kp SPACE>;
+        };
+
+        ps: preceding_space {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings = <&macro_tap &kp SPACE &macro_param_1to1 &kp 0>;
+        };
+
+        ts: trailing_space {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings = <&macro_tap &macro_param_1to1 &kp 0 &kp SPACE>;
+        };
+
         ts_bi: bigram_with_trailing_space {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
             wait-ms = <1>;
             tap-ms = <1>;
-            bindings = <&macro_param_1to1 &kp 0 &macro_param_2to1 &kp 0 \
-                          &kp SPACE>;
+            bindings =  <&macro_tap &macro_param_1to1 &kp 0 \
+                          &macro_param_2to1 &kp 0 &kp SPACE>;
         };
 
         se: sentence_ending {
@@ -1550,37 +1542,37 @@
 
         numbers_and_symbols_layer {
             bindings = <
-//╭────────┬───────────────────┬────────────┬────────────┬────────────╮                                                                                                           ╭──────────┬─────────────┬───────────┬───────────────┬────────╮                                                                                                         ╭───────────┬───────────┬───────────┬───────────────────┬────────╮//╭────────┬────────┬────────────┬─────────────┬──────────╮                                                                                                         ╭───────────┬───────────┬───────────┬───────────────────┬────────╮//╭────────┬────────┬────────────┬─────────────┬──────────╮                                                                                                         ╭───────────┬───────────┬───────────┬───────────────────┬────────╮//╭────────┬────────┬────────────┬─────────────┬──────────╮                                                                                                         ╭───────────┬───────────┬───────────┬───────────────────┬────────╮//╭────────┬────────┬────────────┬─────────────┬──────────╮                                                                                                         ╭───────────┬───────────┬───────────┬───────────────────┬────────╮//╭────────┬────────┬────────────┬─────────────┬──────────╮                                                                                                         ╭───────────┬───────────┬───────────┬───────────────────┬────────╮//╭────────┬────────┬────────────┬─────────────┬──────────╮                                                                                                         ╭───────────┬───────────┬───────────┬───────────────────┬────────╮┬───────────┬───────────────────┬────────╮
-    &trans   &trans              &trans       &trans       &trans                                                                                                                   &trans     &trans        &trans      &trans          &trans
-//├────────┼───────────────────┼────────────┼────────────┼────────────┼────────────╮                                                                                ╭─────────────┼──────────┼─────────────┼───────────┼───────────────┼────────┤
-    &trans   &trans              &trans       &trans       &trans       &trans                                                                                        &trans        &trans     &trans        &trans      &trans          &trans     
-//├────────┼───────────────────┼────────────┼────────────┼────────────┼────────────┤                                                                                ├─────────────┼──────────┼─────────────┼───────────┼───────────────┼────────┤
-    &trans   &trans              &kp TILDE2   &less        &greater     &kp LC(G)                                                                                     &kp CARET     &us N7 0   &us N8 0      &us N9 0    &trans          &trans    
-//├────────┼───────────────────┼────────────┼────────────┼────────────┼────────────┤                                                                                ├─────────────┼──────────┼─────────────┼───────────┼───────────────┼────────┤
-    &none    &us GB_BSLH 0       &amps        &pipe        &us LBKT 0   &us RBKT 0                                                                                    &kp GB_AT     &us N4 0   &us N5 0      &us N6 0    &us GB_HASH 0   &trans           
-//├────────┼───────────────────┼────────────┼────────────┼────────────┼────────────┼────────┬────────┬───────────────╮ ╭─────────────┬─────────────────────┬────────┬─────────────┼──────────┼─────────────┼───────────┼───────────────┼────────┤
-    &trans   &kp GB_POUND_SIGN   &prcnt       &kp DOLLAR   &kp LBRC     &kp RBRC     &trans   &trans   &to NUMS_SYMS     &to DEFAULT   &trans                &trans   &us GRAVE 0   &us N1 0   &us N2 0      &us N3 0    &kp UNDER       &trans          
-//├────────┼───────────────────┼────────────┼────────────┼────────────┴────────────┼────────┼────────┼───────────────┤ ├─────────────┼─────────────────────┼────────┼─────────────┴──────────┼─────────────┼───────────┼───────────────┼────────┤
-    &trans   &trans              &trans       &trans       &trans                    &trans   &trans   &trans            &trans        &lt_rpi BIGRAM BSPC   &trans                 &us N0 0   &us COMMA 0   &us DOT 0   &trans          &trans
-//╰────────┴───────────────────┴────────────┴────────────┴────────────╯            ╰────────┴────────┴───────────────╯ ╰─────────────┴─────────────────────┴────────╯             ╰──────────┴─────────────┴───────────┴───────────────┴────────╯
+//╭────────┬───────────────────┬────────────────────────┬──────────────────────────┬──────────────────╮                                                                                                           ╭──────────┬─────────────┬───────────┬───────────────┬────────╮                                                                                                         ╭───────────┬───────────┬───────────┬───────────────────┬────────╮//╭────────┬────────┬────────────┬─────────────┬──────────╮                                                                                                         ╭───────────┬───────────┬───────────┬───────────────────┬────────╮//╭────────┬────────┬────────────┬─────────────┬──────────╮                                                                                                         ╭───────────┬───────────┬───────────┬───────────────────┬────────╮//╭────────┬────────┬────────────┬─────────────┬──────────╮                                                                                                         ╭───────────┬───────────┬───────────┬───────────────────┬────────╮//╭────────┬────────┬────────────┬─────────────┬──────────╮                                                                                                         ╭───────────┬───────────┬───────────┬───────────────────┬────────╮//╭────────┬────────┬────────────┬─────────────┬──────────╮                                                                                                         ╭───────────┬───────────┬───────────┬───────────────────┬────────╮//╭────────┬────────┬────────────┬─────────────┬──────────╮                                                                                                         ╭───────────┬───────────┬───────────┬───────────────────┬────────╮┬───────────┬───────────────────┬────────╮
+    &trans   &trans              &trans                   &trans                     &trans                                                                                                                         &trans     &trans        &trans      &trans          &trans
+//├────────┼───────────────────┼────────────────────────┼──────────────────────────┼──────────────────┼────────────╮                                                                                ╭─────────────┼──────────┼─────────────┼───────────┼───────────────┼────────┤
+    &trans   &trans              &trans                   &trans                     &trans             &trans                                                                                        &trans        &trans     &trans        &trans      &trans          &trans     
+//├────────┼───────────────────┼────────────────────────┼──────────────────────────┼──────────────────┼────────────┤                                                                                ├─────────────┼──────────┼─────────────┼───────────┼───────────────┼────────┤
+    &trans   &trans              &kp TILDE2               &spad_i_mt LT LT           &spad_i_mt GT GT   &kp LC(G)                                                                                     &kp CARET     &us N7 0   &us N8 0      &us N9 0    &trans          &trans    
+//├────────┼───────────────────┼────────────────────────┼──────────────────────────┼──────────────────┼────────────┤                                                                                ├─────────────┼──────────┼─────────────┼───────────┼───────────────┼────────┤
+    &none    &us GB_BSLH 0       &spad_mt AMPS AMPS       &spad_mt GB_PIPE GB_PIPE   &us LBKT 0         &us RBKT 0                                                                                    &kp GB_AT     &us N4 0   &us N5 0      &us N6 0    &us GB_HASH 0   &trans           
+//├────────┼───────────────────┼────────────────────────┼──────────────────────────┼──────────────────┼────────────┼────────┬────────┬───────────────╮ ╭─────────────┬─────────────────────┬────────┬─────────────┼──────────┼─────────────┼───────────┼───────────────┼────────┤
+    &trans   &kp GB_POUND_SIGN   &spad_i_mt PRCNT PRCNT   &kp DOLLAR                 &kp LBRC           &kp RBRC     &trans   &trans   &to NUMS_SYMS     &to DEFAULT   &trans                &trans   &us GRAVE 0   &us N1 0   &us N2 0      &us N3 0    &kp UNDER       &trans          
+//├────────┼───────────────────┼────────────────────────┼──────────────────────────┼──────────────────┴────────────┼────────┼────────┼───────────────┤ ├─────────────┼─────────────────────┼────────┼─────────────┴──────────┼─────────────┼───────────┼───────────────┼────────┤
+    &trans   &trans              &trans                   &trans                     &trans                          &trans   &trans   &trans            &trans        &lt_rpi BIGRAM BSPC   &trans                 &us N0 0   &us COMMA 0   &us DOT 0   &trans          &trans
+//╰────────┴───────────────────┴────────────────────────┴──────────────────────────┴──────────────────╯            ╰────────┴────────┴───────────────╯ ╰─────────────┴─────────────────────┴────────╯             ╰──────────┴─────────────┴───────────┴───────────────┴────────╯
             >;
         };
 
         coding_numbers_and_symbols_layer {
            bindings = <
-//╭────────┬────────┬──────────┬─────────┬────────────╮                                                                         ╭────────┬────────┬────────┬────────┬────────╮
-    &trans   &trans   &trans     &trans    &trans                                                                                 &trans   &trans   &trans   &trans   &trans      
-//├────────┼────────┼──────────┼─────────┼────────────┼────────╮                                                       ╭────────┼────────┼────────┼────────┼────────┼────────┤
-    &trans   &trans   &trans     &trans    &trans       &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans      
-//├────────┼────────┼──────────┼─────────┼────────────┼────────┤                                                       ├────────┼────────┼────────┼────────┼────────┼────────┤
-    &trans   &trans   &trans     &less_i   &greater_i   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans      
-//├────────┼────────┼──────────┼─────────┼────────────┼────────┤                                                       ├────────┼────────┼────────┼────────┼────────┼────────┤
-    &trans   &trans   &trans     &trans    &lbkt_spc    &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans      
-//├────────┼────────┼──────────┼─────────┼────────────┼────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-    &trans   &trans   &prcnt_i   &trans    &spc_lbrc    &trans   &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans       
-//├────────┼────────┼──────────┼─────────┼────────────┴────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┼────────┤
-    &trans   &trans   &trans     &trans    &trans                &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans   &trans   &trans   &trans 
-//╰────────┴────────┴──────────┴─────────┴────────────╯        ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴────────┴────────┴────────╯
+//╭────────┬────────┬──────────────────────┬────────────────┬──────────────────╮                                                                         ╭────────┬────────┬────────┬────────┬────────╮
+    &trans   &trans   &trans                 &trans           &trans                                                                                       &trans   &trans   &trans   &trans   &trans      
+//├────────┼────────┼──────────────────────┼────────────────┼──────────────────┼────────╮                                                       ╭────────┼────────┼────────┼────────┼────────┼────────┤
+    &trans   &trans   &trans                 &trans           &trans             &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans      
+//├────────┼────────┼──────────────────────┼────────────────┼──────────────────┼────────┤                                                       ├────────┼────────┼────────┼────────┼────────┼────────┤
+    &trans   &trans   &trans                 &spad_mt LT LT   &spad_mt GT GT     &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans      
+//├────────┼────────┼──────────────────────┼────────────────┼──────────────────┼────────┤                                                       ├────────┼────────┼────────┼────────┼────────┼────────┤
+    &trans   &trans   &trans                 &trans           &ts_mt LBKT LBKT   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans      
+//├────────┼────────┼──────────────────────┼────────────────┼──────────────────┼────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+    &trans   &trans   &spad_mt PRCNT PRCNT   &trans           &ps_mt LBRC LBRC   &trans   &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans       
+//├────────┼────────┼──────────────────────┼────────────────┼──────────────────┴────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┼────────┤
+    &trans   &trans   &trans                 &trans           &trans                      &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans   &trans   &trans   &trans 
+//╰────────┴────────┴──────────────────────┴────────────────┴──────────────────╯        ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴────────┴────────┴────────╯
             >;
         };
 
@@ -1604,19 +1596,19 @@
 
         bigram_layer {
             bindings = <
-//╭─────────────────┬────────────────┬──────────────────┬──────────────────────┬──────────────────╮                                                                                          ╭───────────────┬──────────────────┬──────────────┬──────────────────┬───────────────╮
-    &none             &none            &none              &none                  &none                                                                                                         &none           &none              &none          &none              &none    
-//├─────────────────┼────────────────┼──────────────────┼──────────────────────┼──────────────────┼───────────────╮                                                       ╭──────────────────┼───────────────┼──────────────────┼──────────────┼──────────────────┼───────────────┤
-    &none             &none            &none              &pad FSLH EQUAL        &none              &none                                                                   &none              &none           &pad MINUS EQUAL   &none          &none              &none    
-//├─────────────────┼────────────────┼──────────────────┼──────────────────────┼──────────────────┼───────────────┤                                                       ├──────────────────┼───────────────┼──────────────────┼──────────────┼──────────────────┼───────────────┤
-    &kp Q             &none            &none              &pad LT EQUAL          &pad GT EQUAL      &none                                                                   &pad CARET EQUAL   &the            &cd_up             &but           &none              &none    
-//├─────────────────┼────────────────┼──────────────────┼──────────────────────┼──────────────────┼───────────────┤                                                       ├──────────────────┼───────────────┼──────────────────┼──────────────┼──────────────────┼───────────────┤
-    &none             &none            &pad AMPS AMPS     &pad GB_PIPE GB_PIPE   &ts_bi LPAR LBKT   &bi RBKT RPAR                                                           &none              &us GB_BSLH N   &bi DOT FSLH       &us MINUS GT   &tc GB_HASH        &none  
-//├─────────────────┼────────────────┼──────────────────┼──────────────────────┼──────────────────┼───────────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼──────────────────┼───────────────┼──────────────────┼──────────────┼──────────────────┼───────────────┤
-    &pad EXCL EQUAL   &none            &pad PRCNT EQUAL   &bi DOLLAR LBRC        &ts_bi LPAR LBRC   &bi RBRC RPAR   &trans   &trans   &none      &none    &none    &none    &none              &bi MINUS N1    &kp COMMA          &ellipsis      &and              &pad EQUAL GT 
-//├─────────────────┼────────────────┼──────────────────┼──────────────────────┼──────────────────┴───────────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼──────────────────┴───────────────┼──────────────────┼──────────────┼──────────────────┼───────────────┤
-    &none             &se EXCL QMARK   &pad PLUS EQUAL    &none                  &none                              &trans   &trans   &trans     &trans   &trans   &trans                      &none           &bi COLON COLON    &none          &pad ASTRK EQUAL   &none 
-//╰─────────────────┴────────────────┴──────────────────┴──────────────────────┴──────────────────╯               ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯                  ╰───────────────┴──────────────────┴──────────────┴──────────────────┴───────────────╯
+//╭─────────────────┬────────────────┬──────────────────┬────────────────────┬──────────────────╮                                                                                          ╭───────────────┬──────────────────┬──────────────┬──────────────────┬───────────────╮
+    &none             &none            &none              &none                &none                                                                                                         &none           &none              &none          &none              &none    
+//├─────────────────┼────────────────┼──────────────────┼────────────────────┼──────────────────┼───────────────╮                                                       ╭──────────────────┼───────────────┼──────────────────┼──────────────┼──────────────────┼───────────────┤
+    &none             &none            &none              &pad FSLH EQUAL      &none              &none                                                                   &none              &none           &pad MINUS EQUAL   &none          &none              &none    
+//├─────────────────┼────────────────┼──────────────────┼────────────────────┼──────────────────┼───────────────┤                                                       ├──────────────────┼───────────────┼──────────────────┼──────────────┼──────────────────┼───────────────┤
+    &kp Q             &none            &none              &pad LT EQUAL        &pad GT EQUAL      &none                                                                   &pad CARET EQUAL   &none           &cd_up             &none          &none              &none    
+//├─────────────────┼────────────────┼──────────────────┼────────────────────┼──────────────────┼───────────────┤                                                       ├──────────────────┼───────────────┼──────────────────┼──────────────┼──────────────────┼───────────────┤
+    &none             &none            &pad AMPS EQUAL    &pad GB_PIPE EQUAL   &ts_bi LPAR LBKT   &bi RBKT RPAR                                                           &none              &us GB_BSLH N   &bi DOT FSLH       &us MINUS GT   &tc GB_HASH        &none  
+//├─────────────────┼────────────────┼──────────────────┼────────────────────┼──────────────────┼───────────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼──────────────────┼───────────────┼──────────────────┼──────────────┼──────────────────┼───────────────┤
+    &pad EXCL EQUAL   &none            &pad PRCNT EQUAL   &bi DOLLAR LBRC      &ts_bi LPAR LBRC   &bi RBRC RPAR   &trans   &trans   &none      &none    &none    &none    &none              &bi MINUS N1    &kp COMMA          &ellipsis      &none             &pad EQUAL GT 
+//├─────────────────┼────────────────┼──────────────────┼────────────────────┼──────────────────┴───────────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼──────────────────┴───────────────┼──────────────────┼──────────────┼──────────────────┼───────────────┤
+    &none             &se EXCL QMARK   &pad PLUS EQUAL    &none                &none                              &trans   &trans   &trans     &trans   &trans   &trans                      &none           &bi COLON COLON    &none          &pad ASTRK EQUAL   &none 
+//╰─────────────────┴────────────────┴──────────────────┴────────────────────┴──────────────────╯               ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯                  ╰───────────────┴──────────────────┴──────────────┴──────────────────┴───────────────╯
             >;
         };
         
@@ -1649,7 +1641,7 @@
 //├───────────────┼─────────┼────────────────┼──────────────────────┼────────┼────────┤                                                       ├────────┼────────┼───────────┼─────────┼─────────────┼──────────────────┤
     &trans          &trans    &pad AMPS AMPS   &pad GB_PIPE GB_PIPE   &trans   &trans                                                           &trans   &the     &and        &but      &dc GB_HASH   &trans            
 //├───────────────┼─────────┼────────────────┼──────────────────────┼────────┼────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼───────────┼─────────┼─────────────┼──────────────────┤
-    &se EXCL EXCL   &trans    &trans           &trans                 &trans   &trans   &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans      &dc DOT   &dc UNDER     &pad EQUAL EQUAL
+    &bi EXCL EXCL   &trans    &bi PRCNT S      &trans                 &trans   &trans   &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans      &dc DOT   &dc UNDER     &pad EQUAL EQUAL
 //├───────────────┼─────────┼────────────────┼──────────────────────┼────────┴────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼───────────┼─────────┼─────────────┼──────────────────┤
     &trans          &trans    &dc PLUS         &trans                 &trans            &trans   &trans   &trans     &trans   &trans   &trans            &trans   &dc COLON   &trans    &dc ASTRK     &trans       
 //╰───────────────┴─────────┴────────────────┴──────────────────────┴────────╯        ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴───────────┴─────────┴─────────────┴──────────────────╯
@@ -1699,7 +1691,7 @@
 //├──────────┼────────────┼─────────────┼─────────────┼─────────────┼──────────────╮                                                                           ╭──────────────┼──────────────┼───────────────┼───────────┼─────────────┼─────────────┤
     &none      &none        &trans        &none         &trans        &none                                                                                      &none          &none          &none           &none       &none         &none      
 //├──────────┼────────────┼─────────────┼─────────────┼─────────────┼──────────────┤                                                                           ├──────────────┼──────────────┼───────────────┼───────────┼─────────────┼─────────────┤
-    &none      &trans       &none         &number       &ppp_td       &boolean 0 0                                                                               &none          &let 0 0       &function 0 0   &none       &none         &none      
+    &none      &trans       &none         &number       &ppp_td       &boolean 0 0                                                                               &const          &let 0 0       &function 0 0   &none       &none         &none      
 //├──────────┼────────────┼─────────────┼─────────────┼─────────────┼──────────────┤                                                                           ├──────────────┼──────────────┼───────────────┼───────────┼─────────────┼─────────────┤
     &none      &array 0 0   &return 0 0   &string 0 0   &none         &none                                                                                      &mapping 0 0   &include 0 0   &vector 0 0     &int 0 0    &object 0 0   &none      
 //├──────────┼────────────┼─────────────┼─────────────┼─────────────┼──────────────┼───────────┬───────────┬─────────────╮ ╭───────────┬───────────┬───────────┼──────────────┼──────────────┼───────────────┼───────────┼─────────────┼─────────────┤
@@ -1721,7 +1713,7 @@
 //├────────┼─────────┼────────┼─────────┼─────────────┼───────────┤                                                       ├─────────────────┼─────────────┼───────────────────┼──────────┼──────────┼──────────────┤
     &trans   &trans    &trans   &trans    &trans        &trans                                                              &trans            &trans        &trans              &big_int   &trans     &trans      
 //├────────┼─────────┼────────┼─────────┼─────────────┼───────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼─────────────────┼─────────────┼───────────────────┼──────────┼──────────┼──────────────┤
-    &trans   &trans    &any     &trans    &const        &trans      &trans   &trans   &trans     &trans   &trans   &trans   &break SEMI RET   &trans        &trans              &trans     &trans     &trans       
+    &trans   &trans    &any     &trans    &trans        &trans      &trans   &trans   &trans     &trans   &trans   &trans   &break SEMI RET   &trans        &trans              &trans     &trans     &trans       
 //├────────┼─────────┼────────┼─────────┼─────────────┴───────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼─────────────────┴─────────────┼───────────────────┼──────────┼──────────┼──────────────┤
     &trans   &trans    &trans   &trans    &trans                    &trans   &trans   &trans     &trans   &trans   &trans                     &trans        &trans              &trans     &trans     &trans 
 //╰────────┴─────────┴────────┴─────────┴─────────────╯           ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯                 ╰─────────────┴───────────────────┴──────────┴──────────┴──────────────╯
