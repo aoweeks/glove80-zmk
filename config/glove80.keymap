@@ -668,7 +668,7 @@
         };
 
         spad: single_padded_character {
-            compatible = "zmk,behavior-macro-two-param";
+            compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
             wait-ms = <1>;
             tap-ms = <1>;
