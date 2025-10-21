@@ -558,7 +558,7 @@
         ret: enter {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            keep-mods = <(MOD_LSFT)|MOD_RSFT>;
+            keep-mods = <(MOD_LSFT|MOD_RSFT)>;
             bindings = <&kp RET>, <&deferred_shift RET>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
@@ -1609,11 +1609,11 @@
 //├─────────────────┼────────────────┼──────────────────┼──────────────────────┼──────────────────┼───────────────╮                                                       ╭──────────────────┼───────────────┼──────────────────┼──────────────┼──────────────────┼───────────────┤
     &none             &none            &none              &pad FSLH EQUAL        &none              &none                                                                   &none              &none           &pad MINUS EQUAL   &none          &none              &none    
 //├─────────────────┼────────────────┼──────────────────┼──────────────────────┼──────────────────┼───────────────┤                                                       ├──────────────────┼───────────────┼──────────────────┼──────────────┼──────────────────┼───────────────┤
-    &kp Q             &none            &none              &pad LT EQUAL          &pad GT EQUAL      &none                                                                   &pad CARET EQUAL   &none           &cd_up             &none          &none              &none    
+    &kp Q             &none            &none              &pad LT EQUAL          &pad GT EQUAL      &none                                                                   &pad CARET EQUAL   &the            &cd_up             &but           &none              &none    
 //├─────────────────┼────────────────┼──────────────────┼──────────────────────┼──────────────────┼───────────────┤                                                       ├──────────────────┼───────────────┼──────────────────┼──────────────┼──────────────────┼───────────────┤
     &none             &none            &pad AMPS AMPS     &pad GB_PIPE GB_PIPE   &ts_bi LPAR LBKT   &bi RBKT RPAR                                                           &none              &us GB_BSLH N   &bi DOT FSLH       &us MINUS GT   &tc GB_HASH        &none  
 //├─────────────────┼────────────────┼──────────────────┼──────────────────────┼──────────────────┼───────────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼──────────────────┼───────────────┼──────────────────┼──────────────┼──────────────────┼───────────────┤
-    &pad EXCL EQUAL   &none            &pad PRCNT EQUAL   &bi DOLLAR LBRC        &ts_bi LPAR LBRC   &bi RBRC RPAR   &trans   &trans   &none      &none    &none    &none    &none              &bi MINUS N1    &kp COMMA          &ellipsis      &none              &pad EQUAL GT 
+    &pad EXCL EQUAL   &none            &pad PRCNT EQUAL   &bi DOLLAR LBRC        &ts_bi LPAR LBRC   &bi RBRC RPAR   &trans   &trans   &none      &none    &none    &none    &none              &bi MINUS N1    &kp COMMA          &ellipsis      &and              &pad EQUAL GT 
 //├─────────────────┼────────────────┼──────────────────┼──────────────────────┼──────────────────┴───────────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼──────────────────┴───────────────┼──────────────────┼──────────────┼──────────────────┼───────────────┤
     &none             &se EXCL QMARK   &pad PLUS EQUAL    &none                  &none                              &trans   &trans   &trans     &trans   &trans   &trans                      &none           &bi COLON COLON    &none          &pad ASTRK EQUAL   &none 
 //╰─────────────────┴────────────────┴──────────────────┴──────────────────────┴──────────────────╯               ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯                  ╰───────────────┴──────────────────┴──────────────┴──────────────────┴───────────────╯
