@@ -895,7 +895,7 @@
             #binding-cells = <2>;
             wait-ms = <1>;
             tap-ms = <1>;
-            bindings =  <&macro_tap &macro_param_1to1 &kp 0 \  
+            bindings =  <&macro_tap &macro_param_1to1 &kp 0 \
                           &kp D &kp E &kp F &kp I &kp N &kp E \
                           &macro_param_2to1 &kp 0>;
         };
@@ -951,7 +951,7 @@
             wait-ms = <1>;
             tap-ms = <1>;
             bindings =  <&macro_tap &kp C &kp O &kp N &kp T &kp I &kp N &kp U \
-                          &kp E &macro_param_1to1 &kp>;
+                          &kp E &macro_param_1to1 &kp 0>;
         };
 
         class: class_keyword {
