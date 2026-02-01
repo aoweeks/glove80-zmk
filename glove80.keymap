@@ -29,7 +29,7 @@
 #define UNICODE(keystrokes) <&macro_tap &kp RALT &kp U keystrokes &kp ENTER>
 
 // Combos
-#define HYPER LC(LG(LA(LSHIFT)))
+// #define HYPER LC(LG(LA(LSHIFT)))
 
 // Layers
 #define DEFAULT 0
@@ -55,9 +55,10 @@
 #define MEDIA 20
 #define EMOJI 21
 #define FKEYS 22
-#define WASD 23
-#define MAGIC 24
-#define FACTORY_TEST 25
+#define WINDOW 23
+#define WASD 24
+#define MAGIC 25
+#define FACTORY_TEST 26
 
 // Other Constants
 #define SELECT_WORD_DELAY 1
@@ -719,7 +720,41 @@
             #binding-cells = <1>;
             wait-ms = <1>;
             tap-ms = <1>;
-            bindings =  <&macro_param_1to1 &kp 0 &sk_qr LSHFT>;
+            bindings = <&macro_param_1to1 &kp 0 &sk_qr LSHFT>;
+        };
+
+        cms: coding_mode_window_switch {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings = <&code_mode &macro_tap \
+                        &macro_param_1to1 &kp LC(LG(LA(LS(0))))>;
+        };
+
+        wms: writing_mode_window_switch {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings = <&write_mode &macro_tap \
+                        &macro_param_1to1 LC(LG(LA(LS(0))))>;
+        }
+
+        code_mode: coding_mode {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings = <&macro_tap &kp LC(LA(LS(D))) &tog_on CODING>;
+        };
+        
+        write_mode: writing_mode {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings =  <&macro_tap &kp LC(LA(LS(L))) &tog_off CODING>;
         };
 
         // string_tog: toggle_writing_mode_for_string {
@@ -1214,22 +1249,6 @@
             tap-ms = <1>;
             bindings = <&macro_tap &tog_off TS &tog_off C_LANG &tog_off PYTHON\
                           &macro_param_1to1 &tog_on 0>;
-        };
-
-        code_on: coding_mode_on {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
-            bindings =  <&macro_tap &kp LC(LA(LS(D))) &tog_on CODING>;
-        };
-        
-        code_off: coding_mode_off {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
-            bindings =  <&macro_tap &kp LC(LA(LS(L))) &tog_off CODING>;
         };
 
 
@@ -1901,6 +1920,24 @@
             >;
         };
 
+        window_layer {
+            bindings = <
+//╭──────────────────┬────────────────┬─────────┬─────────────┬─────────────╮                                                                                                                                                     ╭────────┬────────┬────────────┬─────────────────────┬───────────────────╮
+    &none              &none            &none     &none         &none                                                                                                                                                               &none    &none    &none        &none                 &none          
+//├──────────────────┼────────────────┼─────────┼─────────────┼─────────────┼────────╮                                                                                                                                   ╭────────┼────────┼────────┼────────────┼─────────────────────┼───────────────────┤
+    &none              &none            &none     &none         &none         &none                                                                                                                                        &none    &none    &none    &none        &none                 &none            
+//├──────────────────┼────────────────┼─────────┼─────────────┼─────────────┼────────┤                                                                                                                                   ├────────┼────────┼────────┼────────────┼─────────────────────┼───────────────────┤
+    &none              &none            &wms W    &none         &none         &cms B                                                                                                                                       &none    &none    &none    &none        &none                 &none            
+//├──────────────────┼────────────────┼─────────┼─────────────┼─────────────┼────────┤                                                                                                                                   ├────────┼────────┼────────┼────────────┼─────────────────────┼───────────────────┤
+    &none              &none            &none     &cms S        &cms T        &cms G                                                                                                                                       &none    &wms N   &none    &wms I       &none                 &none            
+//├──────────────────┼────────────────┼─────────┼─────────────┼─────────────┼────────┼─────────────────────────┬───────────────────┬──────────────────╮ ╭────────────────────────┬───────────────────┬───────────────────┼────────┼────────┼────────┼────────────┼─────────────────────┼───────────────────┤
+    &none              &none            &none     &none         &none         &cms V   &caps_word_lt MOUSING 0   &lt_rpi EMOJI DEL   &none                &none                    &mt_rpi LSHFT F14   &lt_rpi FKEYS ESC   &none    &none    &none    &none        &none                 &none            
+//├──────────────────┼────────────────┼─────────┼─────────────┼─────────────┴────────┼─────────────────────────┼───────────────────┼──────────────────┤ ├────────────────────────┼───────────────────┼───────────────────┼────────┴────────┼────────┼────────────┼─────────────────────┼───────────────────┤
+    &none              &qmark           &plus     &lpar         &kp RPAR               &rpt_lt NUMS_SYMS 0       &shift_td           &ret_lt BIGRAM 0     &undecided_mt LGUI TAB   &bspc_lt KEYW 0     &cms SPACE                   &semi    &colon   &dbl_quote   &astrk                &none
+//╰──────────────────┴────────────────┴─────────┴─────────────┴─────────────╯        ╰─────────────────────────┴───────────────────┴──────────────────╯ ╰────────────────────────┴───────────────────┴───────────────────╯        ╰────────┴────────┴────────────┴─────────────────────┴───────────────────╯
+            >;
+        };
+
         wasd_layer {
             bindings = <
 //╭───────┬───────────┬─────────────┬───────────┬───────────╮                                                                                                       ╭───────────┬───────────┬───────────────┬───────────┬─────────────────────╮
@@ -1918,6 +1955,8 @@
 //╰───────┴───────────┴─────────────┴───────────┴───────────╯           ╰───────────┴───────────┴─────────╯ ╰─────────────┴─────────┴───────────────────╯           ╰───────────┴───────────┴───────────────┴───────────┴─────────────────────╯
             >;
         };
+
+
 
 //#######################################################################################################################################################################################################################################################################################################################################
         magic_layer {
