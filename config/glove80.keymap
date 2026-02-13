@@ -347,6 +347,16 @@
             bindings = <&mo>, <&bspc_mm>;
         };
 
+        bspc_i_lt: backpace_layer_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            retro-tap;
+            bindings = <&mo>, <&kp BACKSPACE>;
+        };
+
         // cc_mt: copy_cut_mod_tap {
         //     compatible = "zmk,behavior-hold-tap";
         //     #binding-cells = <2>;
@@ -735,7 +745,9 @@
             #binding-cells = <1>;
             wait-ms = <1>;
             tap-ms = <1>;
-            bindings = <&macro_tap &macro_param_1to1 &kp LG(0) &code_mode>;
+            bindings = <&macro_press &kp LGUI>,
+                       <&macro_tap &macro_param_1to1 &kp 0 &code_mode>,
+                       <&macro_release &kp LGUI>;
         };
 
         ems: english_mode_window_switch {
@@ -743,8 +755,10 @@
             #binding-cells = <1>;
             wait-ms = <1>;
             tap-ms = <1>;
-            bindings = <&macro_tap &english_mode &macro_param_1to1 &kp LG(0)>;
-        };
+            bindings = <&macro_press &kp LGUI>,
+                       <&macro_tap &english_mode &macro_param_1to1 &kp 0>,
+                       <&macro_release &kp LGUI>;
+      };
 
         code_mode: coding_mode {
             compatible = "zmk,behavior-macro";
@@ -1531,19 +1545,19 @@
 
         coding_layer {
             bindings = <
-//╭───────────────────┬───────────────┬─────────┬───────────┬────────╮                                                                                       ╭─────────┬──────────┬────────┬────────┬────────╮
-    &trans              &trans          &trans    &trans      &trans                                                                                           &trans    &trans     &trans   &trans   &trans          
-//├───────────────────┼───────────────┼─────────┼───────────┼────────┼────────╮                                                                     ╭────────┼─────────┼──────────┼────────┼────────┼────────┤
-    &trans              &trans          &trans    &trans      &trans   &trans                                                                         &trans   &trans    &trans     &trans   &trans   &trans
-//├───────────────────┼───────────────┼─────────┼───────────┼────────┼────────┤                                                                     ├────────┼─────────┼──────────┼────────┼────────┼────────┤
-    &trans              &english_mode   &trans    &trans      &trans   &trans                                                                         &trans   &trans    &trans     &trans   &trans   &trans  
-//├───────────────────┼───────────────┼─────────┼───────────┼────────┼────────┤                                                                     ├────────┼─────────┼──────────┼────────┼────────┼────────┤
-    &trans              &trans          &trans    &trans      &trans   &trans                                                                         &trans   &trans    &trans     &trans   &trans   &trans
-//├───────────────────┼───────────────┼─────────┼───────────┼────────┼────────┼────────┬────────┬────────────────────╮ ╭────────┬──────────┬────────┼────────┼─────────┼──────────┼────────┼────────┼────────┤
-    &excl_i_lt SNIP 0   &trans          &trans    &trans      &trans   &trans   &trans   &trans   &trans                 &trans   &trans     &trans   &trans   &trans    &trans     &dot_i   &trans   &trans
-//├───────────────────┼───────────────┼─────────┼───────────┼────────┴────────┼────────┼────────┼────────────────────┤ ├────────┼──────────┼────────┼────────┴─────────┼──────────┼────────┼────────┼────────┤
-    &trans              &qmark_i        &trans    &lpar_spc   &trans            &trans   &trans   &lt_rpi BIGRAM RET     &trans   &kp BSPC   &trans            &semi_i   &colon_i   &trans   &trans   &trans
-//╰───────────────────┴───────────────┴─────────┴───────────┴────────╯        ╰────────┴────────┴────────────────────╯ ╰────────┴──────────┴────────╯        ╰─────────┴──────────┴────────┴────────┴────────╯
+//╭───────────────────┬───────────────┬─────────┬───────────┬────────╮                                                                                                  ╭─────────┬──────────┬────────┬────────┬────────╮
+    &trans              &trans          &trans    &trans      &trans                                                                                                      &trans    &trans     &trans   &trans   &trans          
+//├───────────────────┼───────────────┼─────────┼───────────┼────────┼────────╮                                                                                ╭────────┼─────────┼──────────┼────────┼────────┼────────┤
+    &trans              &trans          &trans    &trans      &trans   &trans                                                                                    &trans   &trans    &trans     &trans   &trans   &trans
+//├───────────────────┼───────────────┼─────────┼───────────┼────────┼────────┤                                                                                ├────────┼─────────┼──────────┼────────┼────────┼────────┤
+    &trans              &english_mode   &trans    &trans      &trans   &trans                                                                                    &trans   &trans    &trans     &trans   &trans   &trans  
+//├───────────────────┼───────────────┼─────────┼───────────┼────────┼────────┤                                                                                ├────────┼─────────┼──────────┼────────┼────────┼────────┤
+    &trans              &trans          &trans    &trans      &trans   &trans                                                                                    &trans   &trans    &trans     &trans   &trans   &trans
+//├───────────────────┼───────────────┼─────────┼───────────┼────────┼────────┼────────┬────────┬────────────────────╮ ╭────────┬─────────────────────┬────────┼────────┼─────────┼──────────┼────────┼────────┼────────┤
+    &excl_i_lt SNIP 0   &trans          &trans    &trans      &trans   &trans   &trans   &trans   &trans                 &trans   &trans                &trans   &trans   &trans    &trans     &dot_i   &trans   &trans
+//├───────────────────┼───────────────┼─────────┼───────────┼────────┴────────┼────────┼────────┼────────────────────┤ ├────────┼─────────────────────┼────────┼────────┴─────────┼──────────┼────────┼────────┼────────┤
+    &trans              &qmark_i        &trans    &lpar_spc   &trans            &trans   &trans   &lt_rpi BIGRAM RET     &trans   &bspc_i_lt WINDOW 0   &trans            &semi_i   &colon_i   &trans   &trans   &trans
+//╰───────────────────┴───────────────┴─────────┴───────────┴────────╯        ╰────────┴────────┴────────────────────╯ ╰────────┴─────────────────────┴────────╯        ╰─────────┴──────────┴────────┴────────┴────────╯
             >;
         };
 
