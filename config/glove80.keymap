@@ -533,10 +533,8 @@
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&bi Q U )>, <&kp Q>;
-            mods = <(MOD_LCTL|MOD_RCTL|MOD_LSFT|MOD_RSFT|MOD_LALT|MOD_RALT|
-                      MOD_LGUI|MOD_RGUI)>;
-            keep-mods = <(MOD_LCTL|MOD_RCTL|MOD_LSFT|MOD_RSFT|MOD_LALT|
-                          MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+            mods = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+            keep-mods = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
         };
 
         // Shortcuts
