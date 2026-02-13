@@ -744,7 +744,7 @@
             wait-ms = <1>;
             tap-ms = <1>;
             bindings = <&macro_tap &write_mode &macro_param_1to1 LG(0)>;
-        }
+        };
 
         code_mode: coding_mode {
             compatible = "zmk,behavior-macro";
