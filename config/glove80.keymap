@@ -347,7 +347,7 @@
             bindings = <&mo>, <&bspc_mm>;
         };
 
-        bspc_i_lt: backpace_layer_tap {
+        bspc_i_lt: backpace_inverted_layer_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
