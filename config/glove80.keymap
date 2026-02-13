@@ -735,7 +735,8 @@
             #binding-cells = <1>;
             wait-ms = <1>;
             tap-ms = <1>;
-            bindings = <&macro_tap &macro_param_1to1 &kp LG(0) &code_mode>;
+            bindings = <&kp 0>
+            // bindings = <&macro_tap &macro_param_1to1 &kp LG(0) &code_mode>;
         };
 
         ems: english_mode_window_switch {
@@ -743,7 +744,8 @@
             #binding-cells = <1>;
             wait-ms = <1>;
             tap-ms = <1>;
-            bindings = <&macro_tap &english_mode &macro_param_1to1 LG(0)>;
+            bindings = <&kp 0>
+            // bindings = <&macro_tap &english_mode &macro_param_1to1 LG(0)>;
         };
 
         code_mode: coding_mode {
@@ -835,29 +837,29 @@
         };
 
 
-        the: the_word {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
-            bindings =  <&macro_tap &kp T &kp H &kp E &kp SPACE>;
-        };
+        // the: the_word {
+        //     compatible = "zmk,behavior-macro";
+        //     #binding-cells = <0>;
+        //     wait-ms = <1>;
+        //     tap-ms = <1>;
+        //     bindings =  <&macro_tap &kp T &kp H &kp E &kp SPACE>;
+        // };
 
-        and: and_word {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
-            bindings = <&macro_tap &kp A &kp N &kp D &kp SPACE>;
-        };
+        // and: and_word {
+        //     compatible = "zmk,behavior-macro";
+        //     #binding-cells = <0>;
+        //     wait-ms = <1>;
+        //     tap-ms = <1>;
+        //     bindings = <&macro_tap &kp A &kp N &kp D &kp SPACE>;
+        // };
         
-        but: but_word {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
-            bindings = <&macro_tap &kp B &kp U &kp T &kp SPACE>;
-        };
+        // but: but_word {
+        //     compatible = "zmk,behavior-macro";
+        //     #binding-cells = <0>;
+        //     wait-ms = <1>;
+        //     tap-ms = <1>;
+        //     bindings = <&macro_tap &kp B &kp U &kp T &kp SPACE>;
+        // };
         
         email: email_address {
             compatible = "zmk,behavior-macro";
@@ -1662,7 +1664,7 @@
 //├───────┼──────────────┼──────────────┼───────────────┼──────────────┼──────────────╮                                                                    ╭─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼───────┤
     &none   &none          &none          &kp LC(FSLH)    &none          &none                                                                                &none        &none               &kp LC(MINUS)       &none                &none            &none      
 //├───────┼──────────────┼──────────────┼───────────────┼──────────────┼──────────────┤                                                                    ├─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼───────┤
-    &none   &none          &kp LSHFT      &kp LCTRL       &kp LGUI       &kp LC(S)                                                                            &none        &none               &none               &none                &none            &none      
+    &none   &none          &kp LSHFT      &kp LCTRL       &kp LGUI       &copy_cut                                                                            &none        &none               &none               &none                &none            &none      
 //├───────┼──────────────┼──────────────┼───────────────┼──────────────┼──────────────┤                                                                    ├─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼───────┤
     &none   &cc_mt F13 0   &mkp RCLK      &mkp MCLK       &mkp LCLK      &paste                                                                               &none        &kp LC(LS(P))       &none               &none                &none            &none      
 //├───────┼──────────────┼──────────────┼───────────────┼──────────────┼──────────────┼─────────────┬───────────┬────────╮ ╭─────────────┬────────┬────────┼─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼───────┤
@@ -1718,7 +1720,7 @@
 //├───────────────┼─────────┼────────────────┼──────────────────────┼───────────────┼────────┤                                                       ├────────┼────────┼───────────┼─────────┼─────────────┼──────────────────┤
     &kp Q           &trans    &trans           &email                 &phone          &trans                                                           &trans   &trans   &trans      &trans    &trans        &trans            
 //├───────────────┼─────────┼────────────────┼──────────────────────┼───────────────┼────────┤                                                       ├────────┼────────┼───────────┼─────────┼─────────────┼──────────────────┤
-    &trans          &trans    &pad AMPS AMPS   &pad GB_PIPE GB_PIPE   &bi LBKT RBKT   &trans                                                           &trans   &the     &and        &but      &dc GB_HASH   &trans            
+    &trans          &trans    &pad AMPS AMPS   &pad GB_PIPE GB_PIPE   &bi LBKT RBKT   &trans                                                           &trans   &trans   &trans      &trans      &dc GB_HASH   &trans            
 //├───────────────┼─────────┼────────────────┼──────────────────────┼───────────────┼────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼───────────┼─────────┼─────────────┼──────────────────┤
     &bi EXCL EXCL   &trans    &bi PRCNT S      &trans                 &bi LBRC RBRC   &trans   &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans      &dc DOT   &dc UNDER     &pad EQUAL EQUAL
 //├───────────────┼─────────┼────────────────┼──────────────────────┼───────────────┴────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼───────────┼─────────┼─────────────┼──────────────────┤
