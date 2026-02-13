@@ -347,16 +347,16 @@
             bindings = <&mo>, <&bspc_mm>;
         };
 
-        cc_mt: copy_cut_mod_tap {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <200>;
-            quick-tap-ms = <200>;
-            require-prior-idle-ms = <125>;
-            hold-while-undecided;
-            bindings = <&kp>, <&copy_cut>;
-        };
+        // cc_mt: copy_cut_mod_tap {
+        //     compatible = "zmk,behavior-hold-tap";
+        //     #binding-cells = <2>;
+        //     flavor = "tap-preferred";
+        //     tapping-term-ms = <200>;
+        //     quick-tap-ms = <200>;
+        //     require-prior-idle-ms = <125>;
+        //     hold-while-undecided;
+        //     bindings = <&kp>, <&copy_cut>;
+        // };
 
         // cc_lt: copy_cut_layer_tap {
         //     compatible = "zmk,behavior-hold-tap";
@@ -1366,7 +1366,7 @@
             #binding-cells = <0>;
             wait-ms = <1>;
             tap-ms = <1>;
-            bindings = <&macro_tap &kp RALT &kp U &kp N0 &kp N1 &kp F &kp N6 &kp N4 &kp N2 &kp ENTER>;
+            bindings = <&macro_tap &kp LC(LS(U)) &kp N0 &kp N1 &kp F &kp N6 &kp N4 &kp N2 &kp ENTER>;
         };
 
         e_sad: emoji_sad {
@@ -1610,7 +1610,7 @@
 //├───────────┼──────────────┼──────────────┼───────────────┼──────────────┼──────────────┤                                                                   ├─────────────┼──────────────────┼───────────────┼─────────────┼─────────────┼─────────────┤
     &none       &none          &bkt_start     &kp PG_UP       &bkt_end       &copy_cut                                                                          &kp F8        &select            &kp UP          &extend       &none         &none      
 //├───────────┼──────────────┼──────────────┼───────────────┼──────────────┼──────────────┤                                                                   ├─────────────┼──────────────────┼───────────────┼─────────────┼─────────────┼─────────────┤
-    &kp LGUI    &cc_mt F13 0   &kp HOME       &kp PG_DN       &kp END        &paste                                                                             &match_word   &kp LEFT           &kp DOWN        &kp RIGHT     &none         &none          
+    &kp LGUI    &kp F13        &kp HOME       &kp PG_DN       &kp END        &paste                                                                             &match_word   &kp LEFT           &kp DOWN        &kp RIGHT     &none         &none          
 //├───────────┼──────────────┼──────────────┼───────────────┼──────────────┼──────────────┼───────────┬───────────┬─────────╮ ╭─────────────┬────────┬────────┼─────────────┼──────────────────┼───────────────┼─────────────┼─────────────┼─────────────┤
     &none       &kp LALT       &kp LC(Z)      &kp LS(LC(Z))   &kp LC(LBKT)   &kp LC(RBKT)   &kp LSHFT   &kp LSHFT   &to NAV     &to DEFAULT   &trans   &trans   &kp LG(DOT)   &select_all_none   &kp DOWN        &kp K_CMENU   &kp LCTRL     &none  
 //├───────────┼──────────────┼──────────────┼───────────────┼──────────────┴──────────────┼───────────┼───────────┼─────────┤ ├─────────────┼────────┼────────┼─────────────┴──────────────────┼───────────────┼─────────────┼─────────────┼─────────────┤
