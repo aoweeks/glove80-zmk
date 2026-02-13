@@ -195,7 +195,7 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
-            bindings = <&pub lic SPACE>, <&protected SPACE>, <&private SPACE>;
+            bindings = <&public SPACE>, <&protected SPACE>, <&private SPACE>;
         };
         
         mt_rpi: mod_tap_require_prior_idle {
@@ -1514,7 +1514,7 @@
         default_layer {
             bindings = <
 //╭──────────────────┬────────────────┬─────────┬─────────────┬─────────────╮                                                                                                                                                   ╭───────┬────────┬────────────┬─────────────────────┬───────────────────╮
-    &magic MAGIC 0     &to WASD         &none     &scl C_LANG   &none                                                                                                                                                             &none   &none    &none        &none                 &none          
+    &ma gic MA GIC 0     &t o WA SD         &none     &scl C_LANG   &none                                                                                                                                                             &none   &none    &none        &none                 &none          
 //├──────────────────┼────────────────┼─────────┼─────────────┼─────────────┼───────╮                                                                                                                                   ╭───────┼───────┼────────┼────────────┼─────────────────────┼───────────────────┤
     &none              &none            &scl TS   &slash        &scl PYTHON   &none                                                                                                                                       &none   &none   &minus   &none        &none                 &none
 //├──────────────────┼────────────────┼─────────┼─────────────┼─────────────┼───────┤                                                                                                                                   ├───────┼───────┼────────┼────────────┼─────────────────────┼───────────────────┤
