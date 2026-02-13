@@ -145,13 +145,13 @@
             ignore-modifiers;
         };
 
-        shift_mm: shift_mod_morph {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&shift_td>, <&kp LSHFT>;
-            mods = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
-            keep-mods = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
-        };
+        // shift_mm: shift_mod_morph {
+        //     compatible = "zmk,behavior-mod-morph";
+        //     #binding-cells = <0>;
+        //     bindings = <&shift_td>, <&kp LSHFT>;
+        //     mods = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+        //     keep-mods = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+        // };
         
 
         shift_td: shift_tap_dance {
@@ -347,15 +347,6 @@
             bindings = <&mo>, <&bspc_mm>;
         };
 
-        bspc_i_lt: backpace_inverted_layer_tap {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "hold-preferred";
-            tapping-term-ms = <200>;
-            quick-tap-ms = <200>;
-            retro-tap;
-            bindings = <&mo>, <&kp BACKSPACE>;
-        };
 
         // cc_mt: copy_cut_mod_tap {
         //     compatible = "zmk,behavior-hold-tap";
@@ -745,9 +736,7 @@
             #binding-cells = <1>;
             wait-ms = <1>;
             tap-ms = <1>;
-            bindings = <&macro_press &kp LGUI>,
-                       <&macro_tap &macro_param_1to1 &kp 0 &code_mode>,
-                       <&macro_release &kp LGUI>;
+            bindings = <&macro_tap &macro_param_1to1 &kp LG(0) &code_mode>;
         };
 
         ems: english_mode_window_switch {
@@ -755,10 +744,8 @@
             #binding-cells = <1>;
             wait-ms = <1>;
             tap-ms = <1>;
-            bindings = <&macro_press &kp LGUI>,
-                       <&macro_tap &english_mode &macro_param_1to1 &kp 0>,
-                       <&macro_release &kp LGUI>;
-      };
+            bindings = <&macro_tap &english_mode &macro_param_1to1 &kp LG(0)>;
+        };
 
         code_mode: coding_mode {
             compatible = "zmk,behavior-macro";
@@ -1538,7 +1525,7 @@
 //├──────────────────┼────────────────┼─────────┼─────────────┼─────────────┼───────┼──────────────────────┬─────────────────────┬──────────────────╮ ╭─────────────────────────┬───────────────────┬───────────────────┼───────┼───────┼────────┼────────────┼─────────────────────┼───────────────────┤
     &excl_lt SNIP 0    &mt_rpi LALT Z   &kp X     &kp C         &kp D         &kp V   &caps_word_lt KEYW 0   &lt_rpi MOUSING DEL   &none                &none                     &mt_rpi LSHFT F14   &lt_rpi DBL ESC     &kp K   &kp H   &comma   &dot         &mt_rpi LCTRL UNDER   &equal_lt MOUSE 0
 //├──────────────────┼────────────────┼─────────┼─────────────┼─────────────┴───────┼──────────────────────┼─────────────────────┼──────────────────┤ ├─────────────────────────┼───────────────────┼───────────────────┼───────┴───────┼────────┼────────────┼─────────────────────┼───────────────────┤
-    &none              &qmark           &plus     &lpar         &kp RPAR              &rpt_lt NUMS_SYMS 0    &shift_mm             &ret_lt BIGRAM 0     &undecided_lt EMOJI TAB   &bspc_lt WINDOW 0   &space_lt NAV 0             &semi   &colon   &dbl_quote   &astrk                &none
+    &none              &qmark           &plus     &lpar         &kp RPAR              &rpt_lt NUMS_SYMS 0    &shift_td             &ret_lt BIGRAM 0     &undecided_lt EMOJI TAB   &bspc_lt WINDOW 0   &space_lt NAV 0             &semi   &colon   &dbl_quote   &astrk                &none
 //╰──────────────────┴────────────────┴─────────┴─────────────┴─────────────╯       ╰──────────────────────┴─────────────────────┴──────────────────╯ ╰─────────────────────────┴───────────────────┴───────────────────╯       ╰───────┴────────┴────────────┴─────────────────────┴───────────────────╯
             >;
         };
@@ -1556,7 +1543,7 @@
 //├───────────────────┼───────────────┼─────────┼───────────┼────────┼────────┼────────┬────────┬────────────────────╮ ╭────────┬─────────────────────┬────────┼────────┼─────────┼──────────┼────────┼────────┼────────┤
     &excl_i_lt SNIP 0   &trans          &trans    &trans      &trans   &trans   &trans   &trans   &trans                 &trans   &trans                &trans   &trans   &trans    &trans     &dot_i   &trans   &trans
 //├───────────────────┼───────────────┼─────────┼───────────┼────────┴────────┼────────┼────────┼────────────────────┤ ├────────┼─────────────────────┼────────┼────────┴─────────┼──────────┼────────┼────────┼────────┤
-    &trans              &qmark_i        &trans    &lpar_spc   &trans            &trans   &trans   &lt_rpi BIGRAM RET     &trans   &bspc_i_lt WINDOW 0   &trans            &semi_i   &colon_i   &trans   &trans   &trans
+    &trans              &qmark_i        &trans    &lpar_spc   &trans            &trans   &trans   &lt_rpi BIGRAM RET     &trans   &lt_rpi WINDOW BSPC   &trans            &semi_i   &colon_i   &trans   &trans   &trans
 //╰───────────────────┴───────────────┴─────────┴───────────┴────────╯        ╰────────┴────────┴────────────────────╯ ╰────────┴─────────────────────┴────────╯        ╰─────────┴──────────┴────────┴────────┴────────╯
             >;
         };
