@@ -347,16 +347,16 @@
             bindings = <&mo>, <&bspc_mm>;
         };
 
-        // cc_mt: copy_cut_mod_tap {
-        //     compatible = "zmk,behavior-hold-tap";
-        //     #binding-cells = <2>;
-        //     flavor = "tap-preferred";
-        //     tapping-term-ms = <200>;
-        //     quick-tap-ms = <200>;
-        //     require-prior-idle-ms = <125>;
-        //     hold-while-undecided;
-        //     bindings = <&kp>, <&copy_cut>;
-        // };
+        cc_mt: copy_cut_mod_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            require-prior-idle-ms = <125>;
+            hold-while-undecided;
+            bindings = <&kp>, <&copy_cut>;
+        };
 
         // cc_lt: copy_cut_layer_tap {
         //     compatible = "zmk,behavior-hold-tap";
