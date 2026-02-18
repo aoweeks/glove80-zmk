@@ -253,7 +253,6 @@
             tapping-term-ms = <200>;
             quick-tap-ms = <200>;
             require-prior-idle-ms = <125>;
-            hold-while-undecided;
             retro-tap;
             bindings = <&super_lm>, <&kp>;
         };
