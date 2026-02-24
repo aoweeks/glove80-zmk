@@ -28,7 +28,7 @@
 //
 #define UNICODE(keystrokes) <&macro_tap &kp RALT &kp U keystrokes &kp ENTER>
 
-#define HYPER(keypress) LG(LC(LA(LSHIFT(keypress))))
+#define HYPER(keypress) LG(LC(LA(LS(keypress))))
 
 // Layers
 #define DEFAULT 0
