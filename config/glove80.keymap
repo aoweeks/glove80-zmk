@@ -87,7 +87,7 @@
     layers = <FAST>;
     input-processors = <&zip_xy_scaler 4 1>;
   };
-}
+};
 
 &sl {
   release-after-ms = <RELEASE_AFTER>;
