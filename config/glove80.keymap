@@ -71,7 +71,7 @@
     input-processors = <&zip_xy_scaler 1 4>;
   };
 
-  slow {
+  fast {
     layers = <FAST>;
     input-processors = <&zip_xy_scaler 4 1>;
   };
@@ -83,7 +83,7 @@
     input-processors = <&zip_xy_scaler 1 4>;
   };
 
-  slow {
+  fast {
     layers = <FAST>;
     input-processors = <&zip_xy_scaler 4 1>;
   };
