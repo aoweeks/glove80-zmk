@@ -1572,9 +1572,19 @@
             then-layer = <TS_BIGRAM>;
         };
 
+        activate_no_padding_bigram_layer {
+            if-layers = <NO_PAD CODING>;
+            then-layer = <NO_PAD_BIGRAM>;
+        };
+
         activate_javascript_double_layer {
             if-layers = <CODING TS DBL>;
             then-layer = <TS_DBL>;
+        };
+
+        activate_no_padding_double_layer {
+            if-layers = <NO_PAD CODING>;
+            then-layer = <NO_PAD_DBL>;
         };
 
         activate_javascript_keywords_layer {
