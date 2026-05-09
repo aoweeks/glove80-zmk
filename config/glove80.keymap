@@ -44,25 +44,24 @@
 #define NO_PAD_CODING_NUMS_SYMS 10
 #define MOUSING 11
 #define BIGRAM 12
-#define CODE_BIGRAM 13
-#define TS_BIGRAM 14
-#define DBL 15
-#define TS_DBL 16
-#define SNIP 17
-#define KEYW 18
-#define TS_KEYW 19
-#define C_KEYW 20
-#define PYTHON_KEYW 21
-#define MOUSE 22
-#define SLOW 23
-#define FAST 24
-#define MEDIA 25
-#define EMOJI 26
-#define FKEYS 27
-#define WINDOW 28
-#define WASD 29
-#define MAGIC 30
-#define FACTORY_TEST 31
+#define TS_BIGRAM 13
+#define DBL 14
+#define TS_DBL 15
+#define SNIP 16
+#define KEYW 17
+#define TS_KEYW 18
+#define C_KEYW 19
+#define PYTHON_KEYW 20
+#define MOUSE 21
+#define SLOW 22
+#define FAST 23
+#define MEDIA 24
+#define EMOJI 25
+#define FKEYS 26
+#define WINDOW 27
+#define WASD 28
+#define MAGIC 29
+#define FACTORY_TEST 30
 
 // Other Constants
 #define SELECT_WORD_DELAY 1
@@ -849,7 +848,7 @@
         };
 
         long_arrow: long_arrow {
-            compatible = "zmk,behavior-macro-zero-param";
+            compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <1>;
             tap-ms = <1>;
@@ -1546,11 +1545,6 @@
             then-layer = <CODING_NUMS_SYMS>;
         };
 
-        activate_coding_bigram_layer {
-            if-layers = <CODING BIGRAM>;
-            then-layer = <CODE_BIGRAM>;
-        };
-
         activate_no_padding_coding_layer {
             if-layers = <NO_PAD CODING>;
             then-layer = <NO_PAD_CODING>;
@@ -1816,7 +1810,7 @@
 //├─────────────────┼────────────────┼──────────────────┼────────────────────┼──────────────────┼───────────────┤                                                       ├──────────────────┼───────────────┼──────────────────┼─────────────┼──────────────────┼───────────────┤
     &kp Q             &none            &none              &pad LT EQUAL        &pad GT EQUAL      &none                                                                   &pad CARET EQUAL   &none           &cd_up             &none         &none              &none    
 //├─────────────────┼────────────────┼──────────────────┼────────────────────┼──────────────────┼───────────────┤                                                       ├──────────────────┼───────────────┼──────────────────┼─────────────┼──────────────────┼───────────────┤
-    &none             &none            &pad AMPS EQUAL    &pad GB_PIPE EQUAL   &ts_bi LPAR LBKT   &bi RBKT RPAR                                                           &email             &us GB_BSLH N   &bi DOT FSLH       &long_arrow   &tc GB_HASH        &none  
+    &none             &none            &pad AMPS EQUAL    &pad GB_PIPE EQUAL   &ts_bi LPAR LBKT   &bi RBKT RPAR                                                           &email             &us GB_BSLH N   &bi DOT FSLH       &bi MINUS GT  &tc GB_HASH        &none  
 //├─────────────────┼────────────────┼──────────────────┼────────────────────┼──────────────────┼───────────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼──────────────────┼───────────────┼──────────────────┼─────────────┼──────────────────┼───────────────┤
     &pad EXCL EQUAL   &none            &pad PRCNT EQUAL   &bi DOLLAR LBRC      &ts_bi LPAR LBRC   &bi RBRC RPAR   &trans   &trans   &none      &none    &none    &none    &tc GRAVE          &bi MINUS N1    &kp COMMA          &ellipsis     &bi DOLLAR UNDER   &pad EQUAL GT 
 //├─────────────────┼────────────────┼──────────────────┼────────────────────┼──────────────────┴───────────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼──────────────────┴───────────────┼──────────────────┼─────────────┼──────────────────┼───────────────┤
@@ -1825,24 +1819,6 @@
             >;
         };
 
-        coding_bigram_layer {
-            bindings = <
-//╭────────┬────────┬────────┬────────┬────────╮                                                                         ╭────────┬────────┬────────┬────────┬────────╮
-    &trans   &trans   &trans   &trans   &trans                                                                             &trans   &trans   &trans   &trans   &trans      
-//├────────┼────────┼────────┼────────┼────────┼────────╮                                                       ╭────────┼────────┼────────┼────────┼────────┼────────┤
-    &trans   &trans   &trans   &trans   &trans   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans      
-//├────────┼────────┼────────┼────────┼────────┼────────┤                                                       ├────────┼────────┼────────┼────────┼────────┼────────┤
-    &trans   &trans   &trans   &trans   &trans   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans      
-//├────────┼────────┼────────┼────────┼────────┼────────┤                                                       ├────────┼────────┼────────┼────────┼────────┼────────┤
-    &trans   &trans   &trans   &trans   &trans   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans      
-//├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-    &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans       
-//├────────┼────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┼────────┤
-    &trans   &trans   &trans   &trans   &trans            &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans   &trans   &trans   &trans 
-//╰────────┴────────┴────────┴────────┴────────╯        ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴────────┴────────┴────────╯
-            >;
-        };
-        
         typescript_bigram_layer {
             bindings = <
 //╭─────────────┬────────────────┬────────┬────────┬────────╮                                                                         ╭────────┬────────┬────────┬────────┬────────╮
@@ -1870,7 +1846,7 @@
 //├──────────┼─────────┼────────────────┼──────────────────────┼──────────┼───────────┤                                                       ├────────┼──────────┼───────────┼───────────────────┼─────────────┼──────────────────┤
     &trans     &trans    &trans           &trans                 &trans     &trans                                                              &trans   &trans     &trans      &trans              &trans        &trans            
 //├──────────┼─────────┼────────────────┼──────────────────────┼──────────┼───────────┤                                                       ├────────┼──────────┼───────────┼───────────────────┼─────────────┼──────────────────┤
-    &trans     &trans    &pad AMPS AMPS   &pad GB_PIPE GB_PIPE   &dc LBKT   &dc RBKT                                                            &trans   &trans     &trans      &trans              &dc GB_HASH   &trans            
+    &trans     &trans    &pad AMPS AMPS   &pad GB_PIPE GB_PIPE   &dc LBKT   &dc RBKT                                                            &trans   &trans     &trans      &long_arrow         &dc GB_HASH   &trans            
 //├──────────┼─────────┼────────────────┼──────────────────────┼──────────┼───────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼──────────┼───────────┼───────────────────┼─────────────┼──────────────────┤
     &dc EXCL   &trans    &bi PRCNT S      &dc DOLLAR             &dc LBRC   &dc RBRC    &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans     &trans      &dc DOT             &dc UNDER     &pad EQUAL EQUAL
 //├──────────┼─────────┼────────────────┼──────────────────────┼──────────┴───────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴──────────┼───────────┼───────────────────┼─────────────┼──────────────────┤
