@@ -1551,9 +1551,14 @@
             then-layer = <CODE_BIGRAM>;
         };
 
-        activate_no_padding_layers {
-            if-layers = <CODING NO_PAD>;
-            then-layer = <NO_PAD_CODING NO_PAD_CODING_NUMS_SYMS>;
+        activate_no_padding_coding_layer {
+            if-layers = <NO_PAD CODING>;
+            then-layer = <NO_PAD_CODING>;
+        };
+
+        activate_no_padding_coding_num_syms_layer {
+            if-layers = <NO_PAD CODING>;
+            then-layer = <NO_PAD_CODING_NUMS_SYMS>;
         };
 
         activate_javascript_bigram_layer {
@@ -1813,10 +1818,28 @@
 //├─────────────────┼────────────────┼──────────────────┼────────────────────┼──────────────────┼───────────────┤                                                       ├──────────────────┼───────────────┼──────────────────┼─────────────┼──────────────────┼───────────────┤
     &none             &none            &pad AMPS EQUAL    &pad GB_PIPE EQUAL   &ts_bi LPAR LBKT   &bi RBKT RPAR                                                           &email             &us GB_BSLH N   &bi DOT FSLH       &long_arrow   &tc GB_HASH        &none  
 //├─────────────────┼────────────────┼──────────────────┼────────────────────┼──────────────────┼───────────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼──────────────────┼───────────────┼──────────────────┼─────────────┼──────────────────┼───────────────┤
-    &pad EXCL EQUAL   &none            &pad PRCNT EQUAL   &bi DOLLAR LBRC      &ts_bi LPAR LBRC   &bi RBRC RPAR   &trans   &trans   &none      &none    &none    &none    &phone             &bi MINUS N1    &kp COMMA          &ellipsis     &bi DOLLAR UNDER   &pad EQUAL GT 
+    &pad EXCL EQUAL   &none            &pad PRCNT EQUAL   &bi DOLLAR LBRC      &ts_bi LPAR LBRC   &bi RBRC RPAR   &trans   &trans   &none      &none    &none    &none    &tc GRAVE          &bi MINUS N1    &kp COMMA          &ellipsis     &bi DOLLAR UNDER   &pad EQUAL GT 
 //├─────────────────┼────────────────┼──────────────────┼────────────────────┼──────────────────┴───────────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼──────────────────┴───────────────┼──────────────────┼─────────────┼──────────────────┼───────────────┤
     &none             &se EXCL QMARK   &pad PLUS EQUAL    &bi LPAR RPAR        &none                              &trans   &trans   &trans     &trans   &trans   &trans                      &none           &none              &none         &pad ASTRK EQUAL   &none 
 //╰─────────────────┴────────────────┴──────────────────┴────────────────────┴──────────────────╯               ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯                  ╰───────────────┴──────────────────┴─────────────┴──────────────────┴───────────────╯
+            >;
+        };
+
+        coding_bigram_layer {
+            bindings = <
+//╭────────┬────────┬────────┬────────┬────────╮                                                                         ╭────────┬────────┬────────┬────────┬────────╮
+    &trans   &trans   &trans   &trans   &trans                                                                             &trans   &trans   &trans   &trans   &trans      
+//├────────┼────────┼────────┼────────┼────────┼────────╮                                                       ╭────────┼────────┼────────┼────────┼────────┼────────┤
+    &trans   &trans   &trans   &trans   &trans   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans      
+//├────────┼────────┼────────┼────────┼────────┼────────┤                                                       ├────────┼────────┼────────┼────────┼────────┼────────┤
+    &trans   &trans   &trans   &trans   &trans   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans      
+//├────────┼────────┼────────┼────────┼────────┼────────┤                                                       ├────────┼────────┼────────┼────────┼────────┼────────┤
+    &trans   &trans   &trans   &trans   &trans   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans      
+//├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+    &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans       
+//├────────┼────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┼────────┤
+    &trans   &trans   &trans   &trans   &trans            &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans   &trans   &trans   &trans 
+//╰────────┴────────┴────────┴────────┴────────╯        ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴────────┴────────┴────────╯
             >;
         };
         
@@ -1873,7 +1896,7 @@
 //╰────────┴────────┴────────┴────────┴────────╯        ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴────────┴────────┴──────────────╯
             >;
         };
-
+S
        snippets_layer {
             bindings = <
 //╭────────┬────────┬───────────┬───────────┬───────────╮                                                                         ╭───────────┬───────────┬───────────┬────────┬───────╮
