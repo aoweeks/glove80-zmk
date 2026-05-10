@@ -1571,7 +1571,7 @@
         };
 
         activate_no_padding_coding_num_syms_layer {
-            if-layers = <NO_PAD CODING>;
+            if-layers = <NO_PAD CODING NUMS_SYMS>;
             then-layer = <NO_PAD_CODING_NUMS_SYMS>;
         };
 
