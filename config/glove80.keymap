@@ -887,8 +887,8 @@
             bindings =  <&macro_press &kp F13>,
                         <&macro_press &mo SLOW>,
                         <&macro_pause_for_release>,
-                        <&macro_release &mo SLOW>;
-                        <&macro_release &kp F13>,
+                        <&macro_release &mo SLOW>,
+                        <&macro_release &kp F13>;
         };
 
         js_eq: javascript_equalities {
