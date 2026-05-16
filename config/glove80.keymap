@@ -668,7 +668,7 @@
         u_mmv_u_mm: u_mouse_move_up_mod_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&mmv_mt MMV_UP U>, <&kp U>;
+            bindings = <&mmv_mt MOVE_UP U>, <&kp U>;
             mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
             keep-mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
         };
@@ -676,7 +676,7 @@
         n_mmv_l_mm: n_mouse_move_left_mod_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&mmv_mt MMV_LEFT N>, <&kp N>;
+            bindings = <&mmv_mt MOVE_LEFT N>, <&kp N>;
             mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
             keep-mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
         };
@@ -684,7 +684,7 @@
         e_mmv_d_mm: e_mouse_move_down_mod_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&mmv_mt MMV_DOWN E>, <&kp E>;
+            bindings = <&mmv_mt MOVE_DOWN E>, <&kp E>;
             mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
             keep-mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
         };
@@ -692,7 +692,7 @@
         i_mmv_r_mm: i_mouse_move_right_mod_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&mmv_mt MMV_RIGHT I>, <&kp I>;
+            bindings = <&mmv_mt MOVE_RIGHT I>, <&kp I>;
             mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
             keep-mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
         };
