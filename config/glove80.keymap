@@ -176,7 +176,7 @@
             flavor = "tap-preferred";
             require-prior-idle-ms = <500>;
             tapping-term-ms = <200>;
-            bindings = <&msc>, <&kp>;
+            bindings = <&mmv>, <&kp>;
         };
 
         slow_mlt: slow_layer_and_f13_hold_tap {
@@ -622,6 +622,79 @@
             bindings = <&bi Q U>, <&kp Q>;
             mods = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
             keep-mods = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+        };
+
+        // Mouse movement mod morphs
+        a_slow_mm: a_slow_mod_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&slow_mlt 0 A>, <&kp A>;
+            mods = <(MOD_LSHFT|MOD_RSHFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+            keep-mods = <(MOD_LSHFT|MOD_RSHFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+        };
+
+        f_msc_u_mm: f_mouse_scroll_up_mod_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&msc_mt SCRL_UP F>, <&kp F>;
+            mods = <(MOD_LSHFT|MOD_RSHFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+            keep-mods = <(MOD_LSHFT|MOD_RSHFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+        };
+
+        r_msc_l_mm: r_mouse_scroll_left_mod_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&msc_mt SCRL_LEFT R>, <&kp R>;
+            mods = <(MOD_LSHFT|MOD_RSHFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+            keep-mods = <(MOD_LSHFT|MOD_RSHFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+        };
+
+        s_msc_d_mm: s_mouse_scroll_down_mod_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&msc_mt SCRL_DOWN S>, <&kp S>;
+            mods = <(MOD_LSHFT|MOD_RSHFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+            keep-mods = <(MOD_LSHFT|MOD_RSHFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+        };
+
+        t_msc_r_mm: t_mouse_scroll_right_mod_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&msc_mt SCRL_RIGHT T>, <&kp T>;
+            mods = <(MOD_LSHFT|MOD_RSHFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+            keep-mods = <(MOD_LSHFT|MOD_RSHFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+        };
+
+        u_mmv_u_mm: u_mouse_move_up_mod_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&mmv_mt MMV_UP U>, <&kp U>;
+            mods = <(MOD_LSHFT|MOD_RSHFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+            keep-mods = <(MOD_LSHFT|MOD_RSHFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+        };
+
+        n_mmv_l_mm: n_mouse_move_left_mod_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&mmv_mt MMV_LEFT N>, <&kp N>;
+            mods = <(MOD_LSHFT|MOD_RSHFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+            keep-mods = <(MOD_LSHFT|MOD_RSHFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+        };
+
+        e_mmv_d_mm: e_mouse_move_down_mod_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&mmv_mt MMV_DOWN E>, <&kp E>;
+            mods = <(MOD_LSHFT|MOD_RSHFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+            keep-mods = <(MOD_LSHFT|MOD_RSHFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+        };
+
+        i_mmv_r_mm: i_mouse_move_right_mod_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&mmv_mt MMV_RIGHT I>, <&kp I>;
+            mods = <(MOD_LSHFT|MOD_RSHFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+            keep-mods = <(MOD_LSHFT|MOD_RSHFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
         };
 
         // Shortcuts
@@ -1668,21 +1741,23 @@
         
         default_layer {
             bindings = <
-//╭──────────────────┬────────────────┬─────────────────────┬─────────────────────┬──────────────────────╮                                                                                                                                                ╭─────────────────────┬─────────────────────┬──────────────────────┬─────────────────────┬───────────────────╮
-    &magic MAGIC 0     &to WASD         &scl TS               &scl C_LANG           &scl_py                                                                                                                                                                 &none                 &none                 &none                  &none                 &none          
-//├──────────────────┼────────────────┼─────────────────────┼─────────────────────┼──────────────────────┼───────╮                                                                                                                                ╭───────┼─────────────────────┼─────────────────────┼──────────────────────┼─────────────────────┼───────────────────┤
-    &none              &none            &kp LC(Z)             &slash                &kp LS(LC(Z))          &none                                                                                                                                    &none   &kp F14               &minus                &tog_pad               &none                 &none
-//├──────────────────┼────────────────┼─────────────────────┼─────────────────────┼──────────────────────┼───────┤                                                                                                                                ├───────┼─────────────────────┼─────────────────────┼──────────────────────┼─────────────────────┼───────────────────┤
-    &to MOUSING        &code_mode       &kp W                 &msc_mt SCRL_UP F     &kp P                  &kp B                                                                                                                                    &kp J   &kp L                 &mmv_mt MOVE_UP U     &kp Y                  &kp LG(LBKT)          &to MOUSING  
-//├──────────────────┼────────────────┼─────────────────────┼─────────────────────┼──────────────────────┼───────┤                                                                                                                                ├───────┼─────────────────────┼─────────────────────┼──────────────────────┼─────────────────────┼───────────────────┤
-    &qu_lt MOUSING 0   &slow_mlt 0 A    &msc_mt SCRL_LEFT R   &msc_mt SCRL_DOWN S   &msc_mt SCRL_RIGHT T   &kp G                                                                                                                                    &kp M   &mmv_mt MOVE_LEFT N   &mmv_mt MOVE_DOWN E   &mmv_mt MOVE_RIGHT I   &kp O                 &apos_lt FKEYS 0
-//├──────────────────┼────────────────┼─────────────────────┼─────────────────────┼──────────────────────┼───────┼─────────────────────┬─────────────────────┬──────────────────╮ ╭─────────────────────────┬───────────────────┬─────────────────┼───────┼─────────────────────┼─────────────────────┼──────────────────────┼─────────────────────┼───────────────────┤
-    &excl_lt SNIP 0    &mt_rpi LALT Z   &kp X                 &kp C                 &kp D                  &kp V   &lt_rpi DBL DEL       &lt_rpi MOUSING F14   &none                &none                     &mt_rpi LSHFT F14   &cw_lt KEYW 0     &kp K   &kp H                 &comma                &dot                   &mt_rpi LCTRL UNDER   &equal_lt EMOJI 0
-//├──────────────────┼────────────────┼─────────────────────┼─────────────────────┼──────────────────────┴───────┼─────────────────────┼─────────────────────┼──────────────────┤ ├─────────────────────────┼───────────────────┼─────────────────┼───────┴─────────────────────┼─────────────────────┼──────────────────────┼─────────────────────┼───────────────────┤
-    &none              &qmark           &plus                 &lpar                 &kp RPAR                       &rpt_lt NUMS_SYMS 0   &shift_td             &ret_lt BIGRAM 0     &undecided_lt MOUSE TAB   &bspc_lt WINDOW 0   &space_lt NAV 0           &semi                 &colon                &dbl_quote             &astrk                &none
-//╰──────────────────┴────────────────┴─────────────────────┴─────────────────────┴──────────────────────╯       ╰─────────────────────┴─────────────────────┴──────────────────╯ ╰─────────────────────────┴───────────────────┴─────────────────╯       ╰─────────────────────┴─────────────────────┴──────────────────────┴─────────────────────┴───────────────────╯
+//╭──────────────────┬────────────────┬─────────────┬─────────────┬───────────────╮                                                                                                                                                ╭─────────────┬─────────────┬─────────────┬─────────────────────┬───────────────────╮
+    &magic MAGIC 0     &to WASD         &scl TS       &scl C_LANG   &scl_py                                                                                                                                                          &none         &none         &none         &none                 &none          
+//├──────────────────┼────────────────┼─────────────┼─────────────┼───────────────┼───────╮                                                                                                                                ╭───────┼─────────────┼─────────────┼─────────────┼─────────────────────┼───────────────────┤
+    &none              &none            &kp LC(Z)     &slash        &kp LS(LC(Z))   &none                                                                                                                                    &none   &kp F14       &minus        &tog_pad      &none                 &none
+//├──────────────────┼────────────────┼─────────────┼─────────────┼───────────────┼───────┤                                                                                                                                ├───────┼─────────────┼─────────────┼─────────────┼─────────────────────┼───────────────────┤
+    &to MOUSING        &code_mode       &kp W         &f_msc_u_mm   &kp P           &kp B                                                                                                                                    &kp J   &kp L         &u_mmv_u_mm   &kp Y         &kp LG(LBKT)          &to MOUSING  
+//├──────────────────┼────────────────┼─────────────┼─────────────┼───────────────┼───────┤                                                                                                                                ├───────┼─────────────┼─────────────┼─────────────┼─────────────────────┼───────────────────┤
+    &qu_lt MOUSING 0   &a_slow_mm       &r_msc_l_mm   &s_msc_d_mm   &t_msc_r_mm     &kp G                                                                                                                                    &kp M   &n_mmv_l_mm   &e_mmv_d_mm   &i_mmv_r_mm   &kp O                 &apos_lt FKEYS 0
+//├──────────────────┼────────────────┼─────────────┼─────────────┼───────────────┼───────┼─────────────────────┬─────────────────────┬──────────────────╮ ╭─────────────────────────┬───────────────────┬─────────────────┼───────┼─────────────┼─────────────┼─────────────┼─────────────────────┼───────────────────┤
+    &excl_lt SNIP 0    &mt_rpi LALT Z   &kp X         &kp C         &kp D           &kp V   &lt_rpi DBL DEL       &lt_rpi MOUSING F14   &none                &none                     &mt_rpi LSHFT F14   &cw_lt KEYW 0     &kp K   &kp H         &comma        &dot          &mt_rpi LCTRL UNDER   &equal_lt EMOJI 0
+//├──────────────────┼────────────────┼─────────────┼─────────────┼───────────────┴───────┼─────────────────────┼─────────────────────┼──────────────────┤ ├─────────────────────────┼───────────────────┼─────────────────┼───────┴─────────────┼─────────────┼─────────────┼─────────────────────┼───────────────────┤
+    &none              &qmark           &plus         &lpar         &kp RPAR                &rpt_lt NUMS_SYMS 0   &shift_td             &ret_lt BIGRAM 0     &undecided_lt MOUSE TAB   &bspc_lt WINDOW 0   &space_lt NAV 0           &semi         &colon        &dbl_quote    &astrk                &none
+//╰──────────────────┴────────────────┴─────────────┴─────────────┴───────────────╯       ╰─────────────────────┴─────────────────────┴──────────────────╯ ╰─────────────────────────┴───────────────────┴─────────────────╯       ╰─────────────┴─────────────┴─────────────┴─────────────────────┴───────────────────╯
             >;
         };
+
+// tsraienpfwyuldcxzhkgmbj
 
         no_pad_layer {
             bindings = <
