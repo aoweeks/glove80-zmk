@@ -69,7 +69,8 @@
 
 // Other Constants
 #define SELECT_WORD_DELAY 1
-#define ZMK_POINTING_DEFAULT_MOVE_VAL 2000  
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 2000  // default 600
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 40 // default 10
 #define RELEASE_AFTER 3000
 
 &mmv_input_listener {
@@ -82,7 +83,7 @@
 &msc_input_listener {
   slow {
     layers = <SLOW>;
-    input-processors = <&zip_xy_scaler 1 4>;
+    input-processors = <&zip_scroll_scaler 1 4>;
   };
 };
 
@@ -995,11 +996,11 @@
             #binding-cells = <1>;
             wait-ms = <1>;
             tap-ms = <1>;
-            bindings =  <&macro_press &macro_param_1to1 &mo MOUSE>,
-                        <&macro_press &macro_param_2to1 &mmv 0>,
+            bindings =  <&macro_press &mo MOUSE>,
+                        <&macro_press &macro_param_1to1 &mmv 0>,
                         <&macro_pause_for_release>,
-                        <&macro_release &macro_param_1to1 &mo MOUSE>,
-                        <&macro_release &macro_param_2to1 &mmv 0>;
+                        <&macro_release &mo MOUSE>,
+                        <&macro_release &macro_param_1to1 &mmv 0>;
         };
 
 
