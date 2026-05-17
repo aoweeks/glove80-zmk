@@ -1704,7 +1704,7 @@
 
         combo_escape {
             timeout-ms = <30>;
-            key-positions = <61 62>;
+            key-positions = <60 61>;
             require-prior-idle-ms = <400>;
             layers = <ALL_LAYERS>;
             bindings = <&kp ESC>;
@@ -1790,7 +1790,7 @@
         };
 
         no_pad_layer {
-            bindings = <tttssddd
+            bindings = <
 //╭────────┬────────┬────────┬────────┬────────╮                                                                         ╭────────┬────────┬────────┬────────┬────────╮
     &trans   &trans   &trans   &trans   &trans                                                                             &trans   &trans   &trans   &trans   &trans      
 //├────────┼────────┼────────┼────────┼────────┼────────╮                                                       ╭────────┼────────┼────────┼────────┼────────┼────────┤
