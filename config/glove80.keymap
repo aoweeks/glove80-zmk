@@ -156,7 +156,7 @@
             flavor = "tap-preferred";
             require-prior-idle-ms = <500>;
             tapping-term-ms = <200>;
-            bindings = <&minus>, <&kp>;
+            bindings = <&msc_mo>, <&minus>;
         };
         
         comma_mt: comma_hold_tap {
@@ -165,7 +165,7 @@
             flavor = "tap-preferred";
             require-prior-idle-ms = <500>;
             tapping-term-ms = <200>;
-            bindings = <&comma>, <&kp>;
+            bindings = <&msc_mo>, <&comma>;
         };
 
         msc_mt: mouse_scroll_hold_tap {
