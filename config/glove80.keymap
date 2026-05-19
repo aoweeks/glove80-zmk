@@ -30,6 +30,8 @@
 
 #define HYPER(keypress) LG(LC(LA(LS(keypress))))
 
+#define MOUSE_TAPPING 300
+
 // Layers
 #define DEFAULT 0
 #define NO_PAD 1
@@ -173,7 +175,7 @@
             #binding-cells = <2>;
             flavor = "tap-preferred";
             require-prior-idle-ms = <500>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <MOUSE_TAPPING>;
             bindings = <&msc_mo>, <&kp>;
         };
 
@@ -182,7 +184,7 @@
             #binding-cells = <2>;
             flavor = "tap-preferred";
             require-prior-idle-ms = <500>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <MOUSE_TAPPING>;
             bindings = <&mmv_mo>, <&kp>;
         };
 
@@ -191,7 +193,8 @@
             #binding-cells = <2>;
             flavor = "tap-preferred";
             require-prior-idle-ms = <500>;
-            tapping-term-ms = <200>;
+            hold-while-undecided;
+            tapping-term-ms = <MOUSE_TAPPING>;
             bindings = <&f13_slow>, <&kp>;
         };
 
@@ -966,10 +969,10 @@
             tap-ms = <1>;
             bindings =  <&macro_press &kp F13>,
                         <&macro_press &mo MOUSE>,
-                        <&macro_press &mo SLOW>,
+                        // <&macro_press &mo SLOW>,
                         <&macro_pause_for_release>,
                         <&macro_release &mo MOUSE>,
-                        <&macro_release &mo SLOW>,
+                        // <&macro_release &mo SLOW>,
                         <&macro_release &kp F13>;
         };
 
@@ -2170,19 +2173,19 @@
 
         mouse_emulation_layer {
             bindings = <
-//╭───────┬───────────┬───────────┬───────────┬───────────╮                                                                                                       ╭────────────────┬────────────────┬─────────────────┬─────────────────┬─────────────╮
-    &none   &none       &none       &none       &none                                                                                                               &none            &none            &none             &none             &none      
-//├───────┼───────────┼───────────┼───────────┼───────────┼───────────╮                                                                          ╭────────────────┼────────────────┼────────────────┼─────────────────┼─────────────────┼─────────────┤
-    &none   &none       &none       &none       &none       &none                                                                                  &none            &trans           &msc SCRL_UP     &trans            &none             &none      
-//├───────┼───────────┼───────────┼───────────┼───────────┼───────────┤                                                                          ├────────────────┼────────────────┼────────────────┼─────────────────┼─────────────────┼─────────────┤
-    &none   &none       &kp LALT    &kp LCTRL   &kp LGUI    &copy_cut                                                                              &none            &none            &mmv MOVE_UP     &none             &trans            &none
-//├───────┼───────────┼───────────┼───────────┼───────────┼───────────┤                                                                          ├────────────────┼────────────────┼────────────────┼─────────────────┼─────────────────┼─────────────┤
-    &none   &f13_slow   &mkp RCLK   &mkp MCLK   &mkp LCLK   &paste                                                                                 &msc SCRL_LEFT   &mmv MOVE_LEFT   &mmv MOVE_DOWN   &mmv MOVE_RIGHT   &msc SCRL_RIGHT   &none      
-//├───────┼───────────┼───────────┼───────────┼───────────┼───────────┼───────────┬───────────┬───────────╮ ╭─────────────┬──────────┬───────────┼────────────────┼────────────────┼────────────────┼─────────────────┼─────────────────┼─────────────┤
-    &none   &kp LALT    &none       &none       &none       &none       &kp DEL     &trans      &to MOUSE     &to DEFAULT   &trans     &kp LSHFT   &none            &none            &msc SCRL_DOWN   &none             &kp LCTRL         &none      
-//├───────┼───────────┼───────────┼───────────┼───────────┴───────────┼───────────┼───────────┼───────────┤ ├─────────────┼──────────┼───────────┼────────────────┴────────────────┼────────────────┼─────────────────┼─────────────────┼─────────────┤
-    &none   &none       &none       &none       &none                   &kp LC(S)   &kp LSHFT   &none         &kp LGUI      &kp BSPC   &trans                       &none            &none            &none             &none             &none 
-//╰───────┴───────────┴───────────┴───────────┴───────────╯           ╰───────────┴───────────┴───────────╯ ╰─────────────┴──────────┴───────────╯                ╰────────────────┴────────────────┴─────────────────┴─────────────────┴─────────────╯
+//╭───────┬──────────┬───────────┬───────────┬───────────╮                                                                                                       ╭────────────────┬────────────────┬─────────────────┬─────────────────┬─────────────╮
+    &none   &none      &none       &none       &none                                                                                                               &none            &none            &none             &none             &none      
+//├───────┼──────────┼───────────┼───────────┼───────────┼───────────╮                                                                          ╭────────────────┼────────────────┼────────────────┼─────────────────┼─────────────────┼─────────────┤
+    &none   &none      &none       &none       &none       &none                                                                                  &none            &trans           &msc SCRL_UP     &trans            &none             &none      
+//├───────┼──────────┼───────────┼───────────┼───────────┼───────────┤                                                                          ├────────────────┼────────────────┼────────────────┼─────────────────┼─────────────────┼─────────────┤
+    &none   &none      &kp LALT    &kp LCTRL   &kp LGUI    &copy_cut                                                                              &none            &none            &mmv MOVE_UP     &none             &trans            &none
+//├───────┼──────────┼───────────┼───────────┼───────────┼───────────┤                                                                          ├────────────────┼────────────────┼────────────────┼─────────────────┼─────────────────┼─────────────┤
+    &none   &mo SLOW   &mkp RCLK   &mkp MCLK   &mkp LCLK   &paste                                                                                 &msc SCRL_LEFT   &mmv MOVE_LEFT   &mmv MOVE_DOWN   &mmv MOVE_RIGHT   &msc SCRL_RIGHT   &none      
+//├───────┼──────────┼───────────┼───────────┼───────────┼───────────┼───────────┬───────────┬───────────╮ ╭─────────────┬──────────┬───────────┼────────────────┼────────────────┼────────────────┼─────────────────┼─────────────────┼─────────────┤
+    &none   &kp LALT   &none       &none       &none       &none       &kp DEL     &trans      &to MOUSE     &to DEFAULT   &trans     &kp LSHFT   &none            &none            &msc SCRL_DOWN   &none             &kp LCTRL         &none      
+//├───────┼──────────┼───────────┼───────────┼───────────┴───────────┼───────────┼───────────┼───────────┤ ├─────────────┼──────────┼───────────┼────────────────┴────────────────┼────────────────┼─────────────────┼─────────────────┼─────────────┤
+    &none   &none      &none       &none       &none                   &kp LC(S)   &kp LSHFT   &none         &kp LGUI      &kp BSPC   &trans                       &none            &none            &none             &none             &none 
+//╰───────┴──────────┴───────────┴───────────┴───────────╯           ╰───────────┴───────────┴───────────╯ ╰─────────────┴──────────┴───────────╯                ╰────────────────┴────────────────┴─────────────────┴─────────────────┴─────────────╯
             >;
         };
 
