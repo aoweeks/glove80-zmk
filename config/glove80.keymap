@@ -277,7 +277,7 @@
             bindings =  <&macro_tap &sk_qr LSHFT>,
                         <&macro_press &mo MOUSING>,
                         <&macro_pause_for_release>,
-                        <&macro_release &mo MOUSING>,;
+                        <&macro_release &mo MOUSING>;
         };
 
         super_lm: simultaneous_super_mod_and_window_layer {
