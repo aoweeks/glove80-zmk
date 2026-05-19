@@ -271,14 +271,11 @@
 
         sticky_shift_and_mousing_layer: sticky_shift_and_mousing_layer {
             compatible = "zmk,behavior-macro";
-            wait-ms = <STICKY_RELEASE_AFTER>;
+            wait-ms = <1>;
             tap-ms = <1>;
             #binding-cells = <0>;
             bindings =  <&macro_tap &sk_qr LSHFT>,
-                        <&macro_wait_time 1>,
-                        <&macro_press &mo MOUSING>,
-                        <&macro_pause_for_release>,
-                        <&macro_release &mo MOUSING>;
+                        <&macro_press &mousing_dlt MOUSING 0>;
         };
 
         super_lm: simultaneous_super_mod_and_window_layer {
@@ -303,6 +300,14 @@
             require-prior-idle-ms = <125>;
             retro-tap;
             bindings = <&mo>, <&qu_mm>;
+        };
+
+        mousing_dlt: shift_delayed_layer_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <STICKY_RELEASE_AFTER>;
+            bindings = <&mo>, <&kp>;
         };
 
 
@@ -1052,11 +1057,11 @@
                           &macro_param_2to1 &kp 0>;
         };
 
-        // single_sticky_tap: single_sticky_tap {
-        //     compatible = "zmk,behavior-macro-one-param";
-        //     #binding-cells = <1>;
-        //     bindings = <&macro_tap &macro_param_1to1 &sk_qr 0>;
-        // };
+        single_sticky_tap: single_sticky_tap {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings = <&macro_tap &macro_param_1to1 &sk_qr 0>;
+        };
 
         // single_sticky_layer_tap: single_sticky_layer_tap {
         //     compatible = "zmk,behavior-macro-one-param";
