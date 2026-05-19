@@ -56,17 +56,16 @@
 #define C_KEYW 20
 #define PYTHON_KEYW 21
 #define MOUSE 22
-#define SLOW 23
-#define MEDIA 24
-#define EMOJI 25
-#define FKEYS 26
-#define WINDOW 27
-#define WASD 28
-#define MAGIC 29
-#define FACTORY_TEST 30
+#define MEDIA 23
+#define EMOJI 24
+#define FKEYS 25
+#define WINDOW 26
+#define WASD 27
+#define MAGIC 28
+#define FACTORY_TEST 29
 
 #define ALL_LAYERS 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 \
-                   23 24 25 26 27 28 29 30
+                   23 24 25 26 27 28 29
 
 
 // Other Constants
@@ -75,19 +74,7 @@
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 80 // default 10
 #define RELEASE_AFTER 3000
 
-&mmv_input_listener {
-  slow {
-    layers = <SLOW>;
-    input-processors = <&zip_xy_scaler 1 4>;
-  };
-};
 
-&msc_input_listener {
-  slow {
-    layers = <SLOW>;
-    input-processors = <&zip_scroll_scaler 1 4>;
-  };
-};
 
 &sl {
   release-after-ms = <RELEASE_AFTER>;
@@ -188,14 +175,14 @@
             bindings = <&mmv_mo>, <&kp>;
         };
 
-        slow_mlt: slow_layer_and_f13_hold_tap {
+        f13_mt: f13_hold_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "tap-preferred";
             require-prior-idle-ms = <500>;
             hold-while-undecided;
             tapping-term-ms = <MOUSE_TAPPING>;
-            bindings = <&f13_slow>, <&kp>;
+            bindings = <&f13>, <&kp>;
         };
 
         sk_qr: sticky_key_quick_release {
@@ -635,10 +622,10 @@
         };
 
         // Mouse movement mod morphs
-        a_slow_mm: a_slow_mod_morph {
+        a_f13_mm: a_f13_mod_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&slow_mlt 0 A>, <&kp A>;
+            bindings = <&f13_mt 0 A>, <&kp A>;
             mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
             keep-mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
         };
@@ -962,17 +949,15 @@
                         <&macro_release &macro_param_1to1 &mo 0>;
         };
 
-        f13_slow: f13_and_mouse_and_slow_layers {
+        f13: f13_and_mouse_layer {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <1>;
             tap-ms = <1>;
             bindings =  <&macro_press &kp F13>,
                         <&macro_press &mo MOUSE>,
-                        // <&macro_press &mo SLOW>,
                         <&macro_pause_for_release>,
                         <&macro_release &mo MOUSE>,
-                        // <&macro_release &mo SLOW>,
                         <&macro_release &kp F13>;
         };
 
@@ -1783,7 +1768,7 @@
 //├──────────────────┼────────────────┼───────────┼─────────────┼───────────────┼───────┤                                                                                                                                ├─────────────┼─────────────┼──────────────────┼─────────────┼─────────────────────┼───────────────────┤
     &to MOUSING        &code_mode       &kp W       &kp F         &kp P           &kp B                                                                                                                                    &kp J         &kp L         &u_mmv_u_mm        &kp Y         &kp LG(LBKT)          &to MOUSING  
 //├──────────────────┼────────────────┼───────────┼─────────────┼───────────────┼───────┤                                                                                                                                ├─────────────┼─────────────┼──────────────────┼─────────────┼─────────────────────┼───────────────────┤
-    &qu_lt SNIP 0      &a_slow_mm       &kp R       &kp S         &kp T           &kp G                                                                                                                                    &m_msc_l_mm   &n_mmv_l_mm   &e_mmv_d_mm        &i_mmv_r_mm   &o_msc_r_mm           &apos_lt FKEYS 0
+    &qu_lt SNIP 0      &a_f13_mm        &kp R       &kp S         &kp T           &kp G                                                                                                                                    &m_msc_l_mm   &n_mmv_l_mm   &e_mmv_d_mm        &i_mmv_r_mm   &o_msc_r_mm           &apos_lt FKEYS 0
 //├──────────────────┼────────────────┼───────────┼─────────────┼───────────────┼───────┼─────────────────────┬─────────────────────┬──────────────────╮ ╭─────────────────────────┬───────────────────┬─────────────────┼─────────────┼─────────────┼──────────────────┼─────────────┼─────────────────────┼───────────────────┤
     &excl_lt MEDIA 0   &mt_rpi LALT Z   &kp X       &kp C         &kp D           &kp V   &lt_rpi DBL DEL       &lt_rpi MOUSING F14   &none                &none                     &mt_rpi LSHFT F14   &cw_lt KEYW 0     &kp K         &kp H         &comma_msc_d_mm    &dot          &mt_rpi LCTRL UNDER   &equal_lt EMOJI 0
 //├──────────────────┼────────────────┼───────────┼─────────────┼───────────────┴───────┼─────────────────────┼─────────────────────┼──────────────────┤ ├─────────────────────────┼───────────────────┼─────────────────┼─────────────┴─────────────┼──────────────────┼─────────────┼─────────────────────┼───────────────────┤
@@ -2189,24 +2174,6 @@
             >;
         };
 
-        slow_mouse_emulation_layer {
-            bindings = <
-//╭────────┬────────┬────────┬────────┬────────╮                                                                         ╭────────┬────────┬────────┬────────┬────────╮
-    &trans   &trans   &trans   &trans   &trans                                                                             &trans   &trans   &trans   &trans   &trans      
-//├────────┼────────┼────────┼────────┼────────┼────────╮                                                       ╭────────┼────────┼────────┼────────┼────────┼────────┤
-    &trans   &trans   &trans   &trans   &trans   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans      
-//├────────┼────────┼────────┼────────┼────────┼────────┤                                                       ├────────┼────────┼────────┼────────┼────────┼────────┤
-    &trans   &trans   &trans   &trans   &trans   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans      
-//├────────┼────────┼────────┼────────┼────────┼────────┤                                                       ├────────┼────────┼────────┼────────┼────────┼────────┤
-    &trans   &trans   &trans   &trans   &trans   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans      
-//├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-    &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans       
-//├────────┼────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┼────────┤
-    &trans   &trans   &trans   &trans   &trans            &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans   &trans   &trans   &trans 
-//╰────────┴────────┴────────┴────────┴────────╯        ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴────────┴────────┴────────╯
-            >;
-        };
- 
         media_layer {
             bindings = <
 //╭───────┬───────┬─────────────┬─────────────┬─────────────╮                                                                                          ╭──────────┬──────────────┬──────────┬────────────┬───────╮
