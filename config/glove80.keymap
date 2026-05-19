@@ -1932,7 +1932,7 @@
 //├────────┼────────┼───────────┼──────────┼────────────┼────────┤                                                       ├────────┼────────┼────────┼────────┼────────┼───────────┤
     &trans   &trans   &kp AMPS    &kp PIPE   &us LBKT 0   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans         
 //├────────┼────────┼───────────┼──────────┼────────────┼────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────┼────────┼────────┼───────────┤
-    &trans   &trans   &kp PRCNT   &trans     &trans       &trans   &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &kp EQUAL      
+    &trans   &trans   &kp PRCNT   &trans     &kp LBRC     &trans   &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &kp EQUAL      
 //├────────┼────────┼───────────┼──────────┼────────────┴────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┼───────────┤
     &trans   &trans   &trans      &trans     &trans                &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans   &trans   &trans   &trans    
 //╰────────┴────────┴───────────┴──────────┴────────────╯        ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴────────┴────────┴───────────╯
