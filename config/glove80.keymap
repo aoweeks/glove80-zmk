@@ -198,7 +198,7 @@
         sk_qr: sticky_key_quick_release {
             compatible = "zmk,behavior-sticky-key";
             #binding-cells = <1>;
-            bindings = <&kt>;
+            bindings = <&kp>;
             release-after-ms = <STICKY_RELEASE_AFTER>;
             quick-release;
             ignore-modifiers;
@@ -417,11 +417,11 @@
             bindings = <&mo>, <&key_repeat>;
         };
 
-        bspc_lt: backpace_layer_tap {
+        bspc_lt: backspace_layer_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
-            tapping-term-ms = <200>;
+            tapping-term-ms = <800>;
 
             bindings = <&super_lm>, <&bspc_mm>;
         };
@@ -909,6 +909,14 @@
             wait-ms = <1>;
             tap-ms = <1>;
             bindings = <&macro_param_1to1 &kp 0 &sk_qr LSHFT>;
+        };
+
+        rss: release_sticky_shift_failsafe {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <1>;
+            tap-ms = <1>;
+            bindings = <&macro_release &sk_qr LSHFT>;
         };
 
         cms: coding_mode_window_switch {
@@ -1910,7 +1918,7 @@
 //├──────────┼──────────┼──────────────┼──────────────┼──────────────┼──────────────┤                                                                    ├─────────────┼──────────────────┼───────────────┼─────────────┼───────────┼───────┤
     &kp LGUI   &kp F13    &kp HOME       &kp PG_DN      &kp END        &paste                                                                              &match_word   &kp LEFT           &kp DOWN        &kp RIGHT     &none       &none    
 //├──────────┼──────────┼──────────────┼──────────────┼──────────────┼──────────────┼─────────┬───────────┬─────────╮ ╭─────────────┬────────┬───────────┼─────────────┼──────────────────┼───────────────┼─────────────┼───────────┼───────┤
-    &none      &kp LALT   &none          &kp LC(S)      &kp LC(LBKT)   &kp LC(RBKT)   &kp DEL   &none       &to NAV     &to DEFAULT   &trans   &kp LSHFT   &kp LG(DOT)   &select_all_none   &kp DOWN        &kp K_CMENU   &kp LCTRL   &none 
+    &none      &kp LALT   &none          &kp LC(S)      &kp LC(LBKT)   &kp LC(RBKT)   &kp DEL   &rss        &to NAV     &to DEFAULT   &trans   &kp LSHFT   &kp LG(DOT)   &select_all_none   &kp DOWN        &kp K_CMENU   &kp LCTRL   &none 
 //├──────────┼──────────┼──────────────┼──────────────┼──────────────┴──────────────┼─────────┼───────────┼─────────┤ ├─────────────┼────────┼───────────┼─────────────┴──────────────────┼───────────────┼─────────────┼───────────┼───────┤
     &none      &none      &kp LC(PLUS)   &none          &none                         &none     &kp LSHFT   &trans      &trans        &none    &none                     &none              &none           &none         &none       &none
 //╰──────────┴──────────┴──────────────┴──────────────┴──────────────╯              ╰─────────┴───────────┴─────────╯ ╰─────────────┴────────┴───────────╯             ╰──────────────────┴───────────────┴─────────────┴───────────┴───────╯
