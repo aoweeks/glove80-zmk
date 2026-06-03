@@ -271,8 +271,8 @@
 
         sticky_shift_and_mousing_layer: sticky_shift_and_mousing_layer {
             compatible = "zmk,behavior-macro";
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             #binding-cells = <0>;
             bindings =  <&macro_tap &sk_qr LSHFT>,
                         <&macro_press &mousing_dlt MOUSING 0>,
@@ -280,17 +280,17 @@
                         <&macro_release &mousing_dlt MOUSING 0>;
         };
 
-        super_lm: simultaneous_super_mod_and_window_layer {
-            compatible = "zmk,behavior-macro";
-            wait-ms = <1>;
-            tap-ms = <1>;
-            #binding-cells = <0>;
-            bindings =  <&macro_press &mo WINDOW>,
-                        <&macro_press &kp LGUI>,
-                        <&macro_pause_for_release>,
-                        <&macro_release &kp LGUI>,
-                        <&macro_release &mo WINDOW>;
-        };
+        // super_lm: simultaneous_super_mod_and_window_layer {
+        //     compatible = "zmk,behavior-macro";
+        //     wait-ms = <0>;
+        //     tap-ms = <0>;
+        //     #binding-cells = <0>;
+        //     bindings =  <&macro_press &mo WINDOW>,
+        //                 <&macro_press &kp LGUI>,
+        //                 <&macro_pause_for_release>,
+        //                 <&macro_release &kp LGUI>,
+        //                 <&macro_release &mo WINDOW>;
+        // };
 
          qu_lt: qu_layer_tap {
             compatible = "zmk,behavior-hold-tap";
@@ -421,9 +421,18 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
-            tapping-term-ms = <800>;
+            tapping-term-ms = <200>;
 
-            bindings = <&super_lm>, <&bspc_mm>;
+            bindings = <&mo>, <&bspc_mm>;
+        };
+
+        f14_lt: f14_layer_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+
+            bindings = <&mo>, <&kp F14>;
         };
 
         cw_mt: caps_word_mod_tap {
@@ -814,8 +823,8 @@
         dc: double_char {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_param_1to1 &kp 0>,
                         <&macro_param_1to1 &kp 0>;
         };
@@ -823,8 +832,8 @@
         tc: triple_char {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_param_1to1 &kp 0>,
                         <&macro_param_1to1 &kp 0 &macro_param_1to1 &kp 0>;
         };
@@ -832,8 +841,8 @@
         bi: bigram {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_param_1to1 &kp 0 &macro_param_2to1 &kp 0>;
         };
 
@@ -841,8 +850,8 @@
         pad: padded_characters {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_release &kp LSHFT>,
                         <&macro_tap &kp SPACE &macro_param_1to1 &kp 0 \
                           &macro_param_2to1 &kp 0 &kp SPACE>;
@@ -851,8 +860,8 @@
         spad: single_padded_character {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_release &kp LSHFT>,
                         <&macro_tap &kp SPACE &macro_param_1to1 &kp 0 \
                           &kp SPACE>;
@@ -861,8 +870,8 @@
         psnl: preceding_space_and_newline {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &kp SPACE &macro_param_1to1 &kp 0 \
                           &kp RET &kp TAB>;
         };
@@ -870,16 +879,16 @@
         ts: trailing_space {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings = <&macro_tap &macro_param_1to1 &kp 0 &kp SPACE>;
         };
 
         ts_bi: bigram_with_trailing_space {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &macro_param_1to1 &kp 0 \
                           &macro_param_2to1 &kp 0 &kp SPACE>;
         };
@@ -887,8 +896,8 @@
         ts_tri: trigram_with_trailing_space {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &macro_param_1to1 &kp 0 \
                           &macro_param_1to1 &kp 0 &macro_param_2to1 &kp 0 \
                           &kp SPACE>;
@@ -897,8 +906,8 @@
         se: sentence_ending {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings = <&macro_param_1to1 &kp 0 &macro_param_2to1 &kp 0 \
                         &kp SPACE &sk_qr LSHFT>;
         };
@@ -906,66 +915,66 @@
         deferred_shift: shift_deferred_to_next_char {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings = <&macro_param_1to1 &kp 0 &sk_qr LSHFT>;
         };
 
         rss: release_sticky_shift_failsafe {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings = <&macro_release &sk_qr LSHFT>;
         };
 
         cms: coding_mode_window_switch {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
-            wait-ms = <1>;
-            tap-ms = <1>;
-            bindings =  <&macro_tap &macro_param_1to1 &kp 0>,
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings =  <&macro_tap &macro_param_1to1 &kp LG(0)>,
                         <&macro_tap &code_mode>;
         };
 
         ems: english_mode_window_switch {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
-            wait-ms = <1>;
-            tap-ms = <1>;
-            bindings =  <&macro_tap &macro_param_1to1 &kp 0>,
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings =  <&macro_tap &macro_param_1to1 &kp LG(0)>,
                         <&macro_tap &english_mode>;
         };
 
         code_mode: coding_mode {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings = <&macro_tap &kp LG(LC(LA(LS(PLUS)))) &tog_on CODING>;
         };
         
         english_mode: english_mode {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings = <&macro_tap &kp LG(LC(LA(LS(MINUS)))) &tog_off CODING>;
         };
 
         tog_pad: toggle_padding {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings = <&macro_tap &tog NO_PAD>;
         };
 
         // string_tog: toggle_writing_mode_for_string {
         //     compatible = "zmk,behavior-macro-one-param";
         //     #binding-cells = <1>;
-        //     wait-ms = <1>;
-        //     tap-ms = <1>;
+        //     wait-ms = <0>;
+        //     tap-ms = <0>;
         //     bindings =  <&macro_param_1to1 &kp 0 &sk_qr LSHFT>;
         //     mods = <(MOD_LSFT|MOD_RSFT)>;
         // };
@@ -973,8 +982,8 @@
         clear_shift_mo: clear_shift_momentary_layer {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_release &kp LSHFT>,
                         <&macro_press &macro_param_1to1 &mo 0>,
                         <&macro_pause_for_release>,
@@ -984,8 +993,8 @@
         f13: f13_and_mouse_layer {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_press &kp F13>,
                         <&macro_press &mo MOUSE>,
                         <&macro_pause_for_release>,
@@ -996,8 +1005,8 @@
         js_eq: javascript_equalities {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_release &kp LSHFT>,
                         <&macro_tap &kp SPACE &macro_param_1to1 &kp 0 \
                           &kp EQUAL &kp EQUAL &kp SPACE>;
@@ -1006,8 +1015,8 @@
         long_arrow: long_arrow {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_release &kp LSHFT>,
                         <&macro_tap &kp MINUS &kp MINUS &kp GT>;
         };
@@ -1015,8 +1024,8 @@
         cd_up: change_directory_up {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_release &kp LSHFT &macro_tap \
                           &kp DOT &kp DOT &kp FSLH>;
         };
@@ -1024,8 +1033,8 @@
         ellipsis: ellipsis {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_release &kp LSHFT \
                           &macro_tap &kp DOT &se DOT DOT>;
         };
@@ -1033,8 +1042,8 @@
         mmv_mo: mouse_move_and_momentary_mouse_layer {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_press &mo MOUSE>,
                         <&macro_press &macro_param_1to1 &mmv 0>,
                         <&macro_pause_for_release>,
@@ -1045,8 +1054,8 @@
         msc_mo: mouse_scroll_and_momentary_mouse_layer {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_press &mo MOUSE>,
                         <&macro_press &macro_param_1to1 &msc 0>,
                         <&macro_pause_for_release>,
@@ -1058,8 +1067,8 @@
         us: unshiftable {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_release &kp LSHFT>,
                         <&macro_tap &macro_param_1to1 &kp 0 \
                           &macro_param_2to1 &kp 0>;
@@ -1081,32 +1090,32 @@
         // the: the_word {
         //     compatible = "zmk,behavior-macro";
         //     #binding-cells = <0>;
-        //     wait-ms = <1>;
-        //     tap-ms = <1>;
+        //     wait-ms = <0>;
+        //     tap-ms = <0>;
         //     bindings =  <&macro_tap &kp T &kp H &kp E &kp SPACE>;
         // };
  
         // and: and_word {
         //     compatible = "zmk,behavior-macro";
         //     #binding-cells = <0>;
-        //     wait-ms = <1>;
-        //     tap-ms = <1>;
+        //     wait-ms = <0>;
+        //     tap-ms = <0>;
         //     bindings = <&macro_tap &kp A &kp N &kp D &kp SPACE>;
         // };
          
         // but: but_word {
         //     compatible = "zmk,behavior-macro";
         //     #binding-cells = <0>;
-        //     wait-ms = <1>;
-        //     tap-ms = <1>;
+        //     wait-ms = <0>;
+        //     tap-ms = <0>;
         //     bindings = <&macro_tap &kp B &kp U &kp T &kp SPACE>;
         // };
         
         email: email_address {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_release &kp LSHFT>,
                         <&macro_tap &kp A &kp O &kp W &kp E &kp E &kp K &kp S \
                           &kp GB_AT &kp G &kp M &kp A &kp I &kp L &kp DOT \
@@ -1116,8 +1125,8 @@
         phone: phone_number {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings = <&macro_release &kp LSHFT>,
                        <&macro_tap &kp N0 &kp N7 &kp N5 &kp N8 &kp N4 &kp N5 \
                         &kp N7 &kp N0 &kp N6 &kp N9 &kp N4>;
@@ -1129,7 +1138,7 @@
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
             wait-ms = <50>;
-            tap-ms = <1>;
+            tap-ms = <0>;
             bindings =  <&macro_release &kp LSHFT>,
                         <&macro_tap &kp GB_POUND_SIGN>,
                         <&macro_wait_time 1>,
@@ -1142,8 +1151,8 @@
         array: array_keyword {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &macro_param_1to1 &sk_qr 0>,  
                         <&macro_tap &kp A &kp R &kp R &kp A &kp Y \
                           &macro_param_2to1 &kp 0>;
@@ -1152,16 +1161,16 @@
         any: any_keyword {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =   <&macro_tap &kp A &kp N &kp Y>;
         };
 
         bool: bool_keyword {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &macro_param_1to1 &sk_qr 0>,
                         <&macro_tap &kp B &kp O &kp O &kp L \
                           &macro_param_2to1 &kp 0>;
@@ -1170,8 +1179,8 @@
         boolean: boolean_keyword {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &macro_param_1to1 &sk_qr 0>,  
                         <&macro_tap &kp B &kp O &kp O &kp L &kp E &kp A &kp N \
                            &macro_param_2to1 &kp 0>;
@@ -1180,8 +1189,8 @@
         define: define_keyword {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &macro_param_1to1 &kp 0 \
                           &kp D &kp E &kp F &kp I &kp N &kp E \
                           &macro_param_2to1 &kp 0>;
@@ -1190,16 +1199,16 @@
         const: const_keyword {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &kp C &kp O &kp N &kp S &kp T &kp SPACE>;
         };
         
         include: include_keyword {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &macro_param_1to1 &kp 0 \
                           &kp I &kp N &kp C &kp L &kp U &kp D &kp E \
                           &macro_param_2to1 &kp 0>;
@@ -1208,8 +1217,8 @@
         int: int_keyword {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &macro_param_1to1 &sk_qr 0>,  
                         <&macro_tap &kp I &kp N &kp T \
                           &macro_param_2to1 &kp 0>;
@@ -1218,16 +1227,16 @@
         big_int: big_int_keyword {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &kp B &kp I &kp G &kp I &kp N &kp T>;
         };
 
         break: break_keyword {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &kp B &kp R &kp E &kp A &kp K \
                           &macro_param_1to1 &kp 0>;
         };
@@ -1235,8 +1244,8 @@
         continue: continue_keyword {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &kp C &kp O &kp N &kp T &kp I &kp N &kp U \
                           &kp E &macro_param_1to1 &kp 0>;
         };
@@ -1244,8 +1253,8 @@
         class: class_keyword {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &macro_param_1to1 &sk_qr 0>,  
                         <&macro_tap &kp C &kp L &kp A &kp S &kp S \
                           &macro_param_2to1 &kp 0>;
@@ -1254,16 +1263,16 @@
         false: false_keyword {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &kp F &kp A &kp L &kp S &kp E>;
         };
 
         float: float_keyword {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &macro_param_1to1 &sk_qr 0>,  
                         <&macro_tap &kp F &kp L &kp O &kp A &kp T \
                            &macro_param_2to1 &kp 0>;
@@ -1272,8 +1281,8 @@
         func: func_keyword {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_release &kp LSHFT>,
                         <&macro_tap &kp F &kp U &kp N &kp C &kp SPACE>;
         };
@@ -1281,8 +1290,8 @@
         function: function_keyword {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &macro_param_1to1 &sk_qr 0>,  
                         <&macro_tap &kp F &kp U &kp N &kp C &kp T &kp I &kp O \
                            &kp N &macro_param_2to1 &kp 0>;
@@ -1291,8 +1300,8 @@
         let: let_keyword {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &macro_param_1to1 &sk_qr 0>,  
                         <&macro_tap &kp L &kp E &kp T &macro_param_2to1 &kp 0>;
         };
@@ -1300,16 +1309,16 @@
         number: number_keyword {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &kp N &kp U &kp M &kp B &kp E &kp R>;
         };
 
         string: string_keyword {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &macro_param_1to1 &sk_qr 0>,  
                         <&macro_tap &kp S &kp T &kp R &kp I &kp N &kp G \
                            &macro_param_2to1 &kp 0>;
@@ -1318,8 +1327,8 @@
         object: object_keyword {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &macro_param_1to1 &sk_qr 0>,  
                         <&macro_tap &kp O &kp B &kp J &kp E &kp C &kp T \
                            &macro_param_2to1 &kp 0>;
@@ -1328,8 +1337,8 @@
         mapping: mapping_keyword {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &macro_param_1to1 &sk_qr 0>,  
                         <&macro_tap &kp M &kp A &kp P &kp P &kp I &kp N &kp G \
                            &macro_param_2to1 &kp 0>;
@@ -1338,8 +1347,8 @@
         mixed: mixed_keyword {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &macro_param_1to1 &sk_qr 0>,  
                         <&macro_tap &kp M &kp I &kp X &kp E &kp D \
                           &macro_param_2to1 &kp 0>;
@@ -1348,8 +1357,8 @@
         this: this_keyword {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &kp T &kp H &kp I &kp S \
                           &macro_param_1to1 &kp 0>;
         };
@@ -1357,24 +1366,24 @@
         true: true_keyword {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &kp T &kp R &kp U &kp E>;
         };
 
         var: var_keyword {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &kp V &kp A &kp R &kp SPACE >;
         };
 
         varargs: varargs_keyword {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &kp V &kp A &kp R &kp A &kp R &kp G \
                           &kp S &kp SPACE >;
         };
@@ -1382,8 +1391,8 @@
         vec: vec_keyword {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_release &kp LSHFT>,
                         <&macro_tap &kp V &kp E &kp C &macro_param_1to1 &kp 0 \
                           &kp SPACE >;
@@ -1392,8 +1401,8 @@
         vector: vector_keyword {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &macro_param_1to1 &sk_qr 0>,  
                         <&macro_tap &kp V &kp E &kp C &kp T &kp O &kp R
                           &macro_param_2to1 &kp 0>;
@@ -1402,8 +1411,8 @@
         void: void_keyword {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &macro_param_1to1 &sk_qr 0>,  
                         <&macro_tap &kp V &kp O &kp I &kp D &macro_param_2to1 \
                           &kp 0>;
@@ -1413,16 +1422,16 @@
         return: return_keyword {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &kp R &kp E &kp T &kp U &kp R &kp N>;
         };
 
         sizeof: sizeof_call {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &kp S &kp I &kp Z &kp E &kp O &kp F \
                            &kp LPAR &kp SPACE>;
         };
@@ -1430,16 +1439,16 @@
         len: len_call {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &kp L &kp E &kp N &kp LPAR &kp SPACE>;
         };
 
         length: length_keyword {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &macro_param_1to1 &kp 0 \
                           &kp L &kp E &kp N &kp G &kp T &kp H >;
         };
@@ -1448,8 +1457,8 @@
         private: private_keyword {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &kp P &kp R &kp I &kp V &kp A &kp T \
                           &kp E &macro_param_1to1 &kp 0>;
         };
@@ -1457,8 +1466,8 @@
         protected: protected_keyword {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &kp P &kp R &kp O &kp T &kp E &kp C \
                           &kp T &kp E &kp D  &macro_param_1to1 &kp 0>;
         };
@@ -1466,8 +1475,8 @@
         public: public_keyword {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &kp P &kp U &kp B &kp L &kp I &kp C \
                            &macro_param_1to1 &kp 0>;
         };
@@ -1476,8 +1485,8 @@
         bkt_start: go_to_bracket_start {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &kp LC(LS(GB_BSLH)) &kp LC(LS(GB_BSLH)) \
                           &kp LEFT_ARROW>;
         };
@@ -1485,16 +1494,16 @@
         bkt_end: go_to_bracket_end {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings =  <&macro_tap &kp LC(LS(GB_BSLH)) &kp RIGHT_ARROW>;
         };
 
         scl: set_coding_language {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings = <&macro_tap &tog_off TS &tog_off C_LANG \
                           &macro_param_1to1 &tog_on 0>;
         };
@@ -1502,8 +1511,8 @@
         scl_py: set_coding_language_to_ { // workaround
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings = <&macro_tap &tog_on TS &tog_on C_LANG>;
         };
 
@@ -1615,80 +1624,80 @@
         e_smiley: emoji_smiley {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings = <&macro_tap &kp LC(LS(U)) &kp N0 &kp N1 &kp F &kp N6 &kp N4 &kp N2 &kp ENTER>;
         };
 
         e_sad: emoji_sad {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings = <&macro_tap &kp RALT &kp U &kp N2 &kp N6 &kp N3 &kp N9 &kp ENTER>;
         };
 
         e_thumb_up: emoji_thumbs_up {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings = <&macro_tap &kp RALT &kp U &kp 1 &kp F &kp N4 &kp N4 &kp D &kp ENTER>;
         };
 
         e_thumb_down: emoji_thumbs_down {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings = <&macro_tap &kp RALT &kp U &kp 1 &kp F &kp N4 &kp N4 &kp E &kp ENTER>;
         };
 
         e_kiss: emoji_blowing_kiss {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings = <&macro_tap &kp RALT &kp U &kp N1 &kp F &kp N6 &kp N1 &kp N8 &kp ENTER>;
         };
 
         e_laughing: emoji_laughing_crying {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings = <&macro_tap &kp RALT &kp U &kp N1 &kp F &kp N6 &kp N0 &kp N2 &kp ENTER>;
         };
 
         e_poke: emoji_winking_poking_tongue_out {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings = <&macro_tap &kp RALT &kp U &kp N1 &kp F &kp N6 &kp N1 &kp C &kp ENTER>;
         };
 
         e_surprised: emoji_surprised {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings = <&macro_tap &kp RALT &kp U &kp N1 &kp F &kp N6 &kp N2 &kp E &kp ENTER>;
         };
 
         e_crying: emoji_crying {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings = <&macro_tap &kp RALT &kp U &kp N1 &kp F &kp N6 &kp N2 &kp D &kp ENTER>;
         };
 
         e_diagonal: emoji_diagonal_mouth {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <1>;
-            tap-ms = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings = <&macro_tap &kp RALT &kp U &kp N1 &kp F &kp A &kp E &kp N4 &kp ENTER>;
         };
 
@@ -1722,13 +1731,13 @@
         };
 
 
-        combo_lgui_tap {
-            timeout-ms = <30>;
-            key-positions = <60 61>;
-            require-prior-idle-ms = <400>;
-            layers = <ALL_LAYERS>;
-            bindings = <&kp LGUI>;
-        };
+        // combo_lgui_tap {
+        //     timeout-ms = <30>;
+        //     key-positions = <60 61>;
+        //     require-prior-idle-ms = <400>;
+        //     layers = <ALL_LAYERS>;
+        //     bindings = <&kp LGUI>;
+        // };
 
         combo_null {
             timeout-ms = <30>;
@@ -1810,8 +1819,8 @@
 //├──────────────────┼────────────────┼───────────┼─────────────┼───────────────┼───────┤                                                                                                                               ├─────────────┼─────────────┼──────────────────┼─────────────┼─────────────────────┼───────────────────┤
     &qu_lt SNIP 0      &a_f13_mm        &kp R       &kp S         &kp T           &kp G                                                                                                                                   &m_msc_l_mm   &n_mmv_l_mm   &e_mmv_d_mm        &i_mmv_r_mm   &o_msc_r_mm           &apos_lt FKEYS 0
 //├──────────────────┼────────────────┼───────────┼─────────────┼───────────────┼───────┼─────────────────────┬─────────────────────┬──────────────────╮ ╭────────────────────────┬───────────────────┬─────────────────┼─────────────┼─────────────┼──────────────────┼─────────────┼─────────────────────┼───────────────────┤
-    &excl_lt MEDIA 0   &mt_rpi LALT Z   &kp X       &kp C         &kp D           &kp V   &lt_rpi DBL DEL       &lt_rpi MOUSING F14   &none                &none                    &lt_rpi MOUSE F14   &cw_mt LSHFT 0    &kp K         &kp H         &comma_msc_d_mm    &dot          &mt_rpi LCTRL UNDER   &equal_lt EMOJI 0
-//├──────────────────┼────────────────┼───────────┼─────────────┼───────────────┴───────┼─────────────────────┼─────────────────────┼──────────────────┤ ├────────────────────────┼───────────────────┼─────────────────┼─────────────┴─────────────┼──────────────────┼─────────────┼─────────────────────┼───────────────────┤
+    &excl_lt MEDIA 0   &mt_rpi LALT Z   &kp X       &kp C         &kp D           &kp V   &lt_rpi DBL DEL       &f14_lt MOUSING F14   &kp LGUI             &rss                     &lt_rpi MOUSE F14   &cw_mt LSHFT 0    &kp K         &kp H         &comma_msc_d_mm    &dot          &mt_rpi LCTRL UNDER   &equal_lt EMOJI 0   
+//├──────────────────┼────────────────┼───────────┼─────────────┼───────────────┼───────┼─────────────────────┼─────────────────────┼──────────────────┤ ├────────────────────────┼───────────────────┼─────────────────┼─────────────┼─────────────┼──────────────────┼─────────────┼─────────────────────┼───────────────────┤
     &none              &qmark           &plus       &lpar         &kp RPAR                &rpt_lt NUMS_SYMS 0   &shift_td             &ret_lt BIGRAM 0     &undecided_lt KEYW TAB   &bspc_lt WINDOW 0   &space_lt NAV 0                 &semi         &colon             &dbl_quote    &astrk                &none
 //╰──────────────────┴────────────────┴───────────┴─────────────┴───────────────╯       ╰─────────────────────┴─────────────────────┴──────────────────╯ ╰────────────────────────┴───────────────────┴─────────────────╯             ╰─────────────┴──────────────────┴─────────────┴─────────────────────┴───────────────────╯
             >;
@@ -1829,7 +1838,7 @@
     &trans   &trans   &trans   &trans   &trans   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans      
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans       
-//├────────┼────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┼────────┤
+//├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
     &trans   &trans   &trans   &trans   &trans            &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans   &trans   &trans   &trans 
 //╰────────┴────────┴────────┴────────┴────────╯        ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴────────┴────────┴────────╯
             >;
@@ -1865,7 +1874,7 @@
     &trans   &trans      &trans     &trans     &trans   &trans                                                           &trans   &trans     &trans                  &trans   &trans   &trans                   
 //├────────┼───────────┼──────────┼──────────┼────────┼────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼──────────┼───────────────────────┼────────┼────────┼─────────────────────┤
     &trans   &trans      &trans     &trans     &trans   &trans   &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans     &nopad_comma_msc_d_mm   &trans   &trans   &lt_rpi EMOJI EQUAL         
-//├────────┼───────────┼──────────┼──────────┼────────┴────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴──────────┼───────────────────────┼────────┼────────┼─────────────────────┤
+//├────────┼───────────┼──────────┼──────────┼────────┼────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┼──────────┼───────────────────────┼────────┼────────┼─────────────────────┤
     &trans   &kp QMARK   &kp PLUS   &kp LPAR   &trans            &trans   &trans   &trans     &trans   &trans   &trans            &kp SEMI   &trans                  &trans   &trans   &trans              
 //╰────────┴───────────┴──────────┴──────────┴────────╯        ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰──────────┴───────────────────────┴────────┴────────┴─────────────────────╯
             >;
@@ -1883,7 +1892,7 @@
     &trans   &trans   &trans   &trans   &trans   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans      
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans       
-//├────────┼────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┼────────┤
+//├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
     &trans   &trans   &trans   &trans   &trans            &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans   &trans   &trans   &trans 
 //╰────────┴────────┴────────┴────────┴────────╯        ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴────────┴────────┴────────╯
             >;
@@ -1901,7 +1910,7 @@
     &trans   &trans   &trans   &trans   &trans   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans      
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans       
-//├────────┼────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┼────────┤
+//├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
     &trans   &trans   &trans   &trans   &trans            &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans   &trans   &trans   &trans 
 //╰────────┴────────┴────────┴────────┴────────╯        ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴────────┴────────┴────────╯
             >;
@@ -1909,37 +1918,37 @@
 
         navigation_layer {
             bindings = <
-//╭──────────┬──────────┬──────────────┬──────────────┬──────────────╮                                                                                                 ╭──────────────────┬───────────────┬─────────────┬───────────┬───────╮
-    &none      &none      &none          &none          &none                                                                                                            &none              &none           &none         &none       &none 
-//├──────────┼──────────┼──────────────┼──────────────┼──────────────┼──────────────╮                                                                    ╭─────────────┼──────────────────┼───────────────┼─────────────┼───────────┼───────┤
-    &none      &none      &trans         &kp LC(FSLH)   &trans         &none                                                                               &kp INS       &trans             &kp LC(MINUS)   &trans        &none       &none 
-//├──────────┼──────────┼──────────────┼──────────────┼──────────────┼──────────────┤                                                                    ├─────────────┼──────────────────┼───────────────┼─────────────┼───────────┼───────┤
-    &none      &none      &bkt_start     &kp PG_UP      &bkt_end       &copy_cut                                                                           &kp F8        &select            &kp UP          &extend       &trans      &none 
-//├──────────┼──────────┼──────────────┼──────────────┼──────────────┼──────────────┤                                                                    ├─────────────┼──────────────────┼───────────────┼─────────────┼───────────┼───────┤
-    &kp LGUI   &kp F13    &kp HOME       &kp PG_DN      &kp END        &paste                                                                              &match_word   &kp LEFT           &kp DOWN        &kp RIGHT     &none       &none    
-//├──────────┼──────────┼──────────────┼──────────────┼──────────────┼──────────────┼─────────┬───────────┬─────────╮ ╭─────────────┬────────┬───────────┼─────────────┼──────────────────┼───────────────┼─────────────┼───────────┼───────┤
-    &none      &kp LALT   &none          &kp LC(S)      &kp LC(LBKT)   &kp LC(RBKT)   &kp DEL   &rss        &to NAV     &to DEFAULT   &trans   &kp LSHFT   &kp LG(DOT)   &select_all_none   &kp DOWN        &kp K_CMENU   &kp LCTRL   &none 
-//├──────────┼──────────┼──────────────┼──────────────┼──────────────┴──────────────┼─────────┼───────────┼─────────┤ ├─────────────┼────────┼───────────┼─────────────┴──────────────────┼───────────────┼─────────────┼───────────┼───────┤
-    &none      &none      &kp LC(PLUS)   &none          &none                         &none     &kp LSHFT   &trans      &trans        &none    &none                     &none              &none           &none         &none       &none
-//╰──────────┴──────────┴──────────────┴──────────────┴──────────────╯              ╰─────────┴───────────┴─────────╯ ╰─────────────┴────────┴───────────╯             ╰──────────────────┴───────────────┴─────────────┴───────────┴───────╯
+//╭──────────┬──────────┬──────────────┬──────────────┬──────────────╮                                                                                                ╭──────────────────┬───────────────┬─────────────┬───────────┬───────╮
+    &none      &none      &none          &none          &none                                                                                                           &none              &none           &none         &none       &none 
+//├──────────┼──────────┼──────────────┼──────────────┼──────────────┼──────────────╮                                                                   ╭─────────────┼──────────────────┼───────────────┼─────────────┼───────────┼───────┤
+    &none      &none      &trans         &kp LC(FSLH)   &trans         &none                                                                              &kp INS       &trans             &kp LC(MINUS)   &trans        &none       &none 
+//├──────────┼──────────┼──────────────┼──────────────┼──────────────┼──────────────┤                                                                   ├─────────────┼──────────────────┼───────────────┼─────────────┼───────────┼───────┤
+    &none      &none      &bkt_start     &kp PG_UP      &bkt_end       &copy_cut                                                                          &kp F8        &select            &kp UP          &extend       &trans      &none 
+//├──────────┼──────────┼──────────────┼──────────────┼──────────────┼──────────────┤                                                                   ├─────────────┼──────────────────┼───────────────┼─────────────┼───────────┼───────┤
+    &kp LGUI   &kp F13    &kp HOME       &kp PG_DN      &kp END        &paste                                                                             &match_word   &kp LEFT           &kp DOWN        &kp RIGHT     &none       &none    
+//├──────────┼──────────┼──────────────┼──────────────┼──────────────┼──────────────┼─────────┬───────────┬────────╮ ╭─────────────┬────────┬───────────┼─────────────┼──────────────────┼───────────────┼─────────────┼───────────┼───────┤
+    &none      &kp LALT   &none          &kp LC(S)      &kp LC(LBKT)   &kp LC(RBKT)   &kp DEL   &none       &trans   &to DEFAULT   &trans   &kp LSHFT   &kp LG(DOT)   &select_all_none   &kp DOWN        &kp K_CMENU   &kp LCTRL   &none 
+//├──────────┼──────────┼──────────────┼──────────────┼──────────────┼──────────────┼─────────┼───────────┼────────┤ ├─────────────┼────────┼───────────┼─────────────┼──────────────────┼───────────────┼─────────────┼───────────┼───────┤
+    &none      &none      &kp LC(PLUS)   &none          &none                         &none     &kp LSHFT   &trans     &trans        &none    &none                     &none              &none           &none         &none       &none
+//╰──────────┴──────────┴──────────────┴──────────────┴──────────────╯              ╰─────────┴───────────┴────────╯ ╰─────────────┴────────┴───────────╯             ╰──────────────────┴───────────────┴─────────────┴───────────┴───────╯
             >;
         };
 
         numbers_and_symbols_layer {
             bindings = <
-//╭────────┬───────────────────┬────────────────────────┬────────────────────────────┬──────────────────╮                                                                                                                ╭──────────┬────────────────────────┬───────────┬────────────────────────┬──────────────────────╮
-    &trans   &trans              &trans                   &trans                       &trans                                                                                                                              &trans     &trans                   &trans      &trans                   &trans
-//├────────┼───────────────────┼────────────────────────┼────────────────────────────┼──────────────────┼────────────╮                                                                                     ╭─────────────┼──────────┼────────────────────────┼───────────┼────────────────────────┼──────────────────────┤
-    &trans   &trans              &trans                   &spad_i_mt FSLH FSLH         &trans             &trans                                                                                             &trans        &trans     &spad_i_mt MINUS MINUS   &trans      &trans                   &trans     
-//├────────┼───────────────────┼────────────────────────┼────────────────────────────┼──────────────────┼────────────┤                                                                                     ├─────────────┼──────────┼────────────────────────┼───────────┼────────────────────────┼──────────────────────┤
-    &trans   &trans              &kp TILDE2               &spad_i_mt LT LT             &spad_i_mt GT GT   &kp LC(G)                                                                                          &kp CARET     &us N7 0   &us N8 0                 &us N9 0    &trans                   &trans    
-//├────────┼───────────────────┼────────────────────────┼────────────────────────────┼──────────────────┼────────────┤                                                                                     ├─────────────┼──────────┼────────────────────────┼───────────┼────────────────────────┼──────────────────────┤
-    &kp Q    &us GB_BSLH 0       &spad_mt AMPS AMPS       &spad_i_mt GB_PIPE GB_PIPE   &us LBKT 0         &us RBKT 0                                                                                         &kp GB_AT     &us N4 0   &us N5 0                 &us N6 0    &us GB_HASH 0            &trans           
-//├────────┼───────────────────┼────────────────────────┼────────────────────────────┼──────────────────┼────────────┼─────────┬───────────┬───────────────╮ ╭─────────────┬───────────────────┬───────────┼─────────────┼──────────┼────────────────────────┼───────────┼────────────────────────┼──────────────────────┤
-    &trans   &kp GB_POUND_SIGN   &spad_i_mt PRCNT PRCNT   &kp DOLLAR                   &kp LBRC           &kp RBRC     &kp DEL   &trans      &to NUMS_SYMS     &to DEFAULT   &trans              &kp LSHFT   &us GRAVE 0   &us N1 0   &us N2 0                 &us N3 0    &mt_rpi LCTRL UNDER      &spad_mt EQUAL EQUAL          
-//├────────┼───────────────────┼────────────────────────┼────────────────────────────┼──────────────────┴────────────┼─────────┼───────────┼───────────────┤ ├─────────────┼───────────────────┼───────────┼─────────────┼──────────┼────────────────────────┼───────────┼────────────────────────┼──────────────────────┤
-    &trans   &trans              &spad_mt PLUS PLUS       &trans                       &trans                          &trans    &kp LSHFT   &trans            &trans        &mt_rpi LGUI BSPC   &trans                    &us N0 0   &us COMMA 0              &us DOT 0   &spad_i_mt ASTRK ASTRK   &trans
-//╰────────┴───────────────────┴────────────────────────┴────────────────────────────┴──────────────────╯            ╰─────────┴───────────┴───────────────╯ ╰─────────────┴───────────────────┴───────────╯             ╰──────────┴────────────────────────┴───────────┴────────────────────────┴──────────────────────╯
+//╭────────┬───────────────────┬────────────────────────┬────────────────────────────┬──────────────────╮                                                                                                         ╭──────────┬────────────────────────┬───────────┬────────────────────────┬──────────────────────╮
+    &trans   &trans              &trans                   &trans                       &trans                                                                                                                       &trans     &trans                   &trans      &trans                   &trans
+//├────────┼───────────────────┼────────────────────────┼────────────────────────────┼──────────────────┼────────────╮                                                                              ╭─────────────┼──────────┼────────────────────────┼───────────┼────────────────────────┼──────────────────────┤
+    &trans   &trans              &trans                   &spad_i_mt FSLH FSLH         &trans             &trans                                                                                      &trans        &trans     &spad_i_mt MINUS MINUS   &trans      &trans                   &trans     
+//├────────┼───────────────────┼────────────────────────┼────────────────────────────┼──────────────────┼────────────┤                                                                              ├─────────────┼──────────┼────────────────────────┼───────────┼────────────────────────┼──────────────────────┤
+    &trans   &trans              &kp TILDE2               &spad_i_mt LT LT             &spad_i_mt GT GT   &kp LC(G)                                                                                   &kp CARET     &us N7 0   &us N8 0                 &us N9 0    &trans                   &trans    
+//├────────┼───────────────────┼────────────────────────┼────────────────────────────┼──────────────────┼────────────┤                                                                              ├─────────────┼──────────┼────────────────────────┼───────────┼────────────────────────┼──────────────────────┤
+    &kp Q    &us GB_BSLH 0       &spad_mt AMPS AMPS       &spad_i_mt GB_PIPE GB_PIPE   &us LBKT 0         &us RBKT 0                                                                                  &kp GB_AT     &us N4 0   &us N5 0                 &us N6 0    &us GB_HASH 0            &trans           
+//├────────┼───────────────────┼────────────────────────┼────────────────────────────┼──────────────────┼────────────┼─────────┬───────────┬────────╮ ╭─────────────┬───────────────────┬───────────┼─────────────┼──────────┼────────────────────────┼───────────┼────────────────────────┼──────────────────────┤
+    &trans   &kp GB_POUND_SIGN   &spad_i_mt PRCNT PRCNT   &kp DOLLAR                   &kp LBRC           &kp RBRC     &kp DEL   &trans      &trans     &to DEFAULT   &trans              &kp LSHFT   &us GRAVE 0   &us N1 0   &us N2 0                 &us N3 0    &mt_rpi LCTRL UNDER      &spad_mt EQUAL EQUAL          
+//├────────┼───────────────────┼────────────────────────┼────────────────────────────┼──────────────────┼────────────┼─────────┼───────────┼────────┤ ├─────────────┼───────────────────┼───────────┼─────────────┼──────────┼────────────────────────┼───────────┼────────────────────────┼──────────────────────┤
+    &trans   &trans              &spad_mt PLUS PLUS       &trans                       &trans                          &trans    &kp LSHFT   &trans     &trans        &mt_rpi LGUI BSPC   &trans                    &us N0 0   &us COMMA 0              &us DOT 0   &spad_i_mt ASTRK ASTRK   &trans
+//╰────────┴───────────────────┴────────────────────────┴────────────────────────────┴──────────────────╯            ╰─────────┴───────────┴────────╯ ╰─────────────┴───────────────────┴───────────╯             ╰──────────┴────────────────────────┴───────────┴────────────────────────┴──────────────────────╯
             >;
         };
 
@@ -1955,7 +1964,7 @@
     &trans   &trans   &trans                 &spad_mt GB_PIPE GB_PIPE     &ts_mt LBKT LBKT     &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans      
 //├────────┼────────┼──────────────────────┼────────────────────────────┼────────────────────┼────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
     &trans   &trans   &spad_mt PRCNT PRCNT   &trans                       &psnl_mt LBRC LBRC   &trans   &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans       
-//├────────┼────────┼──────────────────────┼────────────────────────────┼────────────────────┴────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┼────────┤
+//├────────┼────────┼──────────────────────┼────────────────────────────┼────────────────────┼────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
     &trans   &trans   &trans                 &trans                       &trans                        &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans   &trans   &trans   &trans 
 //╰────────┴────────┴──────────────────────┴────────────────────────────┴────────────────────╯        ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴────────┴────────┴────────╯
             >;
@@ -1973,7 +1982,7 @@
     &trans   &trans   &kp AMPS    &kp GB_PIPE   &us LBKT 0   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans         
 //├────────┼────────┼───────────┼─────────────┼────────────┼────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────┼────────┼────────┼───────────┤
     &trans   &trans   &kp PRCNT   &trans        &kp LBRC     &trans   &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &kp EQUAL      
-//├────────┼────────┼───────────┼─────────────┼────────────┴────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┼───────────┤
+//├────────┼────────┼───────────┼─────────────┼────────────┼────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼───────────┤
     &trans   &trans   &kp PLUS    &trans        &trans                &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans   &trans   &trans   &trans    
 //╰────────┴────────┴───────────┴─────────────┴────────────╯        ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴────────┴────────┴───────────╯
             >;
@@ -1991,7 +2000,7 @@
     &none         &kp F13        &mkp RCLK      &mkp MCLK       &mkp LCLK       &paste                                                                                 &paste       &mkp LCLK       &mkp MCLK       &mkp RCLK   &none       &none            
 //├─────────────┼──────────────┼──────────────┼───────────────┼───────────────┼──────────────┼───────────┬───────────┬────────╮ ╭─────────────┬──────────┬───────────┼────────────┼───────────────┼───────────────┼───────────┼───────────┼─────────────┤
     &none         &kp LALT       &kp DEL        &kp LC(S)       &kp LC(LBKT)    &kp LC(RBKT)   &trans      &trans      &trans     &to DEFAULT   &trans     &kp LSHFT   &none        &none           &kp LC(S)       &none       &kp LCTRL   &none           
-//├─────────────┼──────────────┼──────────────┼───────────────┼───────────────┴──────────────┼───────────┼───────────┼────────┤ ├─────────────┼──────────┼───────────┼────────────┴───────────────┼───────────────┼───────────┼───────────┼─────────────┤
+//├─────────────┼──────────────┼──────────────┼───────────────┼───────────────┼──────────────┼───────────┼───────────┼────────┤ ├─────────────┼──────────┼───────────┼────────────┼───────────────┼───────────────┼───────────┼───────────┼─────────────┤
     &none         &none          &kp LC(PLUS)   &none           &none                          &kp SPACE   &kp LSHFT   &trans     &trans        &kp LGUI   &kp SPACE                &none           &none           &none       &none       &none       
 //╰─────────────┴──────────────┴──────────────┴───────────────┴───────────────╯              ╰───────────┴───────────┴────────╯ ╰─────────────┴──────────┴───────────╯            ╰───────────────┴───────────────┴───────────┴───────────┴─────────────╯
             >;
@@ -2008,8 +2017,8 @@
 //├─────────────────┼────────────────┼──────────────────┼────────────────────┼──────────────────┼───────────────┤                                                       ├──────────────────┼───────────────┼──────────────────┼─────────────┼──────────────────────────┼───────────────┤
     &none             &none            &pad AMPS EQUAL    &pad GB_PIPE EQUAL   &ts_bi LPAR LBKT   &bi RBKT RPAR                                                           &email             &us GB_BSLH N   &bi DOT FSLH       &bi MINUS GT  &ts_tri GB_HASH GB_HASH    &none  
 //├─────────────────┼────────────────┼──────────────────┼────────────────────┼──────────────────┼───────────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼──────────────────┼───────────────┼──────────────────┼─────────────┼──────────────────────────┼───────────────┤
-    &pad EXCL EQUAL   &none            &pad PRCNT EQUAL   &bi DOLLAR LBRC      &ts_bi LPAR LBRC   &bi RBRC RPAR   &trans   &trans   &none      &none    &none    &none    &tc GRAVE          &bi MINUS N1    &kp COMMA          &ellipsis     &bi DOLLAR UNDER           &pad EQUAL GT 
-//├─────────────────┼────────────────┼──────────────────┼────────────────────┼──────────────────┴───────────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼──────────────────┴───────────────┼──────────────────┼─────────────┼──────────────────────────┼───────────────┤
+    &pad EXCL EQUAL   &none            &pad PRCNT EQUAL   &bi DOLLAR LBRC      &ts_bi LPAR LBRC   &bi RBRC RPAR   &trans   &trans   &trans     &none    &none    &none    &tc GRAVE          &bi MINUS N1    &kp COMMA          &ellipsis     &bi DOLLAR UNDER           &pad EQUAL GT 
+//├─────────────────┼────────────────┼──────────────────┼────────────────────┼──────────────────┼───────────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼──────────────────┼───────────────┼──────────────────┼─────────────┼──────────────────────────┼───────────────┤
     &none             &se EXCL QMARK   &pad PLUS EQUAL    &bi LPAR RPAR        &none                              &trans   &trans   &trans     &trans   &trans   &trans                      &none           &none              &none         &pad ASTRK EQUAL           &none 
 //╰─────────────────┴────────────────┴──────────────────┴────────────────────┴──────────────────╯               ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯                  ╰───────────────┴──────────────────┴─────────────┴──────────────────────────┴───────────────╯
             >;
@@ -2027,7 +2036,7 @@
     &trans        &trans           &trans   &trans   &trans   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans            
 //├─────────────┼────────────────┼────────┼────────┼────────┼────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
     &js_eq EXCL   &trans           &trans   &trans   &trans   &trans   &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans
-//├─────────────┼────────────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┼────────┤
+//├─────────────┼────────────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
     &trans        &pad QMARK DOT   &trans   &trans   &trans            &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans   &trans   &trans   &trans       
 //╰─────────────┴────────────────┴────────┴────────┴────────╯        ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴────────┴────────┴────────╯
             >;
@@ -2045,7 +2054,7 @@
     &trans           &trans   &bi AMPS EQUAL   &bi GB_PIPE EQUAL   &trans         &trans                                                           &trans            &trans   &trans           &trans   &tc GB_HASH            &trans            
 //├────────────────┼────────┼────────────────┼───────────────────┼──────────────┼────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼─────────────────┼────────┼────────────────┼────────┼──────────────────────┼──────────────┤
     &bi EXCL EQUAL   &trans   &trans           &trans              &trans         &trans   &trans   &trans   &trans     &trans   &trans   &trans   &trans            &trans   &trans           &trans   &trans                 &bi EQUAL GT           
-//├────────────────┼────────┼────────────────┼───────────────────┼──────────────┴────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼─────────────────┴────────┼────────────────┼────────┼──────────────────────┼──────────────┤
+//├────────────────┼────────┼────────────────┼───────────────────┼──────────────┼────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼─────────────────┼────────┼────────────────┼────────┼──────────────────────┼──────────────┤
     &trans           &trans   &bi PLUS EQUAL   &trans              &trans                  &trans   &trans   &trans     &trans   &trans   &trans                     &trans   &trans           &trans   &bi ASTRK EQUAL        &trans       
 //╰────────────────┴────────┴────────────────┴───────────────────┴──────────────╯        ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯                 ╰────────┴────────────────┴────────┴──────────────────────┴──────────────╯
             >;
@@ -2063,7 +2072,7 @@
     &trans     &trans    &pad AMPS AMPS   &pad GB_PIPE GB_PIPE   &dc LBKT   &dc RBKT                                                            &trans   &trans     &trans      &long_arrow         &ts_bi GB_HASH GB_HASH   &trans            
 //├──────────┼─────────┼────────────────┼──────────────────────┼──────────┼───────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼──────────┼───────────┼───────────────────┼────────────────────────┼──────────────────┤
     &dc EXCL   &trans    &bi PRCNT S      &dc DOLLAR             &dc LBRC   &dc RBRC    &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans     &trans      &dc DOT             &dc UNDER                &pad EQUAL EQUAL
-//├──────────┼─────────┼────────────────┼──────────────────────┼──────────┴───────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴──────────┼───────────┼───────────────────┼────────────────────────┼──────────────────┤
+//├──────────┼─────────┼────────────────┼──────────────────────┼──────────┼───────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┼──────────┼───────────┼───────────────────┼────────────────────────┼──────────────────┤
     &trans     &trans    &dc PLUS         &dc LPAR               &dc RPAR               &trans   &trans   &trans     &trans   &trans   &trans            &dc SEMI   &dc COLON   &dc DOUBLE_QUOTES   &dc ASTRK                &trans      
 //╰──────────┴─────────┴────────────────┴──────────────────────┴──────────╯           ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰──────────┴───────────┴───────────────────┴────────────────────────┴──────────────────╯
             >;
@@ -2081,7 +2090,7 @@
     &trans   &trans   &trans   &trans   &trans   &trans                                                           &trans   &trans   &trans   &trans   &trans   &trans            
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────┼────────┼────────┼──────────────┤
     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &js_eq EQUAL
-//├────────┼────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┼──────────────┤
+//├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼──────────────┤
     &trans   &trans   &trans   &trans   &trans            &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans   &trans   &trans   &trans       
 //╰────────┴────────┴────────┴────────┴────────╯        ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴────────┴────────┴──────────────╯
             >;
@@ -2100,7 +2109,7 @@
     &trans   &trans   &dc AMPS   &dc GB_PIPE   &trans   &trans                                                           &trans   &trans   &trans   &trans   &dc GB_HASH    &trans         
 //├────────┼────────┼──────────┼─────────────┼────────┼────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────┼────────┼──────────────┼───────────┤
     &trans   &trans   &trans     &trans        &trans   &trans   &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans         &dc EQUAL      
-//├────────┼────────┼──────────┼─────────────┼────────┴────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────┼────────┼──────────────┼───────────┤
+//├────────┼────────┼──────────┼─────────────┼────────┼────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┼────────┼────────┼────────┼──────────────┼───────────┤
     &trans   &trans   &trans     &trans        &trans            &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans   &trans   &trans         &trans    
 //╰────────┴────────┴──────────┴─────────────┴────────╯        ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴────────┴──────────────┴───────────╯
             >;
@@ -2118,7 +2127,7 @@
     &none    &none    &none       &snpt S W   &snpt F R   &none                                                            &none    &snpt I F   &snpt E I   &snpt E L   &none    &none             
 //├────────┼────────┼───────────┼───────────┼───────────┼────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼───────────┼───────────┼───────────┼────────┼───────┤
     &none    &none    &none       &none       &snpt F E   &none    &none    &none    &none      &none    &none    &none    &none    &none       &none       &none       &none    &none
-//├────────┼────────┼───────────┼───────────┼───────────┴────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴───────────┼───────────┼───────────┼────────┼───────┤
+//├────────┼────────┼───────────┼───────────┼───────────┼────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┼───────────┼───────────┼───────────┼────────┼───────┤
     &none    &none    &none       &none       &none                &none    &none    &none      &none    &none    &none             &none       &none       &none       &none    &none        
 //╰────────┴────────┴───────────┴───────────┴───────────╯        ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰───────────┴───────────┴───────────┴────────┴───────╯
             >;
@@ -2136,7 +2145,7 @@
     &none      &array 0 0   &return       &string 0 0   &this 0       &none                                                                                      &mapping 0 0   &include 0 0   &vector 0 0     &int 0 0    &object 0 0   &none      
 //├──────────┼────────────┼─────────────┼─────────────┼─────────────┼──────────────┼───────────┬───────────┬─────────────╮ ╭───────────┬───────────┬───────────┼──────────────┼──────────────┼───────────────┼───────────┼─────────────┼─────────────┤
     &none      &length 0    &mixed 0 0    &class 0 0    &define 0 0   &void 0 0      &trans      &trans      &trans          &trans      &trans      &trans      &break 0       &true          &none           &none       &none         &none      
-//├──────────┼────────────┼─────────────┼─────────────┼─────────────┴──────────────┼───────────┼───────────┼─────────────┤ ├───────────┼───────────┼───────────┼──────────────┴──────────────┼───────────────┼───────────┼─────────────┼─────────────┤
+//├──────────┼────────────┼─────────────┼─────────────┼─────────────┼──────────────┼───────────┼───────────┼─────────────┤ ├───────────┼───────────┼───────────┼──────────────┼──────────────┼───────────────┼───────────┼─────────────┼─────────────┤
     &none      &none        &none         &none         &none                        &trans      &trans      &trans          &trans      &trans      &trans                     &false         &none           &none       &none         &none 
 //╰──────────┴────────────┴─────────────┴─────────────┴─────────────╯              ╰───────────┴───────────┴─────────────╯ ╰───────────┴───────────┴───────────╯              ╰──────────────┴───────────────┴───────────┴─────────────┴─────────────╯
             >;
@@ -2154,7 +2163,7 @@
     &trans   &trans        &trans   &trans   &this DOT     &trans                                                                  &trans        &trans        &trans              &big_int   &trans     &trans      
 //├────────┼─────────────┼────────┼────────┼─────────────┼───────────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼─────────────┼─────────────┼───────────────────┼──────────┼──────────┼──────────────┤
     &trans   &length DOT   &any     &trans   &trans        &trans          &trans   &trans   &trans     &trans   &trans   &trans   &break SEMI   &trans        &trans              &trans     &trans     &trans       
-//├────────┼─────────────┼────────┼────────┼─────────────┴───────────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼─────────────┴─────────────┼───────────────────┼──────────┼──────────┼──────────────┤
+//├────────┼─────────────┼────────┼────────┼─────────────┼───────────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼─────────────┼─────────────┼───────────────────┼──────────┼──────────┼──────────────┤
     &trans   &trans        &trans   &trans   &trans                        &trans   &trans   &trans     &trans   &trans   &trans                 &trans        &trans              &trans     &trans     &trans 
 //╰────────┴─────────────┴────────┴────────┴─────────────╯               ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯             ╰─────────────┴───────────────────┴──────────┴──────────┴──────────────╯
             >;
@@ -2172,7 +2181,7 @@
     &trans   &kp ASTRK   &return           &string 0 SPACE   &trans                  &trans                                                                  &mapping 0 SPACE   &include GB_HASH SPACE   &vec_td             &int 0 SPACE   &object 0 SPACE   &trans   
 //├────────┼───────────┼─────────────────┼─────────────────┼───────────────────────┼───────────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼──────────────────┼────────────────────────┼───────────────────┼──────────────┼─────────────────┼─────────────────┤
     &trans   &sizeof     &mixed 0 SPACE    &class 0 SPACE    &define GB_HASH SPACE   &void 0 SPACE   &trans   &trans   &trans     &trans   &trans   &trans   &break SEMI        &trans                   &trans              &trans         &trans            &trans       
-//├────────┼───────────┼─────────────────┼─────────────────┼───────────────────────┴───────────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼──────────────────┴────────────────────────┼───────────────────┼──────────────┼─────────────────┼─────────────────┤
+//├────────┼───────────┼─────────────────┼─────────────────┼───────────────────────┼───────────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼──────────────────┼────────────────────────┼───────────────────┼──────────────┼─────────────────┼─────────────────┤
     &trans   &trans      &trans            &trans            &trans                                  &trans   &trans   &trans     &trans   &trans   &trans                      &trans                   &trans              &trans         &trans            &trans 
 //╰────────┴───────────┴─────────────────┴─────────────────┴───────────────────────╯               ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯                  ╰────────────────────────┴───────────────────┴──────────────┴─────────────────┴─────────────────╯
             >;
@@ -2190,7 +2199,7 @@
     &trans   &trans    &trans   &trans    &trans   &trans                                                              &trans   &trans   &vector_td   &trans   &trans     &trans      
 //├────────┼─────────┼────────┼─────────┼────────┼───────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────────┼────────┼──────────┼──────────────┤
     &trans   &len      &trans   &trans    &trans   &trans      &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans   &trans       &trans   &trans     &trans       
-//├────────┼─────────┼────────┼─────────┼────────┴───────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────────┼────────┼──────────┼──────────────┤
+//├────────┼─────────┼────────┼─────────┼────────┼───────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┼────────┼────────────┼────────┼──────────┼──────────────┤
     &trans   &trans    &trans   &trans    &trans               &trans   &trans   &trans     &trans   &trans   &trans            &trans   &trans       &trans   &trans     &trans 
 //╰────────┴─────────┴────────┴─────────┴────────╯           ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────────┴────────┴──────────┴──────────────╯
             >;
@@ -2198,19 +2207,19 @@
 
         mouse_emulation_layer {
             bindings = <
-//╭───────┬──────────┬───────────┬───────────┬───────────╮                                                                                                       ╭────────────────┬────────────────┬─────────────────┬─────────────────┬─────────────╮
-    &none   &none      &none       &none       &none                                                                                                               &none            &none            &none             &none             &none      
-//├───────┼──────────┼───────────┼───────────┼───────────┼───────────╮                                                                          ╭────────────────┼────────────────┼────────────────┼─────────────────┼─────────────────┼─────────────┤
-    &none   &none      &none       &none       &none       &none                                                                                  &none            &trans           &msc SCRL_UP     &trans            &none             &none      
-//├───────┼──────────┼───────────┼───────────┼───────────┼───────────┤                                                                          ├────────────────┼────────────────┼────────────────┼─────────────────┼─────────────────┼─────────────┤
-    &none   &none      &kp LGUI    &kp LSHFT   &kp LCTRL   &copy_cut                                                                              &none            &none            &mmv MOVE_UP     &none             &trans            &none
-//├───────┼──────────┼───────────┼───────────┼───────────┼───────────┤                                                                          ├────────────────┼────────────────┼────────────────┼─────────────────┼─────────────────┼─────────────┤
-    &none   &kp F13    &mkp RCLK   &mkp MCLK   &mkp LCLK   &paste                                                                                 &msc SCRL_LEFT   &mmv MOVE_LEFT   &mmv MOVE_DOWN   &mmv MOVE_RIGHT   &msc SCRL_RIGHT   &none      
-//├───────┼──────────┼───────────┼───────────┼───────────┼───────────┼───────────┬───────────┬───────────╮ ╭─────────────┬──────────┬───────────┼────────────────┼────────────────┼────────────────┼─────────────────┼─────────────────┼─────────────┤
-    &none   &kp LALT   &kp DEL     &none       &none       &none       &trans      &trans      &to MOUSE     &to DEFAULT   &trans     &kp LSHFT   &none            &none            &msc SCRL_DOWN   &none             &kp LCTRL         &none      
-//├───────┼──────────┼───────────┼───────────┼───────────┴───────────┼───────────┼───────────┼───────────┤ ├─────────────┼──────────┼───────────┼────────────────┴────────────────┼────────────────┼─────────────────┼─────────────────┼─────────────┤
-    &none   &none      &none       &none       &none                   &kp LC(S)   &kp LSHFT   &none         &kp LGUI      &kp BSPC   &trans                       &none            &none            &none             &none             &none 
-//╰───────┴──────────┴───────────┴───────────┴───────────╯           ╰───────────┴───────────┴───────────╯ ╰─────────────┴──────────┴───────────╯                ╰────────────────┴────────────────┴─────────────────┴─────────────────┴─────────────╯
+//╭───────┬──────────┬───────────┬───────────┬───────────╮                                                                                                    ╭────────────────┬────────────────┬─────────────────┬─────────────────┬─────────────╮
+    &none   &none      &none       &none       &none                                                                                                            &none            &none            &none             &none             &none      
+//├───────┼──────────┼───────────┼───────────┼───────────┼───────────╮                                                                       ╭────────────────┼────────────────┼────────────────┼─────────────────┼─────────────────┼─────────────┤
+    &none   &none      &none       &none       &none       &none                                                                               &none            &trans           &msc SCRL_UP     &trans            &none             &none      
+//├───────┼──────────┼───────────┼───────────┼───────────┼───────────┤                                                                       ├────────────────┼────────────────┼────────────────┼─────────────────┼─────────────────┼─────────────┤
+    &none   &none      &kp LGUI    &kp LSHFT   &kp LCTRL   &copy_cut                                                                           &none            &none            &mmv MOVE_UP     &none             &trans            &none
+//├───────┼──────────┼───────────┼───────────┼───────────┼───────────┤                                                                       ├────────────────┼────────────────┼────────────────┼─────────────────┼─────────────────┼─────────────┤
+    &none   &kp F13    &mkp RCLK   &mkp MCLK   &mkp LCLK   &paste                                                                              &msc SCRL_LEFT   &mmv MOVE_LEFT   &mmv MOVE_DOWN   &mmv MOVE_RIGHT   &msc SCRL_RIGHT   &none      
+//├───────┼──────────┼───────────┼───────────┼───────────┼───────────┼───────────┬───────────┬────────╮ ╭─────────────┬──────────┬───────────┼────────────────┼────────────────┼────────────────┼─────────────────┼─────────────────┼─────────────┤
+    &none   &kp LALT   &kp DEL     &none       &none       &none       &trans      &trans      &trans     &to DEFAULT   &trans     &kp LSHFT   &none            &none            &msc SCRL_DOWN   &none             &kp LCTRL         &none      
+//├───────┼──────────┼───────────┼───────────┼───────────┼───────────┼───────────┼───────────┼────────┤ ├─────────────┼──────────┼───────────┼────────────────┼────────────────┼────────────────┼─────────────────┼─────────────────┼─────────────┤
+    &none   &none      &none       &none       &none                   &kp LC(S)   &kp LSHFT   &none      &kp LGUI      &kp BSPC   &trans                       &none            &none            &none             &none             &none 
+//╰───────┴──────────┴───────────┴───────────┴───────────╯           ╰───────────┴───────────┴────────╯ ╰─────────────┴──────────┴───────────╯                ╰────────────────┴────────────────┴─────────────────┴─────────────────┴─────────────╯
             >;
         };
 
@@ -2226,7 +2235,7 @@
     &none   &none   &kp LA(F15)   &kp LC(F15)   &kp LS(F15)   &none                                                                         &kp C_PREV   &kp C_RW   &kp C_VOL_DN   &kp C_FF   &kp C_NEXT   &none     
 //├───────┼───────┼─────────────┼─────────────┼─────────────┼───────┼─────────┬───────────┬───────────╮ ╭─────────────┬───────┬───────────┼────────────┼──────────┼──────────────┼──────────┼────────────┼───────┤
     &none   &none   &none         &none         &none         &none   &kp DEL   &none       &to MEDIA     &to DEFAULT   &none   &none       &none        &none      &kp C_MUTE     &none      &none        &none      
-//├───────┼───────┼─────────────┼─────────────┼─────────────┴───────┼─────────┼───────────┼───────────┤ ├─────────────┼───────┼───────────┼────────────┴──────────┼──────────────┼──────────┼────────────┼───────┤
+//├───────┼───────┼─────────────┼─────────────┼─────────────┼───────┼─────────┼───────────┼───────────┤ ├─────────────┼───────┼───────────┼────────────┼──────────┼──────────────┼──────────┼────────────┼───────┤
     &none   &none   &none         &none         &none                 &kp F15   &kp PSCRN   &none         &none         &none   &kp C_PP                 &none      &none          &none      &none        &none 
 //╰───────┴───────┴─────────────┴─────────────┴─────────────╯       ╰─────────┴───────────┴───────────╯ ╰─────────────┴───────┴───────────╯            ╰──────────┴──────────────┴──────────┴────────────┴───────╯
             >;
@@ -2244,7 +2253,7 @@
     &none       &none      &none     &none         &none       &none                                                                                 &none       &none               &e_thumb_down       &none                &e_surprised     &e_laughing      
 //├───────────┼──────────┼─────────┼─────────────┼───────────┼──────────┼─────────┬───────────┬───────────╮ ╭─────────────┬──────────┬───────────┼─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
     &none       &none      &e_kiss   &none         &none       &none      &kp DEL   &none       &to EMOJI     &to DEFAULT   &none      &kp LSHFT     &none       &none               &none               &none                &none            &e_crying      
-//├───────────┼──────────┼─────────┼─────────────┼───────────┴──────────┼─────────┼───────────┼───────────┤ ├─────────────┼──────────┼───────────┼─────────────┴───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
+//├───────────┼──────────┼─────────┼─────────────┼───────────┼──────────┼─────────┼───────────┼───────────┤ ├─────────────┼──────────┼───────────┼─────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
     &none       &none      &none     &e_sad        &e_smiley              &none     &kp LSHFT   &none         &none         &kp BSPC   &none                     &none               &none               &none                &none            &none 
 //╰───────────┴──────────┴─────────┴─────────────┴───────────╯          ╰─────────┴───────────┴───────────╯ ╰─────────────┴──────────┴───────────╯             ╰───────────────────┴───────────────────┴────────────────────┴────────────────┴─────────────╯
             >;
@@ -2252,37 +2261,37 @@
 
         fkeys_layer {
             bindings = <
-//╭───────┬──────────┬──────────┬───────────┬───────────╮                                                                                  ╭─────────┬─────────┬─────────┬───────────┬─────────────╮
-    &none   &none      &none      &none       &none                                                                                          &trans    &trans    &trans    &none       &none      
-//├───────┼──────────┼──────────┼───────────┼───────────┼───────╮                                                                  ╭───────┼─────────┼─────────┼─────────┼───────────┼─────────────┤
-    &none   &none      &none      &none       &none       &none                                                                      &none   &kp F10   &kp F11   &kp F12   &none       &none      
-//├───────┼──────────┼──────────┼───────────┼───────────┼───────┤                                                                  ├───────┼─────────┼─────────┼─────────┼───────────┼─────────────┤
-    &none   &none      &kp LGUI   &kp LSHFT   &kp LCTRL   &none                                                                      &none   &kp F7    &kp F8    &kp F9    &trans      &none      
-//├───────┼──────────┼──────────┼───────────┼───────────┼───────┤                                                                  ├───────┼─────────┼─────────┼─────────┼───────────┼─────────────┤
-    &none   &none      &none      &none       &none       &none                                                                      &none   &kp F4    &kp F5    &kp F6    &none       &none      
-//├───────┼──────────┼──────────┼───────────┼───────────┼───────┼─────────────┬───────────┬───────╮ ╭───────┬──────────┬───────────┼───────┼─────────┼─────────┼─────────┼───────────┼─────────────┤
-    &none   &kp LALT   &none      &none       &none       &none   &trans        &kp LSHFT   &none     &none   &none      &kp LSHFT   &none   &kp F1    &kp F2    &kp F3    &kp LCTRL   &none      
-//├───────┼──────────┼──────────┼───────────┼───────────┴───────┼─────────────┼───────────┼───────┤ ├───────┼──────────┼───────────┼───────┴─────────┼─────────┼─────────┼───────────┼─────────────┤
-    &none   &none      &none      &none       &none               &key_repeat   &kp LSHFT   &none     &none   &kp LGUI   &none               &none     &none     &none     &none       &none 
-//╰───────┴──────────┴──────────┴───────────┴───────────╯       ╰─────────────┴───────────┴───────╯ ╰───────┴──────────┴───────────╯       ╰─────────┴─────────┴─────────┴───────────┴─────────────╯
+//╭───────┬──────────┬──────────┬───────────┬───────────╮                                                                                   ╭─────────┬─────────┬─────────┬───────────┬─────────────╮
+    &none   &none      &none      &none       &none                                                                                           &trans    &trans    &trans    &none       &none      
+//├───────┼──────────┼──────────┼───────────┼───────────┼───────╮                                                                   ╭───────┼─────────┼─────────┼─────────┼───────────┼─────────────┤
+    &none   &none      &none      &none       &none       &none                                                                       &none   &kp F10   &kp F11   &kp F12   &none       &none      
+//├───────┼──────────┼──────────┼───────────┼───────────┼───────┤                                                                   ├───────┼─────────┼─────────┼─────────┼───────────┼─────────────┤
+    &none   &none      &kp LGUI   &kp LSHFT   &kp LCTRL   &none                                                                       &none   &kp F7    &kp F8    &kp F9    &trans      &none      
+//├───────┼──────────┼──────────┼───────────┼───────────┼───────┤                                                                   ├───────┼─────────┼─────────┼─────────┼───────────┼─────────────┤
+    &none   &none      &none      &none       &none       &none                                                                       &none   &kp F4    &kp F5    &kp F6    &none       &none      
+//├───────┼──────────┼──────────┼───────────┼───────────┼───────┼─────────────┬───────────┬────────╮ ╭───────┬──────────┬───────────┼───────┼─────────┼─────────┼─────────┼───────────┼─────────────┤
+    &none   &kp LALT   &none      &none       &none       &none   &trans        &kp LSHFT   &trans     &none   &none      &kp LSHFT   &none   &kp F1    &kp F2    &kp F3    &kp LCTRL   &none      
+//├───────┼──────────┼──────────┼───────────┼───────────┼───────┼─────────────┼───────────┼────────┤ ├───────┼──────────┼───────────┼───────┼─────────┼─────────┼─────────┼───────────┼─────────────┤
+    &none   &none      &none      &none       &none               &key_repeat   &kp LSHFT   &none      &none   &kp LGUI   &none               &none     &none     &none     &none       &none 
+//╰───────┴──────────┴──────────┴───────────┴───────────╯       ╰─────────────┴───────────┴────────╯ ╰───────┴──────────┴───────────╯       ╰─────────┴─────────┴─────────┴───────────┴─────────────╯
             >;
         };
 
         window_layer {
             bindings = <
-//╭───────┬──────────────┬──────────────┬────────────┬───────────╮                                                                                         ╭──────────────┬───────────────┬───────────────┬───────────────┬───────╮
-    &none   &none          &none          &none        &none                                                                                                 &none          &none           &none           &none           &none          
-//├───────┼──────────────┼──────────────┼────────────┼───────────┼────────╮                                                                       ╭────────┼──────────────┼───────────────┼───────────────┼───────────────┼───────┤
-    &none   &none          &none          &cms SLASH   &none       &none                                                                            &none    &trans         &kp MINUS       &trans          &none           &none            
-//├───────┼──────────────┼──────────────┼────────────┼───────────┼────────┤                                                                       ├────────┼──────────────┼───────────────┼───────────────┼───────────────┼───────┤
-    &none   &none          &ems W         &cms F       &cms P      &cms B                                                                           &cms J   &cms L         &kp UP          &cms Y          &kp ESC         &none            
-//├───────┼──────────────┼──────────────┼────────────┼───────────┼────────┤                                                                       ├────────┼──────────────┼───────────────┼───────────────┼───────────────┼───────┤
-    &kp Q   &ems A         &ems R         &cms S       &cms T      &cms G                                                                           &ems M   &kp LEFT       &kp DOWN        &kp RIGHT       &ems O          &none            
-//├───────┼──────────────┼──────────────┼────────────┼───────────┼────────┼─────────────┬───────────────┬─────────────╮ ╭───────┬───────┬─────────┼────────┼──────────────┼───────────────┼───────────────┼───────────────┼───────┤
-    &none   &kp LALT       &ems X         &cms C       &ems D      &ems V   &kp DEL       &none           &none           &none   &none   &none     &cms K   &cms H         &cms COMMA      &cms DOT        &kp LCTRL       &none            
-//├───────┼──────────────┼──────────────┼────────────┼───────────┴────────┼─────────────┼───────────────┼─────────────┤ ├───────┼───────┼─────────┼────────┴──────────────┼───────────────┼───────────────┼───────────────┼───────┤
-    &none   &none          &kp PLUS       &cms LBKT    &cms RBKT            &none         &kp LSHFT       &cms RETURN     &none   &none   &none              &cms SEMI      &cms GB_HASH    &cms GRAVE      &none           &none
-//╰───────┴──────────────┴──────────────┴────────────┴───────────╯        ╰─────────────┴───────────────┴─────────────╯ ╰───────┴───────┴─────────╯        ╰──────────────┴───────────────┴───────────────┴───────────────┴───────╯
+//╭───────────┬──────────────┬──────────────┬────────────┬───────────╮                                                                                     ╭──────────────┬───────────────┬───────────────┬───────────────┬───────╮
+    &none       &none          &none          &none        &none                                                                                             &none          &none           &none           &none           &none          
+//├───────────┼──────────────┼──────────────┼────────────┼───────────┼────────╮                                                                   ╭────────┼──────────────┼───────────────┼───────────────┼───────────────┼───────┤
+    &none       &none          &none          &cms SLASH   &none       &none                                                                        &none    &trans         &kp LG(MINUS)   &trans          &none           &none            
+//├───────────┼──────────────┼──────────────┼────────────┼───────────┼────────┤                                                                   ├────────┼──────────────┼───────────────┼───────────────┼───────────────┼───────┤
+    &none       &none          &ems W         &cms F       &cms P      &cms B                                                                       &cms J   &cms L         &kp LG(UP)      &cms Y          &none           &none            
+//├───────────┼──────────────┼──────────────┼────────────┼───────────┼────────┤                                                                   ├────────┼──────────────┼───────────────┼───────────────┼───────────────┼───────┤
+    &kp LG(Q)   &ems A         &ems R         &cms S       &cms T      &cms G                                                                       &ems M   &kp LG(LEFT)   &kp LG(DOWN)    &kp LG(RIGHT)   &ems O          &none            
+//├───────────┼──────────────┼──────────────┼────────────┼───────────┼────────┼─────────────┬───────────┬─────────────╮ ╭───────┬───────┬─────────┼────────┼──────────────┼───────────────┼───────────────┼───────────────┼───────┤
+    &none       &kp LALT       &ems X         &cms C       &ems D      &ems V   &kp DEL       &none       &trans          &none   &none   &none     &cms K   &cms H         &cms COMMA      &cms DOT        &kp LCTRL       &none            
+//├───────────┼──────────────┼──────────────┼────────────┼───────────┼────────┼─────────────┼───────────┼─────────────┤ ├───────┼───────┼─────────┼────────┼──────────────┼───────────────┼───────────────┼───────────────┼───────┤
+    &none       &none          &kp LG(PLUS)   &cms LBKT    &cms RBKT            &none         &kp LSHFT   &cms RETURN     &none   &none   &none              &cms SEMI      &cms GB_HASH    &cms GRAVE      &none           &none
+//╰───────────┴──────────────┴──────────────┴────────────┴───────────╯        ╰─────────────┴───────────┴─────────────╯ ╰───────┴───────┴─────────╯        ╰──────────────┴───────────────┴───────────────┴───────────────┴───────╯
             >;
         };
 
@@ -2298,7 +2307,7 @@
     &kp LSHFT   &kp F13     &kp A         &kp S       &kp D       &kp F                                                                                       &kp G       &kp H       &kp J       &kp K           &kp L       &kp SEMI             
 //├───────────┼───────────┼─────────────┼───────────┼───────────┼───────────┼───────────┬───────────┬─────────╮ ╭─────────────┬─────────┬───────────────────┼───────────┼───────────┼───────────┼───────────────┼───────────┼─────────────────────┤
     &none       &kp LCTRL   &kp Z         &kp X       &kp C       &kp V       &kp RET     &kp DEL     &none       &to DEFAULT   &none     &kp RGUI            &kp B       &kp N       &kp M       &kp COMMA       &kp DOT     &mt_rpi RCTRL MINUS  
-//├───────────┼───────────┼─────────────┼───────────┼───────────┼───────────┼───────────┼───────────┼─────────┤ ├─────────────┼─────────┼───────────────────┼───────────┴───────────┼───────────┼───────────────┼───────────┼─────────────────────┤
+//├───────────┼───────────┼─────────────┼───────────┼───────────┼───────────┼───────────┼───────────┼─────────┤ ├─────────────┼─────────┼───────────────────┼───────────┼───────────┼───────────┼───────────────┼───────────┼─────────────────────┤
     &none       &kp LALT    &kp GB_FSLH   &kp LBKT    &kp RBKT                &kp SPACE   &kp TAB     &kp ESC     &kp TAB       &kp RET   &lt_rpi NAV SPACE               &none       &none       &none           &none       &none
 //╰───────────┴───────────┴─────────────┴───────────┴───────────╯           ╰───────────┴───────────┴─────────╯ ╰─────────────┴─────────┴───────────────────╯           ╰───────────┴───────────┴───────────────┴───────────┴─────────────────────╯
             >;
@@ -2319,7 +2328,7 @@
     &bootloader   &rgb_ug RGB_SPD   &rgb_ug RGB_SAD   &rgb_ug RGB_HUD   &rgb_ug RGB_BRD   &rgb_ug RGB_EFF                                                            &none   &none   &none   &none   &none   &bootloader     
 //├─────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼───────┬───────┬──────────────╮ ╭───────┬───────┬───────┼───────┼───────┼───────┼───────┼───────┼──────────────────┤
     &sys_reset    &none             &none             &none             &none             &none             &bt_2   &bt_3   &out OUT_USB     &none   &none   &none   &none   &none   &none   &none   &none   &sys_reset       
-//├─────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┴─────────────────┼───────┼───────┼──────────────┤ ├───────┼───────┼───────┼───────┴───────┼───────┼───────┼───────┼──────────────────┤
+//├─────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼───────┼───────┼──────────────┤ ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼──────────────────┤
     &none         &none             &none             &none             &none                               &bt_0   &bt_1   &to DEFAULT      &none   &none   &none           &none   &none   &none   &none   &to FACTORY_TEST 
 //╰─────────────┴─────────────────┴─────────────────┴─────────────────┴─────────────────╯                 ╰───────┴───────┴──────────────╯ ╰───────┴───────┴───────╯       ╰───────┴───────┴───────┴───────┴──────────────────╯
             >;
@@ -2337,7 +2346,7 @@
     &kp N3   &kp N9   &kp N5   &kp N1   &kp N7   &kp N2                                                           &kp N2   &kp N7   &kp N1   &kp N5   &kp N9   &kp N3 
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
     &kp N4   &kp N0   &kp N6   &kp N2   &kp N8   &kp N3   &kp N4   &kp N5   &kp N6     &kp N6   &kp N5   &kp N4   &kp N3   &kp N8   &kp N2   &kp N6   &kp N0   &kp N4 
-//├────────┼────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┴────────┼────────┼────────┼────────┼────────┤
+//├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
     &kp N5   &kp N1   &kp N7   &kp N3   &kp N9            &kp N7   &kp N8   &kp N9     &kp N9   &kp N8   &kp N7            &kp N9   &kp N3   &kp N7   &kp N1   &kp N5
 //╰────────┴────────┴────────┴────────┴────────╯        ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴────────┴────────┴────────╯
             >;
