@@ -945,9 +945,8 @@
             #binding-cells = <1>;
             wait-ms = <0>;
             tap-ms = <0>;
-            bindings =  <&macro_press &kp LGUI>,
-                        <&macro_tap &macro_param_1to1 &kp 0>,
-                        <&macro_release &kp LGUI>,
+            bindings =  <&macro_tap &macro_param_1to1 &kp 0>,
+                        // <&macro_release &kp LGUI>,
                         <&macro_tap &code_mode>;
         };
 
@@ -956,9 +955,8 @@
             #binding-cells = <1>;
             wait-ms = <0>;
             tap-ms = <0>;
-            bindings =  <&macro_press &kp LGUI>,
-                        <&macro_tap &macro_param_1to1 &kp 0>,
-                        <&macro_release &kp LGUI>,
+            bindings =  <&macro_tap &macro_param_1to1 &kp 0>,
+                        // <&macro_release &kp LGUI>,
                         <&macro_tap &english_mode>;
         };
 
