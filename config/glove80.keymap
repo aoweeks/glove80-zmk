@@ -2075,17 +2075,17 @@
         double_layer {
             bindings = <
 //╭──────────┬─────────┬────────────────┬──────────────────────┬──────────╮                                                                            ╭──────────┬───────────┬───────────────────┬────────────────────────┬──────────────────╮
-    &trans     &trans    &trans           &trans                 &trans                                                                                  &trans     &trans      &trans              &trans                   &trans            
+    &none      &none     &none            &none                  &none                                                                                   &none      &none       &none               &none                    &none             
 //├──────────┼─────────┼────────────────┼──────────────────────┼──────────┼───────────╮                                                       ╭────────┼──────────┼───────────┼───────────────────┼────────────────────────┼──────────────────┤
-    &trans     &trans    &dc FSLH         &trans                 &trans     &trans                                                              &trans   &trans     &dc MINUS   &trans              &trans                   &trans            
+    &none      &none     &dc FSLH         &none                  &none      &none                                                               &none    &none      &dc MINUS   &none               &none                    &none             
 //├──────────┼─────────┼────────────────┼──────────────────────┼──────────┼───────────┤                                                       ├────────┼──────────┼───────────┼───────────────────┼────────────────────────┼──────────────────┤
-    &trans     &trans    &trans           &trans                 &trans     &trans                                                              &trans   &trans     &trans      &trans              &trans                   &trans            
+    &none      &none     &none            &none                  &none      &none                                                               &none    &none      &none       &none               &none                    &none             
 //├──────────┼─────────┼────────────────┼──────────────────────┼──────────┼───────────┤                                                       ├────────┼──────────┼───────────┼───────────────────┼────────────────────────┼──────────────────┤
-    &trans     &trans    &pad AMPS AMPS   &pad GB_PIPE GB_PIPE   &dc LBKT   &dc RBKT                                                            &trans   &trans     &trans      &long_arrow         &ts_bi GB_HASH GB_HASH   &trans            
+    &none      &none     &pad AMPS AMPS   &pad GB_PIPE GB_PIPE   &dc LBKT   &dc RBKT                                                            &none    &none      &none       &long_arrow         &ts_bi GB_HASH GB_HASH   &none             
 //├──────────┼─────────┼────────────────┼──────────────────────┼──────────┼───────────┼────────┬────────┬────────╮ ╭────────┬────────┬────────┼────────┼──────────┼───────────┼───────────────────┼────────────────────────┼──────────────────┤
-    &dc EXCL   &trans    &bi PRCNT S      &dc DOLLAR             &dc LBRC   &dc RBRC    &trans   &trans   &trans     &trans   &trans   &trans   &trans   &trans     &trans      &dc DOT             &dc UNDER                &pad EQUAL EQUAL
+    &dc EXCL   &none     &bi PRCNT S      &dc DOLLAR             &dc LBRC   &dc RBRC    &none    &none    &none      &none    &none    &none    &none    &none      &none       &dc DOT             &dc UNDER                &pad EQUAL EQUAL
 //├──────────┼─────────┼────────────────┼──────────────────────┼──────────┼───────────┼────────┼────────┼────────┤ ├────────┼────────┼────────┼────────┼──────────┼───────────┼───────────────────┼────────────────────────┼──────────────────┤
-    &trans     &trans    &dc PLUS         &dc LPAR               &dc RPAR               &trans   &trans   &trans     &trans   &trans   &trans            &dc SEMI   &dc COLON   &dc DOUBLE_QUOTES   &dc ASTRK                &trans      
+    &none      &none     &dc PLUS         &dc LPAR               &dc RPAR               &none    &none    &none      &none    &none    &none             &dc SEMI   &dc COLON   &dc DOUBLE_QUOTES   &dc ASTRK                &none       
 //╰──────────┴─────────┴────────────────┴──────────────────────┴──────────╯           ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰──────────┴───────────┴───────────────────┴────────────────────────┴──────────────────╯
             >;
         };
