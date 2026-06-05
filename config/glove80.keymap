@@ -945,7 +945,9 @@
             #binding-cells = <1>;
             wait-ms = <0>;
             tap-ms = <0>;
-            bindings =  <&macro_tap &macro_param_1to1 &kp 0>,
+            bindings =  <&macro_press &kp LGUI>,
+                        <&macro_tap &macro_param_1to1 &kp 0>,
+                        <&macro_release &kp LGUI>,
                         <&macro_tap &code_mode>;
         };
 
@@ -954,7 +956,9 @@
             #binding-cells = <1>;
             wait-ms = <0>;
             tap-ms = <0>;
-            bindings =  <&macro_tap &macro_param_1to1 &kp 0>,
+            bindings =  <&macro_press &kp LGUI>,
+                        <&macro_tap &macro_param_1to1 &kp 0>,
+                        <&macro_release &kp LGUI>,
                         <&macro_tap &english_mode>;
         };
 
@@ -1981,7 +1985,7 @@
 //╰────────┴────────┴──────────────────────┴────────────────────────────┴────────────────────╯        ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰────────┴────────┴────────┴────────┴────────╯
             >;
         };
-
+        
         no_pad_coding_numbers_and_symbols_layer {
             bindings = <
 //╭────────┬────────┬───────────┬─────────────┬────────────╮                                                                         ╭────────┬────────┬────────┬────────┬───────────╮
@@ -2294,15 +2298,15 @@
 //╭───────────┬────────────┬──────────────┬────────────────┬───────────────╮                                                                                           ╭───────────────┬──────────────────┬────────────────┬────────────┬───────╮                                                                                     ╭──────────────┬───────────────┬───────────────┬───────────────┬───────╮
     &none       &none        &none          &none            &none                                                                                                       &none           &none              &none            &none        &none          
 //├───────────┼────────────┼──────────────┼────────────────┼───────────────┼────────────╮                                                                 ╭────────────┼───────────────┼──────────────────┼────────────────┼────────────┼───────┤
-    &none       &none        &none          &cms LG(SLASH)   &none           &none                                                                          &none        &none           &kp LG(MINUS)      &none            &none        &none                           &none    &trans         &kp LG(MINUS)   &trans          &none           &none            
+    &none       &none        &none          &cms SLASH       &none           &none                                                                          &none        &none           &kp LG(MINUS)      &none            &none        &none                           &none    &trans         &kp LG(MINUS)   &trans          &none           &none            
 //├───────────┼────────────┼──────────────┼────────────────┼───────────────┼────────────┤                                                                 ├────────────┼───────────────┼──────────────────┼────────────────┼────────────┼───────┤
-    &none       &none        &ems LG(W)     &cms LG(F)       &cms LG(P)      &cms LG(B)                                                                     &cms LG(J)   &cms LG(L)      &kp LG(UP)         &cms LG(Y)       &none        &none            
+    &none       &none        &ems W         &cms F           &cms P          &cms B                                                                         &cms J       &cms L          &kp LG(UP)         &cms Y           &none        &none            
 //├───────────┼────────────┼──────────────┼────────────────┼───────────────┼────────────┤                                                                 ├────────────┼───────────────┼──────────────────┼────────────────┼────────────┼───────┤
-    &kp LG(Q)   &ems LG(A)   &ems LG(R)     &cms LG(S)       &cms LG(T)      &cms LG(G)                                                                     &ems LG(M)   &kp LG(LEFT)    &kp LG(DOWN)       &kp LG(RIGHT)    &ems LG(O)   &none            
+    &kp LG(Q)   &ems A       &ems R         &cms S           &cms T          &cms G                                                                         &ems M       &kp LG(LEFT)    &kp LG(DOWN)       &kp LG(RIGHT)    &ems O       &none            
 //├───────────┼────────────┼──────────────┼────────────────┼───────────────┼────────────┼───────┬───────────┬─────────────────╮ ╭───────┬───────┬─────────┼────────────┼───────────────┼──────────────────┼────────────────┼────────────┼───────┤
-    &none       &kp LALT     &ems LG(X)     &cms LG(C)       &ems LG(D)      &ems LG(V)   &none   &none       &trans              &none   &none   &none     &cms LG(K)   &cms LG(H)      &cms LG(COMMA)     &cms LG(DOT)     &kp LCTRL    &none            
+    &none       &kp LALT     &ems X         &cms C           &ems D          &ems V       &none   &none       &trans              &none   &none   &none     &cms K       &cms H          &cms COMMA         &cms DOT         &kp LCTRL    &none            
 //├───────────┼────────────┼──────────────┼────────────────┼───────────────┼────────────┼───────┼───────────┼─────────────────┤ ├───────┼───────┼─────────┼────────────┼───────────────┼──────────────────┼────────────────┼────────────┼───────┤
-    &none       &none        &kp LG(PLUS)   &cms LG(LBKT)    &cms LG(RBKT)                &none   &kp LSHFT   &cms LG(RETURN)     &none   &none   &none                  &cms LG(SEMI)   &cms LG(GB_HASH)   &cms LG(GRAVE)   &none        &none
+    &none       &none        &kp LG(PLUS)   &cms LBKT        &cms RBKT                    &none   &kp LSHFT   &cms RETURN         &none   &none   &none                  &cms SEMI       &cms GB_HASH       &cms GRAVE       &none        &none
 //╰───────────┴────────────┴──────────────┴────────────────┴───────────────╯            ╰───────┴───────────┴─────────────────╯ ╰───────┴───────┴─────────╯            ╰───────────────┴──────────────────┴────────────────┴────────────┴───────╯
             >;
         };
