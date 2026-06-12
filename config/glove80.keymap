@@ -2230,13 +2230,13 @@
 //├───────┼───────┼─────────────┼─────────────┼─────────────┼───────╮                                                                     ╭────────────┼──────────┼──────────────┼──────────┼────────────┼───────┤
     &none   &none   &none         &none         &none         &none                                                                         &none        &none      &none          &none      &none        &none      
 //├───────┼───────┼─────────────┼─────────────┼─────────────┼───────┤                                                                     ├────────────┼──────────┼──────────────┼──────────┼────────────┼───────┤
-    &none   &none   &none         &kp LG(F15)   &none         &none                                                                         &none        &none      &kp K_VOL_UP   &none      &none        &none      
+    &none   &none   &none         &kp LG(F15)   &none         &none                                                                         &none        &none      &kp C_VOL_UP   &none      &none        &none      
 //├───────┼───────┼─────────────┼─────────────┼─────────────┼───────┤                                                                     ├────────────┼──────────┼──────────────┼──────────┼────────────┼───────┤
-    &none   &none   &kp LA(F15)   &kp LC(F15)   &kp LS(F15)   &none                                                                         &kp K_PREV   &kp K_RW   &kp K_VOL_DN   &kp K_FF   &kp K_NEXT   &none     
+    &none   &none   &kp LA(F15)   &kp LC(F15)   &kp LS(F15)   &none                                                                         &kp C_PREV   &kp C_RW   &kp C_VOL_DN   &kp C_FF   &kp C_NEXT   &none     
 //├───────┼───────┼─────────────┼─────────────┼─────────────┼───────┼─────────┬───────────┬───────────╮ ╭─────────────┬───────┬───────────┼────────────┼──────────┼──────────────┼──────────┼────────────┼───────┤
-    &none   &none   &none         &none         &none         &none   &kp DEL   &none       &to MEDIA     &to DEFAULT   &none   &none       &none        &none      &kp K_MUTE     &none      &none        &none      
+    &none   &none   &none         &none         &none         &none   &kp DEL   &none       &to MEDIA     &to DEFAULT   &none   &none       &none        &none      &kp C_MUTE     &none      &none        &none      
 //├───────┼───────┼─────────────┼─────────────┼─────────────┼───────┼─────────┼───────────┼───────────┤ ├─────────────┼───────┼───────────┼────────────┼──────────┼──────────────┼──────────┼────────────┼───────┤
-    &none   &none   &none         &none         &none                 &kp F15   &kp PSCRN   &none         &none         &none   &kp K_PP                 &none      &none          &none      &none        &none 
+    &none   &none   &none         &none         &none                 &kp F15   &kp PSCRN   &none         &none         &none   &kp C_PP                 &none      &none          &none      &none        &none
 //╰───────┴───────┴─────────────┴─────────────┴─────────────╯       ╰─────────┴───────────┴───────────╯ ╰─────────────┴───────┴───────────╯            ╰──────────┴──────────────┴──────────┴────────────┴───────╯
             >;
         };
