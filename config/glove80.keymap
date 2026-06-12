@@ -1,4 +1,4 @@
-/*
+ /*
  * Copyright (c) 2020 The ZMK Contributors
  *
  * SPDX-License-Identifier: MIT
@@ -485,21 +485,45 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        comma: comma {
+        comma: outer_comma {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&inner_comma>, <&kp COMMA>;
+            mods = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+            keep-mods = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+        };
+
+        inner_comma: inner_comma {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&bi COMMA SPACE>, <&us COMMA 0>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
-        
-        dot: dot {
+
+        dot: outer_dot {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&inner_dot>, <&kp DOT>;
+            mods = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+            keep-mods = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+        };
+
+        inner_dot: dot {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&se DOT 0>, <&kp DOT>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        dot_i: dot_inverted {
+        dot_i: outer_dot_inverted {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&inner_dot_i>, <&kp DOT>;
+            mods = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+            keep-mods = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+        };
+
+        inner_dot_i: dot_inverted {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp DOT>, <&se DOT 0>;
@@ -548,29 +572,60 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        semi: semicolon {
+        semi: outer_semicolon {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&inner_semi>, <&kp SEMICOLON>;
+            mods = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+            keep-mods = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+        };
+
+        inner_semi: inner_semicolon {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&bi SEMICOLON SPACE>, <&bi SEMICOLON ENTER>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        semi_i: semicolon_inverted {
+        semi_i: outer_semicolon_inverted {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&inner_semi_i>, <&kp SEMI>;
+            mods = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+            keep-mods = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+        };
+
+        inner_semi_i: semicolon_inverted {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&bi SEMICOLON ENTER>, <&bi SEMICOLON SPACE>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
-
         
-        minus: minus {
+        minus: outer_minus {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&inner_minus>, <&kp MINUS>;
+            mods = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+            keep-mods = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+        };
+
+        inner_minus: inner_minus {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp MINUS>, <&pad MINUS 0>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
-        
-        slash: forward_slash {
+         
+        slash: outer_forward_slash {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&inner_slash>, <&kp SLASH>;
+            mods = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+            keep-mods = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+        };
+
+        inner_slash: forward_slash {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp SLASH>, <&pad SLASH 0>;
@@ -591,13 +646,20 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        equal: equal {
+        equal: outer_equal {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&inner_equal>, <&kp EQUAL>;
+            mods = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+            keep-mods = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+        };
+
+        inner_equal: inner_equal {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&pad EQUAL 0>, <&kp EQUAL>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
-
 
         space: space {
             compatible = "zmk,behavior-mod-morph";
@@ -628,7 +690,6 @@
             bindings = <&kp LPAR>, <&deferred_shift LPAR>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
-
 
         ret: enter {
             compatible = "zmk,behavior-mod-morph";
@@ -1827,7 +1888,7 @@
 //├─────────────────┼────────────────┼───────────┼─────────────┼───────────────┼───────╮                                                                                                                  ╭─────────────┼─────────────┼──────────────────┼─────────────┼─────────────────────┼──────────────────┤
     &none             &none            &kp LC(Z)   &slash        &kp LS(LC(Z))   &none                                                                                                                      &none         &kp F14       &minus_msc_u_mm    &tog_pad      &none                 &none
 //├─────────────────┼────────────────┼───────────┼─────────────┼───────────────┼───────┤                                                                                                                  ├─────────────┼─────────────┼──────────────────┼─────────────┼─────────────────────┼──────────────────┤
-    &to MOUSING       &code_mode       &kp W       &kp F         &kp P           &kp B                                                                                                                      &kp J         &kp L         &u_mmv_u_mm        &kp Y         &kp LG(LBKT)          &to MOUSING  
+    &to MOUSING       &code_mode       &kp W       &kp F         &kp P           &kp B                                                                                                                      &kp J         &kp L         &u_mmv_u_mm        &kp Y         &cms LBKT             &to MOUSING  
 //├─────────────────┼────────────────┼───────────┼─────────────┼───────────────┼───────┤                                                                                                                  ├─────────────┼─────────────┼──────────────────┼─────────────┼─────────────────────┼──────────────────┤
     &qu_lt MEDIA 0    &a_f13_mm        &kp R       &kp S         &kp T           &kp G                                                                                                                      &m_msc_l_mm   &n_mmv_l_mm   &e_mmv_d_mm        &i_mmv_r_mm   &o_msc_r_mm           &apos_lt EMOJI 0
 //├─────────────────┼────────────────┼───────────┼─────────────┼───────────────┼───────┼─────────────────────┬───────────────────┬───────────────╮ ╭───────────────┬────────────────────┬─────────────────┼─────────────┼─────────────┼──────────────────┼─────────────┼─────────────────────┼──────────────────┤
@@ -1930,19 +1991,19 @@
 
         navigation_layer {
             bindings = <
-//╭──────────┬──────────┬──────────────┬──────────────┬──────────────╮                                                                                                ╭──────────────────┬───────────────┬─────────────┬───────────┬───────╮
-    &none      &none      &none          &none          &none                                                                                                           &none              &none           &none         &none       &none 
-//├──────────┼──────────┼──────────────┼──────────────┼──────────────┼──────────────╮                                                                   ╭─────────────┼──────────────────┼───────────────┼─────────────┼───────────┼───────┤
-    &none      &none      &trans         &kp LC(FSLH)   &trans         &none                                                                              &kp INS       &trans             &kp LC(MINUS)   &trans        &none       &none 
-//├──────────┼──────────┼──────────────┼──────────────┼──────────────┼──────────────┤                                                                   ├─────────────┼──────────────────┼───────────────┼─────────────┼───────────┼───────┤
-    &none      &none      &bkt_start     &kp PG_UP      &bkt_end       &copy_cut                                                                          &kp F8        &select            &kp UP          &extend       &trans      &none 
-//├──────────┼──────────┼──────────────┼──────────────┼──────────────┼──────────────┤                                                                   ├─────────────┼──────────────────┼───────────────┼─────────────┼───────────┼───────┤
-    &kp LGUI   &kp F13    &kp HOME       &kp PG_DN      &kp END        &paste                                                                             &match_word   &kp LEFT           &kp DOWN        &kp RIGHT     &none       &none    
-//├──────────┼──────────┼──────────────┼──────────────┼──────────────┼──────────────┼─────────┬───────────┬────────╮ ╭─────────────┬────────┬───────────┼─────────────┼──────────────────┼───────────────┼─────────────┼───────────┼───────┤
-    &none      &kp LALT   &none          &kp LC(S)      &kp LC(LBKT)   &kp LC(RBKT)   &kp ESC   &kp DEL     &trans     &to DEFAULT   &trans   &kp LSHFT   &kp LG(DOT)   &select_all_none   &kp DOWN        &kp K_CMENU   &kp LCTRL   &none 
-//├──────────┼──────────┼──────────────┼──────────────┼──────────────┼──────────────┼─────────┼───────────┼────────┤ ├─────────────┼────────┼───────────┼─────────────┼──────────────────┼───────────────┼─────────────┼───────────┼───────┤
-    &none      &none      &kp LC(PLUS)   &none          &none                         &none     &kp LSHFT   &trans     &trans        &none    &none                     &none              &none           &none         &none       &none
-//╰──────────┴──────────┴──────────────┴──────────────┴──────────────╯              ╰─────────┴───────────┴────────╯ ╰─────────────┴────────┴───────────╯             ╰──────────────────┴───────────────┴─────────────┴───────────┴───────╯
+//╭───────┬──────────┬──────────────┬──────────────┬──────────────╮                                                                                                  ╭──────────────────┬───────────────┬─────────────┬───────────┬───────╮
+    &none   &none      &none          &none          &none                                                                                                             &none              &none           &none         &none       &none 
+//├───────┼──────────┼──────────────┼──────────────┼──────────────┼──────────────╮                                                                     ╭─────────────┼──────────────────┼───────────────┼─────────────┼───────────┼───────┤
+    &none   &none      &trans         &kp LC(FSLH)   &trans         &none                                                                                &kp INS       &trans             &kp LC(MINUS)   &trans        &none       &none 
+//├───────┼──────────┼──────────────┼──────────────┼──────────────┼──────────────┤                                                                     ├─────────────┼──────────────────┼───────────────┼─────────────┼───────────┼───────┤
+    &none   &none      &bkt_start     &kp PG_UP      &bkt_end       &copy_cut                                                                            &kp F8        &select            &kp UP          &extend       &trans      &none 
+//├───────┼──────────┼──────────────┼──────────────┼──────────────┼──────────────┤                                                                     ├─────────────┼──────────────────┼───────────────┼─────────────┼───────────┼───────┤
+    &none   &kp F13    &kp HOME       &kp PG_DN      &kp END        &paste                                                                               &match_word   &kp LEFT           &kp DOWN        &kp RIGHT     &none       &none    
+//├───────┼──────────┼──────────────┼──────────────┼──────────────┼──────────────┼─────────┬───────────┬──────────╮ ╭─────────────┬────────┬───────────┼─────────────┼──────────────────┼───────────────┼─────────────┼───────────┼───────┤
+    &none   &kp LALT   &none          &kp LC(S)      &kp LC(LBKT)   &kp LC(RBKT)   &kp ESC   &kp DEL     &kp LGUI     &to DEFAULT   &trans   &kp LSHFT   &kp LG(DOT)   &select_all_none   &kp DOWN        &kp K_CMENU   &kp LCTRL   &none 
+//├───────┼──────────┼──────────────┼──────────────┼──────────────┼──────────────┼─────────┼───────────┼──────────┤ ├─────────────┼────────┼───────────┼─────────────┼──────────────────┼───────────────┼─────────────┼───────────┼───────┤
+    &none   &none      &kp LC(PLUS)   &kp LC(LPAR)   &kp LC(RPAR)                  &none     &kp LSHFT   &trans       &trans        &none    &none                     &none              &none           &none         &none       &none
+//╰───────┴──────────┴──────────────┴──────────────┴──────────────╯              ╰─────────┴───────────┴──────────╯ ╰─────────────┴────────┴───────────╯             ╰──────────────────┴───────────────┴─────────────┴───────────┴───────╯
             >;
         };
 
