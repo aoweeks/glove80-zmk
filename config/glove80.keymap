@@ -722,10 +722,10 @@
             keep-mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
         };
 
-        u_msc_u_mm: u_mouse_scroll_up_mod_morph {
+        u_msc_d_mm: u_mouse_scroll_down_mod_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&msc_mt MOVE_UP U>, <&kp U>;
+            bindings = <&msc_mt MOVE_DOWN U>, <&kp U>;
             mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
             keep-mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
         };
@@ -738,10 +738,10 @@
             keep-mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
         };
 
-        e_msc_d_mm: e_mouse_scroll_down_mod_morph {
+        e_msc_u_mm: e_mouse_scroll_up_mod_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&msc_mt MOVE_DOWN E>, <&kp E>;
+            bindings = <&msc_mt MOVE_UP E>, <&kp E>;
             mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
             keep-mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
         };
@@ -1711,7 +1711,7 @@
 //├──────────────────┼───────────────────┼───────────┼─────────────┼───────────────┼───────┤                                                                                                                 ├───────┼─────────────┼─────────────┼─────────────┼─────────────────────┼─────────────────────────────┤
     &to MOUSING        &code_mode          &kp W       &kp F         &kp P           &kp B                                                                                                                     &kp J   &kp L         &u_msc_u_mm   &kp Y         &cms LBKT             &to MOUSING  
 //├──────────────────┼───────────────────┼───────────┼─────────────┼───────────────┼───────┤                                                                                                                 ├───────┼─────────────┼─────────────┼─────────────┼─────────────────────┼─────────────────────────────┤
-    &qu_lt SNIP 0      &a_f13_mm           &kp R       &kp S         &kp T           &kp G                                                                                                                     &kp M   &n_msc_l_mm   &e_msc_d_mm   &i_msc_r_mm   &kp R                 &apos_mt LG(LS(LC(LALT))) 0
+    &qu_lt SNIP 0      &a_f13_mm           &kp R       &kp S         &kp T           &kp G                                                                                                                     &kp M   &n_msc_l_mm   &e_msc_d_mm   &i_msc_r_mm   &kp O                 &apos_mt LG(LS(LC(LALT))) 0
 //├──────────────────┼───────────────────┼───────────┼─────────────┼───────────────┼───────┼─────────────────────┬───────────────────┬───────────────╮ ╭───────────────┬───────────────────┬─────────────────┼───────┼─────────────┼─────────────┼─────────────┼─────────────────────┼─────────────────────────────┤
     &excl_lt EMOJI 0   &mt_rpi LALT Z      &kp X       &kp C         &kp D           &kp V   &lt_rpi MOUSING ESC   &lt_rpi MOUSE DEL   &kp LGUI          &none           &mo FKEYS           &cw_lt WINDOW 0   &kp K   &kp H         &comma        &dot          &mt_rpi LCTRL UNDER   &equal   
 //├──────────────────┼───────────────────┼───────────┼─────────────┼───────────────┼───────┼─────────────────────┼───────────────────┼───────────────┤ ├───────────────┼───────────────────┼─────────────────┼───────┼─────────────┼─────────────┼─────────────┼─────────────────────┼─────────────────────────────┤
