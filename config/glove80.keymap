@@ -1504,22 +1504,16 @@
             bindings = <&macro_tap &tog_on TS &tog_on C_LANG>;
         };
 
+        /* === Emojis === */
 
-        // Emojis
-        e_slightly_smiling: emoji_slightly_smiling {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
-            bindings = <&macro_tap &kp LC(LS(U)) &kp N0 &kp N1 &kp F &kp N6 &kp N4 &kp N2 &kp ENTER>;
-        };
+        /* Smile Emojis */
 
         e_smiling: emoji_smiling {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <0>;
-            bindings = <&macro_tap &kp LC(LS(U)) &kp N0 &kp N1 &kp F &kp N6 &kp N0 &kp A &kp ENTER>;
+            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N6 &kp N0 &kp A &kp ENTER>;
         };
 
         e_grinning: emoji_grinning {
@@ -1527,10 +1521,53 @@
             #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <0>;
-            bindings = <&macro_tap &kp LC(LS(U)) &kp N0 &kp N1 &kp F &kp N6 &kp N0 &kp N4 &kp ENTER>;
+            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N6 &kp N0 &kp N4 &kp ENTER>;
         };
 
-        e_smile_td: emoj_smile_tap_dance {
+        e_teary_smiling: emoji_teary_smiling {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N9 &kp N7 &kp N2 &kp ENTER>;
+        };
+
+
+        e_smile_td: emoji_smile_tap_dance {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&e_smiling>, <&e_grinning>, <&e_teary_smiling>;
+        };
+
+
+        /* Anger Emojis */
+
+        e_steaming_nose: emoji_steaming_nose {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N6 &kp N2 &kp N4 &kp ENTER>;
+        };
+
+        e_angry: emoji_angry {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N6 &kp N2 &kp N1 &kp ENTER>;
+        };
+
+        e_swearing: emoji_swearing {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N9 &kp N2 &kp C &kp ENTER>;
+        };
+
+        e_anger_td: emoji_anger_tap_dance {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
@@ -1545,8 +1582,272 @@
             #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <0>;
-            bindings = <&macro_tap &kp LC(LS(U)) &kp N0 &kp F &kp N1 &kp N6 &kp N4 &kp N1 &kp ENTER>;
+            bindings = <&macro_tap &kp LC(LS(U)) &kp F &kp N1 &kp N6 &kp N4 &kp N1 &kp ENTER>;
         };
+
+
+        /* Laugh Emojis */
+
+        e_laughing: emoji_laughing {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N6 &kp N0 &kp N6 &kp ENTER>;
+        };
+
+        e_crying_laughing: emoji_crying_laughing {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N6 &kp N0 &kp N2 &kp ENTER>;
+        };
+
+        e_rofl: emoji_rofl {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N9 &kp N2 &kp N3 &kp ENTER>;
+        };
+
+        e_laugh_td: emoji_laugh_tap_dance {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&e_laughing>, <&e_crying_laughing>, <&e_rofl>;
+        };
+
+
+        /* Surprise Emojis */
+
+        e_surprised: emoji_surprised {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N6 &kp N2 &kp E &kp ENTER>;
+        };
+
+        e_mind_blown: emoji_mind_blown {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N9 &kp N2 &kp N5 &kp ENTER>;
+        };
+
+        e_shocked_to_death: emoji_shocked_to_death {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N6 &kp N3 &kp N5 &kp ENTER>;
+        };
+
+
+        e_surprise_td: emoji_surprise_tap_dance {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&e_surprised>, <&e_mind_blown>, <&e_shocked_to_death>;
+        };    
+
+
+        /* Tears Emojis */
+
+        e_teary: emoji_teary {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N9 &kp N7 &kp A &kp ENTER>;
+        };
+
+        e_crying: emoji_crying {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N6 &kp N2 &kp N5 &kp ENTER>;
+        };
+
+        e_weeping: emoji_weeping {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N6 &kp N2 &kp D &kp ENTER>;
+        };
+
+        e_tears_td: emoji_tears_tap_dance {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&e_teary>, <&e_crying>, <&e_weeping>;
+        };
+  
+        /* Eyewear Emojis */
+
+        e_monocle: emoji_monocle {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N9 &kp D &kp N0 &kp ENTER>;
+        };
+      
+        e_glasses: emoji_monocle {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N9 &kp N1 &kp N3 &kp ENTER>;
+        };
+
+        e_sunglasses: emoji_sunglasses {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N6 &kp N0 &kp E &kp ENTER>;
+        };
+
+        e_eyewear_td: emoji_eyewear_tap_dance {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&e_monocle>, <&e_glasses>, <&e_sunglasses>;
+        };        
+        
+        /* Person Emojis */
+
+        e_shrugging: emoji_shrugging {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N9 &kp N3 &kp N7 &kp ENTER>;
+        };
+
+        e_facepalming: emoji_facepalming {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N9 &kp N2 &kp N6 &kp ENTER>;
+        };
+
+        e_person_td: emoji_person_tap_dance {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&e_shrugging>, <&e_facepalming>;
+        };  
+
+
+        /* Alarm Emojis */
+
+        e_grimacing: emoji_grimacing {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N6 &kp N2 &kp C &kp ENTER>;
+        };
+
+        e_scared: emoji_scared {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N6 &kp N3 &kp N0 &kp ENTER>;
+        };
+
+        e_screaming: emoji_screaming {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N6 &kp N3 &kp N1 &kp ENTER>;
+        };
+
+        e_alarm_td: emoji_alarm_tap_dance {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&e_grimacing>, <&e_scared>, <&e_screaming>;
+        };  
+
+
+        /* Monkey Emojis */
+
+        e_see_no: emoji_see_no_evil {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N6 &kp N4 &kp N8 &kp ENTER>;
+        };
+
+        e_hear_no: emoji_hear_no_evil {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N6 &kp N4 &kp N9 &kp ENTER>;
+        };
+
+        e_speak_no: emoji_speak_no_evil {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N6 &kp N4 &kp A &kp ENTER>;
+        };
+
+        e_monkey_td: emoji_monkey_tap_dance {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&e_see_no>, <&e_hear_no>, <&e_speak_no>;
+        };
+
+
+        /* Celebration Emojis */
+
+        e_partying: emoji_partying {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N6 &kp N4 &kp N8 &kp ENTER>;
+        };
+
+        e_party_popper: emoji_party_popper_evil {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N3 &kp N8 &kp N9 &kp ENTER>;
+        };
+
+        e_confetti_ball: emoji_confetti_ball {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N3 &kp N8 &kp A &kp ENTER>;
+        };
+
+        e_celebration_td: emoji_celeberation_tap_dance {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&e_partying>, <&e_party_popper>, <&e_confetti_ball>;
+        };
+
 
 
         e_thumb_up: emoji_thumbs_up {
@@ -1574,37 +1875,6 @@
         };
 
 
-        e_laughing: emoji_laughing {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
-            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N6 &kp N0 &kp N6 &kp ENTER>;
-        };
-
-        e_crying_laughing: emoji_crying_laughing {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
-            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N6 &kp N0 &kp N2 &kp ENTER>;
-        };
-
-        e_rofl: emoji_rofl {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
-            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N9 &kp N2 &kp N3 &kp ENTER>;
-        };
-
-        e_laugh_td: emoj_laugh_tap_dance {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <300>;
-            bindings = <&e_laughing>, <&e_crying_laughing>, <&e_rofl>;
-        };
-
 
 
         e_poke: emoji_winking_poking_tongue_out {
@@ -1615,61 +1885,12 @@
             bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N6 &kp N1 &kp C &kp ENTER>;
         };
 
-        e_surprised: emoji_surprised {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
-            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N6 &kp N2 &kp E &kp ENTER>;
-        };
-
-
-        e_teary: emoji_teary {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
-            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N9 &kp N7 &kp A &kp ENTER>;
-        };
-
-        e_crying: emoji_crying {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
-            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N6 &kp N2 &kp N5 &kp ENTER>;
-        };
-
-        e_weeping: emoji_weeping {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
-            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N6 &kp N2 &kp D &kp ENTER>;
-        };
-
-        e_tears_td: emoj_tears_tap_dance {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <300>;
-            bindings = <&e_teary>, <&e_crying>, <&e_weeping>;
-        };
-
-
         e_diagonal: emoji_diagonal_mouth {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <0>;
             bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp A &kp E &kp N4 &kp ENTER>;
-        };
-  
-        e_sunglasses: emoji_sunglasses {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
-            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N6 &kp N0 &kp E &kp ENTER>;
         };
         
         e_embarrased: emoji_embarrassed {
@@ -1697,36 +1918,6 @@
         };
 
 
-        e_see_no: emoji_see_no_evil {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
-            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N6 &kp N4 &kp N8 &kp ENTER>;
-        };
-
-        e_hear_no: emoji_hear_no_evil {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
-            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N6 &kp N4 &kp N9 &kp ENTER>;
-        };
-
-        e_speak_no: emoji_speak_no_evil {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
-            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N6 &kp N4 &kp A &kp ENTER>;
-        };
-
-        e_monkey_td: emoj_monkey_tap_dance {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <300>;
-            bindings = <&e_see_no>, <&e_hear_no>, <&e_speak_no>;
-        };
 
     };
 
@@ -2250,9 +2441,9 @@
 //├───────────┼──────────┼─────────┼─────────────┼─────────────┼────────────────╮                                                                        ╭───────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
     &none       &none      &none     &e_diagonal   &none         &none                                                                                     &none           &trans              &e_smirk            &trans               &none            &none      
 //├───────────┼──────────┼─────────┼─────────────┼─────────────┼────────────────┤                                                                        ├───────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
-    &none       &none      &none     &none         &e_poke       &e_sunglasses                                                                             &none           &none               &e_thumb_up         &none                &trans           &none      
+    &none       &none      &none     &e_alarm_td   &e_poke       &e_eyewear_td                                                                             &none           &none               &e_thumb_up         &e_celebration_td    &trans           &none      
 //├───────────┼──────────┼─────────┼─────────────┼─────────────┼────────────────┤                                                                        ├───────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
-    &none       &none      &none     &none         &none         &none                                                                                     &e_monkey_td    &none               &e_thumb_down       &none                &e_surprised     &e_laugh_td      
+    &none       &none      &none     &none         &none         &e_anger_td                                                                               &e_monkey_td    &none               &e_thumb_down       &e_person_td         &e_surprise_td   &e_laugh_td      
 //├───────────┼──────────┼─────────┼─────────────┼─────────────┼────────────────┼─────────┬───────────┬───────────╮ ╭─────────────┬──────────┬───────────┼───────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
     &none       &none      &e_kiss   &none         &none         &none            &kp DEL   &none       &to EMOJI     &to DEFAULT   &none      &kp LSHFT   &none           &none               &none               &e_heart_eyes        &e_embarrased    &e_tears_td        
 //├───────────┼──────────┼─────────┼─────────────┼─────────────┼────────────────┼─────────┼───────────┼───────────┤ ├─────────────┼──────────┼───────────┼───────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
