@@ -32,14 +32,17 @@
 
 #define EMOJI_TD(name, emoji_1, keycodes_1, emoji_2, keycodes_2, \
                   emoji_3, keycodes_3) \
+  UNICODE(emoji_1, keycodes_1) \
+  UNICODE(emoji_2, keycodes_2) \
+  UNICODE(emoji_3, keycodes_3) \                
   e_##name_td: emoji_##name_tap_dance { \
       compatible = "zmk,behavior-tap-dance"; \
       #binding-cells = <0>; \
       tapping-term-ms = <300>; \
-      bindings = <&UNICODE(emoji_1, keycodes_1)>, \
-                 <&UNICODE(emoji_2, keycodes_2)>, \
-                 <&UNICODE(emoji_3, keycodes_3)>; \
-  }; \
+      bindings = <&e_##emoji1>, \
+                 <&e_##emoji2>, \
+                 <&e_##emoji3>; \
+  };
         
 // Layers
 #define DEFAULT 0
