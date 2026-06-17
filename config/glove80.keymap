@@ -22,7 +22,7 @@
   e_name: emoji_name { \
       compatible = "zmk,behavior-macro"; \
       #binding-cells = <0>; \
-      wait-ms = <0>; \
+      wait-ms = <0>; \ 
       tap-ms = <0>; \
       bindings = <&macro_tap &kp LC(LS(U)) keystrokes &kp ENTER>; \
   }; \
@@ -2054,7 +2054,7 @@
         //     tap-ms = <0>;
         //     bindings = <&macro_tap &kp LC(LS(U)) &kp N2 &kp N6 &kp A &kp N0 &kp ENTER>;
         // };
-        UNICODE(warning, &kp N2 &kp N6 &kp A &kp N0)
+        UNICODE("warning", "&kp N2 &kp N6 &kp A &kp N0")
 
         
         /* Thoughts Emojis */
