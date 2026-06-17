@@ -19,15 +19,27 @@
 #include "keys_en_gb_extended.h"
  
 #define UNICODE(name, keystrokes) \
-  e_name: emoji_name {
+  e_name: emoji_name { \
       compatible = "zmk,behavior-macro"; \
       #binding-cells = <0>; \
       wait-ms = <0>; \
       tap-ms = <0>; \
       bindings = <&macro_tap &kp LC(LS(U)) keystrokes &kp ENTER>; \
-    };
-  ) 
+  };
+)
 
+#define EMOJI_TD(name, emoji_1, keycodes_1, emoji_2, keycodes_2, \
+                  emoji_3, keycodes_3) \
+  e_name_td: emoji_name_tap_dance { \
+      compatible = "zmk,behavior-tap-dance"; \
+      #binding-cells = <0>; \
+      tapping-term-ms = <300>; \
+      bindings = <&UNICODE(emoji_1, keycodes_1)>, \
+                 <&UNICODE(emoji_2, keycodes_2)>, \
+                 <&UNICODE(emoji_3, keycodes_3)>; \
+  }; \
+)
+        
 // Layers
 #define DEFAULT 0
 #define NO_PAD 1
