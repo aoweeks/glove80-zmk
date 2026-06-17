@@ -1992,7 +1992,7 @@
             bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N6 &kp A &kp N7 &kp ENTER>;
         };
 
-        e_maintenance_td: emoji_metal_tap_dance {
+        e_maintenance_td: emoji_maintenance_tap_dance {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
