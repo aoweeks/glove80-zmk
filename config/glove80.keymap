@@ -32,7 +32,7 @@
 
 #define EMOJI_TD(name, emoji_1, keycodes_1, emoji_2, keycodes_2, \
                   emoji_3, keycodes_3) \
-  e_name_td: emoji_name_tap_dance { \
+  e_##name_td: emoji_##name_tap_dance { \
       compatible = "zmk,behavior-tap-dance"; \
       #binding-cells = <0>; \
       tapping-term-ms = <300>; \
@@ -2059,41 +2059,43 @@
         // UNICODE( warning, ({ N2, N6, A, N0 }) )
 
         
-        /* Thoughts Emojis */
+        // 💭 🧠 🤔
+        EMOJI_TD( thought, \
+          thought_bubble, <&kp N1 &kp F &kp N4 &kp A &kp D>, \ 
+          brain, <&kp N1 &kp F &kp N9 &kp E &kp N0>, \ 
+          thinking_face, <&kp N1 &kp F &kp N9 &kp N1 &kp N4>, \ 
+        )
+        // e_thought: emoji_thought {
+        //     compatible = "zmk,behavior-macro";
+        //     #binding-cells = <0>;
+        //     wait-ms = <0>;
+        //     tap-ms = <0>;
+        //     bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N4 &kp A &kp D &kp ENTER>;
+        // };
 
-        // 💭
-        e_thought: emoji_thought {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
-            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N4 &kp A &kp D &kp ENTER>;
-        };
+        
+        // e_brain: emoji_brain {
+        //     compatible = "zmk,behavior-macro";
+        //     #binding-cells = <0>;
+        //     wait-ms = <0>;
+        //     tap-ms = <0>;
+        //     bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N9 &kp E &kp N0 &kp ENTER>;
+        // };
 
-        // 🧠
-        e_brain: emoji_brain {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
-            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N9 &kp E &kp N0 &kp ENTER>;
-        };
+        // e_thinking: emoji_thinking {
+        //     compatible = "zmk,behavior-macro";
+        //     #binding-cells = <0>;
+        //     wait-ms = <0>;
+        //     tap-ms = <0>;
+        //     bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N9 &kp N1 &kp N4 &kp ENTER>;
+        // };
 
-        // 🤔
-        e_thinking: emoji_thinking {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
-            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N9 &kp N1 &kp N4 &kp ENTER>;
-        };
-
-        e_thoughts_td: emoji_thoughts_tap_dance {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <300>;
-            bindings = <&e_thought>, <&e_brain>, <&e_thinking>;
-        };
+        // e_thoughts_td: emoji_thoughts_tap_dance {
+        //     compatible = "zmk,behavior-tap-dance";
+        //     #binding-cells = <0>;
+        //     tapping-term-ms = <300>;
+        //     bindings = <&e_thought>, <&e_brain>, <&e_thinking>;
+        // };
 
 
         // 💡
@@ -2665,19 +2667,19 @@
 
         emoji_layer {
             bindings = <
-//╭───────────────┬──────────┬─────────┬───────────────────┬────────────────╮                                                                                                        ╭───────────────────┬───────────────────┬────────────────────┬────────────────┬─────────────╮
-    &none           &none      &none     &none               &none                                                                                                                     &none               &none               &none                &none            &none      
-//├───────────────┼──────────┼─────────┼───────────────────┼────────────────┼───────────────╮                                                                        ╭───────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
-    &none           &none      &none     &e_diagonal         &none            &none                                                                                    &none           &trans              &e_smirk            &trans               &none            &none      
-//├───────────────┼──────────┼─────────┼───────────────────┼────────────────┼───────────────┤                                                                        ├───────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
-    &none           &none      &none     &e_alarm_td         &e_poke          &e_eyewear_td                                                                            &none           &none               &e_yes_td           &e_celebration_td    &trans           &none      
-//├───────────────┼──────────┼─────────┼───────────────────┼────────────────┼───────────────┤                                                                        ├───────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
-    &none           &none      &none     &none               &e_thoughts_td   &e_anger_td                                                                              &e_monkey_td    &none               &e_no_td            &e_person_td         &e_surprise_td   &e_laugh_td      
-//├───────────────┼──────────┼─────────┼───────────────────┼────────────────┼───────────────┼─────────┬───────────┬───────────╮ ╭─────────────┬──────────┬───────────┼───────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
-    &e_problem_td   &none      &e_kiss   &e_maintenance_td   &none            &none           &kp ESC   &kp DEL     &none         &to DEFAULT   &none      &kp LSHFT   &none           &none               &e_warning          &e_hearts_td         &e_embarrassed   &e_tears_td        
-//├───────────────┼──────────┼─────────┼───────────────────┼────────────────┼───────────────┼─────────┼───────────┼───────────┤ ├─────────────┼──────────┼───────────┼───────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
-    &none           &none      &none     &e_sad              &e_smile_td                      &none     &kp LSHFT   &none         &none         &kp BSPC   &kp SPACE                   &none               &none               &none                &none            &none 
-//╰───────────────┴──────────┴─────────┴───────────────────┴────────────────╯               ╰─────────┴───────────┴───────────╯ ╰─────────────┴──────────┴───────────╯               ╰───────────────────┴───────────────────┴────────────────────┴────────────────┴─────────────╯
+//╭───────────────┬──────────┬─────────┬───────────────────┬───────────────╮                                                                                                        ╭───────────────────┬───────────────────┬────────────────────┬────────────────┬─────────────╮
+    &none           &none      &none     &none               &none                                                                                                                    &none               &none               &none                &none            &none      
+//├───────────────┼──────────┼─────────┼───────────────────┼───────────────┼───────────────╮                                                                        ╭───────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
+    &none           &none      &none     &e_diagonal         &none           &none                                                                                    &none           &trans              &e_smirk            &trans               &none            &none      
+//├───────────────┼──────────┼─────────┼───────────────────┼───────────────┼───────────────┤                                                                        ├───────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
+    &none           &none      &none     &e_alarm_td         &e_poke         &e_eyewear_td                                                                            &none           &none               &e_yes_td           &e_celebration_td    &trans           &none      
+//├───────────────┼──────────┼─────────┼───────────────────┼───────────────┼───────────────┤                                                                        ├───────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
+    &none           &none      &none     &none               &e_thought_td   &e_anger_td                                                                              &e_monkey_td    &none               &e_no_td            &e_person_td         &e_surprise_td   &e_laugh_td      
+//├───────────────┼──────────┼─────────┼───────────────────┼───────────────┼───────────────┼─────────┬───────────┬───────────╮ ╭─────────────┬──────────┬───────────┼───────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
+    &e_problem_td   &none      &e_kiss   &e_maintenance_td   &none           &none           &kp ESC   &kp DEL     &none         &to DEFAULT   &none      &kp LSHFT   &none           &none               &e_warning          &e_hearts_td         &e_embarrassed   &e_tears_td        
+//├───────────────┼──────────┼─────────┼───────────────────┼───────────────┼───────────────┼─────────┼───────────┼───────────┤ ├─────────────┼──────────┼───────────┼───────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
+    &none           &none      &none     &e_sad              &e_smile_td                     &none     &kp LSHFT   &none         &none         &kp BSPC   &kp SPACE                   &none               &none               &none                &none            &none 
+//╰───────────────┴──────────┴─────────┴───────────────────┴───────────────╯               ╰─────────┴───────────┴───────────╯ ╰─────────────┴──────────┴───────────╯               ╰───────────────────┴───────────────────┴────────────────────┴────────────────┴─────────────╯
             >;
         };
 
