@@ -18,18 +18,17 @@
 
 #include "keys_en_gb_extended.h"
 
- 
 #define UNICODE(name, seq) \
-  e_##name: emoji_##name { \
-      compatible = "zmk,behavior-macro"; \
-      #binding-cells = <0>; \
-      wait-ms = <0>; \ 
-      tap-ms = <0>; \
-      bindings =  <&macro_tap &kp LC(LS(U)), \
-                  seq, \
-                  &kp ENTER>; \
-  }; \
-)
+    e_##name: emoji_##name { \
+        compatible = "zmk,behavior-macro"; \
+        #binding-cells = <0>; \
+        wait-ms = <0>; \
+        tap-ms = <0>; \
+        bindings \
+            = <&macro_tap &kp LC(LS(U))> \
+            , seq \
+            , <&macro_tap &kp ENTER>; \
+    };
 
 #define EMOJI_TD(name, emoji_1, keycodes_1, emoji_2, keycodes_2, \
                   emoji_3, keycodes_3) \
@@ -41,7 +40,6 @@
                  <&UNICODE(emoji_2, keycodes_2)>, \
                  <&UNICODE(emoji_3, keycodes_3)>; \
   }; \
-)
         
 // Layers
 #define DEFAULT 0
@@ -2057,7 +2055,7 @@
         //     tap-ms = <0>;
         //     bindings = <&macro_tap &kp LC(LS(U)) &kp N2 &kp N6 &kp A &kp N0 &kp ENTER>;
         // };
-        UNICODE(warning, &kp N2 &kp N6 &kp A &kp N0)
+        UNICODE(warning, <&kp N2 &kp N6 &kp A &kp N0>)
         // UNICODE( warning, ({ N2, N6, A, N0 }) )
 
         
