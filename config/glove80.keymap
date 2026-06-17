@@ -2063,7 +2063,7 @@
         EMOJI_TD( thought, \
           thought_bubble, <&kp N1 &kp F &kp N4 &kp A &kp D>, \ 
           brain, <&kp N1 &kp F &kp N9 &kp E &kp N0>, \ 
-          thinking_face, <&kp N1 &kp F &kp N9 &kp N1 &kp N4>, \ 
+          thinking_face, <&kp N1 &kp F &kp N9 &kp N1 &kp N4> \ 
         )
         // e_thought: emoji_thought {
         //     compatible = "zmk,behavior-macro";
@@ -2297,7 +2297,7 @@
 //├─────────┼───────────────┼────────┼───────────┼────────┼────────┤                                                                             ├────────┼─────────┼──────────┼────────┼────────┼────────┤
     &trans    &trans          &trans   &trans      &trans   &trans                                                                                 &trans   &trans    &trans     &trans   &trans   &trans
 //├─────────┼───────────────┼────────┼───────────┼────────┼────────┼────────┬────────┬─────────────────╮ ╭────────┬─────────────────────┬────────┼────────┼─────────┼──────────┼────────┼────────┼────────┤
-    &excl_i   &trans           &trans   &trans      &trans   &trans   &trans   &trans   &trans              &trans   &trans                &trans   &trans   &trans    &trans     &dot_i   &trans   &trans
+    &excl_i   &trans          &trans   &trans      &trans   &trans   &trans   &trans   &trans              &trans   &trans                &trans   &trans   &trans    &trans     &dot_i   &trans   &trans
 //├─────────┼───────────────┼────────┼───────────┼────────┴────────┼────────┼────────┼─────────────────┤ ├────────┼─────────────────────┼────────┼────────┴─────────┼──────────┼────────┼────────┼────────┤
     &trans    &qmark_i        &trans   &lpar_spc   &trans            &trans   &trans   &lt_rpi DBL RET     &trans   &lt_rpi BIGRAM BSPC   &trans            &semi_i   &colon_i   &trans   &trans   &trans
 //╰─────────┴───────────────┴────────┴───────────┴────────╯        ╰────────┴────────┴─────────────────╯ ╰────────┴─────────────────────┴────────╯        ╰─────────┴──────────┴────────┴────────┴────────╯
