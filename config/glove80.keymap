@@ -17,6 +17,7 @@
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 
 #include "keys_en_gb_extended.h"
+
  
 #define UNICODE(name, seq) \
   e_##name: emoji_##name { \
@@ -24,7 +25,9 @@
       #binding-cells = <0>; \
       wait-ms = <0>; \ 
       tap-ms = <0>; \
-      bindings = <&macro_tap &kp LC(LS(U)) seq &kp ENTER>; \
+      bindings =  <&macro_tap &kp LC(LS(U)), \
+                  seq, \
+                  &kp ENTER>; \
   }; \
 )
 
@@ -2055,6 +2058,7 @@
         //     bindings = <&macro_tap &kp LC(LS(U)) &kp N2 &kp N6 &kp A &kp N0 &kp ENTER>;
         // };
         UNICODE(warning, &kp N2 &kp N6 &kp A &kp N0)
+        // UNICODE( warning, ({ N2, N6, A, N0 }) )
 
         
         /* Thoughts Emojis */
