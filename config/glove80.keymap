@@ -35,7 +35,7 @@
   UNICODE(emoji_1, keycodes_1) \
   UNICODE(emoji_2, keycodes_2) \
   UNICODE(emoji_3, keycodes_3) \                
-  e_##name_td: emoji_##name_tap_dance { \
+  e_##name##_td: emoji_##name##_tap_dance { \
       compatible = "zmk,behavior-tap-dance"; \
       #binding-cells = <0>; \
       tapping-term-ms = <300>; \
