@@ -39,9 +39,9 @@
       compatible = "zmk,behavior-tap-dance"; \
       #binding-cells = <0>; \
       tapping-term-ms = <300>; \
-      bindings = <&e_##emoji1>, \
-                 <&e_##emoji2>, \
-                 <&e_##emoji3>; \
+      bindings = <&e_##emoji_1>, \
+                 <&e_##emoji_2>, \
+                 <&e_##emoji_3>; \
   };
         
 // Layers
