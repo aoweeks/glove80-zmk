@@ -1620,6 +1620,13 @@
           success, <&kp N1 &kp F &kp N3 &kp C &kp N6> \
         )
 
+        // 🔑 🚨 ⏰
+        EMOJI_TD( important, \
+          key, <&kp N1 &kp F &kp N5 &kp N1 &kp N1>, \
+          siren, <&kp N1 &kp F &kp N6 &kp A &kp N8>, \
+          alarm_clock, <&kp N2 &kp N3 &kp F &kp N0> \
+        )
+
 
         e_kiss: emoji_blowing_kiss {
             compatible = "zmk,behavior-macro";
