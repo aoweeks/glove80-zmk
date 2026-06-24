@@ -1648,7 +1648,7 @@
         // 👊 ⚔️ 🔫
         UNICODE(punch, UC_MACRO(<&kp N1 &kp F &kp N4 &kp N4 &kp A>))
         UNICODE(crossed_swords, UC_MACRO(<&kp N2 &kp N6 &kp N9 &kp N4>))
-        UNICODE(pistol, UC_MACRO(<&kp N1 &kp F &kp N5 &kp N2 &kp NB>))
+        UNICODE(pistol, UC_MACRO(<&kp N1 &kp F &kp N5 &kp N2 &kp B>))
         EMOJI_TD(violence, <&e_punch>, <&e_crossed_swords>, <&e_pistol>)
 
         // 🧼 ♻️ 📝
