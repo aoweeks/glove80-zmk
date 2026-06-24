@@ -1653,7 +1653,7 @@
         // 🧼 ♻️ 📝
         UNICODE(soap, UC_MACRO(<&kp N1 &kp F &kp A &kp N7 &kp N4>))
         UNICODE(recycling, UC_MACRO(<&kp N2 &kp N6 &kp N7 &kp B>))
-        UNICODE(memo, UC_MACRO(<&kp N1 &kp F &kp N4 &kp ND &kp D>))
+        UNICODE(memo, UC_MACRO(<&kp N1 &kp F &kp N4 &kp D &kp D>))
         EMOJI_TD(need_tweaks, <&e_soap>, <&e_recycling>, <&e_memo>)
 
         // ⚠️ 🚩 ☠️
