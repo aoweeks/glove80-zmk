@@ -1634,11 +1634,10 @@
         UNICODE(pile_of_poo, UC_MACRO(<&kp N1 &kp F &kp N4 &kp A &kp N9>))
         EMOJI_TD(sass, <&e_middle_finger>, <&e_face_with_symbols_on_mouth>, <&e_pile_of_poo>)
 
-        // ⏳ ⚡ ⏰
+        // ⏳ ⚡ 
         UNICODE(hourglass, UC_MACRO(<&kp N2 &kp N3 &kp F &kp N3>))
         UNICODE(high_voltage, UC_MACRO(<&kp N2 &kp N6 &kp A &kp N1>))
-        UNICODE(alarm_clock, UC_MACRO(<&kp N2 &kp N3 &kp F &kp N0>))
-        EMOJI_TD(time, <&e_hourglass>, <&e_high_voltage>, <&e_alarm_clock>)
+        EMOJI_TD(time, <&e_hourglass>, <&e_high_voltage>)
 
         // 🎨 🖊️ 💻
         UNICODE(palette, UC_MACRO(<&kp N1 &kp F &kp N3 &kp A &kp N8>))
@@ -1722,14 +1721,6 @@
             wait-ms = <0>;
             tap-ms = <0>;
             bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N6 &kp N3 &kp N3 &kp ENTER>;
-        };
-
-        e_smirk: emoji_smirk {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
-            bindings = <&macro_tap &kp LC(LS(U)) &kp N1 &kp F &kp N6 &kp N0 &kp F &kp ENTER>;
         };
 
 
@@ -2266,7 +2257,7 @@
 //  🪲 💸 💣         🥱 😴 😫        ↩ 📜 ⛓️‍💥             🎉 🎊 🥳             💡 🎯 🚀          🤷 🤦 💁                                                                                                          💪 👌 ✊            🙏 👏 🙌            ❤️ 🥰 😍            🖕 🤬 💩          🥺 😥 😭
     &e_problems_td   &e_tired_td     &e_changes_td       &e_celebration_td    &e_stages_td      &e_person_td    &kp ESC   &kp DEL     &none         &to DEFAULT        &none      &kp LSHFT   &none               &e_one_hand_td      &e_two_hands_td     &e_hearts_td         &e_sass_td       &e_tears_td        
 //├────────────────┼───────────────┼───────────────────┼────────────────────┼─────────────────┼───────────────┼─────────┼───────────┼───────────┤ ├──────────────────┼──────────┼───────────┼───────────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
-//                   ❓ 🧩 🔍        🧪 🗺️               🙁 😞 😩             😊 😄 🥲                                                              🔗 🔖                                                         ⏳ ⚡ ⏰             🩹 🦠 🤮            🎨 🖊️ 💻
+//                   ❓ 🧩 🔍        🧪 🗺️               🙁 😞 😩             😊 😄 🥲                                                              🔗 🔖                                                         ⏳ ⚡                🩹 🦠 🤮            🎨 🖊️ 💻
     &none            &e_mystery_td   &e_disciplines_td   &e_sad_td            &e_smile_td                       &none     &kp LSHFT   &none         &e_references_td   &kp BSPC   &kp SPACE                       &e_time_td          &e_medical_td       &e_creative_td       &none            &none 
 //╰────────────────┴───────────────┴───────────────────┴────────────────────┴─────────────────╯               ╰─────────┴───────────┴───────────╯ ╰──────────────────┴──────────┴───────────╯                   ╰───────────────────┴───────────────────┴────────────────────┴────────────────┴─────────────╯
             >;
