@@ -18,30 +18,24 @@
 
 #include "keys_en_gb_extended.h"
 
-#define UNICODE(name, seq) \
+#define UC_MACRO(seq) \
+    <&macro_tap &kp LC(LS(U))>, seq, <&macro_tap &kp ENTER>
+
+#define UNICODE(name, ...) \
     e_##name: emoji_##name { \
         compatible = "zmk,behavior-macro"; \
         #binding-cells = <0>; \
         wait-ms = <0>; \
         tap-ms = <0>; \
-        bindings \
-            = <&macro_tap &kp LC(LS(U))> \
-            , seq \
-            , <&macro_tap &kp ENTER>; \
+        bindings = __VA_ARGS__; \
     };
 
-#define EMOJI_TD(name, emoji_1, keycodes_1, emoji_2, keycodes_2, \
-                  emoji_3, keycodes_3) \
-  UNICODE(emoji_1, keycodes_1) \
-  UNICODE(emoji_2, keycodes_2) \
-  UNICODE(emoji_3, keycodes_3) \                
+#define EMOJI_TD(name, ...) \
   e_##name##_td: emoji_##name##_tap_dance { \
       compatible = "zmk,behavior-tap-dance"; \
       #binding-cells = <0>; \
       tapping-term-ms = <300>; \
-      bindings = <&e_##emoji_1>, \
-                 <&e_##emoji_2>, \
-                 <&e_##emoji_3>; \
+      bindings = __VA_ARGS__; \
   };
         
 // Layers 
@@ -1465,179 +1459,237 @@
         /* === Emojis === */
 
         // 😊 😄 🥲
-        EMOJI_TD( smile, \
-          smiling, <&kp N1 &kp F &kp N6 &kp N0 &kp A>, \
-          grinning, <&kp N1 &kp F &kp N6 &kp N0 &kp N4>, \
-          teary_smiling, <&kp N1 &kp F &kp N9 &kp N7 &kp N2> \
-        )
+        UNICODE(smiling, UC_MACRO(<&kp N1 &kp F &kp N6 &kp N0 &kp A>))
+        UNICODE(grinning, UC_MACRO(<&kp N1 &kp F &kp N6 &kp N0 &kp N4>))
+        UNICODE(teary_smiling, UC_MACRO(<&kp N1 &kp F &kp N9 &kp N7 &kp N2>))
+        EMOJI_TD(smile, <&e_smiling>, <&e_grinning>, <&e_teary_smiling>)
 
         // 😤 😡 🤬
-        EMOJI_TD( anger, \
-          steaming_nose, <&kp N1 &kp F &kp N6 &kp N2 &kp N4>, \
-          angry, <&kp N1 &kp F &kp N6 &kp N2 &kp N1>, \
-          swearing, <&kp N1 &kp F &kp N9 &kp N2 &kp C> \
-        )
+        UNICODE(steaming_nose, UC_MACRO(<&kp N1 &kp F &kp N6 &kp N2 &kp N4>))
+        UNICODE(angry, UC_MACRO(<&kp N1 &kp F &kp N6 &kp N2 &kp N1>))
+        UNICODE(swearing, UC_MACRO(<&kp N1 &kp F &kp N9 &kp N2 &kp C>))
+        EMOJI_TD(anger, <&e_steaming_nose>, <&e_angry>, <&e_swearing>)
 
         // 😆 😂 🤣
-        EMOJI_TD( laugh, \
-          laughing, <&kp N1 &kp F &kp N6 &kp N0 &kp N6>, \
-          crying_laughing, <&kp N1 &kp F &kp N6 &kp N0 &kp N2>, \
-          rofl, <&kp N1 &kp F &kp N9 &kp N2 &kp N3> \
-        )
+        UNICODE(laughing, UC_MACRO(<&kp N1 &kp F &kp N6 &kp N0 &kp N6>))
+        UNICODE(crying_laughing, UC_MACRO(<&kp N1 &kp F &kp N6 &kp N0 &kp N2>))
+        UNICODE(rofl, UC_MACRO(<&kp N1 &kp F &kp N9 &kp N2 &kp N3>))
+        EMOJI_TD(laugh, <&e_laughing>, <&e_crying_laughing>, <&e_rofl>)
 
         // 😮 🤯 😵
-        EMOJI_TD( surprise, \
-          surprised, <&kp N1 &kp F &kp N6 &kp N2 &kp E>, \
-          mind_blown, <&kp N1 &kp F &kp N9 &kp N2 &kp F>, \
-          shocked_to_death, <&kp N1 &kp F &kp N6 &kp N3 &kp N5> \
-        )
+        UNICODE(surprised, UC_MACRO(<&kp N1 &kp F &kp N6 &kp N2 &kp E>))
+        UNICODE(mind_blown, UC_MACRO(<&kp N1 &kp F &kp N9 &kp N2 &kp F>))
+        UNICODE(shocked_to_death, UC_MACRO(<&kp N1 &kp F &kp N6 &kp N3 &kp N5>))
+        EMOJI_TD(surprise, <&e_surprised>, <&e_mind_blown>, <&e_shocked_to_death>)
 
         // 🥺 😥 😭
-        EMOJI_TD( tears, \
-          teary, <&kp N1 &kp F &kp N9 &kp N7 &kp A>, \
-          crying, <&kp N1 &kp F &kp N6 &kp N2 &kp N5>, \
-          weeping, <&kp N1 &kp F &kp N6 &kp N2 &kp D> \
-        )
+        UNICODE(teary, UC_MACRO(<&kp N1 &kp F &kp N9 &kp N7 &kp A>))
+        UNICODE(crying, UC_MACRO(<&kp N1 &kp F &kp N6 &kp N2 &kp N5>))
+        UNICODE(weeping, UC_MACRO(<&kp N1 &kp F &kp N6 &kp N2 &kp D>))
+        EMOJI_TD(tears, <&e_teary>, <&e_crying>, <&e_weeping>)
 
         // 🧐 🤓 😎
-        EMOJI_TD( eyewear, \
-          monocle, <&kp N1 &kp F &kp N9 &kp D &kp N0>, \
-          glasses, <&kp N1 &kp F &kp N9 &kp N1 &kp N3>, \
-          sunglasses, <&kp N1 &kp F &kp N6 &kp N0 &kp E> \
-        )        
+        UNICODE(monocle, UC_MACRO(<&kp N1 &kp F &kp N9 &kp D &kp N0>))
+        UNICODE(glasses, UC_MACRO(<&kp N1 &kp F &kp N9 &kp N1 &kp N3>))
+        UNICODE(sunglasses, UC_MACRO(<&kp N1 &kp F &kp N6 &kp N0 &kp E>))
+        EMOJI_TD(eyewear, <&e_monocle>, <&e_glasses>, <&e_sunglasses>)        
         
         // 🤷 🤦 🫡
-        EMOJI_TD( person, \
-          shrugging, <&kp N1 &kp F &kp N9 &kp N3 &kp N7>, \
-          facepalming, <&kp N1 &kp F &kp N9 &kp N2 &kp N6>, \
-          saluting, <&kp N1 &kp F &kp A &kp E &kp N1> \
-        )
+        UNICODE(shrugging, UC_MACRO(<&kp N1 &kp F &kp N9 &kp N3 &kp N7>))
+        UNICODE(facepalming, UC_MACRO(<&kp N1 &kp F &kp N9 &kp N2 &kp N6>))
+        UNICODE(saluting, UC_MACRO(<&kp N1 &kp F &kp A &kp E &kp N1>))
+        EMOJI_TD(person, <&e_shrugging>, <&e_facepalming>, <&e_saluting>)
 
         // 😬 😰 😱
-        EMOJI_TD( alarm, \
-          grimacing, <&kp N1 &kp F &kp N6 &kp N2 &kp C>, \
-          scared, <&kp N1 &kp F &kp N6 &kp N3 &kp N0>, \
-          screaming, <&kp N1 &kp F &kp N6 &kp N3 &kp N1> \
-        )
+        UNICODE(grimacing, UC_MACRO(<&kp N1 &kp F &kp N6 &kp N2 &kp C>))
+        UNICODE(scared, UC_MACRO(<&kp N1 &kp F &kp N6 &kp N3 &kp N0>))
+        UNICODE(screaming, UC_MACRO(<&kp N1 &kp F &kp N6 &kp N3 &kp N1>))
+        EMOJI_TD(alarm, <&e_grimacing>, <&e_scared>, <&e_screaming>)
 
         // 🙈 🙉 🙊
-        EMOJI_TD( monkey, \
-          see_no, <&kp N1 &kp F &kp N6 &kp N4 &kp N8>, \
-          hear_no, <&kp N1 &kp F &kp N6 &kp N4 &kp N9>, \
-          speak_no, <&kp N1 &kp F &kp N6 &kp N4 &kp A> \
-        )
+        UNICODE(see_no, UC_MACRO(<&kp N1 &kp F &kp N6 &kp N4 &kp N8>))
+        UNICODE(hear_no, UC_MACRO(<&kp N1 &kp F &kp N6 &kp N4 &kp N9>))
+        UNICODE(speak_no, UC_MACRO(<&kp N1 &kp F &kp N6 &kp N4 &kp A>))
+        EMOJI_TD(monkey, <&e_see_no>, <&e_hear_no>, <&e_speak_no>)
 
         // 🎉 🎊 🥳
-        EMOJI_TD( celebration, \
-          party_popper, <&kp N1 &kp F &kp N3 &kp N8 &kp N9>, \
-          confetti_ball, <&kp N1 &kp F &kp N3 &kp N8 &kp A>, \
-          partying, <&kp N1 &kp F &kp N9 &kp N7 &kp N3> \
-        )
+        UNICODE(party_popper, UC_MACRO(<&kp N1 &kp F &kp N3 &kp N8 &kp N9>))
+        UNICODE(confetti_ball, UC_MACRO(<&kp N1 &kp F &kp N3 &kp N8 &kp A>))
+        UNICODE(partying, UC_MACRO(<&kp N1 &kp F &kp N9 &kp N7 &kp N3>))
+        EMOJI_TD(celebration, <&e_party_popper>, <&e_confetti_ball>, <&e_partying>)
 
         // ❤️ 🥰 😍
-        EMOJI_TD( hearts, \
-          heart, <&kp N2 &kp N7 &kp N6 &kp N4>, \
-          heart_eyes, <&kp N1 &kp F &kp N9 &kp N7 &kp N0>, \
-          surrounded_by_hearts, <&kp N1 &kp F &kp N6 &kp N0 &kp D> \
-        )
+        UNICODE(heart, UC_MACRO(<&kp N2 &kp N7 &kp N6 &kp N4>))
+        UNICODE(heart_eyes, UC_MACRO(<&kp N1 &kp F &kp N9 &kp N7 &kp N0>))
+        UNICODE(surrounded_by_hearts, UC_MACRO(<&kp N1 &kp F &kp N6 &kp N0 &kp D>))
+        EMOJI_TD(hearts, <&e_heart>, <&e_heart_eyes>, <&e_surrounded_by_hearts>)
         
         // ✅ 👍 💯
-        EMOJI_TD( yes, \
-          tick, <&kp N2 &kp N7 &kp N0 &kp N5>, \
-          thumb_up, <&kp N1 &kp F &kp N4 &kp N4 &kp D>, \
-          100, <&kp N1 &kp F &kp N4 &kp A &kp F> \
-        )
+        UNICODE(tick, UC_MACRO(<&kp N2 &kp N7 &kp N0 &kp N5>))
+        UNICODE(thumb_up, UC_MACRO(<&kp N1 &kp F &kp N4 &kp N4 &kp D>))
+        UNICODE(100, UC_MACRO(<&kp N1 &kp F &kp N4 &kp A &kp F>))
+        EMOJI_TD(yes, <&e_tick>, <&e_thumb_up>, <&e_100>)
         
         // ❌ 👎 🛑
-        EMOJI_TD( no, \
-          cross, <&kp N2 &kp N7 &kp N4 &kp C>, \
-          thumb_down, <&kp N1 &kp F &kp N4 &kp N4 &kp E>, \
-          stop, <&kp N1 &kp F &kp N6 &kp D &kp N1> \
-        )
+        UNICODE(cross, UC_MACRO(<&kp N2 &kp N7 &kp N4 &kp C>))
+        UNICODE(thumb_down, UC_MACRO(<&kp N1 &kp F &kp N4 &kp N4 &kp E>))
+        UNICODE(stop, UC_MACRO(<&kp N1 &kp F &kp N6 &kp D &kp N1>))
+        EMOJI_TD(no, <&e_cross>, <&e_thumb_down>, <&e_stop>)
 
         // 🎛️ ⌨️ ⚙️
-        EMOJI_TD( interaction, \
-          ui, <&kp N1 &kp F &kp N3 &kp N9 &kp B>, \
-          input, <&kp N2 &kp N3 &kp N2 &kp N8>, \
-          settings, <&kp N2 &kp N6 &kp N9 &kp N9> \
-        )
+        UNICODE(ui, UC_MACRO(<&kp N1 &kp F &kp N3 &kp N9 &kp B>))
+        UNICODE(input, UC_MACRO(<&kp N2 &kp N3 &kp N2 &kp N8>))
+        UNICODE(settings, UC_MACRO(<&kp N2 &kp N6 &kp N9 &kp N9>))
+        EMOJI_TD(interaction, <&e_ui>, <&e_input>, <&e_settings>)
 
-        // 🔐 🔓 🛡️
-        EMOJI_TD( security, \
-          lock_and_key, <&kp N1 &kp F &kp N5 &kp N1 &kp N0>, \
-          unlocked, <&kp N1 &kp F &kp N5 &kp N1 &kp N3>, \
-          shield, <&kp N1 &kp F &kp N6 &kp E &kp N1> \
-        )
+        // 🔓 🔐 🛡️
+        UNICODE(unlocked, UC_MACRO(<&kp N1 &kp F &kp N5 &kp N1 &kp N3>))
+        UNICODE(lock_and_key, UC_MACRO(<&kp N1 &kp F &kp N5 &kp N1 &kp N0>))
+        UNICODE(shield, UC_MACRO(<&kp N1 &kp F &kp N6 &kp E &kp N1>))
+        EMOJI_TD(security, <&e_unlocked>, <&e_lock_and_key>, <&e_shield>)
 
         // 🔧 ♻️ 🚧
-        EMOJI_TD( maintenance, \
-          wrench, <&kp N1 &kp F &kp N5 &kp N2 &kp N7>, \
-          recycling, <&kp N2 &kp N6 &kp N7 &kp B>, \
-          construction, <&kp N1 &kp F &kp N6 &kp A &kp N7> \
-        )
+        UNICODE(wrench, UC_MACRO(<&kp N1 &kp F &kp N5 &kp N2 &kp N7>))
+        UNICODE(recycling, UC_MACRO(<&kp N2 &kp N6 &kp N7 &kp B>))
+        UNICODE(construction, UC_MACRO(<&kp N1 &kp F &kp N6 &kp A &kp N7>))
+        EMOJI_TD(maintenance, <&e_wrench>, <&e_recycling>, <&e_construction>)
 
         // ⚖️ 🎲 🧃
-        EMOJI_TD( gamedev, \
-          balance, <&kp N2 &kp N6 &kp N9 &kp N6>, \
-          randomness, <&kp N1 &kp F &kp N3 &kp B &kp N2>, \
-          juice, <&kp N1 &kp F &kp N9 &kp C &kp N3> \
-        )
+        UNICODE(balance, UC_MACRO(<&kp N2 &kp N6 &kp N9 &kp N6>))
+        UNICODE(randomness, UC_MACRO(<&kp N1 &kp F &kp N3 &kp B &kp N2>))
+        UNICODE(juice, UC_MACRO(<&kp N1 &kp F &kp N9 &kp C &kp N3>))
+        EMOJI_TD(gamedev, <&e_balance>, <&e_randomness>, <&e_juice>)
 
         // 💭 🧠 🤔
-        EMOJI_TD( thought, \
-          thought_bubble, <&kp N1 &kp F &kp N4 &kp A &kp D>, \ 
-          brain, <&kp N1 &kp F &kp N9 &kp E &kp N0>, \ 
-          thinking_face, <&kp N1 &kp F &kp N9 &kp N1 &kp N4> \ 
-        )
+        UNICODE(thought_bubble, UC_MACRO(<&kp N1 &kp F &kp N4 &kp A &kp D>))
+        UNICODE(brain, UC_MACRO(<&kp N1 &kp F &kp N9 &kp E &kp N0>))
+        UNICODE(thinking_face, UC_MACRO(<&kp N1 &kp F &kp N9 &kp N1 &kp N4>))
+        EMOJI_TD(thought, <&e_thought_bubble>, <&e_brain>, <&e_thinking_face>)
 
-        // 🪲 💩 💣
-        EMOJI_TD( problem, \
-          bug, <&kp N1 &kp F &kp A &kp B &kp N2>, \
-          poop, <&kp N1 &kp F &kp N4 &kp A &kp N9>, \
-          bomb, <&kp N1 &kp F &kp N4 &kp A &kp N3> \
-        )
 
-        // ⚠️ 🩹 🧹
-        EMOJI_TD( beware, \
-          warning, <&kp N2 &kp N6 &kp A &kp N0>, \
-          band_aid, <&kp N1 &kp F &kp A &kp N7 &kp N9>, \
-          broom, <&kp N1 &kp F &kp N9 &kp F &kp N9> \
-        )
 
         // ❓ 🧩 🔍
-        EMOJI_TD( mystery, \
-          question, <&kp N2 &kp N7 &kp N5 &kp N3>, \
-          puzzle, <&kp N1 &kp F &kp E &kp E &kp N9>, \
-          research, <&kp N1 &kp F &kp N5 &kp N0 &kp D> \
-        )
+        UNICODE(question, UC_MACRO(<&kp N2 &kp N7 &kp N5 &kp N3>))
+        UNICODE(puzzle, UC_MACRO(<&kp N1 &kp F &kp E &kp E &kp N9>))
+        UNICODE(research, UC_MACRO(<&kp N1 &kp F &kp N5 &kp N0 &kp D>))
+        EMOJI_TD(mystery, <&e_question>, <&e_puzzle>, <&e_research>)
 
         // 💡 🎯 🏆
-        EMOJI_TD( stages, \
-          bulb, <&kp N1 &kp F &kp N4 &kp A &kp N1>, \
-          goal, <&kp N1 &kp F &kp N3 &kp A &kp F>, \
-          success, <&kp N1 &kp F &kp N3 &kp C &kp N6> \
-        )
+        UNICODE(bulb, UC_MACRO(<&kp N1 &kp F &kp N4 &kp A &kp N1>))
+        UNICODE(goal, UC_MACRO(<&kp N1 &kp F &kp N3 &kp A &kp F>))
+        UNICODE(success, UC_MACRO(<&kp N1 &kp F &kp N3 &kp C &kp N6>))
+        EMOJI_TD(stages, <&e_bulb>, <&e_goal>, <&e_success>)
 
         // 🔑 🚨 ⏰
-        EMOJI_TD( important, \
-          key, <&kp N1 &kp F &kp N5 &kp N1 &kp N1>, \
-          siren, <&kp N1 &kp F &kp N6 &kp A &kp N8>, \
-          alarm_clock, <&kp N2 &kp N3 &kp F &kp N0> \
-        )
+        UNICODE(key, UC_MACRO(<&kp N1 &kp F &kp N5 &kp N1 &kp N1>))
+        UNICODE(siren, UC_MACRO(<&kp N1 &kp F &kp N6 &kp A &kp N8>))
+        UNICODE(alarm_clock, UC_MACRO(<&kp N2 &kp N3 &kp F &kp N0>))
+        EMOJI_TD(important, <&e_key>, <&e_siren>, <&e_alarm_clock>)
 
-        // 💀 ⚔️ 🦠
-        EMOJI_TD( horsemen, \
-          death, <&kp N1 &kp F &kp N4 &kp N8 &kp N0>, \
-          war, <&kp N2 &kp N6 &kp N9 &kp N4>, \
-          plague, <&kp N1 &kp F &kp N9 &kp A &kp N0> \
-        )
 
         // 🙁 😞 😩
-        EMOJI_TD( sad, \
-          frown, <&kp N1 &kp F &kp N6 &kp N4 &kp N1>, \
-          disappointed, <&kp N1 &kp F &kp N6 &kp N1 &kp E>, \
-          weary, <&kp N1 &kp F &kp N6 &kp N2 &kp N9> \
-        )
+        UNICODE(frown, UC_MACRO(<&kp N1 &kp F &kp N6 &kp N4 &kp N1>))
+        UNICODE(disappointed, UC_MACRO(<&kp N1 &kp F &kp N6 &kp N1 &kp E>))
+        UNICODE(weary, UC_MACRO(<&kp N1 &kp F &kp N6 &kp N2 &kp N9>))
+        EMOJI_TD(sad, <&e_frown>, <&e_disappointed>, <&e_weary>)
+
+        // 🧪 🗺️
+        UNICODE(science, UC_MACRO(<&kp N1 &kp F &kp N9 &kp E &kp A>))
+        UNICODE(geography, UC_MACRO(<&kp N1 &kp F &kp N5 &kp F &kp A>))
+        EMOJI_TD(disciplines, <&e_science>, <&e_geography>)
+
+        // 🩹 🦠 🤮
+        UNICODE(plaster, UC_MACRO(<&kp N1 &kp F &kp A &kp N7 &kp N9>))
+        UNICODE(germ, UC_MACRO(<&kp N1 &kp F &kp N9 &kp A &kp N0>))
+        UNICODE(vomiting, UC_MACRO(<&kp N1 &kp F &kp N9 &kp N2 &kp E>))
+        EMOJI_TD(medical, <&e_plaster>, <&e_germ>, <&e_vomiting>)
+
+        // 🫩 🥱 😴
+        UNICODE(bags_under_eyes, UC_MACRO(<&kp N1 &kp F &kp A &kp E &kp N9>))
+        UNICODE(yawning, UC_MACRO(<&kp N1 &kp F &kp N9 &kp N7 &kp N1>))
+        UNICODE(sleeping, UC_MACRO(<&kp N1 &kp F &kp N6 &kp N3 &kp N4>))
+        EMOJI_TD(tired, <&e_bags_under_eyes>, <&e_yawning>, <&e_sleeping>)
+
+        // 🌐 🖥️ 📱
+        UNICODE(globe, UC_MACRO(<&kp N1 &kp F &kp N3 &kp N1 &kp N0>))
+        UNICODE(desktop_computer, UC_MACRO(<&kp N1 &kp F &kp N5 &kp A &kp N5>))
+        UNICODE(mobile_phone, UC_MACRO(<&kp N1 &kp F &kp N4 &kp F &kp N1>))
+        EMOJI_TD(platforms, <&e_globe>, <&e_desktop_computer>, <&e_mobile_phone>)
+
+        // 👍 👌 🖖
+        UNICODE(thumbs_up, UC_MACRO(<&kp N1 &kp F &kp N4 &kp N4 &kp D>))
+        UNICODE(ok_hand, UC_MACRO(<&kp N1 &kp F &kp N4 &kp N4 &kp C>))
+        UNICODE(vulcan_salute, UC_MACRO(<&kp N1 &kp F &kp N5 &kp N9 &kp N6>))
+        EMOJI_TD(one_hand, <&e_thumbs_up>, <&e_ok_hand>, <&e_vulcan_salute>)
+
+        // 🙏 👏 🙌
+        UNICODE(folded_hands, UC_MACRO(<&kp N1 &kp F &kp N6 &kp N4 &kp N7>))
+        UNICODE(clapping_hands, UC_MACRO(<&kp N1 &kp F &kp N4 &kp N4 &kp F>))
+        UNICODE(raised_hands, UC_MACRO(<&kp N1 &kp F &kp N6 &kp N4 &kp C>))
+        EMOJI_TD(two_hands, <&e_folded_hands>, <&e_clapping_hands>, <&e_raised_hands>)
+
+        // 🖕 🤬 💩
+        UNICODE(middle_finger, UC_MACRO(<&kp N1 &kp F &kp N5 &kp N9 &kp N5>))
+        UNICODE(face_with_symbols_on_mouth, UC_MACRO(<&kp N1 &kp F &kp N9 &kp N2 &kp N0>))
+        UNICODE(pile_of_poo, UC_MACRO(<&kp N1 &kp F &kp N4 &kp A &kp N9>))
+        EMOJI_TD(sass, <&e_middle_finger>, <&e_face_with_symbols_on_mouth>, <&e_pile_of_poo>)
+
+        // ⏳ ⚡ ⏰
+        UNICODE(hourglass, UC_MACRO(<&kp N2 &kp N3 &kp F &kp N3>))
+        UNICODE(high_voltage, UC_MACRO(<&kp N2 &kp N6 &kp A &kp N1>))
+        UNICODE(alarm_clock, UC_MACRO(<&kp N2 &kp N3 &kp F &kp N0>))
+        EMOJI_TD(time, <&e_hourglass>, <&e_high_voltage>, <&e_alarm_clock>)
+
+        // 🎨 🖊️ 💻
+        UNICODE(palette, UC_MACRO(<&kp N1 &kp F &kp N3 &kp A &kp N8>))
+        UNICODE(pen, UC_MACRO(<&kp N1 &kp F &kp N5 &kp N8 &kp A>))
+        UNICODE(laptop, UC_MACRO(<&kp N1 &kp F &kp N4 &kp B &kp B>))
+        EMOJI_TD(creative, <&e_palette>, <&e_pen>, <&e_laptop>)
+
+        // 👊 ⚔️ 🔫
+        UNICODE(punch, UC_MACRO(<&kp N1 &kp F &kp N4 &kp N4 &kp A>))
+        UNICODE(crossed_swords, UC_MACRO(<&kp N2 &kp N6 &kp N9 &kp N4>))
+        UNICODE(pistol, UC_MACRO(<&kp N1 &kp F &kp N5 &kp N2 &kp NB>))
+        EMOJI_TD(violence, <&e_punch>, <&e_crossed_swords>, <&e_pistol>)
+
+        // 🧼 ♻️ 📝
+        UNICODE(soap, UC_MACRO(<&kp N1 &kp F &kp A &kp N7 &kp N4>))
+        UNICODE(recycling, UC_MACRO(<&kp N2 &kp N6 &kp N7 &kp B>))
+        UNICODE(memo, UC_MACRO(<&kp N1 &kp F &kp N4 &kp ND &kp D>))
+        EMOJI_TD(need_tweaks, <&e_soap>, <&e_recycling>, <&e_memo>)
+
+        // ⚠️ 🚩 ☠️
+        UNICODE(warning, UC_MACRO(<&kp N2 &kp N6 &kp A &kp N0>))
+        UNICODE(triangular_flag, UC_MACRO(<&kp N1 &kp F &kp N6 &kp A &kp N9>))
+        UNICODE(skull_and_crossbones, UC_MACRO(<&kp N2 &kp N6 &kp N2 &kp N0>))
+        EMOJI_TD(warnings, <&e_warning>, <&e_triangular_flag>, <&e_skull_and_crossbones>)
+
+        // 🪲 💸 💣
+        UNICODE(bug, UC_MACRO(<&kp N1 &kp F &kp A &kp B &kp N2>))
+        UNICODE(bomb, UC_MACRO(<&kp N1 &kp F &kp N4 &kp A &kp N3>))
+        UNICODE(money_with_wings, UC_MACRO(<&kp N1 &kp F &kp N4 &kp B &kp N8>))
+        EMOJI_TD(problems, <&e_bug>, <&e_money_with_wings>, <&e_bomb>)
+
+        // ↩ 📜 ⛓️‍💥
+        UNICODE(u_turn, UC_MACRO(<&kp N2 &kp N1 &kp A &kp N9>))
+        UNICODE(history, UC_MACRO(<&kp N1 &kp F &kp N4 &kp D &kp C>))
+        UNICODE(broken_link, UC_MACRO(<&kp N2 &kp N6 &kp D &kp N3>), UC_MACRO(<&kp F &kp E &kp N0 &kp F>), UC_MACRO(<&kp N2 &kp N0 &kp N0 &kp D>), UC_MACRO(<&kp N1 &kp F &kp N4 &kp A &kp N5>))
+        EMOJI_TD(changes, <&e_u_turn>, <&e_computer_history>, <&e_broken_link>)
+
+        // 🖼️ 🎵 🎬
+        UNICODE(image, UC_MACRO(<&kp N1 &kp F &kp N5 &kp B &kp C>))
+        UNICODE(audio, UC_MACRO(<&kp N1 &kp F &kp N3 &kp B &kp N5>))
+        UNICODE(video, UC_MACRO(<&kp N1 &kp F &kp N3 &kp A &kp C>))
+        EMOJI_TD(media, <&e_image>, <&e_audio>, <&e_video>)
+
+        // 🔗 🔖
+        UNICODE(link, UC_MACRO(<&kp N1 &kp F &kp N5 &kp N1 &kp N7>))
+        UNICODE(bookmark, UC_MACRO(<&kp N1 &kp F &kp N5 &kp N1 &kp N6>))
+        EMOJI_TD(references, <&e_link>, <&e_bookmark>)
+
+        // 🏆 🥅 🪄 🎓 🎚 🧮 🪎 📍 ✂ 🃏 🏛
+
+
 
 
         e_kiss: emoji_blowing_kiss {
@@ -1795,7 +1847,7 @@
 //├────────────────┼────────────────┼───────────┼─────────────┼───────────────────┼───────┼─────────────────────┬───────────────────────────┬────────────────────╮ ╭──────────────────┬───────────────────┬─────────────────┼───────┼─────────────┼─────────────┼─────────────┼─────────────────────┼─────────────────────────────┤
     &excl            &mt_rpi LALT Z   &kp X       &kp C         &kp D               &kp V   &lt_rpi EMOJI ESC     &lt_rpi MOUSING_MEDIA DEL   &lt_rpi MOUSE LGUI     &none              &mo FKEYS           &cw_lt WINDOW 0   &kp K   &kp H         &comma        &dot          &mt_rpi LCTRL UNDER   &equal   
 //├────────────────┼────────────────┼───────────┼─────────────┼───────────────────┼───────┼─────────────────────┼───────────────────────────┼────────────────────┤ ├──────────────────┼───────────────────┼─────────────────┼───────┼─────────────┼─────────────┼─────────────┼─────────────────────┼─────────────────────────────┤
-    &none            &qmark           &plus       &lpar         &mt_rpi LGUI RPAR           &rpt_lt NUMS_SYMS 0   &shift_td                   &ret_lt DBL 0          &lt_rpi KEYW TAB   &bspc_lt BIGRAM 0   &space_lt NAV 0           &semi         &colon        &dbl_quote    &astrk                &none
+    &none            &qmark           &plus       &lpar         &mt_rpi LGUI RPAR           &rpt_lt NUMS_SYMS 0   &shift_td                   &ret_lt DBL 0          &lt_rpi KEYW TAB   &bspc_lt BIGRAM 0   &space_lt NAV 0           &semi         &colon        &dbl_quote    &e_source_td          &none
 //╰────────────────┴────────────────┴───────────┴─────────────┴───────────────────╯       ╰─────────────────────┴───────────────────────────┴────────────────────╯ ╰──────────────────┴───────────────────┴─────────────────╯       ╰─────────────┴─────────────┴─────────────┴─────────────────────┴─────────────────────────────╯
             >;
         };
@@ -2199,23 +2251,24 @@
 
         emoji_layer {
             bindings = <
-//╭───────────────┬───────────────┬──────────────┬───────────────────┬───────────────╮                                                                                                        ╭───────────────────┬───────────────────┬────────────────────┬────────────────┬─────────────╮
-    &none           &none           &none          &none               &none                                                                                                                    &none               &none               &none                &none            &none      
-//├───────────────┼───────────────┼──────────────┼───────────────────┼───────────────┼───────────────╮                                                                        ╭───────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
-    &none           &none           &none          &e_diagonal         &none           &none                                                                                    &none           &trans              &e_smirk            &trans               &none            &none      
-//├───────────────┼───────────────┼──────────────┼───────────────────┼───────────────┼───────────────┤                                                                        ├───────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
-//                                                 😬 😰 😱                            🧐 🤓 😎                                                                                                                     ✅ 👍 💯            🎉 🎊 🥳
-    &none           &none           &none          &e_alarm_td         &e_poke         &e_eyewear_td                                                                            &none           &none               &e_yes_td           &e_celebration_td    &trans           &none      
-//├───────────────┼───────────────┼──────────────┼───────────────────┼───────────────┼───────────────┤                                                                        ├───────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
-//  💀 ⚔️ 🦠        😤 😡 🤬        ⚠️ 🩹 🧹       🎛️ ⌨️ ⚙️            💭 🧠 🤔        ⚖️ 🎲 🧃                                                                                 🙈 🙉 🙊       💡 🎯 🏆            ❌ 👎 🛑            🔑 🚨 ⏰             😮 🤯 😵         😆 😂 🤣
-    &e_horsemen_td  &e_anger_td     &e_beware_td   &e_interaction_td   &e_thought_td   &e_gamedev_td                                                                            &e_monkey_td    &e_stages_td        &e_no_td            &e_important_td      &e_surprise_td   &e_laugh_td      
-//├───────────────┼───────────────┼──────────────┼───────────────────┼───────────────┼───────────────┼─────────┬───────────┬───────────╮ ╭─────────────┬──────────┬───────────┼───────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
-//  🪲 💩 💣                                       🔧 ♻️ 🚧            🔐 🔓 🛡️        🤷 🤦 🫡                                                                                                                                         ❤️ 🥰 😍                              🥺 😥 😭
-    &e_problem_td   &none           &e_kiss        &e_maintenance_td   &e_security_td  &e_person_td    &kp ESC   &kp DEL     &none         &to DEFAULT   &none      &kp LSHFT   &none           &none               &none               &e_hearts_td         &e_embarrassed   &e_tears_td        
-//├───────────────┼───────────────┼──────────────┼───────────────────┼───────────────┼───────────────┼─────────┼───────────┼───────────┤ ├─────────────┼──────────┼───────────┼───────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
-//                  ❓ 🧩 🔍                       🙁 😞 😩            😊 😄 🥲
-    &none           &e_mystery_td   &none          &e_sad_td           &e_smile_td                     &none     &kp LSHFT   &none         &kp TAB       &kp BSPC   &kp SPACE                   &none               &none               &none                &none            &none 
-//╰───────────────┴───────────────┴──────────────┴───────────────────┴───────────────╯               ╰─────────┴───────────┴───────────╯ ╰─────────────┴──────────┴───────────╯               ╰───────────────────┴───────────────────┴────────────────────┴────────────────┴─────────────╯
+//╭────────────────┬───────────────┬───────────────────┬────────────────────┬─────────────────╮                                                                                                                 ╭───────────────────┬───────────────────┬────────────────────┬────────────────┬─────────────╮
+    &none            &none           &none               &none                &none                                                                                                                               &none               &none               &none                &none            &none      
+//├────────────────┼───────────────┼───────────────────┼────────────────────┼─────────────────┼───────────────╮                                                                             ╭───────────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
+//                                                       🟢 🟡 🔴                                                                                                                                                                     🖼️ 🎵 🎬                                                                                                                                         
+    &none            &none           &none               &traffic_lights_td   &none             &none                                                                                         &none               &trans              &e_media_td          &trans               &none            &none      
+//├────────────────┼───────────────┼───────────────────┼────────────────────┼─────────────────┼───────────────┤                                                                             ├───────────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
+//                                   ⚠️ 🚩 ☠️            😬 😰 😱             🌐 🖥️ 📱           🧐 🤓 😎                                                                                      🙈 🙉 🙊                                🎛️ ⌨️ ⚙️            ✅ 👍 💯
+    &none            &none           &e_warnings_td      &e_alarm_td          &e_platforms_td   &e_eyewear_td                                                                                 &e_monkey_td        &none               &e_interaction_td   &e_yes_td            &trans           &none      
+//├────────────────┼───────────────┼───────────────────┼────────────────────┼─────────────────┼───────────────┤                                                                             ├───────────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
+//  👊 ⚔️ 🔫         😤 😠 😡        🧼 ♻️ 📝            🔓 🔐 🛡️             💭 🧠 🤔          ⚖️ 🎲 🧃                                                                                      🔧 🔄 🚧            ❌ 👎 🚫            👀 😏 😒            🔑 🚨 ⭐             😮 🤯 😵         😆 😂 🤣
+    &e_violence_td   &e_anger_td     &e_need_tweaks_td   &e_security_td       &e_thought_td     &e_gamedev_td                                                                                 &e_maintenance_td   &e_no_td            &e_eyes_td          &e_important_td      &e_surprise_td   &e_laugh_td      
+//├────────────────┼───────────────┼───────────────────┼────────────────────┼─────────────────┼───────────────┼─────────┬───────────┬───────────╮ ╭──────────────────┬──────────┬───────────┼───────────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
+//  🪲 💸 💣         🥱 😴 😫        ↩ 📜 ⛓️‍💥             🎉 🎊 🥳             💡 🎯 🚀          🤷 🤦 💁                                                                                                          💪 👌 ✊            🙏 👏 🙌            ❤️ 🥰 😍            🖕 🤬 💩          🥺 😥 😭
+    &e_problems_td   &e_tired_td     &e_changes_td       &e_celebration_td    &e_stages_td      &e_person_td    &kp ESC   &kp DEL     &none         &to DEFAULT        &none      &kp LSHFT   &none               &e_one_hand_td      &e_two_hands_td     &e_hearts_td         &e_sass_td       &e_tears_td        
+//├────────────────┼───────────────┼───────────────────┼────────────────────┼─────────────────┼───────────────┼─────────┼───────────┼───────────┤ ├──────────────────┼──────────┼───────────┼───────────────────┼───────────────────┼───────────────────┼────────────────────┼────────────────┼─────────────┤
+//                   ❓ 🧩 🔍        🧪 🗺️               🙁 😞 😩             😊 😄 🥲                                                              🔗 🔖                                                         ⏳ ⚡ ⏰             🩹 🦠 🤮            🎨 🖊️ 💻
+    &none            &e_mystery_td   &e_disciplines_td   &e_sad_td            &e_smile_td                       &none     &kp LSHFT   &none         &e_references_td   &kp BSPC   &kp SPACE                       &e_time_td          &e_medical_td       &e_creative_td       &none            &none 
+//╰────────────────┴───────────────┴───────────────────┴────────────────────┴─────────────────╯               ╰─────────┴───────────┴───────────╯ ╰──────────────────┴──────────┴───────────╯                   ╰───────────────────┴───────────────────┴────────────────────┴────────────────┴─────────────╯
             >;
         };
 
