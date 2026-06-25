@@ -1672,7 +1672,7 @@
         UNICODE(u_turn, UC_MACRO(<&kp N2 &kp N1 &kp A &kp N9>))
         UNICODE(history, UC_MACRO(<&kp N1 &kp F &kp N4 &kp D &kp C>))
         UNICODE(broken_link, UC_MACRO(<&kp N2 &kp N6 &kp D &kp N3>), UC_MACRO(<&kp F &kp E &kp N0 &kp F>), UC_MACRO(<&kp N2 &kp N0 &kp N0 &kp D>), UC_MACRO(<&kp N1 &kp F &kp N4 &kp A &kp N5>))
-        EMOJI_TD(changes, <&e_u_turn>, <&e_computer_history>, <&e_broken_link>)
+        EMOJI_TD(changes, <&e_u_turn>, <&e_history>, <&e_broken_link>)
 
         // 🖼️ 🎵 🎬
         UNICODE(image, UC_MACRO(<&kp N1 &kp F &kp N5 &kp B &kp C>))
