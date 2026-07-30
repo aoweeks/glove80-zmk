@@ -1736,17 +1736,18 @@
 
         // 🧑🏻‍💻 🤖 👥
         UNICODE(me, UC_MACRO(<&kp N1 &kp F &kp N9 &kp D &kp N1>), UC_MACRO(<&kp N1 &kp F &kp N3 &kp F &kp B>), UC_MACRO(<&kp N2 &kp N0 &kp N0 &kp D>), UC_MACRO(<&kp N1 &kp F &kp N4 &kp B &kp B>) )
-        UNICODE(robot, UC_MACRO(<&kp N1 &kp F &kp N9 &kp N1 &kp N6>))
+        UNICODE(ai, UC_MACRO(<&kp N1 &kp F &kp N9 &kp N1 &kp N6>))
         UNICODE(others, UC_MACRO(<&kp N1 &kp F &kp N5 &kp N3 &kp N4>))
-        EMOJI_TD(authors, <&me>, <&ai>, <&others>)
+        EMOJI_TD(authors, <&e_me>, <&e_ai>, <&e_others>)
 
 
         // 💡 🎓 🪄 
         UNICODE(bulb, UC_MACRO(<&kp N1 &kp F &kp N4 &kp A &kp N1>))
+        UNICODE(teacher, UC_MACRO(<&kp N1 &kp F &kp N3 &kp N9 &kp N3>))
+        UNICODE(magic, UC_MACRO(<&kp N1 &kp F &kp A &kp N8 &kp N4>))
+        EMOJI_TD(concepts, <&e_bulb>, <&e_teacher>, <&e_magic>)
 
-        EMOJI_TD(concepts, <&bulb>, <&teacher>, <&magic>)
-
-        // 🏆 🥅 🎚 🧮 🪎 📍 ✂ 🃏 🏛 
+        // Todo: 🏆 🥅 🎚 🧮 🪎 📍 ✂ 🃏 🏛 
 
 
 
