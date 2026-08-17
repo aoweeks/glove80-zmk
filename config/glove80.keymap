@@ -403,7 +403,7 @@
         //     bindings = <&mo>, <&equal>;
         // };
 
-        apos_mt: apostrophe_mod_tap {
+        apos_lt: apostrophe_layer_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
@@ -411,7 +411,7 @@
             quick-tap-ms = <200>;
             require-prior-idle-ms = <125>;
             retro-tap;
-            bindings = <&kp>, <&apos>;
+            bindings = <&mo>, <&apos>;
         };
 
         code_mode_mt: code_mode_gui_click_mod_tap {
