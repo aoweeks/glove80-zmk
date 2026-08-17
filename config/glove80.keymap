@@ -74,7 +74,9 @@
 
 
 // Other Constants
+#undef ZMK_POINTING_DEFAULT_MOVE_VAL
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 2000  // default 600
+#undef ZMK_POINTING_DEFAULT_SCRL_VAL
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 80 // default 10
 #define STICKY_RELEASE_AFTER 1500
 #define MOUSE_TAPPING 300
@@ -2377,7 +2379,7 @@
     &none    &none    &none    &none    &none             &none    &none    &none      &none    &none    &none             &none     &none     &none     &none    &none  
 //╰────────┴────────┴────────┴────────┴────────╯        ╰────────┴────────┴────────╯ ╰────────┴────────┴────────╯        ╰─────────┴─────────┴─────────┴────────┴────────╯
             >;
-
+        };
 
 //#################################################################################################################################################################################################################################################
         magic_layer {
